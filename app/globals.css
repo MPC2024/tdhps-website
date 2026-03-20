@@ -1,26 +1,144 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ============================================================
+   THE DOG HOUSE PET SALON — Design System (Tailwind CSS v4)
+   Brand: #965B83 primary, #CC3366 accent, Roboto + Bowlby One SC
+   ============================================================ */
+
+@theme {
+  /* ── Brand Colors ── */
+  --color-primary:        #965B83;
+  --color-primary-light:  #B07AA0;
+  --color-primary-dark:   #7A4A6B;
+  --color-accent:         #CC3366;
+  --color-accent-light:   #E0598A;
+  --color-secondary:      #54595F;
+  --color-secondary-light:#69727D;
+  --color-dark:           #1F2124;
+  --color-charcoal:       #33373D;
+  --color-gray-medium:    #69727D;
+  --color-gray-light:     #ABB8C3;
+  --color-off-white:      #F8F8F8;
+
+  /* ── Typography ── */
+  --font-display:   "Bowlby One SC", sans-serif;
+  --font-body:      "Outfit", sans-serif;
+  --font-sans:      "Roboto", sans-serif;
+  --font-serif:     "Roboto Slab", serif;
+
+  /* ── Font Sizes ── */
+  --font-size-xs:   13px;
+  --font-size-sm:   15px;
+  --font-size-base: 16px;
+  --font-size-md:   18px;
+  --font-size-lg:   20px;
+  --font-size-xl:   24px;
+  --font-size-2xl:  30px;
+  --font-size-3xl:  36px;
+  --font-size-4xl:  42px;
+  --font-size-5xl:  54px;
+
+  /* ── Spacing / Layout ── */
+  --spacing-container: 1520px;
+
+  /* ── Border Radius ── */
+  --radius-btn:  50px;
+  --radius-card: 12px;
+
+  /* ── Shadows ── */
+  --shadow-card:  6px 6px 9px rgba(0,0,0,.2);
+  --shadow-deep:  12px 12px 50px rgba(0,0,0,.4);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+/* ── Base Styles ── */
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: "Outfit", sans-serif;
+    font-size: 16px;
+    color: #1F2124;
+    background: #ffffff;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Bowlby One SC", sans-serif;
+    font-weight: 400;
+    line-height: 1.2;
+    color: #1F2124;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ── Component Utilities ── */
+@layer utilities {
+  .container-site {
+    width: 100%;
+    max-width: 1520px;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #965B83;
+    color: #ffffff;
+    font-family: "Outfit", sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 15px 30px;
+    border-radius: 50px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    cursor: pointer;
+    border: none;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .btn-primary:hover {
+    background-color: #7A4A6B;
+    transform: translateY(-1px);
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    color: #965B83;
+    font-family: "Outfit", sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 13px 28px;
+    border-radius: 50px;
+    border: 2px solid #965B83;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .btn-secondary:hover {
+    background-color: #965B83;
+    color: #ffffff;
+  }
 }

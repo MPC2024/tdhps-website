@@ -44,6 +44,12 @@ const nextConfig: NextConfig = {
         destination: "/dog-day-care",
         permanent: true,
       },
+      // Fix /about → redirect to /our-staff
+      { source: "/about", destination: "/our-staff", permanent: true },
+      // Fix /locations/* short paths (currently 404)
+      { source: "/locations/galleria", destination: "/galleria-uptown-park-location", permanent: true },
+      { source: "/locations/memorial", destination: "/memorial-park-location", permanent: true },
+      { source: "/locations/pearland", destination: "/pearland-location", permanent: true },
     ];
   },
 };

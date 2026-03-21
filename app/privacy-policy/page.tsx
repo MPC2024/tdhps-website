@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | The Dog House Pet Salon",
+  title: "Privacy Policy",
   description:
     "Learn how The Dog House Pet Salon protects your privacy. We are committed to keeping your information safe.",
   openGraph: {
-    title: "Privacy Policy | The Dog House Pet Salon",
+    title: "Privacy Policy",
     description:
       "Learn how The Dog House Pet Salon protects your privacy. We are committed to keeping your information safe.",
     url: "https://www.thedoghouseps.com/privacy-policy/",

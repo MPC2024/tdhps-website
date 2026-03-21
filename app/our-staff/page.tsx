@@ -3,11 +3,11 @@ import Image from "next/image";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Our Staff | The Dog House Pet Salon",
+  title: "Our Staff",
   description:
     "Meet The Dog House team in Houston! With 25+ years of pet grooming, daycare, and boarding expertise, we ensure your pets receive the best care.",
   openGraph: {
-    title: "Our Staff | The Dog House Pet Salon",
+    title: "Our Staff",
     description:
       "Meet The Dog House team in Houston! With 25+ years of pet grooming, daycare, and boarding expertise, we ensure your pets receive the best care.",
     url: "https://www.thedoghouseps.com/our-staff/",

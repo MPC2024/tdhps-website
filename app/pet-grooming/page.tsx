@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Pet Grooming Services in Houston | The Dog House Pet Salon",
+  title: "Pet Grooming Services in Houston",
   description:
     "Give your pet the ultimate pampering with expert pet grooming at The Dog House in Houston—affordable, professional, breed-specific care you can trust.",
   openGraph: {

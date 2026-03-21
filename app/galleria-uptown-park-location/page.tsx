@@ -3,11 +3,11 @@ import Image from "next/image";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Pet Grooming Salon Galleria Houston | The Dog House Pet Salon",
+  title: "Pet Grooming Salon Galleria Houston",
   description:
     "Tired of inconsistent grooming results? At our pet grooming salon in Galleria Houston, your pet gets professional, reliable care every visit.",
   openGraph: {
-    title: "Pet Grooming Salon Galleria Houston | The Dog House Pet Salon",
+    title: "Pet Grooming Salon Galleria Houston",
     description:
       "Tired of inconsistent grooming results? At our pet grooming salon in Galleria Houston, your pet gets professional, reliable care every visit.",
     url: "https://www.thedoghouseps.com/galleria-uptown-park-location/",

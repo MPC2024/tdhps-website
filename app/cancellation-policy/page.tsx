@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Cancellation Policy | The Dog House Pet Salon",
+  title: "Cancellation Policy",
   description:
     "Learn about The Dog House Pet Salon's cancellation policy, designed to give you flexibility with your pet care appointments in Houston.",
   openGraph: {
-    title: "Cancellation Policy | The Dog House Pet Salon",
+    title: "Cancellation Policy",
     description:
       "Learn about The Dog House Pet Salon's cancellation policy, designed to give you flexibility with your pet care appointments in Houston.",
     url: "https://www.thedoghouseps.com/cancellation-policy/",

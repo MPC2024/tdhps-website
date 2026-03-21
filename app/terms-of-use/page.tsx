@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Terms of Use | The Dog House Pet Salon",
+  title: "Terms of Use",
   description:
     "Review The Dog House Pet Salon's Terms of Use of our website, services, and policies that ensure the best care and experience.",
   openGraph: {
-    title: "Terms of Use | The Dog House Pet Salon",
+    title: "Terms of Use",
     description:
       "Review The Dog House Pet Salon's Terms of Use of our website, services, and policies that ensure the best care and experience.",
     url: "https://www.thedoghouseps.com/terms-of-use/",

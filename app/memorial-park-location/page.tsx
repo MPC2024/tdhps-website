@@ -3,10 +3,10 @@ import Image from "next/image";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Dog Grooming in Memorial Park Houston | Dog House Pet Salon",
+  title: "Dog Grooming in Memorial Park Houston",
   description: "Pamper your pet with exceptional grooming, boarding, and daycare services at The Dog House Pet Salon in Memorial Park, Houston!",
   openGraph: {
-    title: "Dog Grooming in Memorial Park Houston | Dog House Pet Salon",
+    title: "Dog Grooming in Memorial Park Houston",
     description: "Pamper your pet with exceptional grooming, boarding, and daycare services at The Dog House Pet Salon in Memorial Park, Houston!",
     url: "https://www.thedoghouseps.com/memorial-park-location/",
   },

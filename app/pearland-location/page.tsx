@@ -3,11 +3,11 @@ import Image from "next/image";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Pet Grooming Salon Pearland | The Dog House Pet Salon",
+  title: "Pet Grooming Salon Pearland",
   description:
     "Struggling to find gentle, reliable pet grooming Salon in Pearland? Our experienced team treats your pet like family with care you can trust.",
   openGraph: {
-    title: "Pet Grooming Salon Pearland | The Dog House Pet Salon",
+    title: "Pet Grooming Salon Pearland",
     description:
       "Struggling to find gentle, reliable pet grooming Salon in Pearland? Our experienced team treats your pet like family with care you can trust.",
     url: "https://www.thedoghouseps.com/pearland-location/",

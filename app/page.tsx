@@ -20,6 +20,7 @@ export const metadata: Metadata = {
       },
     ],
   },
+  alternates: { canonical: "https://www.thedoghouseps.com/" },
 };
 
 /* ── Data ── */
@@ -169,7 +170,7 @@ export default function HomePage() {
 
           {/* Right: text */}
           <div>
-            <h2
+            <h1
               style={{
                 fontFamily: '"Bowlby One SC", Sans-serif',
                 fontSize: "clamp(24px, 2.5vw, 36px)",
@@ -180,7 +181,7 @@ export default function HomePage() {
             >
               Dog Grooming, Daycare, &amp; Boarding at{" "}
               <span style={{ color: "#965B83" }}>The Dog House Pet Salon</span>
-            </h2>
+            </h1>
             <p
               style={{
                 fontFamily: '"Outfit", Sans-serif',

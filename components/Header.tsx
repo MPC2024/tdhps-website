@@ -48,7 +48,7 @@ export default function Header() {
         {/* Logo */}
         <Link href="/" className="flex-shrink-0" aria-label="The Dog House Pet Salon – Home">
           <Image
-            src="https://www.thedoghouseps.com/wp-content/uploads/2023/10/The-Dog-House-Logo-01.png"
+            src="/images/logo.png"
             alt="The Dog House Pet Salon"
             width={180}
             height={60}

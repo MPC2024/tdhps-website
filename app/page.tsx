@@ -1,262 +1,1066 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import HeroSlider from "@/components/HeroSlider";
+import ReviewsCarousel from "@/components/ReviewsCarousel";
 
 export const metadata: Metadata = {
-  title: "The Dog House Pet Salon | Houston TX Pet Grooming, Daycare & Boarding",
+  title: "Dog House Pet Salon Houston TX | Grooming & Spa Services",
   description:
-    "Welcome to The Dog House Pet Salon — Houston's premier dog grooming, doggie daycare, and pet boarding with 25+ years of experience. Galleria, Memorial Park, and Pearland locations.",
+    "The Dog House Pet Salon in Houston TX provides premium grooming, styling, bathing & care. Learn grooming schedules & how to choose the right salon.",
+  openGraph: {
+    title: "Dog House Pet Salon Houston TX | Grooming & Spa Services",
+    description:
+      "The Dog House Pet Salon in Houston TX provides premium grooming, styling, bathing & care. Learn grooming schedules & how to choose the right salon.",
+    url: "https://www.thedoghouseps.com/",
+    images: [
+      {
+        url: "https://www.thedoghouseps.com/wp-content/uploads/2025/08/open-graph.png",
+        alt: "The Dog House Pet Salon",
+      },
+    ],
+  },
 };
 
+/* ── Data ── */
 const services = [
   {
-    title: "Pet Grooming",
-    description:
-      "Professional grooming for all breeds. Bath, trim, nail clipping, ear cleaning, and more.",
+    title: "PET GROOMING",
+    description: "Houston's #1 Pet Grooming Service Provider for Over a Decade.",
     href: "/pet-grooming",
     imgSrc: "https://www.thedoghouseps.com/wp-content/uploads/2025/03/pet-grooming.jpg",
-    imgAlt: "Dog grooming at The Dog House Pet Salon",
+    imgAlt: "pet grooming",
   },
   {
-    title: "Dog Day Care",
-    description:
-      "Safe, supervised playtime for your pup. Socialization, exercise, and enrichment all day.",
-    href: "/dog-day-care",
-    imgSrc: "https://www.thedoghouseps.com/wp-content/uploads/2026/01/doggy-day-care-galleria-1024x1005.jpg",
-    imgAlt: "Dogs playing in daycare at The Dog House Pet Salon",
-  },
-  {
-    title: "Pet Boarding",
-    description:
-      "Comfortable overnight boarding with attentive care so you can travel with peace of mind.",
+    title: "PET boarding",
+    description: "The Go-To Pet Paradise for Houston Pet Owners",
     href: "/houston-pet-boarding",
     imgSrc: "https://www.thedoghouseps.com/wp-content/uploads/2025/03/pet-boarding.jpg",
-    imgAlt: "Pet boarding at The Dog House Pet Salon Houston",
+    imgAlt: "pet boarding",
+  },
+  {
+    title: "Dogie daycare",
+    description: "Love and attention are essential ingredients to putting a smile on all pets",
+    href: "/dog-day-care",
+    imgSrc: "https://www.thedoghouseps.com/wp-content/uploads/2025/03/dogie-daycare.jpg",
+    imgAlt: "dogie daycare",
   },
 ];
 
-const locations = [
+const registrationSteps = [
   {
-    name: "Galleria / Uptown Park",
-    address: "5917 Richmond Ave, Houston, TX 77057",
-    href: "/locations/galleria",
-    appointmentHref: "/appointment-request-form_location_richmond",
+    imgSrc: "https://www.thedoghouseps.com/wp-content/uploads/2025/03/pet-evaluation.png",
+    imgAlt: "pet evaluation",
+    heading: (
+      <>
+        Schedule a <span style={{ color: "#965B83" }}>Pet Evaluation</span>
+      </>
+    ),
+    text: "The first step toward becoming a part of our community is to schedule an evaluation for your pet through an email or a phone call. Our team of pet experts will assess your pet's needs and temperament to ensure we can provide the best care and services tailored to them.",
   },
   {
-    name: "Memorial Park",
-    address: "6434 Washington Ave, Houston, TX 77007",
-    href: "/locations/memorial",
-    appointmentHref: "/appointment-request-memorial",
+    imgSrc: "https://www.thedoghouseps.com/wp-content/uploads/2025/03/dog-vaccination.png",
+    imgAlt: "dog vaccination",
+    heading: (
+      <>
+        Upload <span style={{ color: "#965B83" }}>Dog&apos;s Vaccination</span> Records
+      </>
+    ),
+    text: "Our top priority is the health and safety of all pets in our care. To ensure this, we require all pet owners to provide up-to-date vaccination records for their dogs. You can provide these records in the most convenient way for you. Email them to us, upload them through our website, or bring them in person.",
   },
   {
-    name: "Pearland",
-    address: "2810 Business Center Dr, Pearland, TX 77584",
-    href: "/locations/pearland",
-    appointmentHref: "/appointment-request-pearland",
+    imgSrc: "https://www.thedoghouseps.com/wp-content/uploads/2025/03/dogs-heaven.png",
+    imgAlt: "dogs heaven",
+    heading: (
+      <>
+        <span style={{ color: "#965B83" }}>Bring Your Dog to Safe</span> Haven
+      </>
+    ),
+    text: "Once the evaluation is complete and we have your pet's vaccination records, your furry friend is ready to join our playgroup! At The Dog House Pet Salon, we strive to create a safe, stimulating environment where your pet can socialize and make new friends.",
   },
 ];
+
+const blogPosts = [
+  {
+    imgSrc: "https://www.thedoghouseps.com/wp-content/uploads/2026/03/Shihtzu_Grooming_Pearland.jpg",
+    imgAlt: "Shih Tzu freshly groomed at The Dog House Pet Salon in Pearland Texas professional dog grooming",
+    title: "The Benefits of Routine Dog Grooming in Houston's Climate",
+    excerpt: "Modern dogs need more than a quick walk around the block. Discover whether dog daycare in Houston is worth it, the real benefits it provides,...",
+    href: "https://www.thedoghouseps.com/the-benefits-of-routine-dog-grooming-in-houstons-climate/",
+  },
+  {
+    imgSrc: "https://www.thedoghouseps.com/wp-content/uploads/2026/01/doggy-day-care-galleria-1024x1005.jpg",
+    imgAlt: "Dogs playing safely in a supervised dog daycare environment at The Dog House Pet Salon in Houston",
+    title: "Is Dog Daycare Worth It? Here's What Houston Pet Parents Should Know",
+    excerpt: "Modern dogs need more than a quick walk around the block. Discover whether dog daycare in Houston is worth it, the real benefits it provides,...",
+    href: "https://www.thedoghouseps.com/is-dog-daycare-worth-it-heres-what-houston-pet-parents-should-know/",
+  },
+  {
+    imgSrc: "https://www.thedoghouseps.com/wp-content/uploads/2026/01/winter-dog-grooming-houston-1024x750.jpg",
+    imgAlt: "Winter dog grooming in Houston to protect coat and skin during cold weather",
+    title: "Why Winter Grooming Is Essential for Your Dog's Health and Comfort",
+    excerpt: "Modern dogs need more than a quick walk around the block. Discover whether dog daycare in Houston is worth it, the real benefits it provides,...",
+    href: "https://www.thedoghouseps.com/why-winter-grooming-is-essential-for-your-dogs-health-and-comfort/",
+  },
+];
+
+/* ── Styles ── */
+const sectionPadding = { padding: "80px 20px" } as const;
 
 export default function HomePage() {
   return (
     <>
-      {/* ── Hero ── */}
-      <section
-        className="relative flex items-center justify-center text-white overflow-hidden"
-        style={{ minHeight: "85vh", backgroundColor: "#1F2124" }}
-      >
-        <Image
-          src="https://www.thedoghouseps.com/wp-content/uploads/2025/05/The-dog-house-pet-salon-hero-1.webp"
-          alt="The Dog House Pet Salon hero"
-          fill
-          priority
-          style={{ objectFit: "cover", objectPosition: "center", opacity: 0.55 }}
-          sizes="100vw"
-        />
-        <div className="relative z-10 text-center px-5 max-w-4xl mx-auto">
-          <p
-            className="text-base md:text-lg uppercase tracking-[0.25em] mb-4"
-            style={{ fontFamily: "Roboto, sans-serif", fontWeight: 600, color: "#965B83" }}
-          >
-            THE DOG HOUSE Pet Salon
-          </p>
-          <h1
-            className="text-4xl md:text-6xl lg:text-7xl mb-6"
-            style={{ fontFamily: "Bowlby One SC, sans-serif", lineHeight: 1.1 }}
-          >
-            We take care of{" "}
-            <span style={{ color: "#965B83" }}>your pets</span>
-          </h1>
-          <p
-            className="text-lg md:text-xl mb-8 max-w-2xl mx-auto"
-            style={{ fontFamily: "Outfit, sans-serif", color: "#e0d8e8" }}
-          >
-            Houston&apos;s premier pet grooming, daycare &amp; boarding — with 25+ years
-            of experience and three convenient locations.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/appointment-request" className="btn-primary">
-              Book an Appointment
-            </Link>
-            <Link
-              href="#services"
-              className="btn-secondary"
-              style={{ borderColor: "rgba(255,255,255,0.6)", color: "#fff" }}
-            >
-              Our Services
-            </Link>
-          </div>
-        </div>
-      </section>
+      {/* ══════════════════════════════════════════════
+          SECTION 1: Hero Slider
+      ══════════════════════════════════════════════ */}
+      <HeroSlider />
 
-      {/* ── Services ── */}
-      <section id="services" className="py-20" style={{ backgroundColor: "#F8F8F8" }}>
-        <div className="container-site">
-          <div className="text-center mb-12">
+      {/* ══════════════════════════════════════════════
+          SECTION 2: About / Intro
+      ══════════════════════════════════════════════ */}
+      <section style={{ ...sectionPadding, backgroundColor: "#ffffff", position: "relative" }}>
+        {/* Decorative image top-left (desktop only) */}
+        <div
+          style={{
+            position: "absolute",
+            top: "20px",
+            left: "20px",
+            opacity: 0.6,
+            display: "none",
+          }}
+          className="hidden md:block"
+        >
+          <Image
+            src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/image-5.png"
+            alt="image 5"
+            width={191}
+            height={178}
+            style={{ width: "120px", height: "auto" }}
+          />
+        </div>
+
+        <div
+          style={{
+            maxWidth: "1520px",
+            margin: "0 auto",
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+            gap: "40px",
+            alignItems: "center",
+          }}
+        >
+          {/* Left: dog images */}
+          <div style={{ display: "flex", gap: "16px", justifyContent: "center", alignItems: "flex-start" }}>
+            <Image
+              src="https://www.thedoghouseps.com/wp-content/uploads/2025/05/white-dog-shaking-hand.webp"
+              alt="White dog shaking hand"
+              width={493}
+              height={600}
+              style={{ width: "clamp(140px, 20vw, 240px)", height: "auto", borderRadius: "8px" }}
+            />
+            <Image
+              src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/German-Shephard.jpg"
+              alt="German Shephard"
+              width={237}
+              height={600}
+              style={{ width: "clamp(80px, 10vw, 120px)", height: "auto", borderRadius: "8px", marginTop: "40px" }}
+            />
+          </div>
+
+          {/* Right: text */}
+          <div>
             <h2
-              className="text-3xl md:text-4xl mb-4"
-              style={{ fontFamily: "Bowlby One SC, sans-serif", color: "#1F2124" }}
+              style={{
+                fontFamily: '"Bowlby One SC", Sans-serif',
+                fontSize: "clamp(24px, 2.5vw, 36px)",
+                color: "#1F2124",
+                marginBottom: "20px",
+                lineHeight: 1.3,
+              }}
             >
-              Our Services
+              Dog Grooming, Daycare, &amp; Boarding at{" "}
+              <span style={{ color: "#965B83" }}>The Dog House Pet Salon</span>
             </h2>
             <p
-              className="text-lg max-w-2xl mx-auto"
-              style={{ fontFamily: "Outfit, sans-serif", color: "#54595F" }}
+              style={{
+                fontFamily: '"Outfit", Sans-serif',
+                fontSize: "16px",
+                color: "#54595F",
+                lineHeight: 1.7,
+                marginBottom: "16px",
+              }}
             >
-              We offer top-tier pet care for your furry family members — from a quick
-              bath to a full day of play.
+              Welcome to The Dog House Pet Salon, where we pride ourselves on providing top-tier{" "}
+              <span style={{ color: "#965b83" }}>
+                <Link href="/pet-grooming" style={{ color: "#965b83" }}>dog grooming services</Link>,{" "}
+                <Link href="/dog-day-care" style={{ color: "#965b83" }}>daycare</Link>
+              </span>
+              , and{" "}
+              <Link href="/houston-pet-boarding" style={{ color: "#965b83" }}>dog boarding</Link> to the
+              residents of{" "}
+              <Link href="/locations/memorial-park-location" style={{ color: "#965b83" }}>Houston, TX</Link>,
+              including{" "}
+              <span style={{ color: "#965b83" }}>
+                <Link href="/locations/pearland-location" style={{ color: "#965b83" }}>Pearland</Link>,{" "}
+                <Link href="/locations/galleria-uptown-park-location" style={{ color: "#965b83" }}>The Galleria</Link>,
+              </span>{" "}
+              Uptown, and surrounding communities. As pet groomers with a passion for dogs of all breeds, we
+              offer a comfortable environment for your pet, ensuring they feel pampered and loved while in our
+              care.
             </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {services.map((svc) => (
-              <div
-                key={svc.href}
-                className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow"
-              >
-                <div className="relative h-56">
-                  <Image
-                    src={svc.imgSrc}
-                    alt={svc.imgAlt}
-                    fill
-                    style={{ objectFit: "cover" }}
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                  />
-                </div>
-                <div className="p-6">
-                  <h3
-                    className="text-xl mb-2"
-                    style={{ fontFamily: "Bowlby One SC, sans-serif", color: "#1F2124" }}
-                  >
-                    {svc.title}
-                  </h3>
-                  <p
-                    className="text-sm mb-4"
-                    style={{ fontFamily: "Outfit, sans-serif", color: "#54595F" }}
-                  >
-                    {svc.description}
-                  </p>
-                  <Link
-                    href={svc.href}
-                    className="btn-secondary"
-                    style={{ fontSize: "14px", padding: "10px 22px" }}
-                  >
-                    Learn More
-                  </Link>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Locations ── */}
-      <section className="py-20">
-        <div className="container-site">
-          <div className="text-center mb-12">
-            <h2
-              className="text-3xl md:text-4xl mb-4"
-              style={{ fontFamily: "Bowlby One SC, sans-serif", color: "#1F2124" }}
-            >
-              3 Convenient Locations
-            </h2>
             <p
-              className="text-lg max-w-xl mx-auto"
-              style={{ fontFamily: "Outfit, sans-serif", color: "#54595F" }}
+              style={{
+                fontFamily: '"Outfit", Sans-serif',
+                fontSize: "16px",
+                color: "#54595F",
+                lineHeight: 1.7,
+              }}
             >
-              Serving Uptown Houston, The Galleria, Memorial Park, Pearland, and surrounding communities.
+              Our services are not limited to dog grooming. We strive to meet the diverse needs of our
+              clients. Our{" "}
+              <Link href="/grooming-school" style={{ color: "#965b83" }}>dog grooming school</Link> trains
+              our staff to deliver exceptional services, ensuring every pet receives the individual attention
+              they deserve.
             </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {locations.map((loc) => (
-              <div
-                key={loc.href}
-                className="text-center p-8 rounded-xl border"
-                style={{ borderColor: "#f0edf3" }}
-              >
-                <div
-                  className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4"
-                  style={{ backgroundColor: "#965B83" }}
-                >
-                  <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
-                  </svg>
-                </div>
-                <h3
-                  className="text-xl mb-2"
-                  style={{ fontFamily: "Bowlby One SC, sans-serif", color: "#1F2124" }}
-                >
-                  {loc.name}
-                </h3>
-                <p
-                  className="text-sm mb-4"
-                  style={{ fontFamily: "Outfit, sans-serif", color: "#54595F" }}
-                >
-                  {loc.address}
-                </p>
-                <div className="flex flex-col gap-2">
-                  <Link href={loc.appointmentHref} className="btn-primary" style={{ fontSize: "14px", padding: "10px 22px" }}>
-                    Book Here
-                  </Link>
-                  <Link
-                    href={loc.href}
-                    className="text-sm"
-                    style={{ color: "#965B83", fontFamily: "Outfit, sans-serif" }}
-                  >
-                    View Location →
-                  </Link>
-                </div>
-              </div>
-            ))}
           </div>
         </div>
       </section>
 
-      {/* ── CTA Banner ── */}
+      {/* ══════════════════════════════════════════════
+          SECTION 3: Services (id="services")
+      ══════════════════════════════════════════════ */}
       <section
-        className="py-16 text-white text-center"
-        style={{ backgroundColor: "#965B83" }}
+        id="services"
+        style={{ backgroundColor: "#F8F8F8", padding: "80px 20px" }}
       >
-        <div className="container-site">
+        <div
+          style={{
+            maxWidth: "1520px",
+            margin: "0 auto",
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+            gap: "30px",
+          }}
+        >
+          {services.map((svc) => (
+            <div
+              key={svc.href}
+              style={{
+                backgroundColor: "#ffffff",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                padding: "40px 30px",
+                textAlign: "center",
+                borderRadius: "8px",
+                boxShadow: "6px 6px 9px rgba(0,0,0,.1)",
+              }}
+            >
+              <Link href={svc.href} style={{ display: "block", marginBottom: "16px" }}>
+                <Image
+                  src={svc.imgSrc}
+                  alt={svc.imgAlt}
+                  width={252}
+                  height={252}
+                  style={{ width: "150px", height: "150px", objectFit: "cover", borderRadius: "50%" }}
+                />
+              </Link>
+              <h3
+                style={{
+                  fontFamily: '"Bowlby One SC", Sans-serif',
+                  fontSize: "22px",
+                  fontWeight: 400,
+                  color: "#1F2124",
+                  marginBottom: "12px",
+                  textTransform: "uppercase",
+                }}
+              >
+                {svc.title}
+              </h3>
+              <p
+                style={{
+                  fontFamily: '"Outfit", Sans-serif',
+                  fontSize: "16px",
+                  color: "#54595F",
+                  marginBottom: "24px",
+                  lineHeight: 1.6,
+                }}
+              >
+                {svc.description}
+              </p>
+              <Link
+                href={svc.href}
+                style={{
+                  backgroundColor: "#965B83",
+                  color: "#fff",
+                  padding: "12px 28px",
+                  borderRadius: "50px",
+                  fontFamily: '"Outfit", Sans-serif',
+                  fontWeight: 600,
+                  fontSize: "16px",
+                  display: "inline-block",
+                  transition: "background-color 0.3s",
+                  textDecoration: "none",
+                }}
+              >
+                Register Now
+              </Link>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════
+          SECTION 4: Registration & Pricing
+      ══════════════════════════════════════════════ */}
+      <section
+        style={{
+          position: "relative",
+          backgroundColor: "#965B83",
+          padding: "80px 20px 120px",
+        }}
+      >
+        {/* Curve divider at bottom */}
+        <div
+          aria-hidden="true"
+          style={{ position: "absolute", bottom: -1, left: 0, width: "100%", lineHeight: 0, zIndex: 1 }}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 1000 100"
+            preserveAspectRatio="none"
+            style={{ display: "block", width: "100%", height: "60px", transform: "scaleY(-1) scaleX(-1)" }}
+          >
+            <path fill="#ffffff" d="M615.2,96.7C240.2,97.8,0,18.9,0,0v100h1000V0C1000,19.2,989.8,96,615.2,96.7z" />
+          </svg>
+        </div>
+
+        <div style={{ maxWidth: "1520px", margin: "0 auto", position: "relative", zIndex: 2 }}>
           <h2
-            className="text-3xl md:text-4xl mb-4"
-            style={{ fontFamily: "Bowlby One SC, sans-serif" }}
+            style={{
+              fontFamily: '"Bowlby One SC", Sans-serif',
+              fontSize: "clamp(28px, 3vw, 42px)",
+              color: "#ffffff",
+              textAlign: "center",
+              marginBottom: "12px",
+            }}
           >
-            Ready to pamper your pet?
+            Registration &amp; Pricing
+          </h2>
+          <h3
+            style={{
+              fontFamily: '"Outfit", Sans-serif',
+              fontSize: "clamp(18px, 2vw, 24px)",
+              color: "#ffffff",
+              textAlign: "center",
+              marginBottom: "50px",
+              fontWeight: 400,
+            }}
+          >
+            Registration with us is as easy as 1-2-3
+          </h3>
+
+          {/* 3 registration step cards */}
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+              gap: "30px",
+              marginBottom: "50px",
+            }}
+          >
+            {registrationSteps.map((step, i) => (
+              <div
+                key={i}
+                style={{
+                  backgroundColor: "#ffffff",
+                  borderRadius: "12px",
+                  padding: "40px 30px",
+                  textAlign: "center",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  boxShadow: "6px 6px 9px rgba(0,0,0,.15)",
+                }}
+              >
+                <Image
+                  src={step.imgSrc}
+                  alt={step.imgAlt}
+                  width={349}
+                  height={331}
+                  style={{ width: "160px", height: "auto", marginBottom: "20px" }}
+                />
+                <h2
+                  style={{
+                    fontFamily: '"Bowlby One SC", Sans-serif',
+                    fontSize: "clamp(18px, 1.8vw, 24px)",
+                    fontWeight: 400,
+                    color: "#1F2124",
+                    marginBottom: "16px",
+                    lineHeight: 1.3,
+                  }}
+                >
+                  {step.heading}
+                </h2>
+                <p
+                  style={{
+                    fontFamily: '"Outfit", Sans-serif',
+                    fontSize: "15px",
+                    color: "#54595F",
+                    lineHeight: 1.7,
+                  }}
+                >
+                  {step.text}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          {/* CTA Banner */}
+          <div
+            style={{
+              backgroundColor: "#ffffff",
+              borderRadius: "12px",
+              padding: "40px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              gap: "20px",
+              flexWrap: "wrap",
+              position: "relative",
+              overflow: "hidden",
+            }}
+          >
+            {/* Decorative dog image */}
+            <div
+              style={{
+                position: "absolute",
+                bottom: 0,
+                right: "0",
+                pointerEvents: "none",
+              }}
+            >
+              <Image
+                src="https://www.thedoghouseps.com/wp-content/uploads/2025/04/brown-dog-e1744741217620.png"
+                alt=""
+                width={385}
+                height={294}
+                style={{ width: "clamp(100px, 20vw, 250px)", height: "auto", display: "block" }}
+              />
+            </div>
+            <div style={{ flex: 1, minWidth: "250px", zIndex: 1 }}>
+              <h2
+                style={{
+                  fontFamily: '"Bowlby One SC", Sans-serif',
+                  fontSize: "clamp(22px, 2.5vw, 32px)",
+                  color: "#1F2124",
+                  marginBottom: "16px",
+                }}
+              >
+                🐾 Ready to Join the Pack?{" "}
+                <span style={{ color: "#965B83" }}>Let&apos;s Get Started!</span>
+              </h2>
+              <Link
+                href="/appointment-request"
+                style={{
+                  backgroundColor: "#965B83",
+                  color: "#fff",
+                  padding: "15px 30px",
+                  borderRadius: "50px",
+                  fontFamily: '"Outfit", Sans-serif',
+                  fontWeight: 600,
+                  fontSize: "18px",
+                  display: "inline-block",
+                  textDecoration: "none",
+                  transition: "background-color 0.3s",
+                }}
+              >
+                Book Appointment Now!
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════
+          SECTION 5: Donna's Love Pet Rescue
+      ══════════════════════════════════════════════ */}
+      <section style={{ ...sectionPadding, backgroundColor: "#ffffff" }}>
+        <div
+          style={{
+            maxWidth: "1520px",
+            margin: "0 auto",
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+            gap: "60px",
+            alignItems: "center",
+          }}
+        >
+          {/* Left: text */}
+          <div>
+            <Image
+              src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/image-8.png"
+              alt="Donna's Love Pet Rescue"
+              width={182}
+              height={219}
+              style={{ width: "120px", height: "auto", marginBottom: "20px" }}
+            />
+            <h3
+              style={{
+                fontFamily: '"Bowlby One SC", Sans-serif',
+                fontSize: "20px",
+                fontWeight: 400,
+                color: "#965B83",
+                marginBottom: "12px",
+              }}
+            >
+              Donna&apos;s Love Pet Rescue
+            </h3>
+            <h2
+              style={{
+                fontFamily: '"Bowlby One SC", Sans-serif',
+                fontSize: "clamp(22px, 2.5vw, 32px)",
+                color: "#1F2124",
+                marginBottom: "24px",
+                lineHeight: 1.3,
+              }}
+            >
+              GIVE THEM THE{" "}
+              <span style={{ color: "#965B83" }}>LOVING HOME</span> THEY DESERVE
+            </h2>
+            <a
+              href="https://dlpr.org/"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                backgroundColor: "#965B83",
+                color: "#fff",
+                padding: "15px 30px",
+                borderRadius: "50px",
+                fontFamily: '"Outfit", Sans-serif',
+                fontWeight: 600,
+                fontSize: "18px",
+                display: "inline-block",
+                textDecoration: "none",
+                transition: "background-color 0.3s",
+              }}
+            >
+              Adopt or foster a rescue today!
+            </a>
+          </div>
+
+          {/* Right: image */}
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <Image
+              src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/loving-dog-1024x855.png"
+              alt="loving dog"
+              width={800}
+              height={668}
+              style={{ width: "100%", maxWidth: "500px", height: "auto" }}
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════
+          SECTION 6: MPC / Lost Pets
+      ══════════════════════════════════════════════ */}
+      <section
+        style={{
+          position: "relative",
+          backgroundColor: "#33373D",
+          padding: "100px 20px 80px",
+          overflow: "hidden",
+        }}
+      >
+        {/* Curve divider at top */}
+        <div
+          aria-hidden="true"
+          style={{ position: "absolute", top: -1, left: 0, width: "100%", lineHeight: 0, zIndex: 1 }}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 1000 100"
+            preserveAspectRatio="none"
+            style={{ display: "block", width: "100%", height: "60px", transform: "scaleX(-1)" }}
+          >
+            <path fill="#ffffff" d="M615.2,96.7C240.2,97.8,0,18.9,0,0v100h1000V0C1000,19.2,989.8,96,615.2,96.7z" />
+          </svg>
+        </div>
+
+        {/* Lost pet decorative image */}
+        <div
+          style={{
+            position: "absolute",
+            left: 0,
+            top: "50%",
+            transform: "translateY(-50%)",
+            opacity: 0.15,
+            zIndex: 0,
+            pointerEvents: "none",
+          }}
+        >
+          <Image
+            src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/lost-pet.png"
+            alt="lost pet"
+            width={600}
+            height={572}
+            style={{ width: "clamp(200px, 30vw, 500px)", height: "auto" }}
+          />
+        </div>
+
+        <div
+          style={{
+            maxWidth: "1520px",
+            margin: "0 auto",
+            position: "relative",
+            zIndex: 2,
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <div
+            style={{
+              backgroundColor: "rgba(150, 91, 131, 0.9)",
+              borderRadius: "12px",
+              padding: "clamp(30px, 5vw, 60px)",
+              maxWidth: "600px",
+              textAlign: "center",
+            }}
+          >
+            <h2
+              style={{
+                fontFamily: '"Bowlby One SC", Sans-serif',
+                fontSize: "clamp(22px, 2.5vw, 32px)",
+                color: "#ffffff",
+                marginBottom: "16px",
+                lineHeight: 1.3,
+              }}
+            >
+              Reuniting{" "}
+              <span style={{ color: "#ffddee" }}>Lost Pets With their Family</span> Is Our
+              Specialty
+            </h2>
+            <p
+              style={{
+                fontFamily: '"Outfit", Sans-serif',
+                fontSize: "18px",
+                color: "#ffffff",
+                marginBottom: "30px",
+                lineHeight: 1.6,
+              }}
+            >
+              The only global and secure platform ensuring your pet&apos;s well-being—try out a new era in
+              pet care!
+            </p>
+            <a
+              href="https://www.mypetcredentials.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                backgroundColor: "#ffffff",
+                color: "#965B83",
+                padding: "15px 30px",
+                borderRadius: "50px",
+                fontFamily: '"Outfit", Sans-serif',
+                fontWeight: 600,
+                fontSize: "18px",
+                display: "inline-block",
+                textDecoration: "none",
+                transition: "all 0.3s",
+              }}
+            >
+              Protect Your Pet!
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════
+          SECTION 7: Client of the Month
+      ══════════════════════════════════════════════ */}
+      <section style={{ ...sectionPadding, backgroundColor: "#ffffff" }}>
+        <div
+          style={{
+            maxWidth: "1520px",
+            margin: "0 auto",
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+            gap: "40px",
+            alignItems: "center",
+          }}
+        >
+          {/* Left: heading */}
+          <div>
+            <h2
+              style={{
+                fontFamily: '"Bowlby One SC", Sans-serif',
+                fontSize: "clamp(26px, 2.5vw, 36px)",
+                color: "#1F2124",
+                marginBottom: "12px",
+              }}
+            >
+              Client of the Month
+            </h2>
+            <h3
+              style={{
+                fontFamily: '"Outfit", Sans-serif',
+                fontSize: "20px",
+                fontWeight: 600,
+                color: "#965B83",
+                marginBottom: "16px",
+              }}
+            >
+              Avery &amp; Dustin
+            </h3>
+            <p
+              style={{
+                fontFamily: '"Outfit", Sans-serif',
+                fontSize: "16px",
+                color: "#54595F",
+                lineHeight: 1.7,
+              }}
+            >
+              Take a look at some of our happiest clients and their fresh new looks!
+            </p>
+          </div>
+
+          {/* Middle: image */}
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <Image
+              src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/dog-owner.png"
+              alt="dog owner"
+              width={800}
+              height={778}
+              style={{ width: "100%", maxWidth: "380px", height: "auto" }}
+            />
+          </div>
+
+          {/* Right: description + quote */}
+          <div>
+            <p
+              style={{
+                fontFamily: '"Outfit", Sans-serif',
+                fontSize: "16px",
+                color: "#54595F",
+                lineHeight: 1.7,
+                marginBottom: "20px",
+              }}
+            >
+              Each month, we&apos;re thrilled to spotlight a few of our most fabulous clients who brighten
+              our salon with their charm and personalities. From playful puppies to wise senior companions,
+              every visit from these beloved pets brings joy to our team and warmth to our hearts. Our
+              furry friends&apos; unique styles and spirits inspire us every day, and we love pampering them
+              with the care they deserve.
+            </p>
+            <p
+              style={{
+                fontFamily: '"Outfit", Sans-serif',
+                fontSize: "16px",
+                color: "#54595F",
+                lineHeight: 1.7,
+                fontStyle: "italic",
+              }}
+            >
+              &lsquo;Amazing experience for my dog&apos;s groom! This was our first time trying a new groomer since
+              moving and they did not disappoint. The whole staff is friendly and thoughtful and most
+              importantly my goldendoodle&apos;s haircut is perfect! Highly recommend and very fair
+              pricing&rsquo; — Dustin
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════
+          SECTION 8: Reviews Carousel
+      ══════════════════════════════════════════════ */}
+      <ReviewsCarousel />
+
+      {/* ══════════════════════════════════════════════
+          SECTION 9: Social Proof — "Is Here For You"
+      ══════════════════════════════════════════════ */}
+      <section style={{ backgroundColor: "#ffffff", padding: "80px 20px" }}>
+        <div
+          style={{
+            maxWidth: "1520px",
+            margin: "0 auto",
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+            gap: "60px",
+            alignItems: "center",
+          }}
+        >
+          <div>
+            <h2
+              style={{
+                fontFamily: '"Bowlby One SC", Sans-serif',
+                fontSize: "clamp(24px, 2.5vw, 36px)",
+                color: "#1F2124",
+                marginBottom: "16px",
+                lineHeight: 1.3,
+              }}
+            >
+              The Dog House Pet Salon{" "}
+              <span style={{ color: "#965B83" }}>is here for you</span>
+            </h2>
+            <p
+              style={{
+                fontFamily: '"Outfit", Sans-serif',
+                fontSize: "16px",
+                color: "#54595F",
+                lineHeight: 1.7,
+                marginBottom: "24px",
+              }}
+            >
+              We take pride in being a comprehensive pet care facility right near you
+              and the Houston surrounding areas, dedicated to upholding the highest
+              standards in the pet care industry. We understand that there&apos;s no
+              place like home for your beloved pets, especially if you&apos;ve never
+              boarded them before. That&apos;s why we strive to make you and your pet
+              feel as comfortable as if they were at home.
+            </p>
+            <h3
+              style={{
+                fontFamily: '"Bowlby One SC", Sans-serif',
+                fontSize: "18px",
+                color: "#1F2124",
+                marginBottom: "16px",
+              }}
+            >
+              Here are just a few of the things that set us apart:
+            </h3>
+            <ul
+              style={{
+                fontFamily: '"Outfit", Sans-serif',
+                fontSize: "16px",
+                color: "#54595F",
+                lineHeight: 2.2,
+                listStyle: "none",
+                padding: 0,
+                margin: 0,
+              }}
+            >
+              {[
+                "We maintain the highest standards in the pet care industry",
+                "We offer a variety of services to meet your needs and budget.",
+                "We have a team of experienced and compassionate pet lovers.",
+                "We provide a safe and loving environment for your pet.",
+                "We are committed to exceeding your expectations.",
+              ].map((item) => (
+                <li key={item}>
+                  <span style={{ color: "#965B83", marginRight: "8px" }}>✔</span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <Image
+              src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/loving-dog-1024x855.png"
+              alt="The Dog House Pet Salon – caring for your pets"
+              width={600}
+              height={500}
+              style={{ width: "100%", maxWidth: "500px", height: "auto", borderRadius: "12px" }}
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════
+          SECTION 9b: Get In Touch CTA
+      ══════════════════════════════════════════════ */}
+      <section
+        style={{
+          backgroundColor: "#965B83",
+          padding: "80px 20px",
+          textAlign: "center",
+        }}
+      >
+        <div style={{ maxWidth: "800px", margin: "0 auto" }}>
+          <h2
+            style={{
+              fontFamily: '"Bowlby One SC", Sans-serif',
+              fontSize: "clamp(28px, 3vw, 42px)",
+              color: "#ffffff",
+              marginBottom: "16px",
+            }}
+          >
+            Get In Touch With Us
           </h2>
           <p
-            className="text-lg mb-8 opacity-90"
-            style={{ fontFamily: "Outfit, sans-serif" }}
+            style={{
+              fontFamily: '"Outfit", Sans-serif',
+              fontSize: "18px",
+              color: "rgba(255,255,255,0.9)",
+              lineHeight: 1.7,
+              marginBottom: "32px",
+            }}
           >
-            Schedule an appointment at any of our three Houston-area locations today.
+            Are you ready to give your pet a day at The Dog House Pet Salon? We&apos;re
+            prepared to welcome them. Our availability spans Uptown Houston, TX, The
+            Galleria, Memorial, Pearland, and nearby areas. Reach out to us today to
+            schedule an appointment and let us show you why we&apos;re the preferred
+            choice for dog grooming, daycare, and boarding in the region.
           </p>
           <Link
-            href="/appointment-request"
-            className="btn-primary"
-            style={{ backgroundColor: "#ffffff", color: "#965B83", fontSize: "18px", padding: "16px 40px" }}
+            href="/contact-us"
+            style={{
+              backgroundColor: "#ffffff",
+              color: "#965B83",
+              padding: "15px 40px",
+              borderRadius: "50px",
+              fontFamily: '"Outfit", Sans-serif',
+              fontWeight: 600,
+              fontSize: "18px",
+              display: "inline-block",
+              textDecoration: "none",
+              marginRight: "16px",
+              marginBottom: "12px",
+            }}
           >
-            Book an Appointment
+            Contact Us
           </Link>
+          <Link
+            href="/appointment-request"
+            style={{
+              backgroundColor: "transparent",
+              color: "#ffffff",
+              border: "2px solid #ffffff",
+              padding: "15px 40px",
+              borderRadius: "50px",
+              fontFamily: '"Outfit", Sans-serif',
+              fontWeight: 600,
+              fontSize: "18px",
+              display: "inline-block",
+              textDecoration: "none",
+              marginBottom: "12px",
+            }}
+          >
+            Book Appointment
+          </Link>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════
+          SECTION 10: Blog
+      ══════════════════════════════════════════════ */}
+      <section
+        style={{
+          position: "relative",
+          backgroundColor: "#33373D",
+          padding: "80px 20px 100px",
+          overflow: "hidden",
+        }}
+      >
+        {/* Curve divider at bottom */}
+        <div
+          aria-hidden="true"
+          style={{ position: "absolute", bottom: -1, left: 0, width: "100%", lineHeight: 0, zIndex: 1 }}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 1000 100"
+            preserveAspectRatio="none"
+            style={{ display: "block", width: "100%", height: "60px", transform: "scaleY(-1) scaleX(-1)" }}
+          >
+            <path fill="#ffffff" d="M615.2,96.7C240.2,97.8,0,18.9,0,0v100h1000V0C1000,19.2,989.8,96,615.2,96.7z" />
+          </svg>
+        </div>
+
+        <div style={{ maxWidth: "1520px", margin: "0 auto", position: "relative", zIndex: 2 }}>
+          <h3
+            style={{
+              fontFamily: '"Bowlby One SC", Sans-serif',
+              fontSize: "clamp(26px, 3vw, 40px)",
+              color: "#ffffff",
+              marginBottom: "40px",
+              textAlign: "center",
+            }}
+          >
+            Blogs
+          </h3>
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+              gap: "30px",
+            }}
+          >
+            {blogPosts.map((post) => (
+              <div
+                key={post.href}
+                style={{
+                  backgroundColor: "rgba(255,255,255,0.6)",
+                  borderRadius: "50px",
+                  padding: "40px",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  textAlign: "center",
+                  border: "1px solid #965B83",
+                }}
+              >
+                <Image
+                  src={post.imgSrc}
+                  alt={post.imgAlt}
+                  width={250}
+                  height={250}
+                  style={{
+                    width: "250px",
+                    height: "250px",
+                    objectFit: "cover",
+                    objectPosition: "center",
+                    borderRadius: "50%",
+                    marginBottom: "20px",
+                  }}
+                />
+                <h2
+                  style={{
+                    fontFamily: '"Bowlby One SC", Sans-serif',
+                    fontSize: "clamp(20px, 1.8vw, 28px)",
+                    fontWeight: 400,
+                    lineHeight: 1.4,
+                    color: "#1F2124",
+                    marginBottom: "16px",
+                  }}
+                >
+                  {post.title}
+                </h2>
+                <p
+                  style={{
+                    fontFamily: '"Outfit", sans-serif',
+                    fontSize: "18px",
+                    lineHeight: 1.5,
+                    color: "#1F2124",
+                    marginBottom: "20px",
+                  }}
+                >
+                  {post.excerpt}
+                </p>
+                <a
+                  href={post.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    backgroundColor: "#965B83",
+                    color: "#fff",
+                    padding: "15px 30px",
+                    borderRadius: "50px",
+                    fontFamily: '"Outfit", Sans-serif',
+                    fontWeight: 600,
+                    fontSize: "18px",
+                    display: "inline-block",
+                    textDecoration: "none",
+                    transition: "background-color 0.3s",
+                    marginTop: "auto",
+                  }}
+                >
+                  Read More
+                </a>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
     </>

@@ -56,7 +56,7 @@ export default function Footer() {
           <div className="lg:col-span-1">
             <Link href="/" aria-label="The Dog House Pet Salon – Home">
               <Image
-                src="https://www.thedoghouseps.com/wp-content/uploads/2023/10/The-Dog-House-Logo-Full.webp"
+                src="/images/logo-full.webp"
                 alt="The Dog House Pet Salon"
                 width={200}
                 height={80}

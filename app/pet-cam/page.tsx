@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import PetCamSettings from "./PetCamSettings";
 
 export const metadata: Metadata = {
   title: "Dog Daycare with Cameras for Peace of Mind | The Dog House",
@@ -12,28 +13,6 @@ export const metadata: Metadata = {
     url: "https://www.thedoghouseps.com/pet-cam/",
   },
   alternates: { canonical: "https://www.thedoghouseps.com/pet-cam/" },
-};
-
-const galleryLocation = {
-  location: "5917 Richmond Ave",
-  alias: "Dog Owners",
-  registerMode: "IP/Domain",
-  ipAddress: "96.73.83.249",
-  port: "7000",
-  userName: "client",
-  password: "5917dhps",
-  cameraNo: "(will automatically populate)",
-};
-
-const washingtonLocation = {
-  location: "6434 Washington Ave",
-  alias: "DHPS Washington",
-  registerMode: "IP/Domain",
-  ipAddress: "96.73.114.233",
-  port: "8000",
-  userName: "dogowners",
-  password: "6434dhps@",
-  cameraNo: "(will automatically populate)",
 };
 
 const setupSteps = [
@@ -103,55 +82,10 @@ const troubleshootingTips = [
   },
 ];
 
-const tableRowStyle: React.CSSProperties = {
-  display: "grid",
-  gridTemplateColumns: "1fr 1fr",
-  borderBottom: "1px solid #e0e0e0",
-};
-
-const tableCellStyle: React.CSSProperties = {
-  padding: "12px 16px",
-  fontFamily: '"Outfit", sans-serif',
-  fontSize: "15px",
-  color: "#1F2124",
-};
-
-const tableHeaderCellStyle: React.CSSProperties = {
-  ...tableCellStyle,
-  backgroundColor: "#965B83",
-  color: "#ffffff",
-  fontWeight: 600,
-  textAlign: "center",
-};
-
-function CameraTable({ data }: { data: typeof galleryLocation }) {
-  const rows = [
-    ["Location", data.location],
-    ["Alias", data.alias],
-    ["Register Mode", data.registerMode],
-    ["IP Address", data.ipAddress],
-    ["Port", data.port],
-    ["User Name", data.userName],
-    ["Password", data.password],
-    ["Camera No", data.cameraNo],
-  ];
-
-  return (
-    <div style={{ border: "1px solid #e0e0e0", borderRadius: "8px", overflow: "hidden", marginBottom: "24px" }}>
-      {rows.map(([label, value]) => (
-        <div key={label} style={{ ...tableRowStyle, backgroundColor: rows.indexOf([label, value]) % 2 === 0 ? "#F8F8F8" : "#ffffff" }}>
-          <div style={{ ...tableCellStyle, fontWeight: 600, color: "#54595F", borderRight: "1px solid #e0e0e0" }}>{label}</div>
-          <div style={{ ...tableCellStyle, textAlign: "center" }}>{value}</div>
-        </div>
-      ))}
-    </div>
-  );
-}
-
 export default function PetCamPage() {
   return (
     <>
-      {/* ── Hero ── */}
+      {/* -- Hero -- */}
       <section
         style={{
           position: "relative",
@@ -180,7 +114,7 @@ export default function PetCamPage() {
         </div>
       </section>
 
-      {/* ── Intro ── */}
+      {/* -- Intro -- */}
       <section style={{ backgroundColor: "#ffffff", padding: "80px 20px" }}>
         <div style={{ maxWidth: "900px", margin: "0 auto" }}>
           <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(26px,3vw,40px)", color: "#1F2124", textAlign: "center", marginBottom: "16px" }}>
@@ -190,68 +124,20 @@ export default function PetCamPage() {
             These are the settings for our camera mobile app or pet cams
           </h3>
           <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", lineHeight: 1.7, textAlign: "center" }}>
-            You may download <strong>&quot;LTS-Connect&quot;</strong> to your mobile phone, Select <strong>America</strong>, then select <strong>USA</strong>, click the icon in the top left hand corner, select <strong>Devices</strong>, once selected click the icon in the top right hand corner; select <strong>Manual Adding</strong> and enter the below settings for the appropriate location……..<br /><br />
+            You may download <strong>&quot;LTS-Connect&quot;</strong> to your mobile phone, Select <strong>America</strong>, then select <strong>USA</strong>, click the icon in the top left hand corner, select <strong>Devices</strong>, once selected click the icon in the top right hand corner; select <strong>Manual Adding</strong> and enter the below settings for the appropriate location&hellip;&hellip;&hellip;<br /><br />
             After you&apos;ve entered the settings you will then select save in the top right corner and select <strong>Start Live View</strong> at the bottom of the screen.
           </p>
         </div>
       </section>
 
-      {/* ── Camera Settings Tables ── */}
+      {/* -- Camera Settings Tables (loaded from API, no hardcoded creds) -- */}
       <section style={{ backgroundColor: "#F8F8F8", padding: "80px 20px" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px,1fr))", gap: "40px" }}>
-            {/* Galleria Location */}
-            <div>
-              <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "22px", color: "#1F2124", marginBottom: "20px", textAlign: "center" }}>
-                5917 Richmond Ave — Galleria
-              </h3>
-              <div style={{ border: "1px solid #e0e0e0", borderRadius: "8px", overflow: "hidden" }}>
-                {[
-                  ["Location", galleryLocation.location],
-                  ["Alias", galleryLocation.alias],
-                  ["Register Mode", galleryLocation.registerMode],
-                  ["IP Address", galleryLocation.ipAddress],
-                  ["Port", galleryLocation.port],
-                  ["User Name", galleryLocation.userName],
-                  ["Password", galleryLocation.password],
-                  ["Camera No", galleryLocation.cameraNo],
-                ].map(([label, value], i) => (
-                  <div key={label} style={{ display: "grid", gridTemplateColumns: "1fr 1fr", backgroundColor: i % 2 === 0 ? "#F8F8F8" : "#ffffff", borderBottom: "1px solid #e0e0e0" }}>
-                    <div style={{ padding: "12px 16px", fontFamily: '"Outfit", sans-serif', fontSize: "15px", fontWeight: 600, color: "#54595F", borderRight: "1px solid #e0e0e0", textAlign: "center" }}>{label}</div>
-                    <div style={{ padding: "12px 16px", fontFamily: '"Outfit", sans-serif', fontSize: "15px", color: "#1F2124", textAlign: "center" }}>{value}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Washington Ave Location */}
-            <div>
-              <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "22px", color: "#1F2124", marginBottom: "20px", textAlign: "center" }}>
-                6434 Washington Ave — Memorial Park
-              </h3>
-              <div style={{ border: "1px solid #e0e0e0", borderRadius: "8px", overflow: "hidden" }}>
-                {[
-                  ["Location", washingtonLocation.location],
-                  ["Alias", washingtonLocation.alias],
-                  ["Register Mode", washingtonLocation.registerMode],
-                  ["IP Address", washingtonLocation.ipAddress],
-                  ["Port", washingtonLocation.port],
-                  ["User Name", washingtonLocation.userName],
-                  ["Password", washingtonLocation.password],
-                  ["Camera No", washingtonLocation.cameraNo],
-                ].map(([label, value], i) => (
-                  <div key={label} style={{ display: "grid", gridTemplateColumns: "1fr 1fr", backgroundColor: i % 2 === 0 ? "#F8F8F8" : "#ffffff", borderBottom: "1px solid #e0e0e0" }}>
-                    <div style={{ padding: "12px 16px", fontFamily: '"Outfit", sans-serif', fontSize: "15px", fontWeight: 600, color: "#54595F", borderRight: "1px solid #e0e0e0", textAlign: "center" }}>{label}</div>
-                    <div style={{ padding: "12px 16px", fontFamily: '"Outfit", sans-serif', fontSize: "15px", color: "#1F2124", textAlign: "center" }}>{value}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
+          <PetCamSettings />
         </div>
       </section>
 
-      {/* ── How to Set Up ── */}
+      {/* -- How to Set Up -- */}
       <section style={{ backgroundColor: "#ffffff", padding: "80px 20px" }}>
         <div style={{ maxWidth: "900px", margin: "0 auto" }}>
           <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(24px,3vw,36px)", color: "#1F2124", textAlign: "center", marginBottom: "16px" }}>
@@ -279,7 +165,7 @@ export default function PetCamPage() {
         </div>
       </section>
 
-      {/* ── About Pet Cam ── */}
+      {/* -- About Pet Cam -- */}
       <section style={{ backgroundColor: "#F8F8F8", padding: "80px 20px" }}>
         <div style={{ maxWidth: "900px", margin: "0 auto" }}>
           <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(24px,3vw,36px)", color: "#1F2124", textAlign: "center", marginBottom: "24px" }}>
@@ -302,7 +188,7 @@ export default function PetCamPage() {
         </div>
       </section>
 
-      {/* ── Troubleshooting ── */}
+      {/* -- Troubleshooting -- */}
       <section style={{ backgroundColor: "#ffffff", padding: "80px 20px" }}>
         <div style={{ maxWidth: "900px", margin: "0 auto" }}>
           <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(24px,3vw,36px)", color: "#1F2124", textAlign: "center", marginBottom: "16px" }}>
@@ -315,7 +201,7 @@ export default function PetCamPage() {
             {troubleshootingTips.map((tip) => (
               <div key={tip.title} style={{ display: "flex", gap: "16px", alignItems: "flex-start", backgroundColor: "#F8F8F8", borderRadius: "12px", padding: "24px" }}>
                 <div style={{ flexShrink: 0, width: "32px", height: "32px", borderRadius: "50%", backgroundColor: "#965B83", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                  <span style={{ color: "#fff", fontSize: "16px" }}>✓</span>
+                  <span style={{ color: "#fff", fontSize: "16px" }}>&#10003;</span>
                 </div>
                 <div>
                   <h4 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "18px", color: "#1F2124", marginBottom: "8px" }}>{tip.title}</h4>
@@ -330,7 +216,7 @@ export default function PetCamPage() {
         </div>
       </section>
 
-      {/* ── CTA ── */}
+      {/* -- CTA -- */}
       <section style={{ backgroundColor: "#965B83", padding: "80px 20px" }}>
         <div style={{ maxWidth: "800px", margin: "0 auto", textAlign: "center" }}>
           <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(26px,3vw,40px)", color: "#ffffff", marginBottom: "16px" }}>

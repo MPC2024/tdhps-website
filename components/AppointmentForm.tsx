@@ -472,7 +472,7 @@ export default function AppointmentForm({
     return errs;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const errs = validate();
     if (errs.length > 0) {
@@ -486,12 +486,50 @@ export default function AppointmentForm({
     const locationKey = LOCATION_VALUES[locationValue] || defaultLocation;
     const custSuffix = customerType === "new" ? "new" : "existing";
 
-    let thankYouPath = "/";
-    if (locationKey === "galleria") thankYouPath = `/thank-you-galleria-${custSuffix}`;
-    else if (locationKey === "memorial") thankYouPath = `/thank-you-memorial-${custSuffix}`;
-    else if (locationKey === "pearland") thankYouPath = `/thank-you-pearland-${custSuffix}`;
+    try {
+      const res = await fetch("/api/appointment", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          customerType,
+          location: locationKey,
+          firstName,
+          lastName,
+          street,
+          street2,
+          city,
+          state,
+          zip,
+          email,
+          cellPhone,
+          ecName,
+          ecEmail,
+          ecPhone,
+          hearAbout,
+          pets: pets.slice(0, totalPets),
+        }),
+      });
 
-    router.push(thankYouPath);
+      if (!res.ok) {
+        throw new Error("Server returned an error. Please try again.");
+      }
+
+      const data = await res.json();
+      if (!data.success) {
+        throw new Error(data.error || "Submission failed. Please try again.");
+      }
+
+      let thankYouPath = "/";
+      if (locationKey === "galleria") thankYouPath = `/thank-you-galleria-${custSuffix}`;
+      else if (locationKey === "memorial") thankYouPath = `/thank-you-memorial-${custSuffix}`;
+      else if (locationKey === "pearland") thankYouPath = `/thank-you-pearland-${custSuffix}`;
+
+      router.push(thankYouPath);
+    } catch (err) {
+      setErrors([err instanceof Error ? err.message : "Something went wrong. Please try again or call us at 713-820-6140."]);
+      setSubmitting(false);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
   };
 
   const US_STATES = [

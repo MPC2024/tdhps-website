@@ -98,14 +98,61 @@ function SuccessMessage() {
 
 function BathingProgramForm() {
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState("");
   if (submitted) return <SuccessMessage />;
 
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setSubmitting(true);
+    setError("");
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    try {
+      const res = await fetch("/api/grooming-school", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          program: "Bathing Program",
+          fullName: formData.get("fullName") as string,
+          email: formData.get("email") as string,
+          phone: formData.get("phone") as string,
+          format: formData.get("bathingFormat") as string,
+          motivation: formData.get("motivation") as string,
+          animalComfort: Number(formData.get("animalComfort")),
+          priorExperience: formData.get("priorExperience") as string,
+          allergies: formData.get("allergies") as string,
+          programGoals: formData.get("programGoals") as string,
+          techniquesInterest: formData.get("techniquesInterest") as string,
+          careerGoals: formData.get("careerGoals") as string,
+          howHeard: formData.get("howHeard") as string,
+        }),
+      });
+
+      if (!res.ok) throw new Error("Server error. Please try again.");
+      const data = await res.json();
+      if (!data.success) throw new Error(data.error || "Submission failed.");
+
+      setSubmitted(true);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Something went wrong. Please try again.");
+      setSubmitting(false);
+    }
+  };
+
   return (
-    <form onSubmit={(e: FormEvent<HTMLFormElement>) => { e.preventDefault(); setSubmitted(true); }} style={{ backgroundColor: "#F8F8F8", borderRadius: "12px", padding: "40px" }}>
+    <form onSubmit={handleSubmit} style={{ backgroundColor: "#F8F8F8", borderRadius: "12px", padding: "40px" }}>
+      {error && (
+        <div style={{ background: "#FEE2E2", border: "1px solid #FCA5A5", borderRadius: "8px", padding: "12px 16px", marginBottom: "20px", fontFamily: '"Outfit", sans-serif', fontSize: "14px", color: "#B91C1C" }}>
+          {error}
+        </div>
+      )}
       <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "14px", color: "#54595F", marginBottom: "24px" }}><em>&quot;*&quot; indicates required fields</em></p>
-      <div style={fieldSt}><label style={labelSt}>Full Name: {requiredStar}</label><input type="text" required style={inputSt} /></div>
-      <div style={fieldSt}><label style={labelSt}>Email Address {requiredStar}</label><input type="email" required style={inputSt} /></div>
-      <div style={fieldSt}><label style={labelSt}>Phone Number {requiredStar}</label><input type="tel" required style={inputSt} /></div>
+      <div style={fieldSt}><label style={labelSt}>Full Name: {requiredStar}</label><input name="fullName" type="text" required style={inputSt} /></div>
+      <div style={fieldSt}><label style={labelSt}>Email Address {requiredStar}</label><input name="email" type="email" required style={inputSt} /></div>
+      <div style={fieldSt}><label style={labelSt}>Phone Number {requiredStar}</label><input name="phone" type="tel" required style={inputSt} /></div>
       <div style={fieldSt}>
         <label style={labelSt}>Which program format are you interested in? {requiredStar}</label>
         <div style={{ display: "flex", gap: "24px" }}>
@@ -116,26 +163,26 @@ function BathingProgramForm() {
           ))}
         </div>
       </div>
-      <div style={fieldSt}><label style={labelSt}>What motivated you to apply to our bather program? {requiredStar}</label><textarea required rows={3} style={{ ...inputSt, resize: "vertical" }} /></div>
+      <div style={fieldSt}><label style={labelSt}>What motivated you to apply to our bather program? {requiredStar}</label><textarea name="motivation" required rows={3} style={{ ...inputSt, resize: "vertical" }} /></div>
       <div style={fieldSt}>
         <label style={labelSt}>On a scale from 0-5, how comfortable are you with animals? {requiredStar}</label>
         <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "13px", color: "#69727D", marginBottom: "8px" }}>[0 (not at all) - 5 (I Love Animals)]</p>
-        <input type="number" min={0} max={5} required style={{ ...inputSt, width: "120px" }} />
+        <input name="animalComfort" type="number" min={0} max={5} required style={{ ...inputSt, width: "120px" }} />
       </div>
-      <div style={fieldSt}><label style={labelSt}>Have you had any previous experience in pet grooming or related fields? {requiredStar}</label><textarea required rows={3} style={{ ...inputSt, resize: "vertical" }} /></div>
-      <div style={fieldSt}><label style={labelSt}>Do you have any allergies or conditions we should be aware of? {requiredStar}</label><textarea required rows={3} style={{ ...inputSt, resize: "vertical" }} /></div>
-      <div style={fieldSt}><label style={labelSt}>What do you hope to achieve by completing our program? {requiredStar}</label><textarea required rows={3} style={{ ...inputSt, resize: "vertical" }} /></div>
-      <div style={fieldSt}><label style={labelSt}>Are there any specific techniques or skills you are particularly interested in learning? {requiredStar}</label><textarea required rows={3} style={{ ...inputSt, resize: "vertical" }} /></div>
-      <div style={fieldSt}><label style={labelSt}>What are your career goals within the pet grooming industry? {requiredStar}</label><textarea required rows={3} style={{ ...inputSt, resize: "vertical" }} /></div>
+      <div style={fieldSt}><label style={labelSt}>Have you had any previous experience in pet grooming or related fields? {requiredStar}</label><textarea name="priorExperience" required rows={3} style={{ ...inputSt, resize: "vertical" }} /></div>
+      <div style={fieldSt}><label style={labelSt}>Do you have any allergies or conditions we should be aware of? {requiredStar}</label><textarea name="allergies" required rows={3} style={{ ...inputSt, resize: "vertical" }} /></div>
+      <div style={fieldSt}><label style={labelSt}>What do you hope to achieve by completing our program? {requiredStar}</label><textarea name="programGoals" required rows={3} style={{ ...inputSt, resize: "vertical" }} /></div>
+      <div style={fieldSt}><label style={labelSt}>Are there any specific techniques or skills you are particularly interested in learning? {requiredStar}</label><textarea name="techniquesInterest" required rows={3} style={{ ...inputSt, resize: "vertical" }} /></div>
+      <div style={fieldSt}><label style={labelSt}>What are your career goals within the pet grooming industry? {requiredStar}</label><textarea name="careerGoals" required rows={3} style={{ ...inputSt, resize: "vertical" }} /></div>
       <div style={fieldSt}>
         <label style={labelSt}>How did you hear about our program? {requiredStar}</label>
-        <select required style={{ ...inputSt, cursor: "pointer" }}>
+        <select name="howHeard" required style={{ ...inputSt, cursor: "pointer" }}>
           <option value="">Select All</option>
           {howReferralOptions.map((opt) => <option key={opt} value={opt}>{opt}</option>)}
         </select>
       </div>
-      <button type="submit" style={{ width: "100%", padding: "15px 30px", backgroundColor: "#965B83", color: "#fff", border: "none", borderRadius: "50px", fontFamily: '"Outfit", sans-serif', fontWeight: 700, fontSize: "18px", cursor: "pointer" }}>
-        Submit Application
+      <button type="submit" disabled={submitting} style={{ width: "100%", padding: "15px 30px", backgroundColor: "#965B83", color: "#fff", border: "none", borderRadius: "50px", fontFamily: '"Outfit", sans-serif', fontWeight: 700, fontSize: "18px", cursor: "pointer", opacity: submitting ? 0.7 : 1 }}>
+        {submitting ? "Submitting..." : "Submit Application"}
       </button>
     </form>
   );
@@ -143,14 +190,61 @@ function BathingProgramForm() {
 
 function BasicGroomingForm() {
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState("");
   if (submitted) return <SuccessMessage />;
 
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setSubmitting(true);
+    setError("");
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    try {
+      const res = await fetch("/api/grooming-school", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          program: "Basic Grooming",
+          fullName: formData.get("fullName") as string,
+          email: formData.get("email") as string,
+          phone: formData.get("phone") as string,
+          format: formData.get("basicFormat") as string,
+          motivation: formData.get("motivation") as string,
+          animalComfort: Number(formData.get("animalComfort")),
+          priorExperience: formData.get("priorExperience") as string,
+          techniquesInterest: formData.get("techniquesInterest") as string,
+          careerGoals: formData.get("careerGoals") as string,
+          programGoals: formData.get("programGoals") as string,
+          allergies: formData.get("allergies") as string,
+          howHeard: formData.get("howHeard") as string,
+        }),
+      });
+
+      if (!res.ok) throw new Error("Server error. Please try again.");
+      const data = await res.json();
+      if (!data.success) throw new Error(data.error || "Submission failed.");
+
+      setSubmitted(true);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Something went wrong. Please try again.");
+      setSubmitting(false);
+    }
+  };
+
   return (
-    <form onSubmit={(e: FormEvent<HTMLFormElement>) => { e.preventDefault(); setSubmitted(true); }} style={{ backgroundColor: "#F8F8F8", borderRadius: "12px", padding: "40px" }}>
+    <form onSubmit={handleSubmit} style={{ backgroundColor: "#F8F8F8", borderRadius: "12px", padding: "40px" }}>
+      {error && (
+        <div style={{ background: "#FEE2E2", border: "1px solid #FCA5A5", borderRadius: "8px", padding: "12px 16px", marginBottom: "20px", fontFamily: '"Outfit", sans-serif', fontSize: "14px", color: "#B91C1C" }}>
+          {error}
+        </div>
+      )}
       <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "14px", color: "#54595F", marginBottom: "24px" }}><em>&quot;*&quot; indicates required fields</em></p>
-      <div style={fieldSt}><label style={labelSt}>Full Name: {requiredStar}</label><input type="text" required style={inputSt} /></div>
-      <div style={fieldSt}><label style={labelSt}>Email Address {requiredStar}</label><input type="email" required style={inputSt} /></div>
-      <div style={fieldSt}><label style={labelSt}>Phone Number {requiredStar}</label><input type="tel" required style={inputSt} /></div>
+      <div style={fieldSt}><label style={labelSt}>Full Name: {requiredStar}</label><input name="fullName" type="text" required style={inputSt} /></div>
+      <div style={fieldSt}><label style={labelSt}>Email Address {requiredStar}</label><input name="email" type="email" required style={inputSt} /></div>
+      <div style={fieldSt}><label style={labelSt}>Phone Number {requiredStar}</label><input name="phone" type="tel" required style={inputSt} /></div>
       <div style={fieldSt}>
         <label style={labelSt}>Preferred Program Format: {requiredStar}</label>
         <div style={{ display: "flex", gap: "24px" }}>
@@ -161,26 +255,26 @@ function BasicGroomingForm() {
           ))}
         </div>
       </div>
-      <div style={fieldSt}><label style={labelSt}>What motivated you to apply to our Basic Groomer program? {requiredStar}</label><textarea required rows={3} style={{ ...inputSt, resize: "vertical" }} /></div>
+      <div style={fieldSt}><label style={labelSt}>What motivated you to apply to our Basic Groomer program? {requiredStar}</label><textarea name="motivation" required rows={3} style={{ ...inputSt, resize: "vertical" }} /></div>
       <div style={fieldSt}>
         <label style={labelSt}>On a scale from 0-5, how comfortable are you with animals? {requiredStar}</label>
         <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "13px", color: "#69727D", marginBottom: "8px" }}>[0 (not at all) - 5 (extremely passionate)]</p>
-        <input type="number" min={0} max={5} required style={{ ...inputSt, width: "120px" }} />
+        <input name="animalComfort" type="number" min={0} max={5} required style={{ ...inputSt, width: "120px" }} />
       </div>
-      <div style={fieldSt}><label style={labelSt}>Do you have any prior experience in pet grooming or animal care? {requiredStar}</label><textarea required rows={3} style={{ ...inputSt, resize: "vertical" }} /></div>
-      <div style={fieldSt}><label style={labelSt}>Are there specific grooming techniques or skills you are eager to learn? {requiredStar}</label><textarea required rows={3} style={{ ...inputSt, resize: "vertical" }} /></div>
-      <div style={fieldSt}><label style={labelSt}>What are your career goals within the pet grooming industry? {requiredStar}</label><textarea required rows={3} style={{ ...inputSt, resize: "vertical" }} /></div>
-      <div style={fieldSt}><label style={labelSt}>What do you hope to achieve by completing our Basic Groomer program? {requiredStar}</label><textarea required rows={3} style={{ ...inputSt, resize: "vertical" }} /></div>
-      <div style={fieldSt}><label style={labelSt}>Do you have any allergies or conditions we should be aware of? {requiredStar}</label><textarea required rows={3} style={{ ...inputSt, resize: "vertical" }} /></div>
+      <div style={fieldSt}><label style={labelSt}>Do you have any prior experience in pet grooming or animal care? {requiredStar}</label><textarea name="priorExperience" required rows={3} style={{ ...inputSt, resize: "vertical" }} /></div>
+      <div style={fieldSt}><label style={labelSt}>Are there specific grooming techniques or skills you are eager to learn? {requiredStar}</label><textarea name="techniquesInterest" required rows={3} style={{ ...inputSt, resize: "vertical" }} /></div>
+      <div style={fieldSt}><label style={labelSt}>What are your career goals within the pet grooming industry? {requiredStar}</label><textarea name="careerGoals" required rows={3} style={{ ...inputSt, resize: "vertical" }} /></div>
+      <div style={fieldSt}><label style={labelSt}>What do you hope to achieve by completing our Basic Groomer program? {requiredStar}</label><textarea name="programGoals" required rows={3} style={{ ...inputSt, resize: "vertical" }} /></div>
+      <div style={fieldSt}><label style={labelSt}>Do you have any allergies or conditions we should be aware of? {requiredStar}</label><textarea name="allergies" required rows={3} style={{ ...inputSt, resize: "vertical" }} /></div>
       <div style={fieldSt}>
         <label style={labelSt}>How did you hear about our Basic Groomer program? {requiredStar}</label>
-        <select required style={{ ...inputSt, cursor: "pointer" }}>
+        <select name="howHeard" required style={{ ...inputSt, cursor: "pointer" }}>
           <option value="">Select All</option>
           {howReferralOptions.map((opt) => <option key={opt} value={opt}>{opt}</option>)}
         </select>
       </div>
-      <button type="submit" style={{ width: "100%", padding: "15px 30px", backgroundColor: "#965B83", color: "#fff", border: "none", borderRadius: "50px", fontFamily: '"Outfit", sans-serif', fontWeight: 700, fontSize: "18px", cursor: "pointer" }}>
-        Submit Application
+      <button type="submit" disabled={submitting} style={{ width: "100%", padding: "15px 30px", backgroundColor: "#965B83", color: "#fff", border: "none", borderRadius: "50px", fontFamily: '"Outfit", sans-serif', fontWeight: 700, fontSize: "18px", cursor: "pointer", opacity: submitting ? 0.7 : 1 }}>
+        {submitting ? "Submitting..." : "Submit Application"}
       </button>
     </form>
   );

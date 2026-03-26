@@ -40,11 +40,11 @@ const services = [
     imgAlt: "pet boarding",
   },
   {
-    title: "Dogie daycare",
+    title: "Doggie Daycare",
     description: "Love and attention are essential ingredients to putting a smile on all pets",
     href: "/dog-day-care",
     imgSrc: "https://www.thedoghouseps.com/wp-content/uploads/2025/03/dogie-daycare.jpg",
-    imgAlt: "dogie daycare",
+    imgAlt: "doggie daycare",
   },
 ];
 
@@ -86,22 +86,22 @@ const blogPosts = [
     imgSrc: "https://www.thedoghouseps.com/wp-content/uploads/2026/03/Shihtzu_Grooming_Pearland.jpg",
     imgAlt: "Shih Tzu freshly groomed at The Dog House Pet Salon in Pearland Texas professional dog grooming",
     title: "The Benefits of Routine Dog Grooming in Houston's Climate",
-    excerpt: "Modern dogs need more than a quick walk around the block. Discover whether dog daycare in Houston is worth it, the real benefits it provides,...",
-    href: "https://www.thedoghouseps.com/the-benefits-of-routine-dog-grooming-in-houstons-climate/",
+    excerpt: "Houston's heat and humidity take a toll on your pet's coat. Learn how routine grooming protects your dog's skin, reduces shedding, and keeps them comfortable year-round.",
+    href: "/blog/the-benefits-of-routine-dog-grooming-in-houstons-climate",
   },
   {
     imgSrc: "https://www.thedoghouseps.com/wp-content/uploads/2026/01/doggy-day-care-galleria-1024x1005.jpg",
     imgAlt: "Dogs playing safely in a supervised dog daycare environment at The Dog House Pet Salon in Houston",
     title: "Is Dog Daycare Worth It? Here's What Houston Pet Parents Should Know",
-    excerpt: "Modern dogs need more than a quick walk around the block. Discover whether dog daycare in Houston is worth it, the real benefits it provides,...",
-    href: "https://www.thedoghouseps.com/is-dog-daycare-worth-it-heres-what-houston-pet-parents-should-know/",
+    excerpt: "Modern dogs need more than a quick walk around the block. Discover whether dog daycare in Houston is worth it, the real benefits it provides, and what to look for in a facility.",
+    href: "/blog/is-dog-daycare-worth-it-heres-what-houston-pet-parents-should-know",
   },
   {
     imgSrc: "https://www.thedoghouseps.com/wp-content/uploads/2026/01/winter-dog-grooming-houston-1024x750.jpg",
     imgAlt: "Winter dog grooming in Houston to protect coat and skin during cold weather",
     title: "Why Winter Grooming Is Essential for Your Dog's Health and Comfort",
-    excerpt: "Modern dogs need more than a quick walk around the block. Discover whether dog daycare in Houston is worth it, the real benefits it provides,...",
-    href: "https://www.thedoghouseps.com/why-winter-grooming-is-essential-for-your-dogs-health-and-comfort/",
+    excerpt: "Even in Houston's mild winters, your dog's coat needs seasonal care. Here's why skipping winter grooming can lead to matting, skin issues, and discomfort — and how to prevent it.",
+    href: "/blog/why-winter-grooming-is-essential-for-your-dogs-health-and-comfort",
   },
 ];
 

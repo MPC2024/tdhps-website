@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
   title: "Pet Grooming Salon Pearland",
@@ -134,6 +135,12 @@ const socialLinks = [
 export default function PearlandLocationPage() {
   return (
     <>
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", url: "https://www.thedoghouseps.com" },
+          { name: "Pearland", url: "https://www.thedoghouseps.com/pearland-location" },
+        ]}
+      />
       {/* ── Hero ── */}
       <section
         style={{
@@ -284,10 +291,10 @@ export default function PearlandLocationPage() {
           </div>
           <div>
             <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(22px,3vw,32px)", color: "#1F2124", marginBottom: "16px" }}>
-              Margrita Batres
+              Margarita Batres
             </h2>
             <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", lineHeight: 1.8, marginBottom: "24px" }}>
-              Francy Quevedo is a dedicated certified dog groomer at The Dog House Pet Salon in Houston, TX. Originally from Venezuela, she has been grooming for over 8 years and has a special fondness for poodles. Francy&apos;s passion for animals&apos; shines through in her gentle approach and commitment to creating a nurturing environment for every pet. She enjoys building lasting relationships with both dogs and their owners, always striving to make grooming a positive experience.
+              Margarita Batres is a passionate certified groomer at The Dog House Pet Salon, where her love for animals shines through in her work. Born in El Salvador, Margarita moved to the United States at the age of 18. Her journey in grooming began in 2010 when she started as a bather, and with over 14 years of experience she has built a strong reputation for being patient and compassionate, especially with anxious pets.
             </p>
             <Link href="/margarita-batres" className="btn-primary">Read Full Bio</Link>
           </div>

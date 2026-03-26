@@ -321,21 +321,6 @@ export default function HomePage() {
           padding: "80px 20px 120px",
         }}
       >
-        {/* Curve divider at bottom */}
-        <div
-          aria-hidden="true"
-          style={{ position: "absolute", bottom: -1, left: 0, width: "100%", lineHeight: 0, zIndex: 1 }}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 1000 100"
-            preserveAspectRatio="none"
-            style={{ display: "block", width: "100%", height: "60px", transform: "scaleY(-1) scaleX(-1)" }}
-          >
-            <path fill="#ffffff" d="M615.2,96.7C240.2,97.8,0,18.9,0,0v100h1000V0C1000,19.2,989.8,96,615.2,96.7z" />
-          </svg>
-        </div>
-
         <div style={{ maxWidth: "1520px", margin: "0 auto", position: "relative", zIndex: 2 }}>
           <h2
             style={{
@@ -574,21 +559,6 @@ export default function HomePage() {
           overflow: "hidden",
         }}
       >
-        {/* Curve divider at top */}
-        <div
-          aria-hidden="true"
-          style={{ position: "absolute", top: -1, left: 0, width: "100%", lineHeight: 0, zIndex: 1 }}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 1000 100"
-            preserveAspectRatio="none"
-            style={{ display: "block", width: "100%", height: "60px", transform: "scaleX(-1)" }}
-          >
-            <path fill="#ffffff" d="M615.2,96.7C240.2,97.8,0,18.9,0,0v100h1000V0C1000,19.2,989.8,96,615.2,96.7z" />
-          </svg>
-        </div>
-
         {/* Lost pet decorative image */}
         <div
           style={{
@@ -953,21 +923,6 @@ export default function HomePage() {
           overflow: "hidden",
         }}
       >
-        {/* Curve divider at bottom */}
-        <div
-          aria-hidden="true"
-          style={{ position: "absolute", bottom: -1, left: 0, width: "100%", lineHeight: 0, zIndex: 1 }}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 1000 100"
-            preserveAspectRatio="none"
-            style={{ display: "block", width: "100%", height: "60px", transform: "scaleY(-1) scaleX(-1)" }}
-          >
-            <path fill="#ffffff" d="M615.2,96.7C240.2,97.8,0,18.9,0,0v100h1000V0C1000,19.2,989.8,96,615.2,96.7z" />
-          </svg>
-        </div>
-
         <div style={{ maxWidth: "1520px", margin: "0 auto", position: "relative", zIndex: 2 }}>
           <h3
             style={{

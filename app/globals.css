@@ -124,13 +124,13 @@
     align-items: center;
     justify-content: center;
     background-color: transparent;
-    color: #965B83;
+    color: #ffffff;
     font-family: "Outfit", sans-serif;
     font-size: 18px;
     font-weight: 600;
     padding: 13px 28px;
     border-radius: 50px;
-    border: 2px solid #965B83;
+    border: 2px solid #ffffff;
     transition: all 0.3s ease;
     cursor: pointer;
     text-decoration: none;
@@ -138,8 +138,8 @@
   }
 
   .btn-secondary:hover {
-    background-color: #965B83;
-    color: #ffffff;
+    background-color: #ffffff;
+    color: #965B83;
   }
 }
 

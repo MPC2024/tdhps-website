@@ -1,12 +1,14 @@
 import type { MetadataRoute } from "next";
+import { getAllPosts } from "@/lib/blog";
 
 const BASE_URL = "https://www.thedoghouseps.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
 
-  return [
-    /* ── Homepage ── */
+  /* ── Static pages ── */
+  const staticPages: MetadataRoute.Sitemap = [
+    /* Homepage */
     {
       url: BASE_URL,
       lastModified: now,
@@ -14,7 +16,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1.0,
     },
 
-    /* ── Service Pages ── */
+    /* Service Pages */
     {
       url: `${BASE_URL}/pet-grooming`,
       lastModified: now,
@@ -40,7 +42,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
 
-    /* ── Location Pages ── */
+    /* Location Pages */
     {
       url: `${BASE_URL}/galleria-uptown-park-location`,
       lastModified: now,
@@ -60,7 +62,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
 
-    /* ── Info Pages ── */
+    /* Info Pages */
     {
       url: `${BASE_URL}/contact-us`,
       lastModified: now,
@@ -92,7 +94,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
 
-    /* ── Staff / Bio Pages ── */
+    /* Staff / Bio Pages */
     {
       url: `${BASE_URL}/our-staff`,
       lastModified: now,
@@ -124,7 +126,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.6,
     },
 
-    /* ── Appointment Forms ── */
+    /* Appointment Forms */
     {
       url: `${BASE_URL}/appointment-request`,
       lastModified: now,
@@ -150,7 +152,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.5,
     },
 
-    /* ── Policy Pages ── */
+    /* Policy Pages */
     {
       url: `${BASE_URL}/privacy-policy`,
       lastModified: now,
@@ -170,6 +172,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.3,
     },
   ];
+
+  /* ── Blog posts ── */
+  const posts = getAllPosts();
+  const blogPages: MetadataRoute.Sitemap = posts.map((post) => ({
+    url: `${BASE_URL}/blog/${post.slug}`,
+    lastModified: post.modified
+      ? new Date(post.modified + "T00:00:00")
+      : post.date
+        ? new Date(post.date + "T00:00:00")
+        : now,
+    changeFrequency: "weekly" as const,
+    priority: 0.6,
+  }));
+
+  return [...staticPages, ...blogPages];
 
   /*
    * NOTE: Thank-you pages are intentionally excluded from the sitemap.

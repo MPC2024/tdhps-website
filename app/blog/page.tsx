@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { getAllPosts } from "@/lib/blog";
 
 export const metadata: Metadata = {
   title: "Dog Grooming Tips & Pet Care Advice | Dog House Pet Salon Blog",
@@ -10,81 +11,17 @@ export const metadata: Metadata = {
     title: "Dog Grooming Tips & Pet Care Advice | Dog House Pet Salon Blog",
     description:
       "Explore dog grooming tips, pet care advice, and the latest updates from The Dog House blogs. Stay informed and keep your furry friend happy and healthy!",
-    url: "https://www.thedoghouseps.com/blog/",
+    url: "https://www.thedoghouseps.com/blog",
   },
-  alternates: { canonical: "https://www.thedoghouseps.com/blog/" },
+  alternates: { canonical: "https://www.thedoghouseps.com/blog" },
 };
 
-const posts = [
-  {
-    title: "The Benefits of Routine Dog Grooming in Houston's Climate",
-    excerpt:
-      "Modern dogs need more than a quick walk around the block. Discover whether dog daycare in Houston is worth it, the real benefits it provides...",
-    img: "https://www.thedoghouseps.com/wp-content/uploads/2026/03/Shihtzu_Grooming_Pearland.jpg",
-    href: "https://www.thedoghouseps.com/the-benefits-of-routine-dog-grooming-in-houstons-climate/",
-  },
-  {
-    title: "Is Dog Daycare Worth It? Here's What Houston Pet Parents Should Know",
-    excerpt:
-      "Modern dogs need more than a quick walk around the block. Discover whether dog daycare in Houston is worth it, the real benefits it provides...",
-    img: "https://www.thedoghouseps.com/wp-content/uploads/2026/01/doggy-day-care-galleria-1024x1005.jpg",
-    href: "https://www.thedoghouseps.com/is-dog-daycare-worth-it-heres-what-houston-pet-parents-should-know/",
-  },
-  {
-    title: "Why Winter Grooming Is Essential for Your Dog's Health and Comfort",
-    excerpt:
-      "Winter grooming is essential for protecting your dog's skin, coat, and overall comfort during colder months. From dry air and indoor heating to wet winter...",
-    img: "https://www.thedoghouseps.com/wp-content/uploads/2026/01/winter-dog-grooming-houston-1024x750.jpg",
-    href: "https://www.thedoghouseps.com/https-www-thedoghouseps-com-how-often-should-you-groom-your-dog-complete-guide-2/",
-  },
-  {
-    title: "How Often Should You Groom Your Dog? (Complete Guide)",
-    excerpt:
-      "Regular grooming is essential for your dog's health, comfort, and happiness. But how often should you groom your furry friend? The answer varies based on...",
-    img: "https://www.thedoghouseps.com/wp-content/uploads/2025/12/golden-doodle-grooming-haircut-memorial-park-rice-village-1024x768.jpg",
-    href: "https://www.thedoghouseps.com/how-often-should-you-groom-your-dog-complete-guide/",
-  },
-  {
-    title: "5 Must-Know Grooming Trends for Galleria Pup Parents",
-    excerpt:
-      "As Houston's premier Galleria dog grooming destination, The Dog House Pet Salon blends style, wellness, and local...",
-    img: "https://www.thedoghouseps.com/wp-content/uploads/2025/05/Dog-Grooming-Trends.jpg",
-    href: "https://www.thedoghouseps.com/galleria-grooming-trends-2025/",
-  },
-  {
-    title: "Pearland Dog Daycare Playdates: What to Expect",
-    excerpt:
-      "At The Dog House Pet Salon Pearland, our Pearland dog daycare playdates offer more than just supervised fun—they're designed to promote socialization, mental stimulation, and...",
-    img: "https://www.thedoghouseps.com/wp-content/uploads/2025/05/Pearland-Dog-Daycare-Playdates.png",
-    href: "https://www.thedoghouseps.com/pearland-pup-playdates-daycare-expectations/",
-  },
-  {
-    title: "Dog Boarding Houston: What to Look for in a Quality Overnight Facility",
-    excerpt:
-      "Choosing the right dog boarding facility in Houston can feel overwhelming. Here's everything you need to know to find a safe, loving home-away-from-home for your pet.",
-    img: "https://www.thedoghouseps.com/wp-content/uploads/2025/03/dog-in-bed.webp",
-    href: "https://www.thedoghouseps.com/houston-pet-boarding/",
-  },
-  {
-    title: "The Ultimate Guide to Pet Grooming for Houston Dog Owners",
-    excerpt:
-      "Houston's heat and humidity make regular grooming essential. Learn how to maintain your pet's coat, skin, and overall hygiene with tips from our expert groomers.",
-    img: "https://www.thedoghouseps.com/wp-content/uploads/2025/03/washing-pet-dog-corgi.webp",
-    href: "https://www.thedoghouseps.com/pet-grooming/",
-  },
-  {
-    title: "Doggy Daycare vs. Dog Walker: Which Is Right for Your Pet?",
-    excerpt:
-      "Both doggy daycare and dog walkers provide companionship and exercise, but which is the better fit for your dog's personality and lifestyle? We break down the pros and cons.",
-    img: "https://www.thedoghouseps.com/wp-content/uploads/2025/03/dogie-daycare.jpg",
-    href: "https://www.thedoghouseps.com/dog-day-care/",
-  },
-];
-
 export default function BlogPage() {
+  const posts = getAllPosts();
+
   return (
     <>
-      {/* ── Hero ── */}
+      {/* Hero */}
       <section
         style={{
           position: "relative",
@@ -137,10 +74,20 @@ export default function BlogPage() {
           >
             <span style={{ color: "#E0598A" }}>Blogs</span>
           </h1>
+          <p
+            style={{
+              fontFamily: '"Outfit", sans-serif',
+              fontSize: "18px",
+              color: "rgba(255,255,255,0.85)",
+              marginTop: "16px",
+            }}
+          >
+            {posts.length} articles on grooming, pet care, and more
+          </p>
         </div>
       </section>
 
-      {/* ── Blog Grid ── */}
+      {/* Blog Grid */}
       <section style={{ backgroundColor: "#F8F8F8", padding: "80px 20px" }}>
         <div style={{ maxWidth: "1520px", margin: "0 auto" }}>
           <div
@@ -152,7 +99,7 @@ export default function BlogPage() {
           >
             {posts.map((post) => (
               <article
-                key={post.href}
+                key={post.slug}
                 style={{
                   backgroundColor: "#ffffff",
                   borderRadius: "12px",
@@ -162,20 +109,44 @@ export default function BlogPage() {
                   flexDirection: "column",
                 }}
               >
-                <a href={post.href} target="_blank" rel="noopener noreferrer">
-                  <Image
-                    src={post.img}
-                    alt={post.title}
-                    width={600}
-                    height={400}
-                    style={{
-                      width: "100%",
-                      height: "220px",
-                      objectFit: "cover",
-                      display: "block",
-                    }}
-                  />
-                </a>
+                <Link href={`/blog/${post.slug}`}>
+                  {post.featuredImage ? (
+                    <Image
+                      src={post.featuredImage}
+                      alt={post.title}
+                      width={600}
+                      height={400}
+                      style={{
+                        width: "100%",
+                        height: "220px",
+                        objectFit: "cover",
+                        display: "block",
+                      }}
+                    />
+                  ) : (
+                    <div
+                      style={{
+                        width: "100%",
+                        height: "220px",
+                        background:
+                          "linear-gradient(135deg, #965B83 0%, #E0598A 100%)",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <span
+                        style={{
+                          fontFamily: '"Bowlby One SC", sans-serif',
+                          fontSize: "48px",
+                          color: "rgba(255,255,255,0.3)",
+                        }}
+                      >
+                        TDHPS
+                      </span>
+                    </div>
+                  )}
+                </Link>
                 <div
                   style={{
                     padding: "28px 28px 32px",
@@ -184,17 +155,74 @@ export default function BlogPage() {
                     flexGrow: 1,
                   }}
                 >
+                  {/* Categories */}
+                  {post.categories.length > 0 && (
+                    <div
+                      style={{
+                        display: "flex",
+                        flexWrap: "wrap",
+                        gap: "6px",
+                        marginBottom: "12px",
+                      }}
+                    >
+                      {post.categories.slice(0, 3).map((cat) => (
+                        <span
+                          key={cat}
+                          style={{
+                            fontFamily: '"Outfit", sans-serif',
+                            fontSize: "11px",
+                            fontWeight: 600,
+                            color: "#965B83",
+                            backgroundColor: "rgba(150,91,131,0.1)",
+                            padding: "3px 10px",
+                            borderRadius: "12px",
+                            textTransform: "uppercase",
+                            letterSpacing: "0.5px",
+                          }}
+                        >
+                          {cat}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+
                   <h2
                     style={{
                       fontFamily: '"Bowlby One SC", sans-serif',
                       fontSize: "20px",
                       color: "#1F2124",
-                      marginBottom: "12px",
+                      marginBottom: "8px",
                       lineHeight: 1.3,
                     }}
                   >
-                    {post.title}
+                    <Link
+                      href={`/blog/${post.slug}`}
+                      style={{ color: "inherit", textDecoration: "none" }}
+                    >
+                      {post.title}
+                    </Link>
                   </h2>
+
+                  {/* Date */}
+                  <time
+                    dateTime={post.date}
+                    style={{
+                      fontFamily: '"Outfit", sans-serif',
+                      fontSize: "13px",
+                      color: "#999",
+                      marginBottom: "12px",
+                    }}
+                  >
+                    {new Date(post.date + "T00:00:00").toLocaleDateString(
+                      "en-US",
+                      {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                      }
+                    )}
+                  </time>
+
                   <p
                     style={{
                       fontFamily: '"Outfit", sans-serif',
@@ -203,14 +231,16 @@ export default function BlogPage() {
                       lineHeight: 1.7,
                       marginBottom: "24px",
                       flexGrow: 1,
+                      display: "-webkit-box",
+                      WebkitLineClamp: 3,
+                      WebkitBoxOrient: "vertical",
+                      overflow: "hidden",
                     }}
                   >
                     {post.excerpt}
                   </p>
-                  <a
-                    href={post.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <Link
+                    href={`/blog/${post.slug}`}
                     style={{
                       display: "inline-block",
                       fontFamily: '"Outfit", sans-serif',
@@ -220,8 +250,8 @@ export default function BlogPage() {
                       textDecoration: "none",
                     }}
                   >
-                    Read More →
-                  </a>
+                    Read More &rarr;
+                  </Link>
                 </div>
               </article>
             ))}
@@ -229,7 +259,7 @@ export default function BlogPage() {
         </div>
       </section>
 
-      {/* ── CTA ── */}
+      {/* CTA */}
       <section
         style={{
           backgroundColor: "#33373D",

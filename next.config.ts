@@ -23,17 +23,37 @@ const nextConfig: NextConfig = {
 
   async redirects() {
     return [
-      // Nav links use /locations/<slug> — redirect straight to the real page route
+      // Nav links use /locations/<slug> -- redirect straight to the real page route
       { source: "/locations/galleria", destination: "/galleria-uptown-park-location", permanent: true },
       { source: "/locations/memorial", destination: "/memorial-park-location", permanent: true },
       { source: "/locations/pearland", destination: "/pearland-location", permanent: true },
-      // Legacy WP long-form paths — also go directly to the real page route
+      // Legacy WP long-form paths -- also go directly to the real page route
       { source: "/locations/galleria-uptown-park-location", destination: "/galleria-uptown-park-location", permanent: true },
       { source: "/locations/memorial-park-location", destination: "/memorial-park-location", permanent: true },
       { source: "/locations/pearland-location", destination: "/pearland-location", permanent: true },
       // Other legacy redirects
       { source: "/day-care", destination: "/dog-day-care", permanent: true },
       { source: "/about", destination: "/our-staff", permanent: true },
+
+      // ── WordPress blog URL redirects (301) ──
+      // WordPress date-based permalink format: /YYYY/MM/DD/slug/
+      {
+        source: "/:year(\\d{4})/:month(\\d{2})/:day(\\d{2})/:slug",
+        destination: "/blog/:slug",
+        permanent: true,
+      },
+      // WordPress date-based with trailing slash
+      {
+        source: "/:year(\\d{4})/:month(\\d{2})/:day(\\d{2})/:slug/",
+        destination: "/blog/:slug",
+        permanent: true,
+      },
+      // WordPress month-based permalink format: /YYYY/MM/slug/
+      {
+        source: "/:year(\\d{4})/:month(\\d{2})/:slug",
+        destination: "/blog/:slug",
+        permanent: true,
+      },
     ];
   },
 };

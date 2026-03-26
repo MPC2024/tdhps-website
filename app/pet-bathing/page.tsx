@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
   title: "Pet Bathing Houston - Pamper Your Pet | The Dog House",
@@ -81,6 +82,12 @@ const locations = [
 export default function PetBathingPage() {
   return (
     <>
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", url: "https://www.thedoghouseps.com" },
+          { name: "Pet Bathing", url: "https://www.thedoghouseps.com/pet-bathing" },
+        ]}
+      />
       {/* ── Hero ── */}
       <section
         style={{

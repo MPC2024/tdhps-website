@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
   title: "Dog Grooming in Memorial Park Houston",
@@ -66,6 +67,12 @@ const services = [
 export default function MemorialParkLocationPage() {
   return (
     <>
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", url: "https://www.thedoghouseps.com" },
+          { name: "Memorial Park", url: "https://www.thedoghouseps.com/memorial-park-location" },
+        ]}
+      />
       <section style={{ position: "relative", backgroundImage: "url(https://www.thedoghouseps.com/wp-content/uploads/2025/03/the-dog-house-memorial-park.webp)", backgroundSize: "cover", backgroundPosition: "center", minHeight: "480px", display: "flex", alignItems: "center", padding: "80px 20px 120px" }}>
         <div style={{ position: "absolute", inset: 0, backgroundColor: "rgba(0,0,0,0.5)" }} />
         <div aria-hidden="true" style={{ position: "absolute", bottom: -1, left: 0, width: "100%", lineHeight: 0, zIndex: 1 }}>

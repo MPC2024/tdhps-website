@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
   title: "Best Dog Daycare in Houston | Doggy Day Care Services",
@@ -105,6 +106,12 @@ const faqs = [
 export default function DogDayCarePage() {
   return (
     <>
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", url: "https://www.thedoghouseps.com" },
+          { name: "Dog Day Care", url: "https://www.thedoghouseps.com/dog-day-care" },
+        ]}
+      />
       {/* ── Hero ── */}
       <section
         style={{

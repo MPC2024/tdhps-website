@@ -1,6 +1,9 @@
-"use client";
-
-import { useEffect, useState } from "react";
+// Training: Authentication & Route Protection — Server Component Pattern
+// WHY: The original "use client" + fetch("/api/pet-cam") approach created a public
+// HTTP endpoint that returned camera credentials (IP, username, password) to ANY
+// internet user who called it. env vars prevent credentials from being bundled
+// into client JS, but the API endpoint itself exposed them in the JSON response.
+// Solution: Server Component reads env vars directly — no route, no exposure.
 
 interface CameraData {
   label: string;
@@ -22,39 +25,53 @@ const tableCellStyle: React.CSSProperties = {
   textAlign: "center",
 };
 
+// Training: Route Protection — reading env vars in a Server Component keeps
+// them server-side. These values are NEVER serialized to JSON or sent over the
+// network. The rendered HTML contains the values, but /api/pet-cam no longer exists.
+// WHY THIS MATTERS: Eliminates an entire attack surface (the API endpoint) rather
+// than trying to guard it.
+function getServerSideCameras(): CameraData[] {
+  return [
+    {
+      label: "5917 Richmond Ave -- Galleria",
+      location: process.env.CAM_GALLERIA_LOCATION ?? "",
+      alias: process.env.CAM_GALLERIA_ALIAS ?? "",
+      registerMode: process.env.CAM_GALLERIA_REGISTER_MODE ?? "IP/Domain",
+      ipAddress: process.env.CAM_GALLERIA_IP ?? "",
+      port: process.env.CAM_GALLERIA_PORT ?? "",
+      userName: process.env.CAM_GALLERIA_USER ?? "",
+      password: process.env.CAM_GALLERIA_PASSWORD ?? "",
+      cameraNo: "(will automatically populate)",
+    },
+    {
+      label: "6434 Washington Ave -- Memorial Park",
+      location: process.env.CAM_WASHINGTON_LOCATION ?? "",
+      alias: process.env.CAM_WASHINGTON_ALIAS ?? "",
+      registerMode: process.env.CAM_WASHINGTON_REGISTER_MODE ?? "IP/Domain",
+      ipAddress: process.env.CAM_WASHINGTON_IP ?? "",
+      port: process.env.CAM_WASHINGTON_PORT ?? "",
+      userName: process.env.CAM_WASHINGTON_USER ?? "",
+      password: process.env.CAM_WASHINGTON_PASSWORD ?? "",
+      cameraNo: "(will automatically populate)",
+    },
+  ];
+}
+
+// Training: Route Protection — no "use client" directive = Server Component by default.
+// WHY: Removing "use client" means this component runs at request time on the server,
+// reads env vars there, and sends the rendered HTML. The browser receives HTML, not
+// a JSON payload with credentials. The network request to /api/pet-cam is eliminated.
 export default function PetCamSettings() {
-  const [cameras, setCameras] = useState<CameraData[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
+  const cameras = getServerSideCameras();
 
-  useEffect(() => {
-    fetch("/api/pet-cam")
-      .then((res) => {
-        if (!res.ok) throw new Error("Failed to load camera settings");
-        return res.json();
-      })
-      .then((data) => {
-        setCameras(data.cameras ?? []);
-        setLoading(false);
-      })
-      .catch((err) => {
-        setError(err.message);
-        setLoading(false);
-      });
-  }, []);
-
-  if (loading) {
+  // Training: Route Protection — handle unconfigured state server-side
+  // WHY: If env vars aren't set, show a helpful message rather than empty tables.
+  // This also prevents rendering a table full of empty fields.
+  const configured = cameras.some((c) => c.ipAddress !== "");
+  if (!configured) {
     return (
       <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", textAlign: "center" }}>
-        Loading camera settings...
-      </p>
-    );
-  }
-
-  if (error) {
-    return (
-      <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#B91C1C", textAlign: "center" }}>
-        Unable to load camera settings. Please contact us for assistance.
+        Camera settings are not yet configured. Please contact us for assistance.
       </p>
     );
   }

@@ -141,15 +141,18 @@ export async function getLocationReviews(
     (a, b) => b.reviewTime - a.reviewTime
   );
 
-  // Calculate average rating
+  // Calculate average rating from ALL reviews (before filtering)
   const totalRating = allReviews.reduce((sum, r) => sum + r.rating, 0);
   const averageRating =
     allReviews.length > 0 ? +(totalRating / allReviews.length).toFixed(1) : 0;
 
+  // Filter: only show 4+ star reviews (Nathan's requirement)
+  const filteredReviews = allReviews.filter((review) => review.rating >= 4);
+
   return {
-    reviews: allReviews,
+    reviews: filteredReviews,
     averageRating,
-    totalCount: allReviews.length,
+    totalCount: allReviews.length, // Keep real count from all reviews
   };
 }
 

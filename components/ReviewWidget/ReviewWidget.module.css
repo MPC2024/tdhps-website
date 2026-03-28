@@ -1,0 +1,178 @@
+.container {
+  background-color: #f8f8f8;
+  padding: 80px 20px;
+}
+
+.wrapper {
+  max-width: 1520px;
+  margin: 0 auto;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.title {
+  font-family: "Bowlby One SC", sans-serif;
+  font-size: clamp(26px, 3vw, 40px);
+  color: #1f2124;
+  margin: 0 0 24px 0;
+}
+
+.summary {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.stats {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.count {
+  font-family: "Outfit", sans-serif;
+  font-size: 14px;
+  color: #54595f;
+}
+
+/* Reviews Grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+/* Mobile: 1 column */
+@media (max-width: 640px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Tablet: 2 columns */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Desktop: 3 columns */
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Empty State */
+.empty {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 60px 20px;
+  text-align: center;
+  border: 2px dashed #e5e7eb;
+}
+
+.empty p {
+  font-family: "Outfit", sans-serif;
+  font-size: 18px;
+  color: #54595f;
+  margin: 0 0 20px 0;
+}
+
+/* CTA Section */
+.ctaSection {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 40px 30px;
+  text-align: center;
+  border: 1px solid #e5e7eb;
+}
+
+.ctaText {
+  font-family: "Bowlby One SC", sans-serif;
+  font-size: 20px;
+  color: #1f2124;
+  margin: 0 0 20px 0;
+}
+
+.ctaButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+}
+
+@media (min-width: 640px) {
+  .ctaButtons {
+    flex-direction: row;
+    justify-content: center;
+    gap: 16px;
+  }
+}
+
+.ctaButton {
+  display: inline-block;
+  background-color: #965b83;
+  color: #ffffff;
+  padding: 12px 32px;
+  border-radius: 8px;
+  font-family: "Outfit", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid #965b83;
+  white-space: nowrap;
+}
+
+.ctaButton:hover {
+  background-color: #7a4363;
+  border-color: #7a4363;
+}
+
+.ctaButtonSecondary {
+  display: inline-block;
+  background-color: transparent;
+  color: #965b83;
+  padding: 12px 32px;
+  border-radius: 8px;
+  font-family: "Outfit", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid #965b83;
+  white-space: nowrap;
+}
+
+.ctaButtonSecondary:hover {
+  background-color: #965b83;
+  color: #ffffff;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .container {
+    padding: 40px 16px;
+  }
+
+  .header {
+    margin-bottom: 30px;
+  }
+
+  .ctaSection {
+    padding: 30px 20px;
+  }
+
+  .ctaButton,
+  .ctaButtonSecondary {
+    width: 100%;
+  }
+}

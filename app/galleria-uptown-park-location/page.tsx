@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
+import { ReviewWidget } from "@/components/ReviewWidget";
+import { LOCATIONS } from "@/lib/locations";
 
 export const metadata: Metadata = {
   title: "Pet Grooming Salon Galleria Houston",
@@ -590,27 +592,12 @@ export default function GalleriaLocationPage() {
       {/* ── Reviews ── */}
       <section style={{ backgroundColor: "#F8F8F8", padding: "80px 20px" }}>
         <div style={{ maxWidth: "1520px", margin: "0 auto" }}>
-          <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(26px,3vw,40px)", color: "#1F2124", textAlign: "center", marginBottom: "50px" }}>
-            What Our Customers Are Saying!
-          </h2>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "24px" }}>
-            {[
-              { name: "Kevin Garnepudi", text: "I have been using the dog house for weekend day care and grooming for a while and could not be happier with the way they treat my dog as well as myself. The staff is always friendly and accommodating and can tell they genuinely care about the dogs they look after." },
-              { name: "William Gillespie", text: "Alamo absolutely loves it here, they take awesome care of him while I am traveling for work. They are so good with all the pets, so I decided to donate five boxes worth of new Bark Box toys, so his friends and other pet parents could enjoy them." },
-              { name: "Ross Monsen", text: "Love this place! I have been using them for years. I have taken my dog to a million different groomers, but this is my go-to. They're able to squeeze me in last minute 90% of the time. Great staff and my dog loves them. Price is in line with everyone else." },
-              { name: "Tiffany Tegeler", text: "I've been taking Cooper here for about a year. He always leaves looking so fresh and clean! They have a punch program — after 10 punches you can get a free groom for your pup. He also ALWAYS leaves with a little bandana which is a huge perk!" },
-            ].map((r) => (
-              <div key={r.name} style={{ backgroundColor: "#ffffff", borderRadius: "12px", padding: "30px", boxShadow: "6px 6px 9px rgba(0,0,0,.08)" }}>
-                <div style={{ display: "flex", gap: "4px", marginBottom: "12px" }}>
-                  {[...Array(5)].map((_, i) => (
-                    <Image key={i} src="https://www.thedoghouseps.com/wp-content/uploads/2025/04/rating_922004.png" alt="star" width={20} height={20} style={{ width: "20px", height: "20px" }} />
-                  ))}
-                </div>
-                <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "15px", color: "#54595F", lineHeight: 1.7, marginBottom: "16px", fontStyle: "italic" }}>&ldquo;{r.text}&rdquo;</p>
-                <p style={{ fontFamily: '"Outfit", sans-serif', fontWeight: 700, color: "#1F2124", fontSize: "15px" }}>— {r.name}</p>
-              </div>
-            ))}
-          </div>
+          <ReviewWidget
+            locationName={LOCATIONS.galleria.name}
+            googlePlaceId={LOCATIONS.galleria.googlePlaceId}
+            yelpBusinessId={LOCATIONS.galleria.yelpBusinessId}
+            maxReviews={6}
+          />
         </div>
       </section>
 

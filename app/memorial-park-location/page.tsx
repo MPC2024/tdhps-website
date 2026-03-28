@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
+import { ReviewWidget } from "@/components/ReviewWidget";
+import { LOCATIONS } from "@/lib/locations";
 
 export const metadata: Metadata = {
   title: "Dog Grooming in Memorial Park Houston",
@@ -205,20 +207,12 @@ export default function MemorialParkLocationPage() {
       {/* ── Reviews ── */}
       <section style={{ backgroundColor: "#ffffff", padding: "80px 20px" }}>
         <div style={{ maxWidth: "1520px", margin: "0 auto" }}>
-          <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(26px,3vw,40px)", color: "#1F2124", textAlign: "center", marginBottom: "50px" }}>What Our Customers Are Saying!</h2>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "24px" }}>
-            {reviews.map((r) => (
-              <div key={r.name} style={{ backgroundColor: "#F8F8F8", borderRadius: "12px", padding: "30px", boxShadow: "6px 6px 9px rgba(0,0,0,.08)" }}>
-                <div style={{ display: "flex", gap: "4px", marginBottom: "12px" }}>
-                  {[...Array(5)].map((_, i) => (
-                    <Image key={i} src="https://www.thedoghouseps.com/wp-content/uploads/2025/04/rating_922004.png" alt="star" width={20} height={20} style={{ width: "20px", height: "20px" }} />
-                  ))}
-                </div>
-                <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "15px", color: "#54595F", lineHeight: 1.7, marginBottom: "16px", fontStyle: "italic" }}>&ldquo;{r.text}&rdquo;</p>
-                <p style={{ fontFamily: '"Outfit", sans-serif', fontWeight: 700, color: "#1F2124", fontSize: "15px" }}>— {r.name}</p>
-              </div>
-            ))}
-          </div>
+          <ReviewWidget
+            locationName={LOCATIONS.memorialPark.name}
+            googlePlaceId={LOCATIONS.memorialPark.googlePlaceId}
+            yelpBusinessId={LOCATIONS.memorialPark.yelpBusinessId}
+            maxReviews={6}
+          />
         </div>
       </section>
 

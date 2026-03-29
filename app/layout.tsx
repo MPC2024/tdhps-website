@@ -100,7 +100,7 @@ const organizationJsonLd = {
   name: "The Dog House Pet Salon",
   url: "https://www.thedoghouseps.com",
   logo: "https://www.thedoghouseps.com/wp-content/uploads/2025/05/The-dog-house-pet-salon-hero-1.webp",
-  telephone: "+1-713-820-6140",
+  telephone: "(832) 930-4060",
   email: "galleria@thedoghouseps.com",
   description:
     "Houston's premier pet grooming, doggie daycare, and pet boarding service with 25+ years of experience. Three convenient locations.",
@@ -145,7 +145,7 @@ const organizationJsonLd = {
     {
       "@type": "PetStore",
       name: "The Dog House Pet Salon - Galleria / Uptown Park",
-      telephone: "+1-713-820-6140",
+      telephone: "(832) 930-4060",
       email: "galleria@thedoghouseps.com",
       url: "https://www.thedoghouseps.com/galleria-uptown-park-location",
       address: {
@@ -192,7 +192,7 @@ const organizationJsonLd = {
     {
       "@type": "PetStore",
       name: "The Dog House Pet Salon - Memorial Park",
-      telephone: "+1-713-820-6140",
+      telephone: "(832) 930-4060",
       email: "memorial@thedoghouseps.com",
       url: "https://www.thedoghouseps.com/memorial-park-location",
       address: {
@@ -239,7 +239,7 @@ const organizationJsonLd = {
     {
       "@type": "PetStore",
       name: "The Dog House Pet Salon - Pearland",
-      telephone: "+1-713-820-6140",
+      telephone: "(832) 930-4060",
       email: "pearland@thedoghouseps.com",
       url: "https://www.thedoghouseps.com/pearland-location",
       address: {
@@ -252,8 +252,8 @@ const organizationJsonLd = {
       },
       geo: {
         "@type": "GeoCoordinates",
-        latitude: 29.5586,
-        longitude: -95.2861,
+        latitude: 29.5567974,
+        longitude: -95.3927816,
       },
       openingHoursSpecification: [
         {

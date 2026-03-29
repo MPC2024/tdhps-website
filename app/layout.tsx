@@ -4,6 +4,8 @@ import { Roboto, Roboto_Slab, Outfit, Bowlby_One_SC } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import SchemaMarkup from "@/components/SchemaMarkup";
+import { generateAIOptimizationSchema } from "@/lib/schema";
 
 const gaId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 
@@ -293,6 +295,11 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
         />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(generateAIOptimizationSchema()) }}
+        />
+        <SchemaMarkup type="itemList" />
       </head>
       <body className="min-h-full flex flex-col antialiased">
         {gaId && (

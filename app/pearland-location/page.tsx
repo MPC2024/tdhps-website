@@ -274,20 +274,34 @@ export default function PearlandLocationPage() {
 
       {/* ── Groomer Bio ── */}
       <section style={{ backgroundColor: "#ffffff", padding: "80px 20px" }}>
-        <div style={{ maxWidth: "1520px", margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "60px", alignItems: "center" }}>
-          <div style={{ textAlign: "center" }}>
+        <style>{`
+          @media (max-width: 767px) {
+            .groomer-container {
+              flex-direction: column !important;
+            }
+            .groomer-left {
+              flex: 0 0 100% !important;
+              margin-bottom: 30px;
+            }
+            .groomer-right {
+              flex: 0 0 100% !important;
+            }
+          }
+        `}</style>
+        <div style={{ maxWidth: "1520px", margin: "0 auto", display: "flex", gap: "40px", alignItems: "flex-start" }} className="groomer-container">
+          <div style={{ flex: "0 0 35%", textAlign: "center" }} className="groomer-left">
             <Image
               src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/margarita-batres.jpg"
               alt="Margarita Batres"
               width={300}
               height={300}
-              style={{ width: "220px", height: "220px", borderRadius: "50%", objectFit: "cover", marginBottom: "16px" }}
+              style={{ width: "220px", height: "220px", borderRadius: "50%", objectFit: "cover", marginBottom: "24px", margin: "0 auto 24px" }}
             />
-            <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "14px", color: "#965B83", fontWeight: 600 }}>Master Pet Groomer</p>
-            <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "14px", color: "#54595F" }}>Pearland</p>
+            <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "14px", color: "#965B83", fontWeight: 600, marginBottom: "8px" }}>Master Pet Groomer</p>
+            <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "14px", color: "#54595F", margin: 0 }}>Pearland</p>
           </div>
-          <div>
-            <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(22px,3vw,32px)", color: "#1F2124", marginBottom: "16px" }}>
+          <div style={{ flex: "0 0 65%" }} className="groomer-right">
+            <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(22px,3vw,32px)", color: "#1F2124", marginBottom: "16px", marginTop: 0 }}>
               Margarita Batres
             </h2>
             <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", lineHeight: 1.8, marginBottom: "24px" }}>

@@ -89,7 +89,7 @@ export default function OurStaffPage() {
         style={{
           position: "relative",
           backgroundImage:
-            "url(https://www.thedoghouseps.com/wp-content/uploads/2025/03/dog-grooming-houston.jpg)",
+            "url(https://www.thedoghouseps.com/wp-content/uploads/2025/03/image-2.jpg)",
           backgroundSize: "cover",
           backgroundPosition: "center",
           minHeight: "480px",

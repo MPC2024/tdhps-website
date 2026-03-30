@@ -172,7 +172,11 @@ export default function PetCamPage() {
           <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "22px", color: "#1F2124", marginBottom: "30px" }}>
             Key Benefits of Our Pet Cam for Pet Parents
           </h3>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px,1fr))", gap: "24px" }}>
+          <style dangerouslySetInnerHTML={{ __html: `
+            .petcam-benefits-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+            @media (max-width: 600px) { .petcam-benefits-grid { grid-template-columns: 1fr; } }
+          `}} />
+          <div className="petcam-benefits-grid">
             {keyBenefits.map((b) => (
               <div key={b.title} style={{ backgroundColor: "#ffffff", borderRadius: "12px", padding: "30px", boxShadow: "6px 6px 9px rgba(0,0,0,.08)" }}>
                 <h4 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "18px", color: "#965B83", marginBottom: "12px" }}>{b.title}</h4>

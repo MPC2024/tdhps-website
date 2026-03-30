@@ -116,20 +116,20 @@ export default function ReviewCard({ review }: ReviewCardProps) {
           borderTop: "1px solid #E5E7EB",
         }}
       >
-        {review.authorPhotoUrl && (
-          <Image
-            src={review.authorPhotoUrl}
-            alt={review.author}
-            width={32}
-            height={32}
-            style={{
-              borderRadius: "50%",
-              width: "32px",
-              height: "32px",
-              objectFit: "cover",
-            }}
-          />
-        )}
+        <div style={{ width: "32px", height: "32px", borderRadius: "50%", backgroundColor: "#E5E7EB", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden", flexShrink: 0 }}>
+          {review.authorPhotoUrl ? (
+            <img
+              src={review.authorPhotoUrl}
+              alt={review.author}
+              width={32}
+              height={32}
+              style={{ borderRadius: "50%", width: "32px", height: "32px", objectFit: "cover" }}
+              onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; (e.target as HTMLImageElement).parentElement!.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#9CA3AF" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>'; }}
+            />
+          ) : (
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#9CA3AF" strokeWidth="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          )}
+        </div>
         <div>
           <p
             style={{

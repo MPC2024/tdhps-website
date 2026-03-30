@@ -391,7 +391,7 @@ export default function GroomingSchoolClient() {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px,1fr))", gap: "30px" }}>
             {groomers.map((g) => (
               <div key={g.name} style={{ textAlign: "center", backgroundColor: "#F8F8F8", borderRadius: "12px", padding: "30px" }}>
-                <Image src={g.img} alt={g.name} width={200} height={200} style={{ width: "150px", height: "150px", borderRadius: "50%", objectFit: "cover", marginBottom: "16px" }} />
+                <Image src={g.img} alt={g.name} width={200} height={200} style={{ width: "150px", height: "150px", borderRadius: "50%", objectFit: "cover", margin: "0 auto 16px", display: "block" }} />
                 <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "13px", color: "#965B83", fontWeight: 600, marginBottom: "4px" }}>{g.role}</p>
                 <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "16px", color: "#1F2124", marginBottom: "4px" }}>{g.name}</h3>
                 <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "14px", color: "#54595F", marginBottom: "12px" }}>{g.location}</p>

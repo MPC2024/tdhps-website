@@ -242,8 +242,10 @@ export default function HoustonPetBoardingPage() {
           </p>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px,1fr))", gap: "30px" }}>
             {loyaltyPerks.map((p) => (
-              <div key={p.label} style={{ textAlign: "center" }}>
-                <Image src={p.img} alt={p.label} width={150} height={150} style={{ width: "100px", height: "100px", objectFit: "contain", marginBottom: "12px" }} />
+              <div key={p.label} style={{ display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center" }}>
+                <div style={{ display: "flex", justifyContent: "center", alignItems: "center", marginBottom: "16px", minHeight: "120px", width: "100%" }}>
+                  <Image src={p.img} alt={p.label} width={150} height={150} style={{ maxWidth: "120px", height: "auto", objectFit: "contain" }} />
+                </div>
                 <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", fontWeight: 600, color: "#1F2124" }}>{p.label}</p>
               </div>
             ))}

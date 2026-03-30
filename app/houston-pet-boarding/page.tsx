@@ -347,7 +347,12 @@ export default function HoustonPetBoardingPage() {
           <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", textAlign: "center", lineHeight: 1.7, maxWidth: "700px", margin: "0 auto 50px" }}>
             Every boarding suite at The Dog House is designed to give your pet the comfort and care of a luxury stay.
           </p>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "24px" }}>
+          <style dangerouslySetInnerHTML={{ __html: `
+            .amenities-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+            @media (max-width: 1024px) { .amenities-grid { grid-template-columns: repeat(2, 1fr); } }
+            @media (max-width: 600px) { .amenities-grid { grid-template-columns: 1fr; } }
+          `}} />
+          <div className="amenities-grid">
             {[
               { icon: "🛏️", title: "Elevated Padded Beds", desc: "Each pet sleeps on a raised, padded bed — no cold concrete floors." },
               { icon: "❄️", title: "Climate-Controlled Suites", desc: "Private suites maintain comfortable temperatures year-round for your pet's comfort." },

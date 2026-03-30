@@ -287,9 +287,12 @@ export default function GalleriaLocationPage() {
           >
             Services We Provide
           </h2>
-          <div
-            style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "24px" }}
-          >
+          <style dangerouslySetInnerHTML={{ __html: `
+            .galleria-services-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+            @media (max-width: 1024px) { .galleria-services-grid { grid-template-columns: repeat(2, 1fr); } }
+            @media (max-width: 600px) { .galleria-services-grid { grid-template-columns: 1fr; } }
+          `}} />
+          <div className="galleria-services-grid">
             {services.map((svc) => (
               <div
                 key={svc.label}

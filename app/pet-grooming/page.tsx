@@ -129,8 +129,8 @@ export default function PetGroomingPage() {
           </p>
           <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
             <Link href="/appointment-request" className="btn-primary">Schedule An Appointment</Link>
-            <Link href="/appointment-request" style={{ backgroundColor: "transparent", border: "2px solid #fff", color: "#fff", padding: "15px 30px", borderRadius: "50px", fontFamily: '"Outfit", sans-serif', fontWeight: 600, fontSize: "18px", display: "inline-flex", alignItems: "center", textDecoration: "none", transition: "all 0.3s" }}>
-              Get Groom Price Estimate
+            <Link href="#grooming-price-calculator" style={{ backgroundColor: "transparent", border: "2px solid #fff", color: "#fff", padding: "15px 30px", borderRadius: "50px", fontFamily: '"Outfit", sans-serif', fontWeight: 600, fontSize: "18px", display: "inline-flex", alignItems: "center", textDecoration: "none", transition: "all 0.3s" }}>
+              Grooming Price Calculator
             </Link>
           </div>
           <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "14px", color: "rgba(255,255,255,0.75)", marginTop: "12px" }}>✅ No obligation • Takes 30 seconds</p>
@@ -363,7 +363,7 @@ export default function PetGroomingPage() {
       </section>
 
       {/* ── Breed Pricing Reference ── */}
-      <section style={{ backgroundColor: "#F8F8F8", padding: "80px 20px" }}>
+      <section id="grooming-price-calculator" style={{ backgroundColor: "#F8F8F8", padding: "80px 20px" }}>
         <div style={{ maxWidth: "1520px", margin: "0 auto" }}>
           <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(26px,3vw,40px)", color: "#1F2124", textAlign: "center", marginBottom: "12px" }}>
             Pet Grooming Price Guide

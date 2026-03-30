@@ -371,7 +371,12 @@ export default function PetGroomingPage() {
           <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", textAlign: "center", marginBottom: "48px" }}>
             Pricing is based on breed, weight, coat condition, and service type. Final price confirmed at check-in.
           </p>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "24px" }}>
+          <style dangerouslySetInnerHTML={{ __html: `
+            .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+            @media (max-width: 900px) { .pricing-grid { grid-template-columns: repeat(2, 1fr); } }
+            @media (max-width: 600px) { .pricing-grid { grid-template-columns: 1fr; } }
+          `}} />
+          <div className="pricing-grid">
             {[
               { tier: "Extra Small", examples: "Chihuahua, Maltese, Yorkie, Pomeranian", complete: "$55–$75", basic: "$45–$60" },
               { tier: "Small", examples: "Shih Tzu, Bichon Frise, Miniature Poodle, Miniature Schnauzer", complete: "$65–$90", basic: "$55–$75" },

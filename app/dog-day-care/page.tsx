@@ -210,8 +210,8 @@ export default function DogDayCarePage() {
           </p>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px,1fr))", gap: "24px" }}>
             {daycareFeatures.map((f) => (
-              <div key={f.label} style={{ textAlign: "center", backgroundColor: "#F8F8F8", borderRadius: "12px", padding: "30px 20px" }}>
-                <Image src={f.img} alt={f.label} width={200} height={200} style={{ width: "130px", height: "130px", objectFit: "cover", borderRadius: "50%", marginBottom: "16px" }} />
+              <div key={f.label} style={{ display: "flex", flexDirection: "column", alignItems: "center", backgroundColor: "#F8F8F8", borderRadius: "12px", padding: "30px 20px" }}>
+                <Image src={f.img} alt={f.label} width={120} height={120} style={{ width: "120px", height: "120px", objectFit: "cover", borderRadius: "50%", marginBottom: "16px" }} />
                 <p style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "18px", color: "#1F2124" }}>{f.label}</p>
               </div>
             ))}

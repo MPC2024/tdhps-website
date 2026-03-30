@@ -256,7 +256,7 @@ export default function PearlandLocationPage() {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "24px" }}>
             {services.map((svc) => (
               <div key={svc.label} style={{ backgroundColor: "#ffffff", borderRadius: "12px", padding: "30px 20px", textAlign: "center", boxShadow: "6px 6px 9px rgba(0,0,0,.1)" }}>
-                <Image src={svc.img} alt={svc.label} width={120} height={120} style={{ width: "80px", height: "80px", objectFit: "contain", marginBottom: "16px" }} />
+                <Image src={svc.img} alt={svc.label} width={120} height={120} style={{ width: "80px", height: "80px", objectFit: "contain", margin: "0 auto 16px", display: "block" }} />
                 <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "18px", color: "#1F2124", marginBottom: "8px" }}>{svc.label}</h3>
                 <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "14px", color: "#54595F", lineHeight: 1.6 }}>
                   {svc.desc}

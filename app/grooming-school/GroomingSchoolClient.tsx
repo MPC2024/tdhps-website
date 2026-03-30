@@ -288,9 +288,6 @@ export default function GroomingSchoolClient() {
         style={{
           position: "relative",
           backgroundColor: "#965B83",
-          backgroundImage: "url(https://www.thedoghouseps.com/wp-content/uploads/2025/04/pet-grooming.png)",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
           minHeight: "500px",
           display: "flex",
           alignItems: "center",

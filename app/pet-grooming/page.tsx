@@ -129,9 +129,9 @@ export default function PetGroomingPage() {
           </p>
           <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
             <Link href="/appointment-request" className="btn-primary">Schedule An Appointment</Link>
-            <Link href="#grooming-price-calculator" style={{ backgroundColor: "transparent", border: "2px solid #fff", color: "#fff", padding: "15px 30px", borderRadius: "50px", fontFamily: '"Outfit", sans-serif', fontWeight: 600, fontSize: "18px", display: "inline-flex", alignItems: "center", textDecoration: "none", transition: "all 0.3s" }}>
-              Grooming Price Calculator
-            </Link>
+            <a href="https://calculator.thedoghouseps.com/" target="_blank" rel="noopener noreferrer" style={{ backgroundColor: "transparent", border: "2px solid #fff", color: "#fff", padding: "15px 30px", borderRadius: "50px", fontFamily: '"Outfit", sans-serif', fontWeight: 600, fontSize: "18px", display: "inline-flex", alignItems: "center", textDecoration: "none", transition: "all 0.3s" }}>
+              Get Groom Price Estimate
+            </a>
           </div>
           <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "14px", color: "rgba(255,255,255,0.75)", marginTop: "12px" }}>✅ No obligation • Takes 30 seconds</p>
         </div>

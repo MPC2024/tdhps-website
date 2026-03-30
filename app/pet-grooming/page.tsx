@@ -220,7 +220,7 @@ export default function PetGroomingPage() {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "24px", marginBottom: "40px" }}>
             {pricingExtras.map((item) => (
               <div key={item.label} style={{ backgroundColor: "#fff", borderRadius: "12px", padding: "30px 20px", textAlign: "center", boxShadow: "6px 6px 9px rgba(0,0,0,.1)" }}>
-                <Image src={item.img} alt={item.label} width={200} height={200} style={{ width: "120px", height: "120px", objectFit: "cover", borderRadius: "50%", marginBottom: "16px" }} />
+                <Image src={item.img} alt={item.label} width={200} height={200} style={{ width: "120px", height: "120px", objectFit: "cover", borderRadius: "50%", margin: "0 auto 16px", display: "block" }} />
                 <h4 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "20px", color: "#1F2124", marginBottom: "8px" }}>{item.label}</h4>
                 <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "18px", color: "#965B83", fontWeight: 600 }}>{item.price}</p>
               </div>

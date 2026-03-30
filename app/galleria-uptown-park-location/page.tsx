@@ -309,7 +309,7 @@ export default function GalleriaLocationPage() {
                   alt={svc.label}
                   width={80}
                   height={80}
-                  style={{ width: "80px", height: "80px", objectFit: "contain", marginBottom: "16px" }}
+                  style={{ width: "80px", height: "80px", objectFit: "contain", margin: "0 auto 16px", display: "block" }}
                 />
                 <h3
                   style={{

@@ -147,7 +147,7 @@ export default function PearlandLocationPage() {
       <section
         style={{
           position: "relative",
-          backgroundImage: "url(https://www.thedoghouseps.com/wp-content/uploads/2025/03/the-dog-house-pearland.jpeg)",
+          backgroundImage: "url(https://www.thedoghouseps.com/wp-content/uploads/2025/04/pet-grooming.png)",
           backgroundSize: "cover",
           backgroundPosition: "center",
           minHeight: "480px",
@@ -237,7 +237,7 @@ export default function PearlandLocationPage() {
           </div>
           <div>
             <Image
-              src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/the-dog-house-pearland.jpeg"
+              src="https://www.thedoghouseps.com/wp-content/uploads/2025/04/pet-grooming.png"
               alt="The Dog House Pet Salon Pearland"
               width={600}
               height={400}

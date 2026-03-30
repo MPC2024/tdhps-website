@@ -75,7 +75,7 @@ export default function MemorialParkLocationPage() {
           { name: "Memorial Park", url: "https://www.thedoghouseps.com/memorial-park-location" },
         ]}
       />
-      <section style={{ position: "relative", backgroundImage: "url(https://www.thedoghouseps.com/wp-content/uploads/2025/03/the-dog-house-memorial-park.webp)", backgroundSize: "cover", backgroundPosition: "center", minHeight: "480px", display: "flex", alignItems: "center", padding: "80px 20px 120px" }}>
+      <section style={{ position: "relative", backgroundImage: "url(https://www.thedoghouseps.com/wp-content/uploads/2025/04/pet-grooming.png)", backgroundSize: "cover", backgroundPosition: "center", minHeight: "480px", display: "flex", alignItems: "center", padding: "80px 20px 120px" }}>
         <div style={{ position: "absolute", inset: 0, backgroundColor: "rgba(0,0,0,0.5)" }} />
         <div style={{ maxWidth: "1520px", margin: "0 auto", position: "relative", zIndex: 2 }}>
           <h1 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(32px,5vw,64px)", color: "#ffffff", marginBottom: "24px", lineHeight: 1.1 }}>
@@ -119,7 +119,7 @@ export default function MemorialParkLocationPage() {
             <Link href="/appointment-request" style={{ backgroundColor: "#965B83", color: "#fff", padding: "14px 32px", borderRadius: "50px", fontFamily: '"Outfit", sans-serif', fontWeight: 700, fontSize: "16px", display: "inline-block", textDecoration: "none" }}>Schedule An Appointment</Link>
           </div>
           <div>
-            <Image src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/the-dog-house-memorial-park.webp" alt="The Dog House Pet Salon Memorial Park" width={600} height={400} style={{ width: "100%", height: "auto", borderRadius: "12px", objectFit: "cover" }} />
+            <Image src="https://www.thedoghouseps.com/wp-content/uploads/2025/04/pet-grooming.png" alt="The Dog House Pet Salon Memorial Park" width={600} height={400} style={{ width: "100%", height: "auto", borderRadius: "12px", objectFit: "cover" }} />
           </div>
         </div>
       </section>

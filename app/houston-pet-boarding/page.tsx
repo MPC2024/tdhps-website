@@ -156,7 +156,12 @@ export default function HoustonPetBoardingPage() {
           <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", textAlign: "center", lineHeight: 1.7, maxWidth: "700px", margin: "0 auto 50px" }}>
             We provide personalized pet boarding packages for dogs and cats, ensuring enriching activities and a safe, happy stay. Enjoy perks like real-time webcam access, flexible schedules, and loyalty program discounts. Trust us to care for your pet like family!
           </p>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "24px" }}>
+          <style dangerouslySetInnerHTML={{ __html: `
+            .boarding-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+            @media (max-width: 900px) { .boarding-grid { grid-template-columns: repeat(2, 1fr); } }
+            @media (max-width: 600px) { .boarding-grid { grid-template-columns: 1fr; } }
+          `}} />
+          <div className="boarding-grid">
             {boardingPackages.map((pkg) => (
               <div key={pkg.suite} style={{ backgroundColor: "#F8F8F8", borderRadius: "12px", overflow: "hidden", boxShadow: "6px 6px 9px rgba(0,0,0,.1)", display: "flex", flexDirection: "column" }}>
                 <Image src={pkg.img} alt={pkg.suite} width={400} height={250} style={{ width: "100%", height: "200px", objectFit: "cover" }} />

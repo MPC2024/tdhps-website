@@ -350,7 +350,7 @@ export default function PetGroomingPage() {
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))", gap: "20px" }}>
               {groomers.map((g) => (
                 <div key={g.name} style={{ textAlign: "center" }}>
-                  <Image src={g.img} alt={g.name} width={200} height={200} style={{ width: "130px", height: "130px", borderRadius: "50%", objectFit: "cover", marginBottom: "12px" }} />
+                  <Image src={g.img} alt={g.name} width={200} height={200} style={{ width: "130px", height: "130px", borderRadius: "50%", objectFit: "cover", margin: "0 auto 12px", display: "block" }} />
                   <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "13px", color: "#965B83", fontWeight: 600, marginBottom: "4px" }}>{g.role}</p>
                   <p style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "14px", color: "#1F2124", marginBottom: "4px" }}>{g.name}</p>
                   <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "13px", color: "#54595F", marginBottom: "8px" }}>{g.location}</p>

@@ -288,7 +288,7 @@ export default function GroomingSchoolClient() {
         style={{
           position: "relative",
           backgroundColor: "#965B83",
-          backgroundImage: "url(https://www.thedoghouseps.com/wp-content/uploads/2025/04/Screenshot-1404-01-31-at-6.42.38%20AM.png)",
+          backgroundImage: "url(https://www.thedoghouseps.com/wp-content/uploads/2025/04/pet-grooming.png)",
           backgroundSize: "cover",
           backgroundPosition: "center",
           minHeight: "500px",
@@ -349,10 +349,10 @@ export default function GroomingSchoolClient() {
 
       {/* ── Program Icons ── */}
       <section style={{ backgroundColor: "#965B83", padding: "60px 20px" }}>
-        <div style={{ maxWidth: "1520px", margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px,1fr))", gap: "30px" }}>
+        <div style={{ maxWidth: "1520px", margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "30px" }}>
           {programIcons.map((item) => (
-            <div key={item.label} style={{ textAlign: "center" }}>
-              <Image src={item.img} alt={item.label} width={80} height={80} style={{ width: "80px", height: "80px", objectFit: "contain", marginBottom: "12px", filter: "brightness(0) invert(1)" }} />
+            <div key={item.label} style={{ display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center" }}>
+              <Image src={item.img} alt={item.label} width={80} height={80} style={{ width: "80px", height: "80px", objectFit: "contain", marginBottom: "16px", filter: "brightness(0) invert(1)" }} />
               <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#ffffff", fontWeight: 600 }}>{item.label}</p>
             </div>
           ))}

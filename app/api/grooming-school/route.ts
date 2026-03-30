@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
+import { getSMTPConfig } from "@/lib/env-server";
 
 /**
  * POST /api/grooming-school
@@ -7,8 +8,9 @@ import nodemailer from "nodemailer";
  * Accepts grooming school application form data, sends an email
  * notification to the business, and returns { success: true }.
  *
- * SMTP is configured via environment variables:
- *   SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, SMTP_FROM
+ * Training: Environment Variable Discipline — Secrets managed in env-server.ts
+ * WHY: All SMTP credentials extracted to a single location, verified once,
+ *      reducing risk of accidental exposure or misconfiguration.
  *
  * If SMTP is not configured, the data is logged to the server console
  * as a fallback so no submission is ever silently lost.
@@ -73,25 +75,24 @@ export async function POST(request: NextRequest) {
       `How they heard about us: ${body.howHeard}`,
     ].join("\n");
 
-    const smtpHost = process.env.SMTP_HOST;
-    const smtpPort = process.env.SMTP_PORT;
-    const smtpUser = process.env.SMTP_USER;
-    const smtpPass = process.env.SMTP_PASS;
-    const smtpFrom = process.env.SMTP_FROM || "noreply@thedoghouseps.com";
+    // Training: Environment Variable Discipline — Delegate to centralized config
+    // WHY: getSMTPConfig validates and returns all secrets in one place.
+    //      No scattered process.env.* calls = easier to audit and update.
+    const smtpConfig = getSMTPConfig();
 
-    if (smtpHost && smtpUser && smtpPass) {
+    if (smtpConfig) {
       const transporter = nodemailer.createTransport({
-        host: smtpHost,
-        port: Number(smtpPort) || 587,
-        secure: Number(smtpPort) === 465,
+        host: smtpConfig.host,
+        port: smtpConfig.port,
+        secure: smtpConfig.port === 465,
         auth: {
-          user: smtpUser,
-          pass: smtpPass,
+          user: smtpConfig.user,
+          pass: smtpConfig.pass,
         },
       });
 
       await transporter.sendMail({
-        from: smtpFrom,
+        from: smtpConfig.from,
         to: RECIPIENT_EMAIL,
         subject,
         text: textBody,
@@ -99,7 +100,8 @@ export async function POST(request: NextRequest) {
 
       console.log(`[grooming-school] Email sent to ${RECIPIENT_EMAIL} for ${body.fullName}`);
     } else {
-      // SMTP not configured -- log the submission so data is not lost
+      // Training: Environment Variable Discipline — Graceful fallback when secrets missing
+      // WHY: SMTP is optional. When not configured, log to console so data isn't lost.
       console.warn("[grooming-school] SMTP not configured. Logging submission to console:");
       console.log("TO:", RECIPIENT_EMAIL);
       console.log("SUBJECT:", subject);

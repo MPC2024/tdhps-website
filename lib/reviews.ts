@@ -1,7 +1,11 @@
 /**
  * Google Places API Review Fetching
- * Server-side only - API keys never exposed to client
+ * Training: Environment Variable Discipline — Server-side only, API keys never exposed to client
+ * WHY: These functions access third-party APIs with authentication credentials.
+ *      The API keys must NEVER be used from client-side code.
  */
+
+import { getAPIKeys } from "./env-server";
 
 export interface Review {
   id: string;
@@ -26,7 +30,9 @@ export interface ReviewData {
  * @returns Array of reviews
  */
 export async function fetchGoogleReviews(placeId: string): Promise<Review[]> {
-  const apiKey = process.env.GOOGLE_PLACES_API_KEY;
+  // Training: Environment Variable Discipline — Get secret from centralized config
+  // WHY: All API keys in one place = easier to audit + reduces scattered process.env calls
+  const { googlePlaces: apiKey } = getAPIKeys();
 
   if (!apiKey) {
     console.warn("GOOGLE_PLACES_API_KEY not configured, skipping Google reviews");
@@ -75,10 +81,13 @@ export async function fetchGoogleReviews(placeId: string): Promise<Review[]> {
  * @returns Array of reviews
  */
 export async function fetchYelpReviews(businessId: string): Promise<Review[]> {
-  const apiKey = process.env.YELP_API_KEY;
+  // Training: Environment Variable Discipline — Get secret from centralized config
+  // WHY: All API keys in one place = easier to audit + reduces scattered process.env calls
+  const { yelp: apiKey } = getAPIKeys();
 
   if (!apiKey || !businessId) {
-    // Graceful skip - Yelp is optional
+    // Training: Environment Variable Discipline — Graceful degradation when secret missing
+    // WHY: Yelp is optional. Missing key doesn't break the site.
     return [];
   }
 

@@ -5,6 +5,8 @@
 // into client JS, but the API endpoint itself exposed them in the JSON response.
 // Solution: Server Component reads env vars directly — no route, no exposure.
 
+import { getCameraConfig } from "@/lib/env-server";
+
 interface CameraData {
   label: string;
   location: string;
@@ -30,28 +32,33 @@ const tableCellStyle: React.CSSProperties = {
 // network. The rendered HTML contains the values, but /api/pet-cam no longer exists.
 // WHY THIS MATTERS: Eliminates an entire attack surface (the API endpoint) rather
 // than trying to guard it.
+
+// Training: Environment Variable Discipline — Centralized camera config
+// WHY: Camera credentials are sensitive (network access). Using getCameraConfig()
+// ensures they're always accessed the same way and documented as server-side secrets.
 function getServerSideCameras(): CameraData[] {
+  const config = getCameraConfig();
   return [
     {
       label: "5917 Richmond Ave -- Galleria",
-      location: process.env.CAM_GALLERIA_LOCATION ?? "",
-      alias: process.env.CAM_GALLERIA_ALIAS ?? "",
-      registerMode: process.env.CAM_GALLERIA_REGISTER_MODE ?? "IP/Domain",
-      ipAddress: process.env.CAM_GALLERIA_IP ?? "",
-      port: process.env.CAM_GALLERIA_PORT ?? "",
-      userName: process.env.CAM_GALLERIA_USER ?? "",
-      password: process.env.CAM_GALLERIA_PASSWORD ?? "",
+      location: config.galleria.location,
+      alias: config.galleria.alias,
+      registerMode: config.galleria.registerMode,
+      ipAddress: config.galleria.ip,
+      port: config.galleria.port,
+      userName: config.galleria.user,
+      password: config.galleria.password,
       cameraNo: "(will automatically populate)",
     },
     {
       label: "6434 Washington Ave -- Memorial Park",
-      location: process.env.CAM_WASHINGTON_LOCATION ?? "",
-      alias: process.env.CAM_WASHINGTON_ALIAS ?? "",
-      registerMode: process.env.CAM_WASHINGTON_REGISTER_MODE ?? "IP/Domain",
-      ipAddress: process.env.CAM_WASHINGTON_IP ?? "",
-      port: process.env.CAM_WASHINGTON_PORT ?? "",
-      userName: process.env.CAM_WASHINGTON_USER ?? "",
-      password: process.env.CAM_WASHINGTON_PASSWORD ?? "",
+      location: config.washington.location,
+      alias: config.washington.alias,
+      registerMode: config.washington.registerMode,
+      ipAddress: config.washington.ip,
+      port: config.washington.port,
+      userName: config.washington.user,
+      password: config.washington.password,
       cameraNo: "(will automatically populate)",
     },
   ];

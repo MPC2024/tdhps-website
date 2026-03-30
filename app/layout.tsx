@@ -7,8 +7,11 @@ import Footer from "@/components/Footer";
 import SchemaMarkup from "@/components/SchemaMarkup";
 import ScrollToTop from "@/components/ScrollToTop";
 import { generateAIOptimizationSchema } from "@/lib/schema";
+import { getPublicConfig } from "@/lib/env-server";
 
-const gaId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+// Training: Environment Variable Discipline — Centralized public config
+// WHY: Even public variables benefit from centralization (easier to update, consistent docs)
+const { gaId } = getPublicConfig();
 
 /* ── Google Fonts ── */
 const roboto = Roboto({

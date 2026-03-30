@@ -61,7 +61,7 @@ const services = [
   { label: "Pet Grooming", img: "https://www.thedoghouseps.com/wp-content/uploads/2025/04/pet-grooming.png", desc: "Professional grooming tailored to your pet's breed", link: "/pet-grooming", linkText: "Priced by breed & weight" },
   { label: "Pet Bathing", img: "https://www.thedoghouseps.com/wp-content/uploads/2025/04/pet-bathing.png", desc: "Gentle bathing services for a clean, fresh coat", link: "/pet-bathing", linkText: "Priced by breed & weight" },
   { label: "Pet Boarding", img: "https://www.thedoghouseps.com/wp-content/uploads/2025/04/pet-boarding.png", desc: "Comfortable, secure boarding with 24/7 supervision", link: "/houston-pet-boarding", linkText: "See Pricing Details" },
-  { label: "Doggie Daycare", img: "https://www.thedoghouseps.com/wp-content/uploads/2025/03/dogie-daycare.jpg", desc: "Safe, stimulating environment for play and socialization", price: "$20 per day" },
+  { label: "Doggie Daycare", img: "https://www.thedoghouseps.com/wp-content/uploads/2025/04/doggie-daycare.png", desc: "Safe, stimulating environment for play and socialization", price: "$20 per day" },
   { label: "Nail File", img: "https://www.thedoghouseps.com/wp-content/uploads/2025/04/pet-boarding.png", desc: "Gentle, professional nail filing service", price: "$10" },
   { label: "Teeth Brush", img: "https://www.thedoghouseps.com/wp-content/uploads/2025/04/teeth-brush.png", desc: "Effective dental care for a healthy smile", price: "$10" },
 ];

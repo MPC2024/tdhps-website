@@ -42,7 +42,7 @@ const services = [
   },
   {
     label: "Doggie Daycare",
-    img: "https://www.thedoghouseps.com/wp-content/uploads/2025/03/dogie-daycare.jpg",
+    img: "https://www.thedoghouseps.com/wp-content/uploads/2025/04/doggie-daycare.png",
     desc: "Provide your canine companion with a safe and stimulating environment for play and socialization while you're away",
     price: "$20 per day",
   },
@@ -103,7 +103,7 @@ export default function GalleriaLocationPage() {
         style={{
           position: "relative",
           backgroundImage:
-            "url(https://www.thedoghouseps.com/wp-content/uploads/2025/03/the-dog-house-galleria.webp)",
+            "url(https://www.thedoghouseps.com/wp-content/uploads/2025/04/pet-grooming.png)",
           backgroundSize: "cover",
           backgroundPosition: "center",
           minHeight: "480px",
@@ -263,7 +263,7 @@ export default function GalleriaLocationPage() {
           </div>
           <div>
             <Image
-              src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/the-dog-house-galleria.webp"
+              src="https://www.thedoghouseps.com/wp-content/uploads/2025/04/pet-grooming.png"
               alt="The Dog House Pet Salon Galleria"
               width={600}
               height={400}
@@ -356,7 +356,7 @@ export default function GalleriaLocationPage() {
         >
           <div style={{ textAlign: "center" }}>
             <Image
-              src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/keylin-paulina-orellana-delcid.jpg"
+              src="https://www.thedoghouseps.com/wp-content/uploads/2025/04/pet-bathing.png"
               alt="Keylin Paulina Orellana Delcid"
               width={220}
               height={220}

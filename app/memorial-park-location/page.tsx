@@ -144,7 +144,7 @@ export default function MemorialParkLocationPage() {
       <section style={{ backgroundColor: "#ffffff", padding: "80px 20px" }}>
         <div style={{ maxWidth: "1520px", margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "60px", alignItems: "center" }}>
           <div style={{ textAlign: "center" }}>
-            <Image src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/francy-quevedo.jpg" alt="Francy Quevedo" width={220} height={220} style={{ width: "220px", height: "220px", borderRadius: "50%", objectFit: "cover", marginBottom: "16px" }} />
+            <Image src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/francy-quevedo.jpg" alt="Francy Quevedo" width={220} height={220} style={{ width: "220px", height: "220px", borderRadius: "50%", objectFit: "cover", margin: "0 auto 16px", display: "block" }} />
             <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "14px", color: "#965B83", fontWeight: 600 }}>Master Pet Groomer · Memorial Park</p>
           </div>
           <div>

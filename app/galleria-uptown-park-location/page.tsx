@@ -359,11 +359,11 @@ export default function GalleriaLocationPage() {
         >
           <div style={{ textAlign: "center" }}>
             <Image
-              src="https://www.thedoghouseps.com/wp-content/uploads/2025/04/pet-bathing.png"
+              src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/keylin-paulina-orellana-delcid.webp"
               alt="Keylin Paulina Orellana Delcid"
               width={220}
               height={220}
-              style={{ width: "220px", height: "220px", borderRadius: "50%", objectFit: "cover", marginBottom: "16px" }}
+              style={{ width: "220px", height: "220px", borderRadius: "50%", objectFit: "cover", margin: "0 auto 16px", display: "block" }}
             />
             <p
               style={{

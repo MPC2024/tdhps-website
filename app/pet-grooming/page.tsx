@@ -292,8 +292,8 @@ export default function PetGroomingPage() {
             </p>
             <Link href="/pet-cam" className="btn-primary">View Webcams</Link>
           </div>
-          <div style={{ display: "flex", justifyContent: "center", maxWidth: "220px", margin: "0 auto" }}>
-            <Image src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/webcam-1.png" alt="Pet webcam at The Dog House" width={220} height={147} style={{ width: "100%", maxWidth: "220px", height: "auto", borderRadius: "12px" }} />
+          <div style={{ display: "flex", justifyContent: "center", maxWidth: "500px", margin: "0 auto" }}>
+            <Image src="/images/pet-camera.jpg" alt="Pet webcam at The Dog House" width={500} height={333} style={{ width: "100%", height: "auto", borderRadius: "12px" }} />
           </div>
         </div>
       </section>

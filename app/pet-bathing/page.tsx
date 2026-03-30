@@ -403,7 +403,7 @@ export default function PetBathingPage() {
             <Link href="/pet-cam" className="btn-primary">View Webcams</Link>
           </div>
           <div>
-            <Image src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/webcam-1.png" alt="Pet webcam at The Dog House" width={600} height={400} style={{ width: "100%", height: "auto", borderRadius: "12px" }} />
+            <Image src="/images/pet-camera.jpg" alt="Pet webcam at The Dog House" width={500} height={333} style={{ width: "100%", height: "auto", borderRadius: "12px" }} />
           </div>
         </div>
       </section>

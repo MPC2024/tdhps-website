@@ -116,7 +116,7 @@ export default function DogDayCarePage() {
       <section
         style={{
           position: "relative",
-          backgroundImage: "url(https://www.thedoghouseps.com/wp-content/uploads/2025/03/dogs-in-group.jpg)",
+          backgroundImage: "url(/images/dogs-playing.jpg)",
           backgroundSize: "cover",
           backgroundPosition: "center",
           minHeight: "500px",

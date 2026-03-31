@@ -635,14 +635,7 @@ export default function HomePage() {
                 transition: "all 0.3s ease",
                 cursor: "pointer",
               }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = "#7A4A68";
-                e.currentTarget.style.transform = "translateY(-2px)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = "#965B83";
-                e.currentTarget.style.transform = "translateY(0)";
-              }}
+              className="mpc-cta-button"
             >
               Protect Your Pet!
             </a>
@@ -651,6 +644,10 @@ export default function HomePage() {
 
         {/* Responsive: Stack on Mobile */}
         <style>{`
+          .mpc-cta-button:hover {
+            background-color: #7A4A68 !important;
+            transform: translateY(-2px) !important;
+          }
           @media (max-width: 768px) {
             div[style*="gridTemplateColumns"] {
               grid-template-columns: 1fr !important;

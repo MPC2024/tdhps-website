@@ -549,76 +549,70 @@ export default function HomePage() {
       </section>
 
       {/* ══════════════════════════════════════════════
-          SECTION 6: MPC / Lost Pets
+          SECTION 6: MPC / Lost Pets (Reuniting Families)
       ══════════════════════════════════════════════ */}
       <section
         style={{
-          position: "relative",
-          backgroundColor: "#33373D",
-          padding: "100px 20px 80px",
+          backgroundColor: "#F5F5F5",
+          padding: "80px 20px",
           overflow: "hidden",
         }}
       >
-        {/* Lost pet decorative image */}
-        <div
-          style={{
-            position: "absolute",
-            left: 0,
-            top: "50%",
-            transform: "translateY(-50%)",
-            opacity: 0.15,
-            zIndex: 0,
-            pointerEvents: "none",
-          }}
-        >
-          <Image
-            src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/lost-pet.png"
-            alt="lost pet"
-            width={600}
-            height={572}
-            style={{ width: "clamp(200px, 30vw, 500px)", height: "auto" }}
-          />
-        </div>
-
         <div
           style={{
             maxWidth: "1520px",
             margin: "0 auto",
-            position: "relative",
-            zIndex: 2,
-            display: "flex",
-            justifyContent: "center",
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gap: "60px",
+            alignItems: "center",
           }}
         >
+          {/* Left Column: Family + Phone Mockups Image */}
+          <div style={{ width: "100%" }}>
+            <Image
+              src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/family-with-dog-phone-mockups.jpg"
+              alt="Family with dog and phone mockups showing My Pet Credentials app"
+              width={500}
+              height={500}
+              style={{
+                width: "100%",
+                height: "auto",
+                borderRadius: "12px",
+                objectFit: "cover",
+              }}
+              priority
+            />
+          </div>
+
+          {/* Right Column: Text Content with Curved White Overlay Effect */}
           <div
             style={{
-              backgroundColor: "rgba(150, 91, 131, 0.9)",
-              borderRadius: "12px",
-              padding: "clamp(30px, 5vw, 60px)",
-              maxWidth: "600px",
-              textAlign: "center",
+              backgroundColor: "#FFFFFF",
+              borderRadius: "20px",
+              padding: "60px 50px",
+              position: "relative",
+              boxShadow: "0 4px 20px rgba(0, 0, 0, 0.08)",
             }}
           >
             <h2
               style={{
                 fontFamily: '"Bowlby One SC", Sans-serif',
-                fontSize: "clamp(22px, 2.5vw, 32px)",
-                color: "#ffffff",
-                marginBottom: "16px",
-                lineHeight: 1.3,
+                fontSize: "clamp(28px, 3vw, 40px)",
+                color: "#1F2124",
+                marginBottom: "24px",
+                lineHeight: 1.2,
               }}
             >
-              Reuniting{" "}
-              <span style={{ color: "#ffddee" }}>Lost Pets With their Family</span> Is Our
-              Specialty
+              Reuniting Lost Pets With Their Family Is Our Specialty
             </h2>
             <p
               style={{
                 fontFamily: '"Outfit", Sans-serif',
-                fontSize: "18px",
-                color: "#ffffff",
-                marginBottom: "30px",
-                lineHeight: 1.6,
+                fontSize: "16px",
+                color: "#54595F",
+                marginBottom: "36px",
+                lineHeight: 1.7,
               }}
             >
               The only global and secure platform ensuring your pet&apos;s well-being—try out a new era in
@@ -629,22 +623,41 @@ export default function HomePage() {
               target="_blank"
               rel="noopener noreferrer"
               style={{
-                backgroundColor: "#ffffff",
-                color: "#965B83",
-                padding: "15px 30px",
-                borderRadius: "50px",
+                backgroundColor: "#965B83",
+                color: "#FFFFFF",
+                padding: "16px 40px",
+                borderRadius: "8px",
                 fontFamily: '"Outfit", Sans-serif',
                 fontWeight: 600,
-                fontSize: "18px",
+                fontSize: "16px",
                 display: "inline-block",
                 textDecoration: "none",
-                transition: "all 0.3s",
+                transition: "all 0.3s ease",
+                cursor: "pointer",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = "#7A4A68";
+                e.currentTarget.style.transform = "translateY(-2px)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = "#965B83";
+                e.currentTarget.style.transform = "translateY(0)";
               }}
             >
               Protect Your Pet!
             </a>
           </div>
         </div>
+
+        {/* Responsive: Stack on Mobile */}
+        <style>{`
+          @media (max-width: 768px) {
+            div[style*="gridTemplateColumns"] {
+              grid-template-columns: 1fr !important;
+              gap: 40px !important;
+            }
+          }
+        `}</style>
       </section>
 
       {/* ══════════════════════════════════════════════

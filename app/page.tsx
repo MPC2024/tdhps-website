@@ -571,7 +571,7 @@ export default function HomePage() {
           {/* Left Column: Family + Phone Mockups Image */}
           <div style={{ width: "100%" }}>
             <Image
-              src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/family-with-dog-phone-mockups.jpg"
+              src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/happy-pet-happy-owner-1024x1014.png"
               alt="Family with dog and phone mockups showing My Pet Credentials app"
               width={500}
               height={500}

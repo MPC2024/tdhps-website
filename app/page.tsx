@@ -155,9 +155,10 @@ export default function HomePage() {
             <Image
               src="https://www.thedoghouseps.com/wp-content/uploads/2025/05/white-dog-shaking-hand.webp"
               alt="White dog shaking hand"
-              width={493}
-              height={600}
+              width={240}
+              height={292}
               style={{ width: "clamp(140px, 20vw, 240px)", height: "auto", borderRadius: "8px" }}
+              sizes="(max-width: 768px) 140px, (max-width: 1024px) 180px, 240px"
             />
             <Image
               src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/German-Shephard.jpg"
@@ -266,7 +267,7 @@ export default function HomePage() {
                   style={{ width: "150px", height: "150px", objectFit: "cover", borderRadius: "50%" }}
                 />
               </Link>
-              <h3
+              <h2
                 style={{
                   fontFamily: '"Bowlby One SC", Sans-serif',
                   fontSize: "22px",
@@ -277,7 +278,7 @@ export default function HomePage() {
                 }}
               >
                 {svc.title}
-              </h3>
+              </h2>
               <p
                 style={{
                   fontFamily: '"Outfit", Sans-serif',
@@ -372,9 +373,10 @@ export default function HomePage() {
                 <Image
                   src={step.imgSrc}
                   alt={step.imgAlt}
-                  width={349}
-                  height={331}
+                  width={160}
+                  height={152}
                   style={{ width: "160px", height: "auto", marginBottom: "20px" }}
+                  sizes="160px"
                 />
                 <h2
                   style={{
@@ -487,9 +489,10 @@ export default function HomePage() {
             <Image
               src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/image-8.png"
               alt="Donna's Love Pet Rescue"
-              width={182}
-              height={219}
+              width={120}
+              height={144}
               style={{ width: "120px", height: "auto", marginBottom: "20px" }}
+              sizes="120px"
             />
             <h3
               style={{
@@ -540,9 +543,10 @@ export default function HomePage() {
             <Image
               src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/loving-dog-1024x855.png"
               alt="loving dog"
-              width={800}
-              height={668}
+              width={500}
+              height={417}
               style={{ width: "100%", maxWidth: "500px", height: "auto" }}
+              sizes="(max-width: 768px) 100vw, 500px"
             />
           </div>
         </div>
@@ -839,9 +843,10 @@ export default function HomePage() {
             <Image
               src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/loving-dog-1024x855.png"
               alt="The Dog House Pet Salon – caring for your pets"
-              width={600}
-              height={500}
+              width={500}
+              height={417}
               style={{ width: "100%", maxWidth: "500px", height: "auto", borderRadius: "12px" }}
+              sizes="(max-width: 768px) 100vw, 500px"
             />
           </div>
         </div>
@@ -872,7 +877,7 @@ export default function HomePage() {
             style={{
               fontFamily: '"Outfit", Sans-serif',
               fontSize: "18px",
-              color: "rgba(255,255,255,0.9)",
+              color: "#FFFFFF",
               lineHeight: 1.7,
               marginBottom: "32px",
             }}
@@ -1021,8 +1026,9 @@ export default function HomePage() {
                     transition: "background-color 0.3s",
                     marginTop: "auto",
                   }}
+                  aria-label={`Read more about ${post.title}`}
                 >
-                  Read More
+                  Read More <span className="sr-only">: {post.title}</span>
                 </a>
               </div>
             ))}

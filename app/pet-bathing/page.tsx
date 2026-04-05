@@ -200,7 +200,7 @@ export default function PetBathingPage() {
             {pricingExtras.map((item) => (
               <div key={item.label} style={{ backgroundColor: "#fff", borderRadius: "12px", padding: "30px 20px", textAlign: "center", boxShadow: "6px 6px 9px rgba(0,0,0,.1)" }}>
                 <Image src={item.img} alt={item.label} width={200} height={200} style={{ width: "120px", height: "120px", objectFit: "cover", borderRadius: "50%", marginBottom: "16px" }} />
-                <h4 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "20px", color: "#1F2124", marginBottom: "8px" }}>{item.label}</h4>
+                <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "20px", color: "#1F2124", marginBottom: "8px" }}>{item.label}</h3>
                 <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "18px", color: "#965B83", fontWeight: 600 }}>{item.price}</p>
               </div>
             ))}
@@ -337,7 +337,7 @@ export default function PetBathingPage() {
               <div key={post.title} style={{ backgroundColor: "#F8F8F8", borderRadius: "12px", padding: "30px", boxShadow: "6px 6px 9px rgba(0,0,0,.08)" }}>
                 <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "18px", color: "#1F2124", marginBottom: "12px", lineHeight: 1.3 }}>{post.title}</h3>
                 <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "15px", color: "#54595F", lineHeight: 1.7, marginBottom: "20px" }}>{post.desc}</p>
-                <Link href="/blog" style={{ fontFamily: '"Outfit", sans-serif', fontSize: "14px", color: "#965B83", fontWeight: 600, textDecoration: "none" }}>Read More →</Link>
+                <Link href="/blog" aria-label={`Read more about ${post.title}`} style={{ fontFamily: '"Outfit", sans-serif', fontSize: "14px", color: "#965B83", fontWeight: 600, textDecoration: "none" }}>Read More <span className="sr-only">: {post.title}</span> →</Link>
               </div>
             ))}
           </div>

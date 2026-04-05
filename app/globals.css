@@ -16,8 +16,8 @@
   --color-secondary-light:#69727D;
   --color-dark:           #1F2124;
   --color-charcoal:       #33373D;
-  --color-gray-medium:    #69727D;
-  --color-gray-light:     #ABB8C3;
+  --color-gray-medium:    #A0A3A8;
+  --color-gray-light:     #D4D7DC;
   --color-off-white:      #F8F8F8;
 
   /* ── Typography ── */
@@ -81,9 +81,51 @@
     text-decoration: none;
   }
 
+  a:focus-visible {
+    outline: 2px solid #965B83;
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  button:focus-visible {
+    outline: 2px solid #965B83;
+    outline-offset: 2px;
+  }
+
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible {
+    outline: 2px solid #965B83;
+    outline-offset: 2px;
+  }
+
   img {
     max-width: 100%;
     height: auto;
+  }
+
+  /* ── Utility for screen reader only text ── */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  .focus\:not-sr-only:focus {
+    position: static;
+    width: auto;
+    height: auto;
+    padding: inherit;
+    margin: inherit;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
   }
 }
 

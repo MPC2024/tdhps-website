@@ -21,6 +21,11 @@ const nextConfig: NextConfig = {
     ],
   },
 
+  /* ── Performance Optimizations ── */
+  experimental: {
+    optimizeCss: true,
+  },
+
   async redirects() {
     return [
       // Nav links use /locations/<slug> -- redirect straight to the real page route

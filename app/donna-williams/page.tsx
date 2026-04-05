@@ -130,17 +130,24 @@ export default function DonnaWilliamsPage() {
 
       {/* ── Bio Section ── */}
       <section style={{ backgroundColor: "#ffffff", padding: "80px 20px" }}>
+        <style>{`
+          @media (max-width: 767px) {
+            .groomer-container { flex-direction: column !important; }
+            .groomer-left { flex: 0 0 100% !important; margin-bottom: 30px; }
+            .groomer-right { flex: 0 0 100% !important; }
+          }
+        `}</style>
         <div
+          className="groomer-container"
           style={{
             maxWidth: "1520px",
             margin: "0 auto",
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-            gap: "60px",
-            alignItems: "start",
+            display: "flex",
+            gap: "40px",
+            alignItems: "flex-start",
           }}
         >
-          <div style={{ textAlign: "center" }}>
+          <div className="groomer-left" style={{ flex: "0 0 30%", textAlign: "center" }}>
             <Image
               src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/image-17-918x1024.jpg"
               alt="Donna Williams – Owner & Master Pet Groomer"
@@ -151,10 +158,12 @@ export default function DonnaWilliamsPage() {
                 maxWidth: "460px",
                 height: "auto",
                 borderRadius: "12px",
+                margin: "0 auto",
+                display: "block",
               }}
             />
           </div>
-          <div>
+          <div className="groomer-right" style={{ flex: "0 0 70%" }}>
             <h2
               style={{
                 fontFamily: '"Bowlby One SC", sans-serif',
@@ -162,6 +171,7 @@ export default function DonnaWilliamsPage() {
                 color: "#1F2124",
                 marginBottom: "8px",
                 lineHeight: 1.1,
+                marginTop: 0,
               }}
             >
               Donna Williams

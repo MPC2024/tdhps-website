@@ -150,7 +150,7 @@ export default function Nav() {
           aria-label="Mobile navigation"
         >
           {/* Overlay */}
-          <div className="absolute inset-0 bg-black/50" onClick={closeMobile} />
+          <div className="absolute inset-0 bg-black/50" onClick={closeMobile} role="button" tabIndex={0} aria-label="Close mobile menu" />
 
           {/* Drawer */}
           <div className="relative ml-auto w-80 max-w-full bg-white h-full shadow-2xl flex flex-col overflow-y-auto">

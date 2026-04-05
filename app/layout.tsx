@@ -6,7 +6,8 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SchemaMarkup from "@/components/SchemaMarkup";
 import ScrollToTop from "@/components/ScrollToTop";
-import { generateAIOptimizationSchema } from "@/lib/schema";
+import { generateAIOptimizationSchema, SOCIAL_PROFILES } from "@/lib/schema";
+import { LOCATIONS } from "@/lib/locations";
 
 const gaId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 
@@ -113,11 +114,7 @@ const organizationJsonLd = {
     name: "Houston",
     "@id": "https://www.wikidata.org/wiki/Q16555",
   },
-  sameAs: [
-    "https://www.facebook.com/thedoghousepetsalon",
-    "https://twitter.com/TheDogHousePS",
-    "https://www.instagram.com/thedoghouseps/",
-  ],
+  sameAs: SOCIAL_PROFILES,
   hasOfferCatalog: {
     "@type": "OfferCatalog",
     name: "Pet Care Services",
@@ -142,138 +139,43 @@ const organizationJsonLd = {
       },
     ],
   },
-  department: [
-    {
-      "@type": "PetStore",
-      name: "The Dog House Pet Salon - Galleria / Uptown Park",
-      telephone: "(832) 930-4060",
-      email: "galleria@thedoghouseps.com",
-      url: "https://www.thedoghouseps.com/galleria-uptown-park-location",
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: "5917 Richmond Ave",
-        addressLocality: "Houston",
-        addressRegion: "TX",
-        postalCode: "77057",
-        addressCountry: "US",
-      },
-      geo: {
-        "@type": "GeoCoordinates",
-        latitude: 29.7294,
-        longitude: -95.4819,
-      },
-      openingHoursSpecification: [
-        {
-          "@type": "OpeningHoursSpecification",
-          dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-          opens: "07:00",
-          closes: "19:00",
-        },
-        {
-          "@type": "OpeningHoursSpecification",
-          dayOfWeek: "Saturday",
-          opens: "08:00",
-          closes: "18:00",
-        },
-        {
-          "@type": "OpeningHoursSpecification",
-          dayOfWeek: "Sunday",
-          opens: "08:00",
-          closes: "09:00",
-        },
-        {
-          "@type": "OpeningHoursSpecification",
-          dayOfWeek: "Sunday",
-          opens: "16:00",
-          closes: "17:00",
-        },
-      ],
-      hasMap: "https://maps.google.com/?q=5917+Richmond+Ave,+Houston,+TX+77057",
+  department: Object.values(LOCATIONS).map((location) => ({
+    "@type": "PetStore",
+    name: location.name,
+    telephone: location.phone,
+    email: location.email,
+    url: `https://www.thedoghouseps.com${location.url}`,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: location.address,
+      addressLocality: location.city,
+      addressRegion: location.state,
+      postalCode: location.zip,
+      addressCountry: "US",
     },
-    {
-      "@type": "PetStore",
-      name: "The Dog House Pet Salon - Memorial Park",
-      telephone: "(832) 930-4060",
-      email: "memorial@thedoghouseps.com",
-      url: "https://www.thedoghouseps.com/memorial-park-location",
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: "6434 Washington Avenue",
-        addressLocality: "Houston",
-        addressRegion: "TX",
-        postalCode: "77007",
-        addressCountry: "US",
-      },
-      geo: {
-        "@type": "GeoCoordinates",
-        latitude: 29.7753,
-        longitude: -95.4242,
-      },
-      openingHoursSpecification: [
-        {
-          "@type": "OpeningHoursSpecification",
-          dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-          opens: "07:00",
-          closes: "19:00",
-        },
-        {
-          "@type": "OpeningHoursSpecification",
-          dayOfWeek: "Saturday",
-          opens: "08:00",
-          closes: "18:00",
-        },
-        {
-          "@type": "OpeningHoursSpecification",
-          dayOfWeek: "Sunday",
-          opens: "08:00",
-          closes: "09:00",
-        },
-        {
-          "@type": "OpeningHoursSpecification",
-          dayOfWeek: "Sunday",
-          opens: "16:00",
-          closes: "17:00",
-        },
-      ],
-      hasMap: "https://maps.google.com/?q=6434+Washington+Avenue,+Houston,+TX+77007",
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: location.lat,
+      longitude: location.lng,
     },
-    {
-      "@type": "PetStore",
-      name: "The Dog House Pet Salon - Pearland",
-      telephone: "(832) 930-4060",
-      email: "pearland@thedoghouseps.com",
-      url: "https://www.thedoghouseps.com/pearland-location",
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: "2810 Business Center Dr #126",
-        addressLocality: "Pearland",
-        addressRegion: "TX",
-        postalCode: "77584",
-        addressCountry: "US",
+    openingHoursSpecification: [
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        opens: location.hours.monday.open,
+        closes: location.hours.monday.close,
       },
-      geo: {
-        "@type": "GeoCoordinates",
-        latitude: 29.5567974,
-        longitude: -95.3927816,
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: "Saturday",
+        opens: location.hours.saturday.open,
+        closes: location.hours.saturday.close,
       },
-      openingHoursSpecification: [
-        {
-          "@type": "OpeningHoursSpecification",
-          dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-          opens: "07:00",
-          closes: "19:00",
-        },
-        {
-          "@type": "OpeningHoursSpecification",
-          dayOfWeek: "Saturday",
-          opens: "08:00",
-          closes: "18:00",
-        },
-      ],
-      hasMap:
-        "https://maps.google.com/?q=2810+Business+Center+Dr+%23126,+Pearland,+TX+77584",
-    },
-  ],
+    ],
+    hasMap: `https://maps.google.com/?q=${encodeURIComponent(
+      `${location.address}, ${location.city}, ${location.state} ${location.zip}`
+    )}`,
+  })),
   aggregateRating: {
     "@type": "AggregateRating",
     ratingValue: "5.0",
@@ -292,6 +194,9 @@ export default function RootLayout({
       className={`${roboto.variable} ${robotoSlab.variable} ${outfit.variable} ${bowlbyOneSC.variable} h-full`}
     >
       <head>
+        {/* ── Performance: Preconnect to external CDNs ── */}
+        <link rel="preconnect" href="https://www.thedoghouseps.com" />
+        <link rel="dns-prefetch" href="https://www.thedoghouseps.com" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
@@ -303,6 +208,13 @@ export default function RootLayout({
         <SchemaMarkup type="itemList" />
       </head>
       <body className="min-h-full flex flex-col antialiased">
+        {/* ── Skip to main content link ── */}
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 focus:z-50 focus:p-4 focus:bg-purple-600 focus:text-white focus:outline-none"
+        >
+          Skip to main content
+        </a>
         {gaId && (
           <>
             <Script
@@ -318,7 +230,7 @@ export default function RootLayout({
           </>
         )}
         <Header />
-        <main className="flex-1">{children}</main>
+        <main id="main-content" className="flex-1">{children}</main>
         <Footer />
         <ScrollToTop />
       </body>

@@ -139,16 +139,31 @@ export default function ReviewsCarousel() {
               onClick={() => setCurrent(i)}
               aria-label={`Go to review ${i + 1}`}
               style={{
-                width: "10px",
-                height: "10px",
+                width: "44px",
+                height: "44px",
                 borderRadius: "50%",
                 border: "none",
-                backgroundColor: i === current ? "#965B83" : "#ddd",
+                backgroundColor: "transparent",
                 cursor: "pointer",
                 padding: 0,
                 transition: "background-color 0.3s",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                position: "relative" as const,
               }}
-            />
+            >
+              <span
+                style={{
+                  width: "10px",
+                  height: "10px",
+                  borderRadius: "50%",
+                  backgroundColor: i === current ? "#965B83" : "#ddd",
+                  display: "block",
+                  transition: "background-color 0.3s",
+                }}
+              />
+            </button>
           ))}
         </div>
       </div>

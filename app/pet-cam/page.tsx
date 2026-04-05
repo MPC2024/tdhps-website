@@ -203,7 +203,7 @@ export default function PetCamPage() {
                   <span style={{ color: "#fff", fontSize: "16px" }}>&#10003;</span>
                 </div>
                 <div>
-                  <h4 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "18px", color: "#1F2124", marginBottom: "8px" }}>{tip.title}</h4>
+                  <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "18px", color: "#1F2124", marginBottom: "8px" }}>{tip.title}</h3>
                   <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "15px", color: "#54595F", lineHeight: 1.7 }}>{tip.text}</p>
                 </div>
               </div>

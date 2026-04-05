@@ -102,7 +102,7 @@ export default function HeroSlider() {
                   marginBottom: "10px",
                   fontWeight: 500,
                   fontFamily: '"Outfit", Sans-serif',
-                  color: "#965B83",
+                  color: "#6B4562",
                 }}
               >
                 {slide.subheading}

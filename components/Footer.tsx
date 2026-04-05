@@ -65,7 +65,7 @@ export default function Footer() {
             </Link>
             <p
               className="mt-4 text-sm leading-relaxed"
-              style={{ color: "#ABB8C3", fontFamily: "Outfit, sans-serif" }}
+              style={{ color: "#D4D7DC", fontFamily: "Outfit, sans-serif" }}
             >
               Houston&apos;s premier pet grooming, doggie daycare, and pet boarding service
               with over 25 years of experience. Three convenient locations across Houston.
@@ -75,7 +75,7 @@ export default function Footer() {
             <a
               href="tel:+17138206140"
               className="flex items-center gap-2 mt-4 text-sm font-semibold hover:opacity-80 transition-opacity"
-              style={{ color: "#965B83", fontFamily: "Outfit, sans-serif" }}
+              style={{ color: "#D4B0C8", fontFamily: "Outfit, sans-serif" }}
             >
               <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z" />
@@ -88,7 +88,7 @@ export default function Footer() {
           <div>
             <h3
               className="text-base font-semibold mb-5 uppercase tracking-wider"
-              style={{ fontFamily: "Roboto, sans-serif", color: "#965B83" }}
+              style={{ fontFamily: "Roboto, sans-serif", color: "#D4B0C8" }}
             >
               Services
             </h3>
@@ -98,7 +98,7 @@ export default function Footer() {
                   <Link
                     href={s.href}
                     className="text-sm transition-colors hover:text-white"
-                    style={{ color: "#ABB8C3", fontFamily: "Outfit, sans-serif" }}
+                    style={{ color: "#D4D7DC", fontFamily: "Outfit, sans-serif" }}
                   >
                     {s.label}
                   </Link>
@@ -111,7 +111,7 @@ export default function Footer() {
           <div>
             <h3
               className="text-base font-semibold mb-5 uppercase tracking-wider"
-              style={{ fontFamily: "Roboto, sans-serif", color: "#965B83" }}
+              style={{ fontFamily: "Roboto, sans-serif", color: "#D4B0C8" }}
             >
               Company
             </h3>
@@ -121,7 +121,7 @@ export default function Footer() {
                   <Link
                     href={c.href}
                     className="text-sm transition-colors hover:text-white"
-                    style={{ color: "#ABB8C3", fontFamily: "Outfit, sans-serif" }}
+                    style={{ color: "#D4D7DC", fontFamily: "Outfit, sans-serif" }}
                   >
                     {c.label}
                   </Link>
@@ -134,7 +134,7 @@ export default function Footer() {
           <div>
             <h3
               className="text-base font-semibold mb-5 uppercase tracking-wider"
-              style={{ fontFamily: "Roboto, sans-serif", color: "#965B83" }}
+              style={{ fontFamily: "Roboto, sans-serif", color: "#D4B0C8" }}
             >
               Our Locations
             </h3>
@@ -150,7 +150,7 @@ export default function Footer() {
                   </Link>
                   <p
                     className="text-sm mt-0.5"
-                    style={{ color: "#ABB8C3", fontFamily: "Outfit, sans-serif" }}
+                    style={{ color: "#D4D7DC", fontFamily: "Outfit, sans-serif" }}
                   >
                     {loc.address}<br />
                     {loc.city}
@@ -158,7 +158,7 @@ export default function Footer() {
                   <a
                     href={`mailto:${loc.email}`}
                     className="text-xs mt-1 block hover:text-white transition-colors"
-                    style={{ color: "#69727D", fontFamily: "Outfit, sans-serif" }}
+                    style={{ color: "#A0A3A8", fontFamily: "Outfit, sans-serif" }}
                   >
                     {loc.email}
                   </a>
@@ -187,7 +187,7 @@ export default function Footer() {
 
       {/* ── Bottom bar ── */}
       <div style={{ backgroundColor: "#161819", borderTop: "1px solid #2a2d30" }}>
-        <div className="container-site py-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs" style={{ color: "#69727D" }}>
+        <div className="container-site py-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs" style={{ color: "#A0A3A8" }}>
           <p style={{ fontFamily: "Outfit, sans-serif" }}>
             &copy; {new Date().getFullYear()} The Dog House Pet Salon. All rights reserved.
           </p>

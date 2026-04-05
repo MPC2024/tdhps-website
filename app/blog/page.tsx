@@ -241,6 +241,7 @@ export default function BlogPage() {
                   </p>
                   <Link
                     href={`/blog/${post.slug}`}
+                    aria-label={`Read more about ${post.title}`}
                     style={{
                       display: "inline-block",
                       fontFamily: '"Outfit", sans-serif',
@@ -250,7 +251,7 @@ export default function BlogPage() {
                       textDecoration: "none",
                     }}
                   >
-                    Read More &rarr;
+                    Read More <span className="sr-only">: {post.title}</span> &rarr;
                   </Link>
                 </div>
               </article>

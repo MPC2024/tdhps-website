@@ -411,7 +411,7 @@ export default function DonnaWilliamsPage() {
                   textAlign: "center",
                 }}
               >
-                <div style={{ marginBottom: "16px" }}>
+                <div style={{ marginBottom: "16px", display: "flex", justifyContent: "center" }}>
                   {card.icon}
                 </div>
                 <h3

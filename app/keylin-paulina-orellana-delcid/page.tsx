@@ -377,17 +377,17 @@ export default function KeylinOrellanaPage() {
           >
             {[
               {
-                icon: "⭐",
+                icon: <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6l3 9h9l-7 5 3 9-8-6-8 6 3-9-7-5h9z" fill="#965B83" opacity=".3" stroke="#965B83" strokeWidth="2" strokeLinejoin="round"/></svg>,
                 title: "Transformative Results",
                 desc: "Keylin's scissors-only grooms are legendary. Her attention to detail and commitment to each pet's individual look ensures clients leave absolutely thrilled every time.",
               },
               {
-                icon: "🐕",
+                icon: <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="16" cy="14" r="6" stroke="#965B83" strokeWidth="2.5"/><circle cx="16" cy="12.5" r="1.5" fill="#965B83"/><path d="M12 20c-3 2-5 5-5 9h18c0-4-2-7-5-9" stroke="#965B83" strokeWidth="2" fill="#965B83" opacity=".2"/><path d="M26 10l4-3m0 0l4 2m-4-2v5" stroke="#965B83" strokeWidth="2" strokeLinecap="round"/></svg>,
                 title: "Pet Health & Education",
                 desc: "Keylin believes in educating pet parents to create happy, healthy lifestyles. She takes the time to share tips on coat care and maintenance between visits.",
               },
               {
-                icon: "💪",
+                icon: <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 8c-3 0-6 2-6 6 0 3 2 5 4 7l2 2 2-2c2-2 4-4 4-7 0-4-3-6-6-6z" stroke="#965B83" strokeWidth="2.5" fill="#965B83" opacity=".2"/><line x1="14" y1="28" x2="26" y2="28" stroke="#965B83" strokeWidth="2.5" strokeLinecap="round"/><line x1="16" y1="32" x2="24" y2="32" stroke="#965B83" strokeWidth="2.5" strokeLinecap="round"/><line x1="20" y1="23" x2="20" y2="28" stroke="#965B83" strokeWidth="2"/></svg>,
                 title: "Positive & Resilient",
                 desc: "Keylin's upbeat attitude and determination make her a beloved presence at The Dog House. She finds joy in every challenge and every wagging tail that leaves her station.",
               },
@@ -401,7 +401,7 @@ export default function KeylinOrellanaPage() {
                   textAlign: "center",
                 }}
               >
-                <div style={{ fontSize: "40px", marginBottom: "16px" }}>
+                <div style={{ marginBottom: "16px" }}>
                   {card.icon}
                 </div>
                 <h3

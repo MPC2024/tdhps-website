@@ -363,17 +363,17 @@ export default function FrancyQuevedoPage() {
           >
             {[
               {
-                icon: "🎵",
+                icon: <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="28" r="4" stroke="#965B83" strokeWidth="2.5"/><circle cx="28" cy="24" r="4" stroke="#965B83" strokeWidth="2.5"/><line x1="16" y1="28" x2="16" y2="10" stroke="#965B83" strokeWidth="2.5"/><line x1="32" y1="24" x2="32" y2="6" stroke="#965B83" strokeWidth="2.5"/><path d="M16 10l16-4" stroke="#965B83" strokeWidth="2.5"/></svg>,
                 title: "Calming Touch & Techniques",
                 desc: "Francy has a special gift for soothing anxious pets — she often uses baby talk and even sings in Spanish to help nervous dogs feel completely at ease during their groom.",
               },
               {
-                icon: "🐩",
+                icon: <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="16" cy="14" r="6" stroke="#965B83" strokeWidth="2.5"/><circle cx="16" cy="12.5" r="1.5" fill="#965B83"/><path d="M12 20c-3 2-5 5-5 9h18c0-4-2-7-5-9" stroke="#965B83" strokeWidth="2" fill="#965B83" opacity=".2"/><circle cx="28" cy="10" r="4" stroke="#965B83" strokeWidth="1.5"/></svg>,
                 title: "Poodle & Doodle Expert",
                 desc: "With a special fondness for poodles and doodles, Francy has mastered the intricate grooming patterns and coat care these breeds require for their best look.",
               },
               {
-                icon: "🤝",
+                icon: <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 22l6-6 4 2 4-4 4 2 6-6" stroke="#965B83" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/><path d="M8 30h24v2H8z" fill="#965B83" opacity=".3" rx="1"/><circle cx="12" cy="16" r="2" fill="#965B83" opacity=".4"/><circle cx="28" cy="12" r="2" fill="#965B83" opacity=".4"/></svg>,
                 title: "Loyal Client Relationships",
                 desc: "Francy's commitment, love for animals, and gratitude-driven approach have earned her a devoted clientele who return time and again for her gentle, consistent care.",
               },
@@ -387,7 +387,7 @@ export default function FrancyQuevedoPage() {
                   textAlign: "center",
                 }}
               >
-                <div style={{ fontSize: "40px", marginBottom: "16px" }}>
+                <div style={{ marginBottom: "16px" }}>
                   {card.icon}
                 </div>
                 <h3

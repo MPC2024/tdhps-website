@@ -363,17 +363,17 @@ export default function MargaritaBatresPage() {
           >
             {[
               {
-                icon: "🐾",
+                icon: <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 30c-1.5 0-3-1-3-3 0-2.5 3-5 3-5s3 2.5 3 5c0 2-1.5 3-3 3z" fill="#965B83" opacity=".6"/><circle cx="12" cy="14" r="3" fill="#965B83" opacity=".5"/><circle cx="20" cy="10" r="3" fill="#965B83" opacity=".5"/><circle cx="28" cy="14" r="3" fill="#965B83" opacity=".5"/><circle cx="16" cy="22" r="3.5" fill="#965B83" opacity=".35"/><circle cx="24" cy="22" r="3.5" fill="#965B83" opacity=".35"/></svg>,
                 title: "Gentle with Anxious Pets",
                 desc: "Margarita has a rare gift for calming nervous dogs. Her patience and steady hands create a safe, reassuring environment so even the most anxious pets can relax.",
               },
               {
-                icon: "✂️",
+                icon: <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="28" cy="10" r="4" stroke="#965B83" strokeWidth="2"/><line x1="24" y1="14" x2="32" y2="6" stroke="#965B83" strokeWidth="2.5" strokeLinecap="round"/><path d="M10 16c2-4 6-8 10-8" stroke="#965B83" strokeWidth="2" strokeLinecap="round"/><path d="M10 16l2 14h6l-2-14" stroke="#965B83" strokeWidth="2" strokeLinejoin="round"/></svg>,
                 title: "Expert Breed Styling",
                 desc: "From intricate scissor work to breed-specific cuts, Margarita's 14 years of hands-on experience means your dog receives a precise, beautiful groom every time.",
               },
               {
-                icon: "❤️",
+                icon: <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 34s-12-7-12-16c0-5 4-9 8-9 2.5 0 4 1.5 4 1.5s1.5-1.5 4-1.5c4 0 8 4 8 9 0 9-12 16-12 16z" fill="#965B83" opacity=".3" stroke="#965B83" strokeWidth="2.5"/></svg>,
                 title: "Values-Driven Care",
                 desc: "Accountability, gratitude, teamwork, and love guide Margarita's every interaction. She believes grooming enriches the lives of pets and their families alike.",
               },
@@ -387,7 +387,7 @@ export default function MargaritaBatresPage() {
                   textAlign: "center",
                 }}
               >
-                <div style={{ fontSize: "40px", marginBottom: "16px" }}>
+                <div style={{ marginBottom: "16px" }}>
                   {card.icon}
                 </div>
                 <h3

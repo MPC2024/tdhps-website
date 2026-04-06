@@ -387,17 +387,17 @@ export default function DonnaWilliamsPage() {
           >
             {[
               {
-                icon: "🏆",
+                icon: <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6l3 9h9l-7 5 3 9-8-6-8 6 3-9-7-5h9z" fill="#965B83" opacity=".3" stroke="#965B83" strokeWidth="2" strokeLinejoin="round"/></svg>,
                 title: "Nationally Renowned Expertise",
                 desc: "With 30+ years of certified grooming experience, Donna is recognized nationwide for her white-glove service, attention to detail, and ability to handle any breed with expertise.",
               },
               {
-                icon: "🐕",
+                icon: <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="16" cy="14" r="6" stroke="#965B83" strokeWidth="2.5"/><circle cx="16" cy="12.5" r="1.5" fill="#965B83"/><path d="M12 20c-3 2-5 5-5 9h18c0-4-2-7-5-9" stroke="#965B83" strokeWidth="2" fill="#965B83" opacity=".2"/><path d="M26 10l4-3m0 0l4 2m-4-2v5" stroke="#965B83" strokeWidth="2" strokeLinecap="round"/></svg>,
                 title: "Certified Dog Whisperer",
                 desc: "Donna's patience and compassion for every dog is unparalleled. A certified dog whisperer, she teaches that all dogs have immense love to give and something to teach us.",
               },
               {
-                icon: "💜",
+                icon: <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 34s-12-7-12-16c0-5 4-9 8-9 2.5 0 4 1.5 4 1.5s1.5-1.5 4-1.5c4 0 8 4 8 9 0 9-12 16-12 16z" fill="#965B83" opacity=".3" stroke="#965B83" strokeWidth="2.5"/></svg>,
                 title: "Rescue & Community Champion",
                 desc: "Having rescued 500+ dogs throughout her career, Donna's love for canines extends far beyond the salon. She is deeply committed to the well-being of every dog in her community.",
               },
@@ -411,7 +411,7 @@ export default function DonnaWilliamsPage() {
                   textAlign: "center",
                 }}
               >
-                <div style={{ fontSize: "40px", marginBottom: "16px" }}>
+                <div style={{ marginBottom: "16px" }}>
                   {card.icon}
                 </div>
                 <h3

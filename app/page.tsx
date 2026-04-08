@@ -431,9 +431,12 @@ export default function HomePage() {
             <div
               style={{
                 position: "absolute",
+                top: "-20px",
                 bottom: 0,
-                right: "0",
+                right: "-20px",
                 pointerEvents: "none",
+                display: "flex",
+                alignItems: "center",
               }}
             >
               <Image
@@ -441,7 +444,8 @@ export default function HomePage() {
                 alt=""
                 width={385}
                 height={294}
-                style={{ width: "clamp(100px, 20vw, 250px)", height: "auto", display: "block" }}
+                style={{ width: "clamp(180px, 25vw, 385px)", height: "auto", display: "block" }}
+                sizes="(max-width: 768px) 180px, 385px"
               />
             </div>
             <div style={{ flex: 1, minWidth: "250px", zIndex: 1 }}>

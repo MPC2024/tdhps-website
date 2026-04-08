@@ -241,6 +241,7 @@ export default function PearlandLocationPage() {
               alt="The Dog House Pet Salon Pearland"
               width={600}
               height={400}
+              quality={85}
               style={{ width: "100%", height: "auto", borderRadius: "12px", objectFit: "cover" }}
             />
           </div>

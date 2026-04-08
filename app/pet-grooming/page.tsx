@@ -293,7 +293,7 @@ export default function PetGroomingPage() {
             <Link href="/pet-cam" className="btn-primary">View Webcams</Link>
           </div>
           <div style={{ display: "flex", justifyContent: "center", maxWidth: "500px", margin: "0 auto" }}>
-            <Image src="/images/pet-camera.jpg" alt="Pet webcam at The Dog House" width={500} height={333} style={{ width: "100%", height: "auto", borderRadius: "12px" }} />
+            <Image src="/images/pet-camera.jpg" alt="Pet webcam at The Dog House" width={500} height={333} quality={85} style={{ width: "100%", height: "auto", borderRadius: "12px" }} />
           </div>
         </div>
       </section>

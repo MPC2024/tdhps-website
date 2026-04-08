@@ -119,7 +119,7 @@ export default function MemorialParkLocationPage() {
             <Link href="/appointment-request" style={{ backgroundColor: "#965B83", color: "#fff", padding: "14px 32px", borderRadius: "50px", fontFamily: '"Outfit", sans-serif', fontWeight: 700, fontSize: "16px", display: "inline-block", textDecoration: "none" }}>Schedule An Appointment</Link>
           </div>
           <div>
-            <Image src="/images/memorial-location.jpg" alt="The Dog House Pet Salon Memorial Park" width={600} height={400} style={{ width: "100%", height: "auto", borderRadius: "12px", objectFit: "cover" }} />
+            <Image src="/images/memorial-location.jpg" alt="The Dog House Pet Salon Memorial Park" width={600} height={400} quality={85} style={{ width: "100%", height: "auto", borderRadius: "12px", objectFit: "cover" }} />
           </div>
         </div>
       </section>

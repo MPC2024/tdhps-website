@@ -60,6 +60,7 @@ export default function Footer() {
                 alt="The Dog House Pet Salon"
                 width={200}
                 height={80}
+                quality={85}
                 style={{ height: "auto", width: "auto", maxWidth: "200px", filter: "brightness(0) invert(1)" }}
               />
             </Link>

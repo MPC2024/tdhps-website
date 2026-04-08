@@ -53,6 +53,7 @@ export default function Header() {
             width={180}
             height={60}
             priority
+            quality={85}
             style={{ height: "auto", maxHeight: "60px", width: "auto" }}
           />
         </Link>

@@ -50,7 +50,7 @@ export default function HeroSlider() {
     <div
       style={{
         position: "relative",
-        overflow: "visible",
+        overflow: "hidden",
         width: "100%",
         height: "clamp(700px, 62.5vw, 900px)",
       }}
@@ -155,12 +155,7 @@ export default function HeroSlider() {
         </div>
       ))}
 
-      {/* Curved bottom border */}
-      <div aria-hidden="true" style={{position:"absolute",bottom:"-1px",left:0,width:"100%",lineHeight:0,zIndex:10}}>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none" style={{display:"block",width:"100%",height:"60px"}}>
-          <path fill="#ffffff" d="M500,97C126.7,96.3,0.8,19.8,0,0v100l1000,0V1C1000,19.4,873.3,97.8,500,97z"></path>
-        </svg>
-      </div>
+      {/* Curved bottom border removed — now in page.tsx */}
     </div>
   );
 }

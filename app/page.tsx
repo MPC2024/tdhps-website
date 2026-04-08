@@ -569,54 +569,70 @@ export default function HomePage() {
       ══════════════════════════════════════════════ */}
       <section
         style={{
-          backgroundColor: "#F5F5F5",
-          padding: "80px 20px",
+          position: "relative",
           overflow: "hidden",
+          minHeight: "400px",
+          display: "flex",
+          alignItems: "center",
         }}
       >
+        {/* Background image with pink tint */}
+        <Image
+          src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/happy-pet-happy-owner-1024x1014.png"
+          alt="Family with dog"
+          fill
+          style={{ objectFit: "cover", objectPosition: "left center", opacity: 0.3 }}
+        />
+        {/* Pink overlay */}
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg, rgba(150,91,131,0.15) 0%, rgba(150,91,131,0.25) 100%)" }} />
+
         <div
           style={{
+            position: "relative",
+            zIndex: 2,
             maxWidth: "1520px",
             margin: "0 auto",
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "60px",
+            width: "100%",
+            padding: "60px 20px",
+            display: "flex",
             alignItems: "center",
+            gap: "40px",
           }}
         >
-          {/* Left Column: Family + Phone Mockups Image */}
-          <div style={{ width: "100%" }}>
+          {/* Left: Phone mockups */}
+          <div style={{ flex: "0 0 auto", position: "relative", zIndex: 2 }} className="mpc-phones-container">
             <Image
               src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/happy-pet-happy-owner-1024x1014.png"
-              alt="Family with dog and phone mockups showing My Pet Credentials app"
-              width={500}
-              height={500}
-              style={{
-                width: "100%",
-                height: "auto",
-                borderRadius: "12px",
-                objectFit: "cover",
-              }}
-              priority
+              alt="My Pet Credentials app on phones"
+              width={400}
+              height={400}
+              style={{ width: "clamp(200px, 30vw, 400px)", height: "auto" }}
+              sizes="(max-width: 768px) 200px, 400px"
             />
           </div>
 
-          {/* Right Column: Text Content with Curved White Overlay Effect */}
+          {/* Right: White oval with text */}
           <div
             style={{
-              backgroundColor: "#FFFFFF",
-              borderRadius: "20px",
-              padding: "60px 50px",
-              position: "relative",
-              boxShadow: "0 4px 20px rgba(0, 0, 0, 0.08)",
+              backgroundColor: "rgba(255,255,255,0.92)",
+              borderRadius: "50%",
+              padding: "80px 60px",
+              textAlign: "center",
+              maxWidth: "550px",
+              minHeight: "350px",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              marginLeft: "auto",
             }}
           >
             <h2
               style={{
                 fontFamily: '"Bowlby One SC", Sans-serif',
-                fontSize: "clamp(28px, 3vw, 40px)",
+                fontSize: "clamp(22px, 2.5vw, 34px)",
                 color: "#1F2124",
-                marginBottom: "24px",
+                marginBottom: "16px",
                 lineHeight: 1.2,
               }}
             >
@@ -625,10 +641,11 @@ export default function HomePage() {
             <p
               style={{
                 fontFamily: '"Outfit", Sans-serif',
-                fontSize: "16px",
+                fontSize: "14px",
                 color: "#54595F",
-                marginBottom: "36px",
-                lineHeight: 1.7,
+                marginBottom: "24px",
+                lineHeight: 1.6,
+                maxWidth: "320px",
               }}
             >
               The only global and secure platform ensuring your pet&apos;s well-being—try out a new era in
@@ -641,11 +658,11 @@ export default function HomePage() {
               style={{
                 backgroundColor: "#965B83",
                 color: "#FFFFFF",
-                padding: "16px 40px",
-                borderRadius: "8px",
+                padding: "14px 36px",
+                borderRadius: "50px",
                 fontFamily: '"Outfit", Sans-serif',
                 fontWeight: 600,
-                fontSize: "16px",
+                fontSize: "15px",
                 display: "inline-block",
                 textDecoration: "none",
                 transition: "all 0.3s ease",
@@ -658,17 +675,13 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Responsive: Stack on Mobile */}
         <style>{`
           .mpc-cta-button:hover {
             background-color: #7A4A68 !important;
             transform: translateY(-2px) !important;
           }
           @media (max-width: 768px) {
-            div[style*="gridTemplateColumns"] {
-              grid-template-columns: 1fr !important;
-              gap: 40px !important;
-            }
+            .mpc-phones-container { display: none !important; }
           }
         `}</style>
       </section>

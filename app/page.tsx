@@ -604,8 +604,8 @@ export default function HomePage() {
             gap: "40px",
           }}
         >
-          {/* Right-aligned: Text content */}
-          <div style={{ flex: 1, zIndex: 3, marginLeft: "auto", maxWidth: "550px", textAlign: "center" }}>
+          {/* Right-aligned: Text content in white circle */}
+          <div style={{ flex: 1, zIndex: 3, marginLeft: "auto", maxWidth: "500px", textAlign: "center", backgroundColor: "rgba(255,255,255,0.92)", borderRadius: "50%", padding: "80px 50px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", aspectRatio: "1", boxShadow: "0 4px 30px rgba(0,0,0,0.08)" }}>
             <h2
               style={{
                 fontFamily: '"Bowlby One SC", Sans-serif',
@@ -654,14 +654,14 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Left: Lost pet image positioned bottom-left */}
-        <div style={{ position: "absolute", bottom: 0, left: 0, top: 0, zIndex: 2, pointerEvents: "none", display: "flex", alignItems: "flex-end" }}>
+        {/* Left: Lost pet image positioned bottom-left, full height */}
+        <div style={{ position: "absolute", bottom: 0, left: 0, top: "60px", zIndex: 2, pointerEvents: "none", width: "clamp(250px, 35vw, 500px)" }}>
           <Image
             src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/lost-pet.png"
             alt="Lost pet"
             width={500}
             height={500}
-            style={{ width: "clamp(250px, 30vw, 500px)", maxHeight: "100%", height: "auto", display: "block", objectFit: "contain", objectPosition: "bottom left" }}
+            style={{ width: "100%", height: "100%", display: "block", objectFit: "contain", objectPosition: "left bottom" }}
             sizes="(max-width: 768px) 250px, 500px"
           />
         </div>

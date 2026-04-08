@@ -572,7 +572,7 @@ export default function HomePage() {
         style={{
           position: "relative",
           overflow: "hidden",
-          minHeight: "400px",
+          minHeight: "500px",
         }}
       >
         {/* Curved top border */}
@@ -655,13 +655,13 @@ export default function HomePage() {
         </div>
 
         {/* Left: Lost pet image positioned bottom-left */}
-        <div style={{ position: "absolute", bottom: 0, left: 0, zIndex: 2, pointerEvents: "none" }}>
+        <div style={{ position: "absolute", bottom: 0, left: 0, top: 0, zIndex: 2, pointerEvents: "none", display: "flex", alignItems: "flex-end" }}>
           <Image
             src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/lost-pet.png"
             alt="Lost pet"
             width={500}
             height={500}
-            style={{ width: "clamp(250px, 30vw, 500px)", height: "auto", display: "block" }}
+            style={{ width: "clamp(250px, 30vw, 500px)", maxHeight: "100%", height: "auto", display: "block", objectFit: "contain", objectPosition: "bottom left" }}
             sizes="(max-width: 768px) 250px, 500px"
           />
         </div>

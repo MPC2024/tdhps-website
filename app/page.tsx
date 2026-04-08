@@ -865,10 +865,10 @@ export default function HomePage() {
           </div>
           <div style={{ display: "flex", justifyContent: "center" }}>
             <Image
-              src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/loving-dog-1024x855.png"
-              alt="The Dog House Pet Salon – caring for your pets"
+              src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/happy-pet-happy-owner-1024x1014.png"
+              alt="The Dog House Pet Salon – happy pet happy owner"
               width={500}
-              height={417}
+              height={507}
               style={{ width: "100%", maxWidth: "475px", height: "auto", borderRadius: "12px" }}
               sizes="(max-width: 768px) 100vw, 500px"
             />

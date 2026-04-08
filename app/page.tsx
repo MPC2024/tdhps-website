@@ -587,7 +587,7 @@ export default function HomePage() {
           src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/vxcvxcv-1.jpg"
           alt="Family with dog"
           fill
-          style={{ objectFit: "cover", objectPosition: "center", opacity: 0.3 }}
+          style={{ objectFit: "cover", objectPosition: "center center" }}
         />
 
         {/* Content area */}

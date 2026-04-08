@@ -162,17 +162,18 @@ export default function HomePage() {
             <Image
               src="https://www.thedoghouseps.com/wp-content/uploads/2025/05/white-dog-shaking-hand.webp"
               alt="White dog shaking hand"
-              width={240}
-              height={292}
-              style={{ width: "clamp(140px, 20vw, 240px)", height: "auto", borderRadius: "8px" }}
-              sizes="(max-width: 768px) 140px, (max-width: 1024px) 180px, 240px"
+              width={465}
+              height={566}
+              style={{ width: "clamp(200px, 32vw, 465px)", height: "auto", borderRadius: "8px" }}
+              sizes="(max-width: 768px) 200px, (max-width: 1024px) 320px, 465px"
             />
             <Image
               src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/German-Shephard.jpg"
               alt="German Shephard"
-              width={237}
-              height={600}
-              style={{ width: "clamp(80px, 10vw, 120px)", height: "auto", borderRadius: "8px", marginTop: "40px" }}
+              width={220}
+              height={558}
+              style={{ width: "clamp(100px, 15vw, 220px)", height: "auto", borderRadius: "8px", marginTop: "85px" }}
+              sizes="(max-width: 768px) 100px, (max-width: 1024px) 150px, 220px"
             />
           </div>
 

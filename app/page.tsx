@@ -557,7 +557,7 @@ export default function HomePage() {
               alt="loving dog"
               width={500}
               height={417}
-              style={{ width: "100%", maxWidth: "500px", height: "auto" }}
+              style={{ width: "100%", maxWidth: "475px", height: "auto" }}
               sizes="(max-width: 768px) 100vw, 500px"
             />
           </div>
@@ -857,7 +857,7 @@ export default function HomePage() {
               alt="The Dog House Pet Salon – caring for your pets"
               width={500}
               height={417}
-              style={{ width: "100%", maxWidth: "500px", height: "auto", borderRadius: "12px" }}
+              style={{ width: "100%", maxWidth: "475px", height: "auto", borderRadius: "12px" }}
               sizes="(max-width: 768px) 100vw, 500px"
             />
           </div>

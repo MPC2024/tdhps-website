@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 
 interface Review {
   text: string;
@@ -39,41 +38,97 @@ export default function ReviewsCarousel() {
     <section style={{ backgroundColor: "#F8F8F8", padding: "60px 20px" }}>
       <div
         style={{
-          maxWidth: "900px",
+          maxWidth: "1100px",
           margin: "0 auto",
           position: "relative",
+          display: "flex",
+          alignItems: "center",
+          gap: "16px",
         }}
       >
-        <div
+        {/* Left arrow */}
+        <button
+          onClick={prev}
+          aria-label="Previous review"
           style={{
+            width: "44px",
+            height: "44px",
+            borderRadius: "50%",
+            border: "none",
+            backgroundColor: "#E8E0E5",
+            cursor: "pointer",
             display: "flex",
-            gap: "30px",
-            alignItems: "flex-start",
-            backgroundColor: "#fff",
-            borderRadius: "50px",
-            padding: "40px",
-            border: "1px solid #965B83",
+            alignItems: "center",
+            justifyContent: "center",
+            flexShrink: 0,
+            transition: "background-color 0.2s",
           }}
         >
-          {/* Stars */}
-          <div style={{ flexShrink: 0 }}>
-            <Image
-              src="https://www.thedoghouseps.com/wp-content/uploads/2025/04/rating_922004.png"
-              alt="5 star rating"
-              width={60}
-              height={60}
-              style={{ width: "60px", height: "60px" }}
-            />
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#965B83" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <polyline points="15 18 9 12 15 6" />
+          </svg>
+        </button>
+
+        {/* Card */}
+        <div
+          style={{
+            flex: 1,
+            backgroundColor: "#ffffff",
+            borderRadius: "16px",
+            padding: "50px 60px",
+            display: "flex",
+            alignItems: "center",
+            gap: "50px",
+            boxShadow: "0 2px 16px rgba(0,0,0,0.06)",
+            minHeight: "220px",
+            position: "relative",
+            overflow: "hidden",
+          }}
+        >
+          {/* Left: Crescent arc + review icon */}
+          <div style={{ flexShrink: 0, position: "relative", width: "140px", height: "140px" }}>
+            {/* Purple crescent arc */}
+            <svg viewBox="0 0 140 140" width="140" height="140" style={{ position: "absolute", top: 0, left: 0 }}>
+              <path
+                d="M70 5 A65 65 0 1 1 20 120"
+                fill="none"
+                stroke="#965B83"
+                strokeWidth="8"
+                strokeLinecap="round"
+              />
+              <path
+                d="M70 15 A55 55 0 1 1 28 112"
+                fill="none"
+                stroke="#C9A2BA"
+                strokeWidth="5"
+                strokeLinecap="round"
+                opacity="0.5"
+              />
+            </svg>
+            {/* Speech bubble icon centered */}
+            <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)" }}>
+              <svg viewBox="0 0 60 60" width="60" height="60" fill="none">
+                <rect x="8" y="8" width="44" height="32" rx="6" stroke="#965B83" strokeWidth="2.5" fill="#F5EEF2" />
+                <polygon points="20,40 28,40 22,50" fill="#F5EEF2" stroke="#965B83" strokeWidth="2.5" strokeLinejoin="round" />
+                {/* Stars */}
+                <circle cx="22" cy="22" r="3" fill="#965B83" />
+                <circle cx="30" cy="22" r="3" fill="#965B83" />
+                <circle cx="38" cy="22" r="3" fill="#965B83" />
+                {/* Lines */}
+                <line x1="18" y1="30" x2="42" y2="30" stroke="#965B83" strokeWidth="2" strokeLinecap="round" />
+              </svg>
+            </div>
           </div>
-          {/* Review content */}
+
+          {/* Right: Review text + author */}
           <div style={{ flex: 1 }}>
             <p
               style={{
                 fontFamily: '"Outfit", sans-serif',
-                fontSize: "18px",
-                lineHeight: 1.5,
+                fontSize: "16px",
+                lineHeight: 1.7,
                 color: "#1F2124",
-                marginBottom: "16px",
+                marginBottom: "20px",
               }}
             >
               {review.text}
@@ -81,9 +136,10 @@ export default function ReviewsCarousel() {
             <h3
               style={{
                 fontFamily: '"Bowlby One SC", sans-serif',
-                fontSize: "20px",
+                fontSize: "18px",
                 fontWeight: 400,
                 color: "#965B83",
+                textTransform: "uppercase",
               }}
             >
               {review.author}
@@ -91,82 +147,73 @@ export default function ReviewsCarousel() {
           </div>
         </div>
 
-        {/* Navigation arrows */}
-        <button
-          onClick={prev}
-          aria-label="Previous review"
-          style={{
-            position: "absolute",
-            left: "-20px",
-            top: "50%",
-            transform: "translateY(-50%)",
-            background: "none",
-            border: "none",
-            cursor: "pointer",
-            color: "#965B83",
-            padding: "8px",
-          }}
-        >
-          <svg aria-hidden="true" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg" style={{ width: "24px", height: "24px", fill: "currentColor" }}>
-            <path d="M646 125C629 125 613 133 604 142L308 442C296 454 292 471 292 487 292 504 296 521 308 533L604 854C617 867 629 875 646 875 663 875 679 871 692 858 704 846 713 829 713 812 713 796 708 779 692 767L438 487 692 225C700 217 708 204 708 187 708 171 704 154 692 142 675 129 663 125 646 125Z" />
-          </svg>
-        </button>
+        {/* Right arrow */}
         <button
           onClick={next}
           aria-label="Next review"
           style={{
-            position: "absolute",
-            right: "-20px",
-            top: "50%",
-            transform: "translateY(-50%)",
-            background: "none",
+            width: "44px",
+            height: "44px",
+            borderRadius: "50%",
             border: "none",
+            backgroundColor: "#E8E0E5",
             cursor: "pointer",
-            color: "#965B83",
-            padding: "8px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            flexShrink: 0,
+            transition: "background-color 0.2s",
           }}
         >
-          <svg aria-hidden="true" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg" style={{ width: "24px", height: "24px", fill: "currentColor" }}>
-            <path d="M696 533C708 521 713 504 713 487 713 471 708 454 696 446L400 146C388 133 375 125 354 125 338 125 325 129 313 142 300 154 292 171 292 187 292 204 296 221 308 233L563 492 304 771C292 783 288 800 288 817 288 833 296 850 308 863 321 871 338 875 354 875 371 875 388 867 400 854L696 533Z" />
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#965B83" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <polyline points="9 18 15 12 9 6" />
           </svg>
         </button>
-
-        {/* Dots */}
-        <div style={{ display: "flex", justifyContent: "center", gap: "8px", marginTop: "20px" }}>
-          {reviews.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => setCurrent(i)}
-              aria-label={`Go to review ${i + 1}`}
-              style={{
-                width: "44px",
-                height: "44px",
-                borderRadius: "50%",
-                border: "none",
-                backgroundColor: "transparent",
-                cursor: "pointer",
-                padding: 0,
-                transition: "background-color 0.3s",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                position: "relative" as const,
-              }}
-            >
-              <span
-                style={{
-                  width: "10px",
-                  height: "10px",
-                  borderRadius: "50%",
-                  backgroundColor: i === current ? "#965B83" : "#ddd",
-                  display: "block",
-                  transition: "background-color 0.3s",
-                }}
-              />
-            </button>
-          ))}
-        </div>
       </div>
+
+      {/* Dots */}
+      <div style={{ display: "flex", justifyContent: "center", gap: "8px", marginTop: "24px" }}>
+        {reviews.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setCurrent(i)}
+            aria-label={`Go to review ${i + 1}`}
+            style={{
+              width: "44px",
+              height: "44px",
+              borderRadius: "50%",
+              border: "none",
+              backgroundColor: "transparent",
+              cursor: "pointer",
+              padding: 0,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <span
+              style={{
+                width: "10px",
+                height: "10px",
+                borderRadius: "50%",
+                backgroundColor: i === current ? "#965B83" : "#ddd",
+                display: "block",
+                transition: "background-color 0.3s",
+              }}
+            />
+          </button>
+        ))}
+      </div>
+
+      <style>{`
+        @media (max-width: 768px) {
+          .reviews-card-inner {
+            flex-direction: column !important;
+            gap: 20px !important;
+            padding: 30px 20px !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }

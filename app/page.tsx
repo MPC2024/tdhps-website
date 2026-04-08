@@ -381,10 +381,10 @@ export default function HomePage() {
                 <Image
                   src={step.imgSrc}
                   alt={step.imgAlt}
-                  width={160}
-                  height={152}
-                  style={{ width: "160px", height: "auto", marginBottom: "20px" }}
-                  sizes="160px"
+                  width={210}
+                  height={200}
+                  style={{ width: "auto", height: "200px", marginBottom: "20px" }}
+                  sizes="210px"
                 />
                 <h2
                   style={{

@@ -270,9 +270,9 @@ export default function HomePage() {
                 <Image
                   src={svc.imgSrc}
                   alt={svc.imgAlt}
-                  width={252}
-                  height={252}
-                  style={{ width: "150px", height: "150px", objectFit: "cover", borderRadius: "50%" }}
+                  width={250}
+                  height={250}
+                  style={{ width: "250px", height: "250px", objectFit: "cover", borderRadius: "50%" }}
                 />
               </Link>
               <h2

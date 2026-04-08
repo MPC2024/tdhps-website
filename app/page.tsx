@@ -578,10 +578,10 @@ export default function HomePage() {
       >
         {/* Background image with pink tint */}
         <Image
-          src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/happy-pet-happy-owner-1024x1014.png"
+          src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/vxcvxcv-1.jpg"
           alt="Family with dog"
           fill
-          style={{ objectFit: "cover", objectPosition: "left center", opacity: 0.3 }}
+          style={{ objectFit: "cover", objectPosition: "left center", opacity: 0.35 }}
         />
         {/* Pink overlay */}
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg, rgba(150,91,131,0.15) 0%, rgba(150,91,131,0.25) 100%)" }} />

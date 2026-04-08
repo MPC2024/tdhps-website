@@ -568,24 +568,29 @@ export default function HomePage() {
           SECTION 6: MPC / Lost Pets (Reuniting Families)
       ══════════════════════════════════════════════ */}
       <section
+        className="mpc-reuniting-section"
         style={{
           position: "relative",
           overflow: "hidden",
           minHeight: "400px",
-          display: "flex",
-          alignItems: "center",
         }}
       >
-        {/* Background image with pink tint */}
+        {/* Curved top border */}
+        <div aria-hidden="true" style={{ position: "absolute", top: "-1px", left: 0, width: "100%", lineHeight: 0, zIndex: 5, transform: "rotate(180deg)" }}>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none" style={{ display: "block", width: "100%", height: "60px" }}>
+            <path fill="#ffffff" d="M500,97C126.7,96.3,0.8,19.8,0,0v100l1000,0V1C1000,19.4,873.3,97.8,500,97z"></path>
+          </svg>
+        </div>
+
+        {/* Background image */}
         <Image
           src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/vxcvxcv-1.jpg"
           alt="Family with dog"
           fill
-          style={{ objectFit: "cover", objectPosition: "left center", opacity: 0.35 }}
+          style={{ objectFit: "cover", objectPosition: "center", opacity: 0.3 }}
         />
-        {/* Pink overlay */}
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg, rgba(150,91,131,0.15) 0%, rgba(150,91,131,0.25) 100%)" }} />
 
+        {/* Content area */}
         <div
           style={{
             position: "relative",
@@ -593,46 +598,20 @@ export default function HomePage() {
             maxWidth: "1520px",
             margin: "0 auto",
             width: "100%",
-            padding: "60px 20px",
+            padding: "80px 20px 60px",
             display: "flex",
             alignItems: "center",
             gap: "40px",
           }}
         >
-          {/* Left: Phone mockups */}
-          <div style={{ flex: "0 0 auto", position: "relative", zIndex: 2 }} className="mpc-phones-container">
-            <Image
-              src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/happy-pet-happy-owner-1024x1014.png"
-              alt="My Pet Credentials app on phones"
-              width={400}
-              height={400}
-              style={{ width: "clamp(200px, 30vw, 400px)", height: "auto" }}
-              sizes="(max-width: 768px) 200px, 400px"
-            />
-          </div>
-
-          {/* Right: White oval with text */}
-          <div
-            style={{
-              backgroundColor: "rgba(255,255,255,0.92)",
-              borderRadius: "50%",
-              padding: "80px 60px",
-              textAlign: "center",
-              maxWidth: "550px",
-              minHeight: "350px",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "center",
-              marginLeft: "auto",
-            }}
-          >
+          {/* Left: Text content */}
+          <div style={{ flex: 1, zIndex: 3 }}>
             <h2
               style={{
                 fontFamily: '"Bowlby One SC", Sans-serif',
-                fontSize: "clamp(22px, 2.5vw, 34px)",
+                fontSize: "clamp(26px, 3vw, 40px)",
                 color: "#1F2124",
-                marginBottom: "16px",
+                marginBottom: "20px",
                 lineHeight: 1.2,
               }}
             >
@@ -641,11 +620,11 @@ export default function HomePage() {
             <p
               style={{
                 fontFamily: '"Outfit", Sans-serif',
-                fontSize: "14px",
+                fontSize: "16px",
                 color: "#54595F",
-                marginBottom: "24px",
-                lineHeight: 1.6,
-                maxWidth: "320px",
+                marginBottom: "30px",
+                lineHeight: 1.7,
+                maxWidth: "500px",
               }}
             >
               The only global and secure platform ensuring your pet&apos;s well-being—try out a new era in
@@ -658,11 +637,11 @@ export default function HomePage() {
               style={{
                 backgroundColor: "#965B83",
                 color: "#FFFFFF",
-                padding: "14px 36px",
+                padding: "16px 40px",
                 borderRadius: "50px",
                 fontFamily: '"Outfit", Sans-serif',
                 fontWeight: 600,
-                fontSize: "15px",
+                fontSize: "16px",
                 display: "inline-block",
                 textDecoration: "none",
                 transition: "all 0.3s ease",
@@ -675,13 +654,33 @@ export default function HomePage() {
           </div>
         </div>
 
+        {/* Right: Lost pet image positioned bottom-right */}
+        <div style={{ position: "absolute", bottom: 0, right: 0, zIndex: 2, pointerEvents: "none" }}>
+          <Image
+            src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/lost-pet.png"
+            alt="Lost pet"
+            width={500}
+            height={500}
+            style={{ width: "clamp(250px, 30vw, 500px)", height: "auto", display: "block" }}
+            sizes="(max-width: 768px) 250px, 500px"
+          />
+        </div>
+
         <style>{`
+          .mpc-reuniting-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: linear-gradient(90deg, #fff 70%, #965B83E6 100%);
+            z-index: 1;
+            pointer-events: none;
+          }
           .mpc-cta-button:hover {
             background-color: #7A4A68 !important;
             transform: translateY(-2px) !important;
           }
           @media (max-width: 768px) {
-            .mpc-phones-container { display: none !important; }
+            .mpc-reuniting-section .mpc-lost-pet-img { width: 200px !important; }
           }
         `}</style>
       </section>

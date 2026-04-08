@@ -50,7 +50,7 @@ export default function HeroSlider() {
     <div
       style={{
         position: "relative",
-        overflow: "visible",
+        overflow: "hidden",
         width: "100%",
         height: "clamp(700px, 62.5vw, 900px)",
       }}
@@ -155,33 +155,25 @@ export default function HeroSlider() {
         </div>
       ))}
 
-      {/* Curved bottom border wave */}
-      <div
+      {/* Curved bottom border */}
+      <svg
+        viewBox="0 0 1440 80"
+        preserveAspectRatio="none"
         style={{
           position: "absolute",
-          bottom: "-1px",
+          bottom: 0,
           left: 0,
-          right: 0,
           width: "100%",
-          height: "100px",
+          height: "80px",
           zIndex: 3,
+          display: "block",
         }}
       >
-        <svg
-          viewBox="0 0 1440 120"
-          preserveAspectRatio="none"
-          style={{
-            display: "block",
-            width: "100%",
-            height: "100%",
-          }}
-        >
-          <path
-            d="M0,60 Q360,0 720,60 T1440,60 L1440,120 L0,120 Z"
-            fill="white"
-          />
-        </svg>
-      </div>
+        <path
+          d="M0,80 C480,0 960,0 1440,80 L1440,80 L0,80 Z"
+          fill="#ffffff"
+        />
+      </svg>
     </div>
   );
 }

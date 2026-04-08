@@ -671,7 +671,7 @@ export default function HomePage() {
             content: '';
             position: absolute;
             inset: 0;
-            background-image: linear-gradient(90deg, #fff 70%, #965B83E6 100%);
+            background-image: linear-gradient(90deg, rgba(255,255,255,0.85) 50%, #965B83E6 100%);
             z-index: 1;
             pointer-events: none;
           }

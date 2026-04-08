@@ -156,24 +156,29 @@ export default function HeroSlider() {
       ))}
 
       {/* Curved bottom border */}
-      <svg
-        viewBox="0 0 1440 150"
-        preserveAspectRatio="none"
+      <div
         style={{
           position: "absolute",
-          bottom: -2,
-          left: 0,
-          width: "100%",
-          height: "150px",
+          bottom: 0,
+          left: "-5%",
+          width: "110%",
+          height: "200px",
           zIndex: 3,
-          display: "block",
+          overflow: "hidden",
         }}
       >
-        <path
-          d="M0,150 Q720,-30 1440,150 Z"
-          fill="#ffffff"
+        <div
+          style={{
+            position: "absolute",
+            bottom: "-100px",
+            left: "-5%",
+            width: "110%",
+            height: "300px",
+            borderRadius: "50%",
+            backgroundColor: "#ffffff",
+          }}
         />
-      </svg>
+      </div>
     </div>
   );
 }

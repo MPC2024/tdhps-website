@@ -501,10 +501,10 @@ export default function HomePage() {
             <Image
               src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/image-8.png"
               alt="Donna's Love Pet Rescue"
-              width={120}
-              height={144}
-              style={{ width: "120px", height: "auto", marginBottom: "20px" }}
-              sizes="120px"
+              width={64}
+              height={77}
+              style={{ width: "64px", height: "auto", marginBottom: "20px" }}
+              sizes="64px"
             />
             <h3
               style={{

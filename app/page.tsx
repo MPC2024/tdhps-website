@@ -604,8 +604,8 @@ export default function HomePage() {
             gap: "40px",
           }}
         >
-          {/* Left: Text content */}
-          <div style={{ flex: 1, zIndex: 3 }}>
+          {/* Right-aligned: Text content */}
+          <div style={{ flex: 1, zIndex: 3, marginLeft: "auto", maxWidth: "550px", textAlign: "center" }}>
             <h2
               style={{
                 fontFamily: '"Bowlby One SC", Sans-serif',
@@ -654,8 +654,8 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Right: Lost pet image positioned bottom-right */}
-        <div style={{ position: "absolute", bottom: 0, right: 0, zIndex: 2, pointerEvents: "none" }}>
+        {/* Left: Lost pet image positioned bottom-left */}
+        <div style={{ position: "absolute", bottom: 0, left: 0, zIndex: 2, pointerEvents: "none" }}>
           <Image
             src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/lost-pet.png"
             alt="Lost pet"

@@ -444,7 +444,7 @@ export default function HomePage() {
                 alt=""
                 width={385}
                 height={294}
-                style={{ width: "clamp(180px, 25vw, 385px)", height: "auto", display: "block" }}
+                style={{ width: "clamp(180px, 25vw, 385px)", height: "auto", display: "block", marginBottom: "50px" }}
                 sizes="(max-width: 768px) 180px, 385px"
               />
             </div>

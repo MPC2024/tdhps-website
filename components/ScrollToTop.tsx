@@ -36,23 +36,23 @@ export default function ScrollToTop() {
           right: 30px;
           width: 48px;
           height: 48px;
-          border-radius: 12px;
-          background-color: #f5f5f5;
+          border-radius: 10px;
+          background-color: #965B83;
           border: none;
           cursor: pointer;
           display: flex;
           align-items: center;
           justify-content: center;
-          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
           opacity: ${isVisible ? 1 : 0};
           visibility: ${isVisible ? "visible" : "hidden"};
-          transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
-          z-index: 40;
+          transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out, background-color 0.2s ease;
+          z-index: 50;
         }
 
         .scroll-to-top-btn:hover {
-          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-          background-color: #ffffff;
+          box-shadow: 0 4px 14px rgba(150, 91, 131, 0.35);
+          background-color: #7A4A6B;
         }
 
         .scroll-to-top-btn:active {
@@ -80,7 +80,7 @@ export default function ScrollToTop() {
           height="24"
           viewBox="0 0 24 24"
           fill="none"
-          stroke="#9B6B8E"
+          stroke="#ffffff"
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"

@@ -304,20 +304,8 @@ function VaccinationsModal({ onClose }: { onClose: () => void }) {
 
 export default function Footer() {
   const { t } = useLanguage();
-  const [showBackToTop, setShowBackToTop] = useState(false);
   const [showHoursModal, setShowHoursModal] = useState(false);
   const [showVaccinationsModal, setShowVaccinationsModal] = useState(false);
-
-  // Show/hide back-to-top button on scroll
-  if (typeof window !== "undefined") {
-    window.addEventListener("scroll", () => {
-      setShowBackToTop(window.scrollY > 300);
-    });
-  }
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
 
   return (
     <footer style={{ position: "relative", color: "#FFF" }}>
@@ -665,30 +653,6 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* ── Back to Top Button ── */}
-      {showBackToTop && (
-        <button
-          onClick={scrollToTop}
-          className="fixed bottom-8 right-8 transition-all hover:scale-110"
-          style={{
-            backgroundColor: "#ffffff",
-            color: "#965B83",
-            border: "none",
-            cursor: "pointer",
-            zIndex: 50,
-            width: "50px",
-            height: "50px",
-            borderRadius: "8px",
-            boxShadow: "0 2px 10px rgba(0,0,0,0.15)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-          aria-label="Back to top"
-        >
-          <i className="fa-solid fa-arrow-up" style={{ fontSize: "20px", color: "#965B83" }} />
-        </button>
-      )}
 
       {/* ── Modals ── */}
       {showHoursModal && <HoursModal onClose={() => setShowHoursModal(false)} />}

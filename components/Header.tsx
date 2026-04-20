@@ -127,15 +127,24 @@ export default function Header() {
               .topbar-phone { font-size: 12px !important; }
               .topbar-lang { font-size: 11px !important; }
               .header-topbar { padding-left: 20px !important; padding-right: 20px !important; }
-              .header-nav-inner { padding-left: 20px !important; padding-right: 20px !important; }
+              .header-nav-inner { padding-left: 20px !important; padding-right: 20px !important; padding-top: 8px !important; padding-bottom: 8px !important; }
+              .nav-link-text { font-size: 13px !important; }
+              .logo-normal { width: 90px !important; }
+              .logo-sticky { width: 55px !important; }
+              .header-book-btn { font-size: 13px !important; padding: 8px 16px !important; }
             }
             @media (max-width: 768px) {
               .topbar-text { display: none !important; }
+              .header-nav-inner { padding-left: 16px !important; padding-right: 16px !important; padding-top: 6px !important; padding-bottom: 6px !important; }
+              .logo-normal { width: 75px !important; }
+              .logo-sticky { width: 50px !important; }
+              .header-book-btn { font-size: 12px !important; padding: 7px 14px !important; }
             }
-            @media (max-width: 640px) {
-              .topbar-text { display: none !important; }
-              .topbar-phone { font-size: 11px !important; }
-              .topbar-lang { font-size: 10px !important; }
+            @media (max-width: 480px) {
+              .header-nav-inner { padding-left: 12px !important; padding-right: 12px !important; padding-top: 5px !important; padding-bottom: 5px !important; }
+              .logo-normal { width: 65px !important; }
+              .logo-sticky { width: 45px !important; }
+              .header-book-btn { font-size: 11px !important; padding: 6px 12px !important; }
             }
           `}</style>
           {/* Left side */}
@@ -195,7 +204,7 @@ export default function Header() {
             {/* Book Appointment button */}
             <Link
               href="/appointment-request"
-              className="px-4 py-1.5 rounded-full text-white transition-colors hover:opacity-90"
+              className="header-book-btn px-4 py-1.5 rounded-full text-white transition-colors hover:opacity-90"
               style={{
                 backgroundColor: "#965B83",
                 fontSize: "clamp(12px, 2.5vw, 14px)",

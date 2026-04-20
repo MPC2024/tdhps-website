@@ -1,8 +1,19 @@
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
+import { isRateLimited, getClientIp } from "@/lib/rate-limit";
 
 /**
  * POST /api/grooming-school
+ *
+ * Training: Authentication & Route Protection — Explicit Access Policy Declaration
+ * WHY: Every route must explicitly document its access policy. This endpoint is
+ * intentionally public (Level 0) but with defense-in-depth (Pattern C rate limiting).
+ *
+ * ACCESS POLICY:
+ * - Level: Public (Level 0 - no authentication required)
+ * - Defense: Rate limiting (10 req/min per IP)
+ * - Why public: Form submissions from grooming school applicants
+ * - Why rate limited: Prevent spam and DoS attacks against the application system
  *
  * Accepts grooming school application form data, sends an email
  * notification to the business, and returns { success: true }.
@@ -14,6 +25,7 @@ import nodemailer from "nodemailer";
  * as a fallback so no submission is ever silently lost.
  *
  * Error Handling Strategy:
+ * - Rate limiting rejects abusive clients (defense-in-depth)
  * - Guard clauses prevent processing invalid data (fail fast)
  * - Specific error messages guide debugging
  * - Separate handling for SMTP misconfiguration vs runtime errors
@@ -133,6 +145,27 @@ export async function POST(request: NextRequest) {
   let rawBody: unknown;
 
   try {
+    // Training: Route Protection — Rate limiting guards the endpoint
+    // WHY: This is a public form endpoint accepting grooming school applications.
+    // Without rate limiting, automated tools could spam thousands of fake applications,
+    // flooding the inbox and wasting staff time. Rate limiting is Pattern C defense.
+    //
+    // Limit: 10 requests per minute per IP. Legitimate applicants submit once; this
+    // still allows multiple attempts from the same household but blocks rapid-fire spam.
+    const clientIp = getClientIp(request);
+    const isBlocked = isRateLimited(clientIp, 10, 60000); // 10 req/min
+
+    if (isBlocked) {
+      console.warn("[grooming-school] Rate limit exceeded for IP:", clientIp);
+      return NextResponse.json(
+        {
+          success: false,
+          error: "Too many application submissions. Please try again in a few moments.",
+        },
+        { status: 429 } // 429 Too Many Requests is the correct HTTP status
+      );
+    }
+
     // Training: Guard clause for JSON parsing - WHY catch parse errors separately?
     // If request.json() fails, we want to tell the client "invalid JSON" not a
     // generic 500 error. This helps frontend developers debug faster.

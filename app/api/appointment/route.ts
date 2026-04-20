@@ -1,8 +1,19 @@
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
+import { isRateLimited, getClientIp } from "@/lib/rate-limit";
 
 /**
  * POST /api/appointment
+ *
+ * Training: Authentication & Route Protection — Explicit Access Policy Declaration
+ * WHY: Every route must explicitly document its access policy. This endpoint is
+ * intentionally public (Level 0) but with defense-in-depth (Pattern C rate limiting).
+ *
+ * ACCESS POLICY:
+ * - Level: Public (Level 0 - no authentication required)
+ * - Defense: Rate limiting (10 req/min per IP)
+ * - Why public: Form submissions from website visitors
+ * - Why rate limited: Prevent spam and DoS attacks
  *
  * Accepts appointment form data, sends an email notification to the
  * correct location email, and returns { success: true } on success.
@@ -15,6 +26,7 @@ import nodemailer from "nodemailer";
  *
  * Error Handling Strategy:
  * - Guard clauses prevent processing invalid data (fail fast)
+ * - Rate limiting rejects abusive clients (defense-in-depth)
  * - Specific error messages guide debugging
  * - All errors logged for server-side troubleshooting
  * - Client receives appropriate HTTP status codes
@@ -187,6 +199,27 @@ export async function POST(request: NextRequest) {
   let rawBody: unknown;
 
   try {
+    // Training: Route Protection — Rate limiting guards the endpoint
+    // WHY: This is a public form endpoint. Without rate limiting, malicious users
+    // can submit hundreds of appointment requests per second, overwhelming email servers
+    // and creating spam. Rate limiting is Pattern C: defense-in-depth for public endpoints.
+    //
+    // Limit: 10 requests per minute per IP. This allows legitimate users (who submit once
+    // or twice) while blocking automated spam and DoS attempts.
+    const clientIp = getClientIp(request);
+    const isBlocked = isRateLimited(clientIp, 10, 60000); // 10 req/min
+
+    if (isBlocked) {
+      console.warn("[appointment] Rate limit exceeded for IP:", clientIp);
+      return NextResponse.json(
+        {
+          success: false,
+          error: "Too many appointment requests. Please try again in a few moments.",
+        },
+        { status: 429 } // 429 Too Many Requests is the correct HTTP status
+      );
+    }
+
     // Training: Guard clause for JSON parsing - WHY catch parse errors separately?
     // If request.json() fails, we want to tell the client "invalid JSON" not a
     // generic 500 error. This helps frontend developers debug faster.

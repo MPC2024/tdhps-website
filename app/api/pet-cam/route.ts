@@ -12,6 +12,11 @@
 // Server Component that reads env vars directly. No API call, no JSON response,
 // no /api/pet-cam endpoint needed.
 //
+// ACCESS POLICY (RETIRED):
+// - Former Level: 2 (Eliminated Route) — Private data, eliminated via Server Component
+// - Former Vulnerability: Returned sensitive credentials in JSON response
+// - Current Response: 410 Gone (permanent removal signal to crawlers)
+//
 // This file is kept with a 410 Gone response so any cached bookmarks or crawlers
 // get a clear signal that the resource has been permanently removed.
 //

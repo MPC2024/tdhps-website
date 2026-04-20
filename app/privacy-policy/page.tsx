@@ -298,31 +298,49 @@ export default function PrivacyPolicyPage() {
       {/* Hero Banner */}
       <section
         style={{
-          backgroundColor: "#965B83",
-          padding: "60px 20px",
-          textAlign: "center",
+          position: "relative",
+          backgroundImage: "url(https://www.thedoghouseps.com/wp-content/uploads/2025/03/1_image-14.png)",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          minHeight: "700px",
+          display: "flex",
+          alignItems: "center",
+          padding: "80px 20px 120px",
+          overflow: "hidden",
         }}
       >
-        <h1
-          style={{
-            fontFamily: '"Bowlby One SC", Sans-serif',
-            fontSize: "clamp(28px, 4vw, 48px)",
-            color: "#ffffff",
-            margin: 0,
-          }}
-        >
-          Privacy Policy
-        </h1>
-        <p
-          style={{
-            fontFamily: '"Outfit", Sans-serif',
-            fontSize: "18px",
-            color: "rgba(255,255,255,0.85)",
-            marginTop: "12px",
-          }}
-        >
-          Last updated: April 15, 2025
-        </p>
+        {/* White overlay */}
+        <div style={{ position: "absolute", inset: 0, backgroundColor: "#FFF", opacity: 0.6 }} />
+        <div style={{ maxWidth: "1520px", margin: "0 auto", position: "relative", zIndex: 2 }}>
+          <h1
+            style={{
+              fontFamily: '"Bowlby One SC", sans-serif',
+              fontSize: "clamp(36px, 5vw, 72px)",
+              color: "#1F2124",
+              marginBottom: "16px",
+              lineHeight: 1.1,
+            }}
+          >
+            Privacy <span style={{ color: "#965B83" }}>Policy</span>
+          </h1>
+          <p
+            style={{
+              fontFamily: '"Outfit", sans-serif',
+              fontSize: "clamp(16px, 2vw, 22px)",
+              color: "#54595F",
+              marginBottom: "0",
+              maxWidth: "600px",
+            }}
+          >
+            The Dog House Pet Salon
+          </p>
+        </div>
+        {/* Curved bottom border */}
+        <div style={{ position: "absolute", bottom: -1, left: 0, width: "100%", lineHeight: 0, zIndex: 2 }}>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none" style={{ display: "block", width: "100%", height: "60px" }}>
+            <path fill="#ffffff" d="M500,97C126.7,96.3,0.8,19.8,0,0v100l1000,0V1C1000,19.4,873.3,97.8,500,97z" />
+          </svg>
+        </div>
       </section>
 
       {/* Intro */}
@@ -344,7 +362,7 @@ export default function PrivacyPolicyPage() {
       </section>
 
       {/* Sections */}
-      <section style={{ padding: "20px 20px 60px", maxWidth: "900px", margin: "0 auto" }}>
+      <section style={{ padding: "20px 20px 150px", maxWidth: "900px", margin: "0 auto" }}>
         {sections.map((section, i) => (
           <div key={i} style={{ marginBottom: "36px" }}>
             <h2

@@ -150,15 +150,15 @@ export default function PearlandLocationPage() {
           backgroundImage: "url(/images/pearland-location.jpg)",
           backgroundSize: "cover",
           backgroundPosition: "center",
-          minHeight: "480px",
+          minHeight: "700px",
           display: "flex",
           alignItems: "center",
           padding: "80px 20px 120px",
         }}
       >
-        <div style={{ position: "absolute", inset: 0, backgroundColor: "rgba(0,0,0,0.5)" }} />
+        <div style={{ position: "absolute", inset: 0, backgroundColor: "#ffffff", opacity: 0.6 }} />
         <div style={{ maxWidth: "1520px", margin: "0 auto", position: "relative", zIndex: 2 }}>
-          <h1 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(32px,5vw,64px)", color: "#ffffff", marginBottom: "24px", lineHeight: 1.1 }}>
+          <h1 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(32px,5vw,64px)", color: "#1F2124", marginBottom: "24px", lineHeight: 1.1 }}>
             The Dog House <span style={{ color: "#965B83" }}>Pet Salon<br />– Pearland</span>
           </h1>
           <Link href="/appointment-request" className="btn-primary">Schedule An Appointment</Link>
@@ -407,6 +407,27 @@ export default function PearlandLocationPage() {
           allowFullScreen
         />
       </section>
+
+      {/* ── Need Directions ── */}
+      <section style={{ backgroundColor: "#ffffff", padding: "80px 20px", textAlign: "center", marginBottom: "65px" }}>
+        <div style={{ maxWidth: "700px", margin: "0 auto" }}>
+          <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(36px,5vw,72px)", color: "#965B83", marginBottom: "20px", lineHeight: 1.1 }}>
+            Need Directions?
+          </h2>
+          <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "18px", color: "#54595F", marginBottom: "36px" }}>
+            Tap Here to Navigate to Our Pearland Pet Salon!
+          </p>
+          <a
+            href="https://maps.google.com/?q=2810+Business+Center+Dr,+Pearland,+TX+77584"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ display: "inline-block", backgroundColor: "#965B83", color: "#ffffff", fontFamily: '"Outfit", sans-serif', fontSize: "18px", fontWeight: 600, padding: "16px 40px", borderRadius: "50px", textDecoration: "none" }}
+          >
+            Get Directions Now
+          </a>
+        </div>
+      </section>
+
     </>
   );
 }

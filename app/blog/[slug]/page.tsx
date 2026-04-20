@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { getPostBySlug, getPostSlugs } from "@/lib/blog";
+import BlogCTAButton from "@/components/BlogCTAButton";
 
 /* ---------- static params ---------- */
 
@@ -109,14 +110,37 @@ export default async function BlogPostPage({
       <section
         style={{
           position: "relative",
-          background: "linear-gradient(135deg, #965B83 0%, #1F2124 100%)",
-          minHeight: "340px",
+          ...(post.featuredImage
+            ? {
+                backgroundImage: `url(${post.featuredImage})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center center",
+                backgroundRepeat: "no-repeat",
+              }
+            : {
+                background: "linear-gradient(135deg, #965B83 0%, #1F2124 100%)",
+              }),
+          minHeight: "700px",
           display: "flex",
           alignItems: "center",
           padding: "80px 20px 120px",
           overflow: "hidden",
         }}
       >
+        {/* White overlay (only when featured image is present) */}
+        {post.featuredImage && (
+          <div
+            aria-hidden="true"
+            style={{
+              position: "absolute",
+              inset: 0,
+              backgroundColor: "#ffffff",
+              opacity: 0.6,
+              zIndex: 0,
+            }}
+          />
+        )}
+
         <div
           aria-hidden="true"
           style={{
@@ -125,7 +149,7 @@ export default async function BlogPostPage({
             left: 0,
             width: "100%",
             lineHeight: 0,
-            zIndex: 1,
+            zIndex: 2,
           }}
         >
           <svg
@@ -140,12 +164,13 @@ export default async function BlogPostPage({
             />
           </svg>
         </div>
+
         <div
           style={{
             maxWidth: "900px",
             margin: "0 auto",
             position: "relative",
-            zIndex: 2,
+            zIndex: 3,
           }}
         >
           {/* Categories */}
@@ -165,8 +190,10 @@ export default async function BlogPostPage({
                     fontFamily: '"Outfit", sans-serif',
                     fontSize: "12px",
                     fontWeight: 600,
-                    color: "#ffffff",
-                    backgroundColor: "rgba(224,89,138,0.6)",
+                    color: post.featuredImage ? "#965B83" : "#ffffff",
+                    backgroundColor: post.featuredImage
+                      ? "rgba(150,91,131,0.12)"
+                      : "rgba(224,89,138,0.6)",
                     padding: "4px 14px",
                     borderRadius: "16px",
                     textTransform: "uppercase",
@@ -183,7 +210,7 @@ export default async function BlogPostPage({
             style={{
               fontFamily: '"Bowlby One SC", sans-serif',
               fontSize: "clamp(28px,4vw,52px)",
-              color: "#ffffff",
+              color: post.featuredImage ? "#1F2124" : "#ffffff",
               lineHeight: 1.15,
               marginBottom: "16px",
             }}
@@ -195,7 +222,7 @@ export default async function BlogPostPage({
             style={{
               fontFamily: '"Outfit", sans-serif',
               fontSize: "15px",
-              color: "rgba(255,255,255,0.7)",
+              color: post.featuredImage ? "rgba(0,0,0,0.55)" : "rgba(255,255,255,0.7)",
               display: "flex",
               alignItems: "center",
               gap: "16px",
@@ -212,24 +239,6 @@ export default async function BlogPostPage({
       {/* Content */}
       <section style={{ backgroundColor: "#ffffff", padding: "60px 20px" }}>
         <div style={{ maxWidth: "800px", margin: "0 auto" }}>
-          {/* Featured Image */}
-          {post.featuredImage && (
-            <div style={{ marginBottom: "40px", borderRadius: "12px", overflow: "hidden" }}>
-              <Image
-                src={post.featuredImage}
-                alt={post.title}
-                width={800}
-                height={450}
-                style={{
-                  width: "100%",
-                  height: "auto",
-                  display: "block",
-                }}
-                priority
-              />
-            </div>
-          )}
-
           {/* MDX Content */}
           <div className="blog-content">
             <MDXRemote source={post.content} />
@@ -302,8 +311,9 @@ export default async function BlogPostPage({
       {/* CTA */}
       <section
         style={{
-          backgroundColor: "#33373D",
+          backgroundColor: "#965B83",
           padding: "60px 20px",
+          marginBottom: "110px",
           textAlign: "center",
         }}
       >
@@ -328,9 +338,7 @@ export default async function BlogPostPage({
           >
             Houston&apos;s premier pet grooming, daycare, and boarding service.
           </p>
-          <Link href="/appointment-request" className="btn-primary">
-            Schedule An Appointment
-          </Link>
+          <BlogCTAButton />
         </div>
       </section>
     </>

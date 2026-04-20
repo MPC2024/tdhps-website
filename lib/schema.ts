@@ -1,46 +1,31 @@
 /**
  * JSON-LD Schema Generation for The Dog House Pet Salon
+ * Training: Single Responsibility Principle — This module ONLY generates schema.org structured data
+ * Source: Uncle Bob Martin (Clean Code, Chapter 10)
+ *
  * Generates structured data for all major schema types:
  * - Organization
  * - LocalBusiness/PetStore (per location)
  * - Services
  * - ItemList (location index)
  * - ImageObject (licensing metadata)
+ * - FAQPage (AI Optimization)
+ *
+ * Note: Data constants moved to schema-constants.ts
+ * Note: Time formatting utilities moved to time-utils.ts
  */
 
 import { LOCATIONS, Location } from "./locations";
-
-// Social media profiles
-export const SOCIAL_PROFILES = [
-  "https://www.facebook.com/thedoghousepetsalon",
-  "https://www.instagram.com/thedoghousepetsalon",
-  "https://www.linkedin.com/company/the-dog-house-pet-salon",
-  "https://www.tiktok.com/@thedoghousepetsalon",
-];
-
-// Service offerings
-export const SERVICES = [
-  {
-    name: "Dog Grooming",
-    description: "Professional grooming for all dog breeds with expert care",
-  },
-  {
-    name: "Dog Bathing",
-    description: "Full bath, dry, and brush service for complete cleanliness",
-  },
-  {
-    name: "Dog Daycare",
-    description: "Supervised daycare with play areas and socialization",
-  },
-  {
-    name: "Pet Boarding",
-    description: "Overnight boarding with personalized care and attention",
-  },
-];
+import { SOCIAL_PROFILES, SERVICES, ORGANIZATION_CONTACT, FAQ_DATA } from "./schema-constants";
+import { formatTime24To12 } from "./time-utils";
 
 /**
  * Generate Organization schema (parent brand)
  * Used on root layout and site-wide for brand identity
+ *
+ * Training: Single Responsibility Principle
+ * This function has ONE responsibility: compose organization metadata into schema.org format
+ * It does NOT validate data, format times, or fetch location data
  */
 export function generateOrganizationSchema() {
   return {
@@ -51,33 +36,25 @@ export function generateOrganizationSchema() {
     url: "https://www.thedoghouseps.com",
     logo: "https://www.thedoghouseps.com/logo.png",
     description:
-      "Houston's premier pet grooming, daycare, and boarding service with 25+ years of experience across three convenient locations.",
+      "Houston's premier pet grooming, daycare, and boarding service with 30+ years of experience across three convenient locations.",
     sameAs: SOCIAL_PROFILES,
     contactPoint: {
-      "@type": "ContactPoint",
-      contactType: "Customer Service",
-      telephone: "(832) 930-4060",
-      areaServed: ["Houston, TX", "Pearland, TX"],
+      "@type": ORGANIZATION_CONTACT.type,
+      contactType: ORGANIZATION_CONTACT.contactType,
+      telephone: ORGANIZATION_CONTACT.telephone,
+      areaServed: ORGANIZATION_CONTACT.areaServed,
     },
   };
 }
 
 /**
- * Generate LocalBusiness/PetStore schema for a specific location
- * Used on location pages and homepage location cards
+ * Build opening hours specification array for schema.org OpeningHoursSpecification
+ * Training: Single Responsibility Principle — Extracted to support both schema generation AND
+ * potential UI display without duplicating logic
+ * Source: Uncle Bob Martin (Clean Code, Chapter 7 on Guard Clauses)
  */
-export function generateLocalBusinessSchema(location: Location) {
-  // Convert 24-hour time to 12-hour for human readability in schema
-  const formatTime = (time: string) => {
-    const [hours, mins] = time.split(":");
-    const hour = parseInt(hours, 10);
-    const suffix = hour >= 12 ? "PM" : "AM";
-    const displayHour = hour > 12 ? hour - 12 : hour === 0 ? 12 : hour;
-    return `${displayHour}:${mins}${suffix}`;
-  };
-
-  // Build opening hours specification array
-  const openingHoursSpecification = [
+function buildOpeningHoursSpecification(location: Location) {
+  return [
     { dayOfWeek: "Monday", opens: location.hours.monday.open, closes: location.hours.monday.close },
     { dayOfWeek: "Tuesday", opens: location.hours.tuesday.open, closes: location.hours.tuesday.close },
     { dayOfWeek: "Wednesday", opens: location.hours.wednesday.open, closes: location.hours.wednesday.close },
@@ -85,36 +62,29 @@ export function generateLocalBusinessSchema(location: Location) {
     { dayOfWeek: "Friday", opens: location.hours.friday.open, closes: location.hours.friday.close },
     { dayOfWeek: "Saturday", opens: location.hours.saturday.open, closes: location.hours.saturday.close },
   ];
+}
 
-  // Generate service offers
-  const hasOfferCatalog = {
-    "@type": "OfferCatalog",
-    name: "Pet Services",
-    itemListElement: SERVICES.map((service, idx) => ({
-      "@type": "Offer",
-      position: idx + 1,
-      name: service.name,
-      description: service.description,
-      provider: {
-        "@type": "LocalBusiness",
-        name: location.name,
-        url: `https://www.thedoghouseps.com${location.url}`,
-      },
-    })),
-  };
+/**
+ * Generate LocalBusiness/PetStore schema for a specific location
+ * Used on location pages and homepage location cards
+ *
+ * Training: Single Responsibility Principle
+ * This function has ONE responsibility: compose location data into schema.org format
+ * It does NOT validate times (extracted to time-utils.ts)
+ * It does NOT load location data (passed in)
+ */
+export function generateLocalBusinessSchema(location: Location) {
+  // Build opening hours specification array
+  const openingHoursSpecification = buildOpeningHoursSpecification(location);
+
+  // Build service offers catalog
+  const hasOfferCatalog = buildServiceOfferCatalog(location);
 
   return {
     "@context": "https://schema.org",
     "@type": ["LocalBusiness", "PetStore"],
     name: location.name,
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: location.address,
-      addressLocality: location.city,
-      addressRegion: location.state,
-      postalCode: location.zip,
-      addressCountry: "US",
-    },
+    address: buildPostalAddress(location),
     telephone: location.phone,
     email: location.email,
     url: `https://www.thedoghouseps.com${location.url}`,
@@ -141,6 +111,39 @@ export function generateLocalBusinessSchema(location: Location) {
       name: "Book an Appointment",
     },
     hasOfferCatalog,
+  };
+}
+
+/**
+ * Training: Single Responsibility Principle — Extract building blocks
+ * Each helper focuses on ONE aspect of the schema structure
+ */
+function buildPostalAddress(location: Location) {
+  return {
+    "@type": "PostalAddress",
+    streetAddress: location.address,
+    addressLocality: location.city,
+    addressRegion: location.state,
+    postalCode: location.zip,
+    addressCountry: "US",
+  };
+}
+
+function buildServiceOfferCatalog(location: Location) {
+  return {
+    "@type": "OfferCatalog",
+    name: "Pet Services",
+    itemListElement: SERVICES.map((service, idx) => ({
+      "@type": "Offer",
+      position: idx + 1,
+      name: service.name,
+      description: service.description,
+      provider: {
+        "@type": "LocalBusiness",
+        name: location.name,
+        url: `https://www.thedoghouseps.com${location.url}`,
+      },
+    })),
   };
 }
 
@@ -243,6 +246,10 @@ export function generateAggregateSchema(...schemas: any[]) {
 /**
  * AI Optimization Schema - for Answer Engine Optimization (AEO)
  * Helps ChatGPT, Google SGE, and other AI systems understand content
+ *
+ * Training: Single Responsibility Principle
+ * This function composes FAQ data into schema.org format
+ * FAQ content is managed in schema-constants.ts (change data without touching generation logic)
  */
 export function generateAIOptimizationSchema() {
   return {
@@ -250,47 +257,16 @@ export function generateAIOptimizationSchema() {
     "@type": "FAQPage",
     name: "The Dog House Pet Salon - Services & Information",
     description: "Common questions and answers about The Dog House Pet Salon pet grooming, daycare, and boarding services.",
-    mainEntity: [
-      {
-        "@type": "Question",
-        name: "What services does The Dog House Pet Salon offer?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "We offer professional dog grooming, dog bathing, doggie daycare, and pet boarding across three Houston locations with 25+ years of experience.",
-        },
+    mainEntity: FAQ_DATA.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
       },
-      {
-        "@type": "Question",
-        name: "Where is The Dog House Pet Salon located?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "We have three convenient locations: Galleria (5917 Richmond Ave), Memorial Park (6434 Washington Ave), and Pearland (2810 Business Center Dr). All are in the Greater Houston area.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "What are The Dog House Pet Salon's hours?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Standard hours are Monday-Friday 7:00 AM to 7:00 PM, and Saturday 8:00 AM to 6:00 PM. Contact us for Sunday availability.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "How do I book an appointment?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "You can book an appointment online at www.thedoghouseps.com/appointment-request/ or call us at (832) 930-4060.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Do you offer pet boarding?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Yes, we provide overnight pet boarding with personalized care at all three locations.",
-        },
-      },
-    ],
+    })),
   };
 }
+
+// Re-export for convenience
+export { SOCIAL_PROFILES, SERVICES, ORGANIZATION_CONTACT, FAQ_DATA } from "./schema-constants";

@@ -132,7 +132,7 @@ export default function PetBathingPage() {
           </div>
         </div>
         <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "rgba(255,255,255,0.9)", textAlign: "center", maxWidth: "800px", margin: "20px auto 0", lineHeight: 1.7 }}>
-          The Dog House Pet Salon has become the pet grooming center for all animal lovers &amp; owners in Houston. With over 30+ Years of pet grooming experience, we&apos;ve been successfully delivering a pet&apos;s paradise to our clients &amp; their furry friends. Our level of care &amp; attention to detail is unmatched in the industry, and that&apy;s what has kept our community growing &amp; returning for decades.
+          The Dog House Pet Salon has become the pet grooming center for all animal lovers &amp; owners in Houston. With over 30+ Years of pet grooming experience, we&apos;ve been successfully delivering a pet&apos;s paradise to our clients &amp; their furry friends. Our level of care &amp; attention to detail is unmatched in the industry, and that&apos;s what has kept our community growing &amp; returning for decades.
         </p>
       </section>
 

@@ -110,7 +110,7 @@ export default function Header() {
       <header className="absolute top-0 left-0 right-0 z-40" style={{ width: "100%" }}>
         {/* ── TOP BAR ── */}
         <div
-          className="hidden md:flex items-center justify-between py-2 text-sm"
+          className="header-topbar hidden md:flex items-center justify-between py-2 text-sm"
           style={{
             backgroundColor: "transparent",
             borderBottom: "1px solid #e5e1e8",
@@ -118,14 +118,22 @@ export default function Header() {
           }}
         >
           <style>{`
+            @media (max-width: 1520px) {
+              .header-topbar { padding-left: 25px !important; padding-right: 25px !important; }
+              .header-nav-inner { padding-left: 25px !important; padding-right: 25px !important; }
+            }
             @media (max-width: 1024px) {
               .topbar-text { font-size: 12px !important; gap: 12px !important; }
               .topbar-phone { font-size: 12px !important; }
               .topbar-lang { font-size: 11px !important; }
+              .header-topbar { padding-left: 20px !important; padding-right: 20px !important; }
               .header-nav-inner { padding-left: 20px !important; padding-right: 20px !important; }
             }
+            @media (max-width: 768px) {
+              .topbar-text { display: none !important; }
+            }
             @media (max-width: 640px) {
-              .topbar-text { font-size: 11px !important; gap: 8px !important; }
+              .topbar-text { display: none !important; }
               .topbar-phone { font-size: 11px !important; }
               .topbar-lang { font-size: 10px !important; }
             }

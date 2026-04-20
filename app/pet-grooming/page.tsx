@@ -141,7 +141,7 @@ export default function PetGroomingPage() {
       <section style={{ backgroundColor: "#965B83", padding: "40px 20px" }}>
         <div style={{ maxWidth: "1520px", margin: "0 auto", display: "flex", flexWrap: "wrap", gap: "40px", justifyContent: "center", alignItems: "center" }}>
           <div style={{ textAlign: "center", color: "#fff" }}>
-            <div style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "48px" }}>25+</div>
+            <div style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "48px" }}>30+</div>
             <div style={{ fontFamily: '"Outfit", sans-serif', fontSize: "18px" }}>Years</div>
           </div>
           <div style={{ textAlign: "center", color: "#fff" }}>
@@ -153,7 +153,7 @@ export default function PetGroomingPage() {
           Over 30+ Years of Success with 40,000+ Satisfied Clients
         </p>
         <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "rgba(255,255,255,0.9)", textAlign: "center", maxWidth: "800px", margin: "12px auto 0", lineHeight: 1.7 }}>
-          The Dog House Pet Salon has become the dog grooming Houston center for all animal lovers. With over 30+ Years of pet grooming experience, we&apy;ve been successfully delivering a pet&apy;s paradise to our clients &amp; their furry friends. Our level of care &amp; attention to detail is unmatched in the industry, and that&apy;s what has kept our community growing &amp; returning for decades.
+          The Dog House Pet Salon has become the dog grooming Houston center for all animal lovers. With over 30+ Years of pet grooming experience, we&apos;ve been successfully delivering a pet&apos;s paradise to our clients &amp; their furry friends. Our level of care &amp; attention to detail is unmatched in the industry, and that&apos;s what has kept our community growing &amp; returning for decades.
         </p>
       </section>
 
@@ -449,7 +449,7 @@ export default function PetGroomingPage() {
             </Link>
           </div>
           <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "rgba(255,255,255,0.9)", lineHeight: 1.7, maxWidth: "800px", margin: "0 auto 32px" }}>
-            The Dog House Pet Salon has become the pet grooming center for all animal lovers &amp; owners in Houston. With over 30+ Years of pet grooming experience, we&apy;ve been successfully delivering a pet&apy;s paradise to our clients &amp; their furry friends. Our level of care &amp; attention to detail is unmatched in the industry, and that&apy;s what has kept our community growing &amp; returning for decades.
+            The Dog House Pet Salon has become the pet grooming center for all animal lovers &amp; owners in Houston. With over 30+ Years of pet grooming experience, we&apos;ve been successfully delivering a pet&apos;s paradise to our clients &amp; their furry friends. Our level of care &amp; attention to detail is unmatched in the industry, and that&apos;s what has kept our community growing &amp; returning for decades.
           </p>
           <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "rgba(255,255,255,0.9)", lineHeight: 1.7, maxWidth: "800px", margin: "0 auto" }}>
             Whether you&apos;re a dog or cat owner, we&apos;ll treat and love them as our own. We believe in creating soothing pet grooming experiences for your pets. Professional pet grooming is our passion.

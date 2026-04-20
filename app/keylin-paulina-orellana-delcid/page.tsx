@@ -31,10 +31,11 @@ const locations = [
     hours: [
       "Monday – Friday: 7:00 AM – 7:00 PM",
       "Saturday: 8:00 AM – 6:00 PM",
-      "Sunday: 8:00 AM – 9:00 AM / 4:00 PM – 5:00 PM",
+      "Sunday: 8:00 AM – 9:00 AM, 4:00 PM – 5:00 PM",
     ],
-    phone: "Option 1: (713) 820-6140",
+    phone: "(713) 820-6140",
     email: "galleria@thedoghouseps.com",
+    option: "OPTION 1",
   },
   {
     img: "https://www.thedoghouseps.com/wp-content/uploads/2025/03/6434-washington-ave.png",
@@ -42,10 +43,11 @@ const locations = [
     hours: [
       "Monday – Friday: 7:00 AM – 7:00 PM",
       "Saturday: 8:00 AM – 6:00 PM",
-      "Sunday: 8:00 AM – 9:00 AM / 4:00 PM – 5:00 PM",
+      "Sunday: 8:00 AM – 9:00 AM, 4:00 PM – 5:00 PM",
     ],
-    phone: "Option 2: (713) 820-6140",
+    phone: "(713) 820-6140",
     email: "memorial@thedoghouseps.com",
+    option: "OPTION 2",
   },
   {
     img: "https://www.thedoghouseps.com/wp-content/uploads/2025/03/2810-business-center-dr.png",
@@ -55,8 +57,9 @@ const locations = [
       "Saturday: 8:00 AM – 6:00 PM",
       "Sunday: Closed",
     ],
-    phone: "Option 3: (713) 820-6140",
+    phone: "(713) 820-6140",
     email: "pearland@thedoghouseps.com",
+    option: "OPTION 3",
   },
 ];
 
@@ -67,50 +70,24 @@ export default function KeylinOrellanaPage() {
       <section
         style={{
           position: "relative",
-          background: "linear-gradient(135deg, #965B83 0%, #1F2124 100%)",
-          minHeight: "400px",
+          backgroundImage: "url(https://www.thedoghouseps.com/wp-content/uploads/2025/04/pet-grooming-houston-dog-house.jpg)",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          minHeight: "700px",
           display: "flex",
           alignItems: "center",
           padding: "80px 20px 120px",
           overflow: "hidden",
         }}
       >
-        <div
-          aria-hidden="true"
-          style={{
-            position: "absolute",
-            bottom: -1,
-            left: 0,
-            width: "100%",
-            lineHeight: 0,
-            zIndex: 1,
-          }}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 1000 100"
-            preserveAspectRatio="none"
-            style={{ display: "block", width: "100%", height: "60px" }}
-          >
-            <path
-              fill="#ffffff"
-              d="M500,97C126.7,96.3,0.8,19.8,0,0v100l1000,0V1C1000,19.4,873.3,97.8,500,97z"
-            />
-          </svg>
-        </div>
-        <div
-          style={{
-            maxWidth: "1520px",
-            margin: "0 auto",
-            position: "relative",
-            zIndex: 2,
-          }}
-        >
+        {/* White overlay */}
+        <div style={{ position: "absolute", inset: 0, backgroundColor: "#FFF", opacity: 0.6 }} />
+        <div style={{ maxWidth: "1520px", margin: "0 auto", position: "relative", zIndex: 2 }}>
           <p
             style={{
               fontFamily: '"Bowlby One SC", sans-serif',
               fontSize: "14px",
-              color: "rgba(255,255,255,0.7)",
+              color: "#965B83",
               letterSpacing: "2px",
               marginBottom: "8px",
               textTransform: "uppercase",
@@ -122,22 +99,29 @@ export default function KeylinOrellanaPage() {
             style={{
               fontFamily: '"Bowlby One SC", sans-serif',
               fontSize: "clamp(28px,4vw,60px)",
-              color: "#ffffff",
+              color: "#1F2124",
               lineHeight: 1.1,
               marginBottom: "8px",
             }}
           >
-            Keylin Paulina Orellana Delcid
+            Keylin Paulina <span style={{ color: "#965B83" }}>Orellana Delcid</span>
           </h1>
           <p
             style={{
-              fontFamily: '"Bowlby One SC", sans-serif',
-              fontSize: "18px",
-              color: "#E0598A",
+              fontFamily: '"Outfit", sans-serif',
+              fontSize: "clamp(16px,2vw,22px)",
+              color: "#54595F",
+              marginBottom: "0",
             }}
           >
             Master Pet Groomer
           </p>
+        </div>
+        {/* Curved bottom border */}
+        <div style={{ position: "absolute", bottom: -1, left: 0, width: "100%", lineHeight: 0, zIndex: 2 }}>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none" style={{ display: "block", width: "100%", height: "60px" }}>
+            <path fill="#ffffff" d="M500,97C126.7,96.3,0.8,19.8,0,0v100l1000,0V1C1000,19.4,873.3,97.8,500,97z" />
+          </svg>
         </div>
       </section>
 
@@ -431,93 +415,136 @@ export default function KeylinOrellanaPage() {
       </section>
 
       {/* ── Locations ── */}
-      <section style={{ backgroundColor: "#F8F8F8", padding: "80px 20px" }}>
-        <div style={{ maxWidth: "1520px", margin: "0 auto" }}>
-          <h2
-            style={{
-              fontFamily: '"Bowlby One SC", sans-serif',
-              fontSize: "clamp(26px,3vw,40px)",
-              color: "#1F2124",
-              textAlign: "center",
-              marginBottom: "50px",
-            }}
-          >
+      <section style={{
+        backgroundImage: "url('https://www.thedoghouseps.com/wp-content/uploads/2025/03/image67.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundColor: "#F8F8F8",
+        padding: "80px 20px 130px",
+        position: "relative",
+      }}>
+        <div style={{
+          position: "absolute",
+          top: 0, left: 0, right: 0, bottom: 0,
+          backgroundColor: "#FFF",
+          opacity: 0.7,
+          zIndex: 1,
+        }} />
+        <div style={{ maxWidth: "1520px", margin: "0 auto", position: "relative", zIndex: 2 }}>
+          <h2 style={{
+            fontFamily: '"Bowlby One SC", sans-serif',
+            fontSize: "clamp(26px,3vw,40px)",
+            color: "#000",
+            textAlign: "center",
+            marginBottom: "50px",
+          }}>
             You Can Find Us At These Locations Near You
           </h2>
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-              gap: "30px",
-            }}
-          >
-            {locations.map((loc) => (
-              <div
-                key={loc.address}
-                style={{
-                  backgroundColor: "#ffffff",
-                  borderRadius: "12px",
-                  overflow: "hidden",
-                  boxShadow: "6px 6px 9px rgba(0,0,0,.1)",
-                }}
-              >
+
+          <div style={{
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gap: "30px",
+            alignItems: "stretch",
+          }}>
+            {/* LEFT: Large Richmond Ave Card */}
+            <div style={{
+              backgroundColor: "#965B83",
+              borderRadius: "16px",
+              padding: "24px",
+              display: "flex",
+              flexDirection: "row",
+              gap: "24px",
+              alignItems: "center",
+              minHeight: "100%",
+            }}>
+              <div style={{ flex: "0 0 200px", display: "flex", alignItems: "center", justifyContent: "center" }}>
                 <Image
-                  src={loc.img}
-                  alt={loc.address}
-                  width={500}
-                  height={300}
-                  style={{ width: "100%", height: "200px", objectFit: "cover" }}
+                  src={locations[0].img}
+                  alt={locations[0].address}
+                  width={200}
+                  height={200}
+                  quality={85}
+                  style={{ width: "200px", height: "200px", borderRadius: "30% 70% 70% 30% / 30% 30% 70% 70%", objectFit: "cover" }}
                 />
-                <div style={{ padding: "24px" }}>
-                  <h3
-                    style={{
-                      fontFamily: '"Bowlby One SC", sans-serif',
-                      fontSize: "20px",
-                      color: "#1F2124",
-                      marginBottom: "12px",
-                    }}
-                  >
-                    {loc.address}
+              </div>
+              <div style={{ flex: 1 }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "12px" }}>
+                  <i className="fa-solid fa-location-dot" style={{ fontSize: "18px", color: "#fff" }} />
+                  <h3 style={{ fontFamily: '"Outfit", sans-serif', fontSize: "18px", fontWeight: 600, color: "#fff", margin: 0 }}>
+                    {locations[0].address}
                   </h3>
-                  {loc.hours.map((h) => (
-                    <p
-                      key={h}
-                      style={{
-                        fontFamily: '"Outfit", sans-serif',
-                        fontSize: "14px",
-                        color: "#54595F",
-                        margin: "2px 0",
-                      }}
-                    >
-                      {h}
-                    </p>
+                </div>
+                <div style={{ marginBottom: "16px" }}>
+                  {locations[0].hours.map((h) => (
+                    <p key={h} style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#fff", margin: "4px 0", lineHeight: 1.6, letterSpacing: "0.3px" }}>{h}</p>
                   ))}
-                  <p
-                    style={{
-                      fontFamily: '"Outfit", sans-serif',
-                      fontSize: "14px",
-                      color: "#965B83",
-                      marginTop: "10px",
-                      fontWeight: 600,
-                    }}
-                  >
-                    {loc.phone}
-                  </p>
-                  <a
-                    href={`mailto:${loc.email}`}
-                    style={{
-                      fontFamily: '"Outfit", sans-serif',
-                      fontSize: "14px",
-                      color: "#965B83",
-                      display: "block",
-                      marginTop: "4px",
-                    }}
-                  >
-                    {loc.email}
+                </div>
+                <p style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "18px", color: "#fff", marginBottom: "12px", fontWeight: 600, letterSpacing: "1px" }}>
+                  {locations[0].option}
+                </p>
+                <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "8px" }}>
+                  <i className="fa-solid fa-phone" style={{ fontSize: "16px", color: "#fff" }} />
+                  <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#fff", margin: 0 }}>{locations[0].phone}</p>
+                </div>
+                <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                  <i className="fa-solid fa-envelope" style={{ fontSize: "16px", color: "#fff" }} />
+                  <a href={`mailto:${locations[0].email}`} style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#fff", textDecoration: "none" }}>
+                    {locations[0].email}
                   </a>
                 </div>
               </div>
-            ))}
+            </div>
+
+            {/* RIGHT: Stacked cards */}
+            <div style={{ display: "flex", flexDirection: "column", gap: "30px" }}>
+              {[locations[1], locations[2]].map((loc) => (
+                <div key={loc.address} style={{
+                  backgroundColor: "#965B83",
+                  borderRadius: "16px",
+                  padding: "24px",
+                  display: "flex",
+                  flexDirection: "row",
+                  gap: "24px",
+                  alignItems: "center",
+                }}>
+                  <div style={{ flex: "0 0 150px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                    <Image
+                      src={loc.img}
+                      alt={loc.address}
+                      width={150}
+                      height={150}
+                      quality={85}
+                      style={{ width: "150px", height: "150px", borderRadius: "30% 70% 70% 30% / 30% 30% 70% 70%", objectFit: "cover" }}
+                    />
+                  </div>
+                  <div style={{ flex: 1 }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "12px" }}>
+                      <i className="fa-solid fa-location-dot" style={{ fontSize: "16px", color: "#fff" }} />
+                      <h3 style={{ fontFamily: '"Outfit", sans-serif', fontSize: "14px", fontWeight: 600, color: "#fff", margin: 0 }}>{loc.address}</h3>
+                    </div>
+                    <div style={{ marginBottom: "12px" }}>
+                      {loc.hours.map((h) => (
+                        <p key={h} style={{ fontFamily: '"Outfit", sans-serif', fontSize: "11px", color: "#fff", margin: "2px 0", lineHeight: 1.3 }}>{h}</p>
+                      ))}
+                    </div>
+                    <p style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "11px", color: "#fff", marginBottom: "8px", fontWeight: 600, letterSpacing: "0.5px" }}>
+                      {loc.option}
+                    </p>
+                    <div style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "4px" }}>
+                      <i className="fa-solid fa-phone" style={{ fontSize: "12px", color: "#fff" }} />
+                      <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "11px", color: "#fff", margin: 0 }}>{loc.phone}</p>
+                    </div>
+                    <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+                      <i className="fa-solid fa-envelope" style={{ fontSize: "12px", color: "#fff" }} />
+                      <a href={`mailto:${loc.email}`} style={{ fontFamily: '"Outfit", sans-serif', fontSize: "11px", color: "#fff", textDecoration: "none" }}>
+                        {loc.email}
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

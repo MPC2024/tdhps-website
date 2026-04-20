@@ -107,14 +107,14 @@ export default function Header() {
 
   return (
     <>
-      <header className="absolute top-0 left-0 right-0 z-40" style={{ width: "100%", overflow: "hidden" }}>
+      <header className="absolute top-0 left-0 right-0 z-40" style={{ width: "100%" }}>
         {/* ── TOP BAR ── */}
         <div
           className="hidden md:flex items-center justify-between py-2 text-sm"
           style={{
             backgroundColor: "transparent",
             borderBottom: "1px solid #e5e1e8",
-            padding: "8px 20px",
+            padding: "8px 150px",
           }}
         >
           <style>{`
@@ -122,6 +122,7 @@ export default function Header() {
               .topbar-text { font-size: 12px !important; gap: 12px !important; }
               .topbar-phone { font-size: 12px !important; }
               .topbar-lang { font-size: 11px !important; }
+              .header-nav-inner { padding-left: 20px !important; padding-right: 20px !important; }
             }
             @media (max-width: 640px) {
               .topbar-text { font-size: 11px !important; gap: 8px !important; }
@@ -212,7 +213,7 @@ export default function Header() {
             borderBottom: isSticky ? "1px solid #e5e1e8" : "none",
           }}
         >
-          <div className="py-3 flex items-center justify-between gap-3" style={{ boxSizing: "border-box", padding: "12px 20px" }}>
+          <div className="header-nav-inner py-3 flex items-center justify-between gap-3" style={{ boxSizing: "border-box", padding: "12px 150px" }}>
             {/* Logo */}
             <Link href="/" className="flex-shrink-0" aria-label="The Dog House Pet Salon – Home" style={{ minWidth: isSticky ? "65px" : "108px" }}>
               <Image

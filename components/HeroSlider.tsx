@@ -3,13 +3,14 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useLanguage } from "@/lib/LanguageContext";
 
 interface Slide {
   imgSrc: string;
   imgAlt: string;
   subheading: string;
-  heading: React.ReactNode;
-  text: string;
+  heading: (t: any) => React.ReactNode;
+  textKey: string;
 }
 
 const slides: Slide[] = [
@@ -17,26 +18,33 @@ const slides: Slide[] = [
     imgSrc: "https://www.thedoghouseps.com/wp-content/uploads/2025/05/The-dog-house-pet-salon-hero-1.webp",
     imgAlt: "The dog house pet salon hero",
     subheading: "THE DOG HOUSE Pet Salon",
-    heading: <>We take care of <span style={{ color: "#965B83" }}>your pets</span></>,
-    text: "Whether it's a bubbly bath, a stylish trim, or just a little pampering, your pet deserves the best. Book today and let us treat your furry friend like family.",
+    heading: (t) => <>
+      {t("we_take_care")} <span style={{ color: "#965B83" }}>{t("your_pets")}</span>
+    </>,
+    textKey: "hero_slide1_text",
   },
   {
     imgSrc: "https://www.thedoghouseps.com/wp-content/uploads/2025/05/The-dog-house-pet-salon-hero-2.webp",
     imgAlt: "The dog house pet salon hero",
     subheading: "THE DOG HOUSE Pet Salon",
-    heading: <>Treat Your <span style={{ color: "#965B83" }}>pet to a spa</span> day</>,
-    text: "Pampering pets with love, care, and style — book your pet's spa day today!",
+    heading: (t) => <>
+      {t("treat_your")} <span style={{ color: "#965B83" }}>{t("pet_spa")}</span> {t("day")}
+    </>,
+    textKey: "hero_slide2_text",
   },
   {
     imgSrc: "https://www.thedoghouseps.com/wp-content/uploads/2025/05/The-dog-house-pet-salon-hero-3.webp",
     imgAlt: "The dog house pet salon hero",
     subheading: "THE DOG HOUSE Pet Salon",
-    heading: <>Experience <span style={{ color: "#965B83" }}>Joy and care</span></>,
-    text: "A pet's wagging tail or soft purr brings instant joy—pure, simple, and unconditional.",
+    heading: (t) => <>
+      {t("experience")} <span style={{ color: "#965B83" }}>{t("joy_care")}</span>
+    </>,
+    textKey: "hero_slide3_text",
   },
 ];
 
 export default function HeroSlider() {
+  const { t } = useLanguage();
   const [current, setCurrent] = useState(0);
 
   useEffect(() => {
@@ -52,7 +60,7 @@ export default function HeroSlider() {
         position: "relative",
         overflow: "hidden",
         width: "100%",
-        height: "clamp(700px, 62.5vw, 900px)",
+        height: "clamp(300px, 85vw, 900px)",
       }}
     >
       {slides.map((slide, i) => (
@@ -80,6 +88,16 @@ export default function HeroSlider() {
             style={{ objectFit: "cover", zIndex: 0 }}
             sizes="100vw"
           />
+          {/* White overlay */}
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              backgroundColor: "#FFF",
+              opacity: 0.6,
+              zIndex: 1,
+            }}
+          />
           {/* Content */}
           <div
             style={{
@@ -98,7 +116,7 @@ export default function HeroSlider() {
             >
               <p
                 style={{
-                  fontSize: "20px",
+                  fontSize: "clamp(14px, 3.5vw, 20px)",
                   marginBottom: "10px",
                   fontWeight: 500,
                   fontFamily: '"Outfit", Sans-serif',
@@ -116,29 +134,33 @@ export default function HeroSlider() {
                   lineHeight: 1.2,
                 }}
               >
-                {slide.heading}
+                {slide.heading(t)}
               </h1>
               <p
                 style={{
-                  fontSize: "18px",
-                  marginBottom: "50px",
+                  fontSize: "clamp(14px, 3vw, 18px)",
+                  marginBottom: "clamp(30px, 5vw, 50px)",
                   color: "#000",
                   fontFamily: '"Outfit", Sans-serif',
                 }}
               >
-                {slide.text}
+                {t(slide.textKey as any)}
               </p>
               <Link
                 href="/appointment-request"
                 style={{
                   backgroundColor: "#965B83",
                   color: "#fff",
-                  padding: "15px 30px",
+                  padding: "15px 25px",
                   textDecoration: "none",
                   borderRadius: "50px",
                   fontWeight: 600,
                   fontFamily: '"Outfit", Sans-serif',
-                  display: "inline-block",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  minHeight: "44px",
+                  fontSize: "clamp(14px, 3vw, 16px)",
                   transition: "background-color 0.3s ease",
                 }}
                 onMouseEnter={(e) => {
@@ -148,7 +170,7 @@ export default function HeroSlider() {
                   (e.currentTarget as HTMLElement).style.backgroundColor = "#965B83";
                 }}
               >
-                Book An Appointment
+                {t("book_appointment")}
               </Link>
             </div>
           </div>

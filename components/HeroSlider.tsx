@@ -62,7 +62,15 @@ export default function HeroSlider() {
         width: "100%",
         height: "clamp(300px, 85vw, 900px)",
       }}
+      className="hero-slider-container"
     >
+      <style>{`
+        @media (max-width: 768px) {
+          .hero-slider-container {
+            height: 70vh !important;
+          }
+        }
+      `}</style>
       {slides.map((slide, i) => (
         <div
           key={i}

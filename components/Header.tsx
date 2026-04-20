@@ -267,8 +267,9 @@ export default function Header() {
 
                       {/* Dropdown menu */}
                       <div
-                        className="absolute top-full left-0 min-w-[220px] bg-white shadow-lg rounded-lg py-2 z-50"
+                        className="absolute top-full left-0 bg-white shadow-lg rounded-lg py-2 z-50"
                         style={{
+                          minWidth: item.items && item.items.length <= 3 ? "130px" : "220px",
                           opacity: openDropdown === item.label ? 1 : 0,
                           pointerEvents: openDropdown === item.label ? "auto" : "none",
                           transform: openDropdown === item.label ? "translateY(0)" : "translateY(-8px)",

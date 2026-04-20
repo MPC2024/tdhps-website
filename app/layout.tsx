@@ -6,6 +6,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SchemaMarkup from "@/components/SchemaMarkup";
 import ScrollToTop from "@/components/ScrollToTop";
+import { Providers } from "@/components/Providers";
 import { generateAIOptimizationSchema, SOCIAL_PROFILES } from "@/lib/schema";
 import { LOCATIONS } from "@/lib/locations";
 
@@ -229,10 +230,12 @@ export default function RootLayout({
             `}</Script>
           </>
         )}
-        <Header />
-        <main id="main-content" className="flex-1">{children}</main>
-        <Footer />
-        <ScrollToTop />
+        <Providers>
+          <Header />
+          <main id="main-content" className="flex-1">{children}</main>
+          <Footer />
+          <ScrollToTop />
+        </Providers>
       </body>
     </html>
   );

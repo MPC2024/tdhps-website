@@ -107,13 +107,15 @@ export default function Header() {
 
   return (
     <>
-      <header className="absolute top-0 left-0 right-0 z-40" style={{ width: "100%" }}>
+      <header className="absolute top-0 left-0 right-0 z-40" style={{ width: "100%", maxWidth: "100vw" }}>
         {/* ── TOP BAR ── */}
         <div
-          className="hidden md:flex items-center justify-between px-6 py-2 text-sm"
+          className="hidden md:flex items-center justify-between py-2 text-sm"
           style={{
             backgroundColor: "transparent",
             borderBottom: "1px solid #e5e1e8",
+            padding: "8px 30px",
+            width: "100%",
           }}
         >
           <style>{`
@@ -211,7 +213,7 @@ export default function Header() {
             borderBottom: isSticky ? "1px solid #e5e1e8" : "none",
           }}
         >
-          <div className="px-4 py-3 flex items-center justify-between gap-3" style={{ width: "100%", boxSizing: "border-box" }}>
+          <div className="py-3 flex items-center justify-between gap-3" style={{ width: "100%", boxSizing: "border-box", padding: "12px 30px" }}>
             {/* Logo */}
             <Link href="/" className="flex-shrink-0" aria-label="The Dog House Pet Salon – Home" style={{ minWidth: isSticky ? "65px" : "108px" }}>
               <Image

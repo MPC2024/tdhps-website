@@ -77,15 +77,16 @@ export default function ReviewsCarousel() {
             borderRadius: "16px",
             padding: "50px 60px",
             display: "flex",
+            flexDirection: "column",
             alignItems: "center",
-            gap: "50px",
+            gap: "30px",
             boxShadow: "0 2px 16px rgba(0,0,0,0.06)",
-            minHeight: "220px",
             position: "relative",
             overflow: "hidden",
+            textAlign: "center",
           }}
         >
-          {/* Left: Crescent arc + review icon */}
+          {/* Top: Crescent arc + review icon */}
           <div style={{ flexShrink: 0, position: "relative", width: "140px", height: "140px" }}>
             {/* Purple crescent arc */}
             <svg viewBox="0 0 140 140" width="140" height="140" style={{ position: "absolute", top: 0, left: 0 }}>
@@ -120,7 +121,7 @@ export default function ReviewsCarousel() {
             </div>
           </div>
 
-          {/* Right: Review text + author */}
+          {/* Bottom: Review text + author */}
           <div style={{ flex: 1 }}>
             <p
               style={{
@@ -171,39 +172,6 @@ export default function ReviewsCarousel() {
         </button>
       </div>
 
-      {/* Dots */}
-      <div style={{ display: "flex", justifyContent: "center", gap: "8px", marginTop: "24px" }}>
-        {reviews.map((_, i) => (
-          <button
-            key={i}
-            onClick={() => setCurrent(i)}
-            aria-label={`Go to review ${i + 1}`}
-            style={{
-              width: "44px",
-              height: "44px",
-              borderRadius: "50%",
-              border: "none",
-              backgroundColor: "transparent",
-              cursor: "pointer",
-              padding: 0,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <span
-              style={{
-                width: "10px",
-                height: "10px",
-                borderRadius: "50%",
-                backgroundColor: i === current ? "#965B83" : "#ddd",
-                display: "block",
-                transition: "background-color 0.3s",
-              }}
-            />
-          </button>
-        ))}
-      </div>
 
       <style>{`
         @media (max-width: 768px) {

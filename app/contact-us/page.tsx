@@ -55,7 +55,7 @@ const whyUs = [
   },
   {
     label: "Experienced Staff",
-    desc: "Over 8,000+ satisfied clients attest to our expertise.",
+    desc: "Over 40,000+ satisfied clients attest to our expertise.",
   },
   {
     label: "Competitive Pricing",

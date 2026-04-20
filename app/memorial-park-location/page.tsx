@@ -88,7 +88,7 @@ export default function MemorialParkLocationPage() {
       {/* ── Stats ── */}
       <section style={{ backgroundColor: "#965B83", padding: "40px 20px" }}>
         <div style={{ maxWidth: "1520px", margin: "0 auto", display: "flex", flexWrap: "wrap", gap: "40px", justifyContent: "center" }}>
-          {[{ val: "25+", label: "Years Experience" }, { val: "8,000+", label: "Satisfied Clients" }, { val: "3", label: "Houston Locations" }].map((s) => (
+          {[{ val: "30+", label: "Years Experience" }, { val: "40,000+", label: "Satisfied Clients" }, { val: "3", label: "Houston Locations" }].map((s) => (
             <div key={s.label} style={{ textAlign: "center", color: "#fff" }}>
               <div style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "48px" }}>{s.val}</div>
               <div style={{ fontFamily: '"Outfit", sans-serif', fontSize: "18px" }}>{s.label}</div>

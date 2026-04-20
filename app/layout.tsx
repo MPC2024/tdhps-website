@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     template: "%s | The Dog House Pet Salon",
   },
   description:
-    "Houston's premier dog grooming, doggie daycare, and pet boarding service with 25+ years of experience. Three convenient locations: Galleria, Memorial Park, and Pearland.",
+    "Houston's premier dog grooming, doggie daycare, and pet boarding service with 30+ years of experience. Three convenient locations: Galleria, Memorial Park, and Pearland.",
   keywords: [
     "dog grooming Houston",
     "pet grooming Houston TX",
@@ -64,7 +64,7 @@ export const metadata: Metadata = {
     siteName: "The Dog House Pet Salon",
     title: "The Dog House Pet Salon | Houston Pet Grooming, Boarding & Day Care",
     description:
-      "Premium pet grooming, boarding, and day care in Houston. Three locations: Galleria, Memorial Park, and Pearland. 25+ years of experience.",
+      "Premium pet grooming, boarding, and day care in Houston. Three locations: Galleria, Memorial Park, and Pearland. 30+ years of experience.",
     images: [
       {
         url: "https://www.thedoghouseps.com/wp-content/uploads/2025/05/The-dog-house-pet-salon-hero-1.webp",
@@ -105,7 +105,7 @@ const organizationJsonLd = {
   telephone: "(832) 930-4060",
   email: "galleria@thedoghouseps.com",
   description:
-    "Houston's premier pet grooming, doggie daycare, and pet boarding service with 25+ years of experience. Three convenient locations.",
+    "Houston's premier pet grooming, doggie daycare, and pet boarding service with 30+ years of experience. Three convenient locations.",
   priceRange: "$$",
   foundingDate: "2000",
   numberOfEmployees: { "@type": "QuantitativeValue", minValue: 10 },

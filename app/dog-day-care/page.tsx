@@ -140,16 +140,16 @@ export default function DogDayCarePage() {
       <section style={{ backgroundColor: "#965B83", padding: "40px 20px" }}>
         <div style={{ maxWidth: "1520px", margin: "0 auto", display: "flex", flexWrap: "wrap", gap: "40px", justifyContent: "center" }}>
           <div style={{ textAlign: "center", color: "#fff" }}>
-            <div style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "48px" }}>25+</div>
+            <div style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "48px" }}>30+</div>
             <div style={{ fontFamily: '"Outfit", sans-serif', fontSize: "18px" }}>Years</div>
           </div>
           <div style={{ textAlign: "center", color: "#fff" }}>
-            <div style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "48px" }}>8,000+</div>
+            <div style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "48px" }}>40,000+</div>
             <div style={{ fontFamily: '"Outfit", sans-serif', fontSize: "18px" }}>Satisfied Clients</div>
           </div>
         </div>
         <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "rgba(255,255,255,0.9)", textAlign: "center", maxWidth: "800px", margin: "20px auto 0", lineHeight: 1.7 }}>
-          The Dog House Pet Salon has become the pet grooming center for all animal lovers &amp; owners in Houston. With over 25+ Years of pet grooming experience, we&apos;ve been successfully delivering a pet&apos;s paradise to our clients &amp; their furry friends.
+          The Dog House Pet Salon has become the pet grooming center for all animal lovers &amp; owners in Houston. With over 30+ Years of pet grooming experience, we&apos;ve been successfully delivering a pet&apos;s paradise to our clients &amp; their furry friends.
         </p>
       </section>
 

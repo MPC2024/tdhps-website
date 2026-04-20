@@ -346,6 +346,7 @@ export default function ContactUsContent() {
 
           {/* 2-Column Layout: Large card left + 2 stacked cards right */}
           <div
+            className="locations-grid"
             style={{
               display: "grid",
               gridTemplateColumns: "1fr 1fr",
@@ -355,6 +356,7 @@ export default function ContactUsContent() {
           >
             {/* LEFT: Large Galleria card */}
             <div
+              className="location-card"
               style={{
                 backgroundColor: "#965B83",
                 borderRadius: "16px",
@@ -362,7 +364,7 @@ export default function ContactUsContent() {
                 display: "flex",
                 flexDirection: "row",
                 gap: "24px",
-                alignItems: "center",
+                alignItems: "flex-start",
                 minHeight: "100%",
               }}
             >
@@ -392,22 +394,23 @@ export default function ContactUsContent() {
                 <div
                   style={{
                     display: "flex",
-                    alignItems: "center",
+                    alignItems: "flex-start",
                     gap: "8px",
                     marginBottom: "12px",
                   }}
                 >
                   <i
                     className="fa-solid fa-location-dot"
-                    style={{ fontSize: "18px", color: "#fff" }}
+                    style={{ fontSize: "16px", color: "#fff", marginTop: "2px", flexShrink: 0 }}
                   />
                   <h3
                     style={{
                       fontFamily: '"Outfit", sans-serif',
-                      fontSize: "18px",
+                      fontSize: "16px",
                       fontWeight: 600,
                       color: "#fff",
                       margin: 0,
+                      textAlign: "left",
                     }}
                   >
                     {locations[0].address}
@@ -419,11 +422,13 @@ export default function ContactUsContent() {
                       key={h}
                       style={{
                         fontFamily: '"Outfit", sans-serif',
-                        fontSize: "16px",
+                        fontSize: "14px",
+                        fontWeight: 400,
                         color: "#fff",
                         margin: "4px 0",
                         lineHeight: 1.6,
                         letterSpacing: "0.3px",
+                        textAlign: "left",
                       }}
                     >
                       {h}
@@ -433,11 +438,12 @@ export default function ContactUsContent() {
                 <p
                   style={{
                     fontFamily: '"Bowlby One SC", sans-serif',
-                    fontSize: "18px",
+                    fontSize: "14px",
                     color: "#fff",
                     marginBottom: "12px",
                     fontWeight: 600,
                     letterSpacing: "1px",
+                    textAlign: "left",
                   }}
                 >
                   {locations[0].option}
@@ -452,14 +458,16 @@ export default function ContactUsContent() {
                 >
                   <i
                     className="fa-solid fa-phone"
-                    style={{ fontSize: "16px", color: "#fff" }}
+                    style={{ fontSize: "16px", color: "#fff", flexShrink: 0 }}
                   />
                   <p
                     style={{
                       fontFamily: '"Outfit", sans-serif',
-                      fontSize: "16px",
+                      fontSize: "14px",
+                      fontWeight: 400,
                       color: "#fff",
                       margin: 0,
+                      textAlign: "left",
                     }}
                   >
                     {locations[0].phone}
@@ -468,15 +476,17 @@ export default function ContactUsContent() {
                 <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
                   <i
                     className="fa-solid fa-envelope"
-                    style={{ fontSize: "16px", color: "#fff" }}
+                    style={{ fontSize: "16px", color: "#fff", flexShrink: 0 }}
                   />
                   <a
                     href={`mailto:${locations[0].email}`}
                     style={{
                       fontFamily: '"Outfit", sans-serif',
-                      fontSize: "16px",
+                      fontSize: "14px",
+                      fontWeight: 400,
                       color: "#fff",
                       textDecoration: "none",
+                      textAlign: "left",
                     }}
                   >
                     {locations[0].email}
@@ -490,6 +500,7 @@ export default function ContactUsContent() {
               {[locations[1], locations[2]].map((loc) => (
                 <div
                   key={loc.address}
+                  className="location-card"
                   style={{
                     backgroundColor: "#965B83",
                     borderRadius: "16px",
@@ -497,7 +508,7 @@ export default function ContactUsContent() {
                     display: "flex",
                     flexDirection: "row",
                     gap: "24px",
-                    alignItems: "center",
+                    alignItems: "flex-start",
                   }}
                 >
                   <div
@@ -526,22 +537,23 @@ export default function ContactUsContent() {
                     <div
                       style={{
                         display: "flex",
-                        alignItems: "center",
+                        alignItems: "flex-start",
                         gap: "8px",
                         marginBottom: "12px",
                       }}
                     >
                       <i
                         className="fa-solid fa-location-dot"
-                        style={{ fontSize: "16px", color: "#fff" }}
+                        style={{ fontSize: "16px", color: "#fff", marginTop: "2px", flexShrink: 0 }}
                       />
                       <h3
                         style={{
                           fontFamily: '"Outfit", sans-serif',
-                          fontSize: "14px",
+                          fontSize: "16px",
                           fontWeight: 600,
                           color: "#fff",
                           margin: 0,
+                          textAlign: "left",
                         }}
                       >
                         {loc.address}
@@ -553,10 +565,12 @@ export default function ContactUsContent() {
                           key={h}
                           style={{
                             fontFamily: '"Outfit", sans-serif',
-                            fontSize: "11px",
+                            fontSize: "14px",
+                            fontWeight: 400,
                             color: "#fff",
                             margin: "2px 0",
-                            lineHeight: 1.3,
+                            lineHeight: 1.6,
+                            textAlign: "left",
                           }}
                         >
                           {h}
@@ -566,11 +580,12 @@ export default function ContactUsContent() {
                     <p
                       style={{
                         fontFamily: '"Bowlby One SC", sans-serif',
-                        fontSize: "11px",
+                        fontSize: "14px",
                         color: "#fff",
                         marginBottom: "8px",
                         fontWeight: 600,
-                        letterSpacing: "0.5px",
+                        letterSpacing: "1px",
+                        textAlign: "left",
                       }}
                     >
                       {loc.option}
@@ -579,37 +594,41 @@ export default function ContactUsContent() {
                       style={{
                         display: "flex",
                         alignItems: "center",
-                        gap: "6px",
+                        gap: "8px",
                         marginBottom: "4px",
                       }}
                     >
                       <i
                         className="fa-solid fa-phone"
-                        style={{ fontSize: "12px", color: "#fff" }}
+                        style={{ fontSize: "16px", color: "#fff", flexShrink: 0 }}
                       />
                       <p
                         style={{
                           fontFamily: '"Outfit", sans-serif',
-                          fontSize: "11px",
+                          fontSize: "14px",
+                          fontWeight: 400,
                           color: "#fff",
                           margin: 0,
+                          textAlign: "left",
                         }}
                       >
                         {loc.phone}
                       </p>
                     </div>
-                    <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
                       <i
                         className="fa-solid fa-envelope"
-                        style={{ fontSize: "12px", color: "#fff" }}
+                        style={{ fontSize: "16px", color: "#fff", flexShrink: 0 }}
                       />
                       <a
                         href={`mailto:${loc.email}`}
                         style={{
                           fontFamily: '"Outfit", sans-serif',
-                          fontSize: "11px",
+                          fontSize: "14px",
+                          fontWeight: 400,
                           color: "#fff",
                           textDecoration: "none",
+                          textAlign: "left",
                         }}
                       >
                         {loc.email}

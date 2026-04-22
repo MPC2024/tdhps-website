@@ -210,19 +210,7 @@ export default function RootLayout({
           href="https://www.thedoghouseps.com/wp-content/uploads/2025/05/The-dog-house-pet-salon-hero-1.webp"
           type="image/webp"
         />
-        {/* ── Font Awesome Icons (non-blocking async loading) ── */}
-        <link
-          rel="stylesheet"
-          media="print"
-          onLoad={(e) => {
-            const link = e.currentTarget as HTMLLinkElement;
-            link.media = "all";
-          }}
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-          integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-          crossOrigin="anonymous"
-          referrerPolicy="no-referrer"
-        />
+        {/* ── Font Awesome Icons: Loaded via inline link at end of body for non-blocking load ── */}
         <noscript>
           <link
             rel="stylesheet"
@@ -270,6 +258,14 @@ export default function RootLayout({
           <Footer />
           <ScrollToTop />
         </Providers>
+        {/* ── Font Awesome CSS loaded at end of body for non-blocking render ── */}
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+          integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+          crossOrigin="anonymous"
+          referrerPolicy="no-referrer"
+        />
       </body>
     </html>
   );

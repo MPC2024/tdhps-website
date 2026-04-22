@@ -417,8 +417,9 @@ export default function HomepageContent() {
                 width={385}
                 height={294}
                 style={{ width: "clamp(180px, 25vw, 385px)", height: "auto", display: "block", marginBottom: "50px" }}
-                sizes="(max-width: 768px) 180px, 385px"
+                sizes="(max-width: 480px) 150px, (max-width: 768px) 180px, 385px"
                 loading="lazy"
+                quality={80}
               />
             </div>
             <style>{`
@@ -486,6 +487,7 @@ export default function HomepageContent() {
               height={77}
               style={{ width: "64px", height: "auto", marginBottom: "20px" }}
               sizes="64px"
+              quality={75}
             />
             <h3
               style={{
@@ -570,7 +572,8 @@ export default function HomepageContent() {
           fill
           style={{ objectFit: "cover", objectPosition: "center center" }}
           priority={false}
-          quality={85}
+          quality={75}
+          sizes="100vw"
         />
 
         {/* Content area */}
@@ -645,7 +648,8 @@ export default function HomepageContent() {
             width={500}
             height={500}
             style={{ width: "100%", height: "100%", display: "block", objectFit: "contain", objectPosition: "left bottom" }}
-            sizes="(max-width: 768px) 250px, 500px"
+            sizes="(max-width: 480px) 200px, (max-width: 768px) 250px, 500px"
+            quality={80}
           />
         </div>
 
@@ -727,7 +731,8 @@ export default function HomepageContent() {
               height={778}
               style={{ width: "100%", maxWidth: "380px", height: "auto" }}
               loading="lazy"
-              sizes="(max-width: 768px) 100%, (max-width: 1024px) 380px, 380px"
+              sizes="(max-width: 480px) 85vw, (max-width: 768px) 90vw, (max-width: 1024px) 380px, 380px"
+              quality={80}
             />
           </div>
 
@@ -838,7 +843,8 @@ export default function HomepageContent() {
               width={500}
               height={507}
               style={{ width: "100%", maxWidth: "475px", height: "auto", borderRadius: "12px" }}
-              sizes="(max-width: 768px) 100vw, 500px"
+              sizes="(max-width: 480px) 90vw, (max-width: 768px) 95vw, 500px"
+              quality={80}
             />
           </div>
         </div>

@@ -93,6 +93,10 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://www.thedoghouseps.com",
   },
+  icons: {
+    icon: "https://www.thedoghouseps.com/wp-content/uploads/2025/03/favicon-300x300.png",
+    apple: "https://www.thedoghouseps.com/wp-content/uploads/2025/03/favicon-300x300.png",
+  },
 };
 
 /* ── JSON-LD Structured Data ── */
@@ -197,15 +201,37 @@ export default function RootLayout({
       <head>
         {/* ── Performance: Preconnect to external CDNs ── */}
         <link rel="preconnect" href="https://www.thedoghouseps.com" />
+        <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
         <link rel="dns-prefetch" href="https://www.thedoghouseps.com" />
-        {/* ── Font Awesome Icons ── */}
+        {/* ── Performance: Preload hero image (LCP optimization) ── */}
+        <link
+          rel="preload"
+          as="image"
+          href="https://www.thedoghouseps.com/wp-content/uploads/2025/05/The-dog-house-pet-salon-hero-1.webp"
+          type="image/webp"
+        />
+        {/* ── Font Awesome Icons (non-blocking async loading) ── */}
         <link
           rel="stylesheet"
+          media="print"
+          onLoad={(e) => {
+            const link = e.currentTarget as HTMLLinkElement;
+            link.media = "all";
+          }}
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
           integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
           crossOrigin="anonymous"
           referrerPolicy="no-referrer"
         />
+        <noscript>
+          <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+            integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+            crossOrigin="anonymous"
+            referrerPolicy="no-referrer"
+          />
+        </noscript>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
@@ -228,9 +254,9 @@ export default function RootLayout({
           <>
             <Script
               src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
-              strategy="afterInteractive"
+              strategy="lazyOnload"
             />
-            <Script id="ga-init" strategy="afterInteractive">{`
+            <Script id="ga-init" strategy="lazyOnload">{`
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());

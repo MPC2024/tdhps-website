@@ -242,6 +242,7 @@ export default function Header() {
                 quality={85}
                 className={isSticky ? "logo-sticky" : "logo-normal"}
                 style={{ height: "auto", width: isSticky ? "65px" : "108px", transition: "width 0.3s ease" }}
+                sizes="(max-width: 640px) 65px, 108px"
               />
             </Link>
 

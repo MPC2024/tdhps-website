@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useLanguage } from "@/lib/LanguageContext";
+import StoreLocations from "@/components/StoreLocations";
 
 const groomingFaqKeys = [
   {
@@ -196,7 +197,7 @@ export default function FaqContent() {
           minHeight: "700px",
           display: "flex",
           alignItems: "center",
-          padding: "80px 20px 120px",
+          padding: "160px 20px 120px",
           overflow: "hidden",
         }}
       >
@@ -228,7 +229,7 @@ export default function FaqContent() {
           <h1
             style={{
               fontFamily: '"Bowlby One SC", sans-serif',
-              fontSize: "clamp(36px,5vw,72px)",
+              fontSize: "60px",
               color: "#1F2124",
               marginBottom: "16px",
               lineHeight: 1.1,
@@ -327,6 +328,8 @@ export default function FaqContent() {
           </Link>
         </div>
       </section>
+
+      <StoreLocations />
     </>
   );
 }

@@ -1,25 +1,9 @@
-import type { Metadata } from "next";
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
-
-export const metadata: Metadata = {
-  title: "Dog Groomer Memorial Park: Meet Francy Quevedo",
-  description:
-    "Meet Francy Quevedo, a skilled dog groomer at The Dog House Pet Salon, dedicated to making every grooming experience positive.",
-  openGraph: {
-    title: "Dog Groomer Memorial Park: Meet Francy Quevedo",
-    description:
-      "Meet Francy Quevedo, a skilled dog groomer at The Dog House Pet Salon, dedicated to making every grooming experience positive.",
-    url: "https://www.thedoghouseps.com/francy-quevedo/",
-    images: [
-      {
-        url: "https://www.thedoghouseps.com/wp-content/uploads/2025/04/francy-358.jpg.webp",
-        alt: "Francy Quevedo – Master Pet Groomer",
-      },
-    ],
-  },
-  alternates: { canonical: "https://www.thedoghouseps.com/francy-quevedo/" },
-};
+import { useLanguage } from "@/lib/LanguageContext";
+import FrancyBio from "@/components/staff/FrancyBio";
 
 const locations = [
   {
@@ -61,6 +45,8 @@ const locations = [
 ];
 
 export default function FrancyQuevedoPage() {
+  const { t } = useLanguage();
+
   return (
     <>
       {/* ── Hero ── */}
@@ -73,7 +59,7 @@ export default function FrancyQuevedoPage() {
           minHeight: "700px",
           display: "flex",
           alignItems: "center",
-          padding: "80px 20px 120px",
+          padding: "160px 20px 120px",
           overflow: "hidden",
         }}
       >
@@ -90,18 +76,18 @@ export default function FrancyQuevedoPage() {
               textTransform: "uppercase",
             }}
           >
-            Memorial Park
+            {t("francy_location")}
           </p>
           <h1
             style={{
               fontFamily: '"Bowlby One SC", sans-serif',
-              fontSize: "clamp(36px,5vw,72px)",
+              fontSize: "60px",
               color: "#1F2124",
               lineHeight: 1.1,
               marginBottom: "8px",
             }}
           >
-            Francy <span style={{ color: "#965B83" }}>Quevedo</span>
+            {t("francy_name")}
           </h1>
           <p
             style={{
@@ -111,7 +97,7 @@ export default function FrancyQuevedoPage() {
               marginBottom: "0",
             }}
           >
-            Master Pet Groomer
+            {t("staff_master_groomer")}
           </p>
         </div>
         {/* Curved bottom border */}
@@ -155,30 +141,21 @@ export default function FrancyQuevedoPage() {
                 margin: "0 auto",
                 display: "block",
               }}
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 400px"
             />
           </div>
           <div className="groomer-right" style={{ flex: "0 0 70%" }}>
-            <h2
-              style={{
-                fontFamily: '"Bowlby One SC", sans-serif',
-                fontSize: "clamp(24px,3vw,36px)",
-                color: "#1F2124",
-                marginBottom: "8px",
-                marginTop: 0,
-              }}
-            >
-              Francy Quevedo
-            </h2>
+            <FrancyBio />
             <p
               style={{
                 fontFamily: '"Outfit", sans-serif',
                 fontSize: "16px",
-                color: "#965B83",
-                fontWeight: 600,
-                marginBottom: "24px",
+                color: "#54595F",
+                lineHeight: 1.7,
+                marginBottom: "16px",
               }}
             >
-              Master Pet Groomer — Memorial Park
+              {t("francy_bio_1")}
             </p>
             <p
               style={{
@@ -189,11 +166,7 @@ export default function FrancyQuevedoPage() {
                 marginBottom: "16px",
               }}
             >
-              Francy Quevedo is a dedicated certified dog groomer at The Dog House Pet
-              Salon in Houston, TX. Originally from Venezuela, she has been grooming
-              for over 8 years and has a special fondness for poodles. Francy&apos;s
-              passion for animals shines through in her gentle approach and commitment
-              to creating a nurturing environment for every pet.
+              {t("francy_bio_2")}
             </p>
             <p
               style={{
@@ -204,45 +177,7 @@ export default function FrancyQuevedoPage() {
                 marginBottom: "16px",
               }}
             >
-              Francy Quevedo, a certified pet groomer at The Dog House Pet Salon in
-              Houston, TX, brings a heartfelt passion for animals to her work.
-              Originally from Venezuela, Francy has loved animals for as long as she
-              can remember, especially her two beloved poodles. After completing basic
-              grooming training in her home country in 2015, she began grooming her
-              family and friends&apos; dogs, quickly discovering that this was her
-              true calling.
-            </p>
-            <p
-              style={{
-                fontFamily: '"Outfit", sans-serif',
-                fontSize: "16px",
-                color: "#54595F",
-                lineHeight: 1.7,
-                marginBottom: "16px",
-              }}
-            >
-              Upon moving to Houston in 2017, Francy joined The Dog House Pet Salon,
-              where she trained diligently to become a certified groomer. Over the past
-              8 years, she has developed a loyal clientele and a reputation for her
-              compassionate and gentle grooming techniques. Francy&apos;s core
-              values—commitment, love for animals, and gratitude—shine through in
-              every interaction, as she believes that each dog has its own unique story
-              and deserves the best care.
-            </p>
-            <p
-              style={{
-                fontFamily: '"Outfit", sans-serif',
-                fontSize: "16px",
-                color: "#54595F",
-                lineHeight: 1.7,
-                marginBottom: "16px",
-              }}
-            >
-              One of the most rewarding aspects of Francy&apos;s job is building bonds
-              with both her furry clients and their owners. She loves seeing them grow
-              and always strives to meet their grooming needs with kindness and
-              patience. Francy has a knack for calming anxious pets, often using baby
-              talk and even singing in Spanish to make them feel at ease.
+              {t("francy_bio_3")}
             </p>
             <p
               style={{
@@ -253,13 +188,10 @@ export default function FrancyQuevedoPage() {
                 marginBottom: "28px",
               }}
             >
-              Francy believes that spending her days working with dogs is not just a
-              job; it is a blessing. She looks forward to bringing joy to every
-              grooming session, making sure all pets leave looking and feeling their
-              best.
+              {t("francy_bio_4")}
             </p>
             <Link href="/appointment-request" className="btn-primary">
-              Schedule An Appointment
+              {t("schedule_appointment")}
             </Link>
           </div>
         </div>
@@ -277,12 +209,12 @@ export default function FrancyQuevedoPage() {
             }}
           >
             {[
-              { num: "8+", label: "Years of Experience" },
-              { num: "Certified", label: "Pet Groomer" },
-              { num: "Poodle", label: "Specialist" },
-              { num: "Memorial", label: "Park Location" },
+              { num: "8+", labelKey: "francy_years_exp" as const },
+              { num: "Certified", labelKey: "francy_pet_groomer" as const },
+              { num: "Poodle", labelKey: "francy_poodle_specialist" as const },
+              { num: "Memorial", labelKey: "francy_park_location" as const },
             ].map((stat) => (
-              <div key={stat.label}>
+              <div key={stat.labelKey}>
                 <p
                   style={{
                     fontFamily: '"Bowlby One SC", sans-serif',
@@ -301,7 +233,7 @@ export default function FrancyQuevedoPage() {
                     marginTop: "6px",
                   }}
                 >
-                  {stat.label}
+                  {t(stat.labelKey)}
                 </p>
               </div>
             ))}
@@ -321,7 +253,7 @@ export default function FrancyQuevedoPage() {
               marginBottom: "16px",
             }}
           >
-            What Sets <span style={{ color: "#965B83" }}>Francy</span> Apart
+            {t("francy_what_sets_apart")}
           </h2>
           <p
             style={{
@@ -334,9 +266,7 @@ export default function FrancyQuevedoPage() {
               lineHeight: 1.7,
             }}
           >
-            With 8 years of dedicated grooming experience and a heartfelt
-            passion for every animal, Francy brings warmth and skill to every
-            session.
+            {t("francy_what_sets_apart_desc")}
           </p>
           <div
             style={{
@@ -348,22 +278,22 @@ export default function FrancyQuevedoPage() {
             {[
               {
                 icon: <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="28" r="4" stroke="#965B83" strokeWidth="2.5"/><circle cx="28" cy="24" r="4" stroke="#965B83" strokeWidth="2.5"/><line x1="16" y1="28" x2="16" y2="10" stroke="#965B83" strokeWidth="2.5"/><line x1="32" y1="24" x2="32" y2="6" stroke="#965B83" strokeWidth="2.5"/><path d="M16 10l16-4" stroke="#965B83" strokeWidth="2.5"/></svg>,
-                title: "Calming Touch & Techniques",
-                desc: "Francy has a special gift for soothing anxious pets — she often uses baby talk and even sings in Spanish to help nervous dogs feel completely at ease during their groom.",
+                titleKey: "francy_calming_title" as const,
+                descKey: "francy_calming_desc" as const,
               },
               {
                 icon: <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="16" cy="14" r="6" stroke="#965B83" strokeWidth="2.5"/><circle cx="16" cy="12.5" r="1.5" fill="#965B83"/><path d="M12 20c-3 2-5 5-5 9h18c0-4-2-7-5-9" stroke="#965B83" strokeWidth="2" fill="#965B83" opacity=".2"/><circle cx="28" cy="10" r="4" stroke="#965B83" strokeWidth="1.5"/></svg>,
-                title: "Poodle & Doodle Expert",
-                desc: "With a special fondness for poodles and doodles, Francy has mastered the intricate grooming patterns and coat care these breeds require for their best look.",
+                titleKey: "francy_poodle_title" as const,
+                descKey: "francy_poodle_desc" as const,
               },
               {
                 icon: <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 22l6-6 4 2 4-4 4 2 6-6" stroke="#965B83" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/><path d="M8 30h24v2H8z" fill="#965B83" opacity=".3" rx="1"/><circle cx="12" cy="16" r="2" fill="#965B83" opacity=".4"/><circle cx="28" cy="12" r="2" fill="#965B83" opacity=".4"/></svg>,
-                title: "Loyal Client Relationships",
-                desc: "Francy's commitment, love for animals, and gratitude-driven approach have earned her a devoted clientele who return time and again for her gentle, consistent care.",
+                titleKey: "francy_loyal_title" as const,
+                descKey: "francy_loyal_desc" as const,
               },
             ].map((card) => (
               <div
-                key={card.title}
+                key={card.titleKey}
                 style={{
                   backgroundColor: "#F8F8F8",
                   borderRadius: "12px",
@@ -382,7 +312,7 @@ export default function FrancyQuevedoPage() {
                     marginBottom: "12px",
                   }}
                 >
-                  {card.title}
+                  {t(card.titleKey)}
                 </h3>
                 <p
                   style={{
@@ -392,7 +322,7 @@ export default function FrancyQuevedoPage() {
                     lineHeight: 1.7,
                   }}
                 >
-                  {card.desc}
+                  {t(card.descKey)}
                 </p>
               </div>
             ))}
@@ -412,14 +342,14 @@ export default function FrancyQuevedoPage() {
         <div style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, backgroundColor: "#FFF", opacity: 0.7, zIndex: 1 }} />
         <div style={{ maxWidth: "1520px", margin: "0 auto", position: "relative", zIndex: 2 }}>
           <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(26px,3vw,40px)", color: "#000", textAlign: "center", marginBottom: "50px" }}>
-            You Can Find Us At These Locations Near You
+            {t("you_can_find_us")}
           </h2>
 
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "30px", alignItems: "stretch" }}>
+          <div className="locations-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "30px", alignItems: "stretch" }}>
             {/* LEFT: Large Richmond Ave Card */}
-            <div style={{ backgroundColor: "#965B83", borderRadius: "16px", padding: "24px", display: "flex", flexDirection: "row", gap: "24px", alignItems: "center", minHeight: "100%" }}>
+            <div className="location-card" style={{ backgroundColor: "#965B83", borderRadius: "16px", padding: "24px", display: "flex", flexDirection: "row", gap: "24px", alignItems: "center", minHeight: "100%" }}>
               <div style={{ flex: "0 0 200px", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                <Image src={locations[0].img} alt={locations[0].address} width={200} height={200} quality={85}
+                <Image src={locations[0].img} alt={locations[0].address} width={200} height={200} quality={85} sizes="(max-width: 768px) 100px, 200px"
                   style={{ width: "200px", height: "200px", borderRadius: "30% 70% 70% 30% / 30% 30% 70% 70%", objectFit: "cover" }} />
               </div>
               <div style={{ flex: 1 }}>
@@ -447,9 +377,9 @@ export default function FrancyQuevedoPage() {
             {/* RIGHT: Stacked cards */}
             <div style={{ display: "flex", flexDirection: "column", gap: "30px" }}>
               {[locations[1], locations[2]].map((loc) => (
-                <div key={loc.address} style={{ backgroundColor: "#965B83", borderRadius: "16px", padding: "24px", display: "flex", flexDirection: "row", gap: "24px", alignItems: "center" }}>
+                <div key={loc.address} className="location-card" style={{ backgroundColor: "#965B83", borderRadius: "16px", padding: "24px", display: "flex", flexDirection: "row", gap: "24px", alignItems: "center" }}>
                   <div style={{ flex: "0 0 150px", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                    <Image src={loc.img} alt={loc.address} width={150} height={150} quality={85}
+                    <Image src={loc.img} alt={loc.address} width={150} height={150} quality={85} sizes="(max-width: 768px) 80px, 150px"
                       style={{ width: "150px", height: "150px", borderRadius: "30% 70% 70% 30% / 30% 30% 70% 70%", objectFit: "cover" }} />
                   </div>
                   <div style={{ flex: 1 }}>

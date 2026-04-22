@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import PrivacyPolicyHeroText from "@/components/PrivacyPolicyHeroText";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
@@ -305,35 +306,14 @@ export default function PrivacyPolicyPage() {
           minHeight: "700px",
           display: "flex",
           alignItems: "center",
-          padding: "80px 20px 120px",
+          padding: "160px 20px 120px",
           overflow: "hidden",
         }}
       >
         {/* White overlay */}
         <div style={{ position: "absolute", inset: 0, backgroundColor: "#FFF", opacity: 0.6 }} />
         <div style={{ maxWidth: "1520px", margin: "0 auto", position: "relative", zIndex: 2 }}>
-          <h1
-            style={{
-              fontFamily: '"Bowlby One SC", sans-serif',
-              fontSize: "clamp(36px, 5vw, 72px)",
-              color: "#1F2124",
-              marginBottom: "16px",
-              lineHeight: 1.1,
-            }}
-          >
-            Privacy <span style={{ color: "#965B83" }}>Policy</span>
-          </h1>
-          <p
-            style={{
-              fontFamily: '"Outfit", sans-serif',
-              fontSize: "clamp(16px, 2vw, 22px)",
-              color: "#54595F",
-              marginBottom: "0",
-              maxWidth: "600px",
-            }}
-          >
-            The Dog House Pet Salon
-          </p>
+          <PrivacyPolicyHeroText />
         </div>
         {/* Curved bottom border */}
         <div style={{ position: "absolute", bottom: -1, left: 0, width: "100%", lineHeight: 0, zIndex: 2 }}>

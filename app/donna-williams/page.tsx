@@ -1,25 +1,8 @@
-import type { Metadata } from "next";
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
-
-export const metadata: Metadata = {
-  title: "Pet Trainer Donna Williams: A Grooming Expert",
-  description:
-    "Meet Donna Williams, a professional groomer and pet trainer in Houston with a passion for dogs and a thriving salon franchise in Texas.",
-  openGraph: {
-    title: "Pet Trainer Donna Williams: A Grooming Expert",
-    description:
-      "Meet Donna Williams, a professional groomer and pet trainer in Houston with a passion for dogs and a thriving salon franchise in Texas.",
-    url: "https://www.thedoghouseps.com/donna-williams/",
-    images: [
-      {
-        url: "https://www.thedoghouseps.com/wp-content/uploads/2025/03/image-17.jpg",
-        alt: "Donna Williams – Master Pet Groomer & Trainer",
-      },
-    ],
-  },
-  alternates: { canonical: "https://www.thedoghouseps.com/donna-williams/" },
-};
+import { useLanguage } from "@/lib/LanguageContext";
 
 const locations = [
   {
@@ -61,6 +44,8 @@ const locations = [
 ];
 
 export default function DonnaWilliamsPage() {
+  const { t } = useLanguage();
+
   return (
     <>
       {/* ── Hero ── */}
@@ -73,7 +58,7 @@ export default function DonnaWilliamsPage() {
           minHeight: "700px",
           display: "flex",
           alignItems: "center",
-          padding: "80px 20px 120px",
+          padding: "160px 20px 120px",
           overflow: "hidden",
         }}
       >
@@ -90,18 +75,18 @@ export default function DonnaWilliamsPage() {
               textTransform: "uppercase",
             }}
           >
-            Nationally Renowned Certified Master Pet Groomer &amp; Trainer
+            {t("donna_hero_title")}
           </p>
           <h1
             style={{
               fontFamily: '"Bowlby One SC", sans-serif',
-              fontSize: "clamp(36px,5vw,72px)",
+              fontSize: "60px",
               color: "#1F2124",
               lineHeight: 1.1,
               marginBottom: "8px",
             }}
           >
-            Donna <span style={{ color: "#965B83" }}>Williams</span>
+            {t("donna_bio_heading")}
           </h1>
           <p
             style={{
@@ -111,7 +96,7 @@ export default function DonnaWilliamsPage() {
               marginBottom: "0",
             }}
           >
-            The Dog House Pet Salon
+            {t("donna_hero_subtitle")}
           </p>
         </div>
         {/* Curved bottom border */}
@@ -155,6 +140,7 @@ export default function DonnaWilliamsPage() {
                 margin: "0 auto",
                 display: "block",
               }}
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 460px"
             />
           </div>
           <div className="groomer-right" style={{ flex: "0 0 70%" }}>
@@ -168,7 +154,7 @@ export default function DonnaWilliamsPage() {
                 marginTop: 0,
               }}
             >
-              Donna Williams
+              {t("donna_bio_heading")}
             </h2>
             <h3
               style={{
@@ -178,29 +164,34 @@ export default function DonnaWilliamsPage() {
                 marginBottom: "24px",
               }}
             >
-              Career Highlights
+              {t("donna_career_highlights")}
             </h3>
             <ul
               style={{
                 fontFamily: '"Outfit", sans-serif',
                 fontSize: "16px",
                 color: "#54595F",
-                lineHeight: 1.9,
-                paddingLeft: "20px",
+                lineHeight: 1.8,
+                listStyle: "none",
+                paddingLeft: 0,
                 marginBottom: "28px",
+                display: "flex",
+                flexDirection: "column",
+                gap: "8px",
               }}
             >
-              <li>30+ years of pet grooming experience</li>
-              <li>
-                Built a successful pet salon franchise in Houston, TX (15 yrs and
-                counting)
-              </li>
-              <li>
-                3 convenient location serving Houston, Pearland, and the surrounding
-                areas
-              </li>
-              <li>Groomed over 50,000+ Dogs</li>
-              <li>Rescued 500+ Dogs</li>
+              {[
+                t("donna_item1"),
+                t("donna_item2"),
+                t("donna_item3"),
+                t("donna_item4"),
+                t("donna_item5"),
+              ].map((item) => (
+                <li key={item} style={{ display: "flex", alignItems: "flex-start", gap: "10px" }}>
+                  <i className="fa-solid fa-circle-check" style={{ color: "#965B83", fontSize: "18px", marginTop: "4px", flexShrink: 0 }} />
+                  <span>{item}</span>
+                </li>
+              ))}
             </ul>
             <p
               style={{
@@ -211,8 +202,7 @@ export default function DonnaWilliamsPage() {
                 marginBottom: "16px",
               }}
             >
-              Donna believes in high-quality pet grooming with top-notch safety and
-              care for every dog.
+              {t("donna_believes")}
             </p>
             <p
               style={{
@@ -223,12 +213,7 @@ export default function DonnaWilliamsPage() {
                 marginBottom: "16px",
               }}
             >
-              Donna Williams is the principal owner of The Dog House Pet Salon and a
-              nationally renowned certified dog groomer. Originally from Vietnam,
-              Donna migrated to the United States at an early age and was raised in
-              the grand state of Montana, The Treasure State. After high School Donna
-              enlisted into the US Navy and served as a Petty Officer Third Class for
-              five years.
+              {t("donna_bio_1")}
             </p>
             <p
               style={{
@@ -239,12 +224,7 @@ export default function DonnaWilliamsPage() {
                 marginBottom: "16px",
               }}
             >
-              It was here where she found her passion for caring for canines. During
-              her deployment in the Caribbean Island of Puerto Rico, she was chosen for
-              a mission that tasked her team on a rescue mission that involved rescuing
-              dogs. This was the spark that lit the flame. Ever since that mission with
-              the Navy, Donna has never stopped loving and caring for canines. Donna is
-              now a certified dog whisperer.
+              {t("donna_bio_2")}
             </p>
             <p
               style={{
@@ -255,11 +235,7 @@ export default function DonnaWilliamsPage() {
                 marginBottom: "16px",
               }}
             >
-              After her naval duties were completed, she embarked on the journey of
-              learning everything she could and, about how to care for and enhance the
-              beauty of all dogs. She began her apprenticeship with groomers and
-              learned hands-on techniques that helped beautify and enhance the health
-              of her canine friends.
+              {t("donna_bio_3")}
             </p>
             <p
               style={{
@@ -270,11 +246,7 @@ export default function DonnaWilliamsPage() {
                 marginBottom: "16px",
               }}
             >
-              In 2009, Donna launched The Dog House Pet Salon. As a nationally
-              renowned certified dog groomer, she brings 30 years of pet
-              beautification skills and techniques to her entrepreneurial endeavor of
-              providing a high-quality white glove grooming service to every dog she
-              takes on as a client.
+              {t("donna_bio_4")}
             </p>
             <p
               style={{
@@ -285,15 +257,10 @@ export default function DonnaWilliamsPage() {
                 marginBottom: "28px",
               }}
             >
-              Her abundant patience and compassion for every dog is on display at
-              every interaction with her canine friends. Her love and care for dogs is
-              immeasurable. She teaches that all dogs have immense love to give their
-              human owners and have something to teach us. She stresses that grooming
-              techniques like daily brushing are invaluable when caring for your
-              canine.
+              {t("donna_bio_5")}
             </p>
             <Link href="/appointment-request" className="btn-primary">
-              Schedule An Appointment
+              {t("schedule_appointment_btn")}
             </Link>
           </div>
         </div>
@@ -311,12 +278,12 @@ export default function DonnaWilliamsPage() {
             }}
           >
             {[
-              { num: "30+", label: "Years of Experience" },
-              { num: "50,000+", label: "Dogs Groomed" },
-              { num: "500+", label: "Dogs Rescued" },
-              { num: "3", label: "Houston Locations" },
+              { num: "30+", labelKey: "donna_years_label" as const },
+              { num: "50,000+", labelKey: "donna_dogs_groomed" as const },
+              { num: "500+", labelKey: "donna_dogs_rescued" as const },
+              { num: "3", labelKey: "donna_locations_label" as const },
             ].map((stat) => (
-              <div key={stat.label}>
+              <div key={stat.labelKey}>
                 <p
                   style={{
                     fontFamily: '"Bowlby One SC", sans-serif',
@@ -335,7 +302,7 @@ export default function DonnaWilliamsPage() {
                     marginTop: "6px",
                   }}
                 >
-                  {stat.label}
+                  {t(stat.labelKey)}
                 </p>
               </div>
             ))}
@@ -355,7 +322,7 @@ export default function DonnaWilliamsPage() {
               marginBottom: "16px",
             }}
           >
-            What Sets <span style={{ color: "#965B83" }}>Donna</span> Apart
+            {t("donna_what_sets_apart")}
           </h2>
           <p
             style={{
@@ -368,9 +335,7 @@ export default function DonnaWilliamsPage() {
               lineHeight: 1.7,
             }}
           >
-            Nationally renowned, Navy veteran, certified master groomer — Donna
-            Williams brings three decades of unmatched dedication to every dog
-            she cares for.
+            {t("donna_what_sets_apart_desc")}
           </p>
           <div
             style={{
@@ -382,22 +347,22 @@ export default function DonnaWilliamsPage() {
             {[
               {
                 icon: <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6l3 9h9l-7 5 3 9-8-6-8 6 3-9-7-5h9z" fill="#965B83" opacity=".3" stroke="#965B83" strokeWidth="2" strokeLinejoin="round"/></svg>,
-                title: "Nationally Renowned Expertise",
-                desc: "With 30+ years of certified grooming experience, Donna is recognized nationwide for her white-glove service, attention to detail, and ability to handle any breed with expertise.",
+                titleKey: "donna_expertise_title" as const,
+                descKey: "donna_expertise_desc" as const,
               },
               {
                 icon: <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="16" cy="14" r="6" stroke="#965B83" strokeWidth="2.5"/><circle cx="16" cy="12.5" r="1.5" fill="#965B83"/><path d="M12 20c-3 2-5 5-5 9h18c0-4-2-7-5-9" stroke="#965B83" strokeWidth="2" fill="#965B83" opacity=".2"/><path d="M26 10l4-3m0 0l4 2m-4-2v5" stroke="#965B83" strokeWidth="2" strokeLinecap="round"/></svg>,
-                title: "Certified Dog Whisperer",
-                desc: "Donna's patience and compassion for every dog is unparalleled. A certified dog whisperer, she teaches that all dogs have immense love to give and something to teach us.",
+                titleKey: "donna_whisperer_title" as const,
+                descKey: "donna_whisperer_desc" as const,
               },
               {
                 icon: <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 34s-12-7-12-16c0-5 4-9 8-9 2.5 0 4 1.5 4 1.5s1.5-1.5 4-1.5c4 0 8 4 8 9 0 9-12 16-12 16z" fill="#965B83" opacity=".3" stroke="#965B83" strokeWidth="2.5"/></svg>,
-                title: "Rescue & Community Champion",
-                desc: "Having rescued 500+ dogs throughout her career, Donna's love for canines extends far beyond the salon. She is deeply committed to the well-being of every dog in her community.",
+                titleKey: "donna_rescue_title" as const,
+                descKey: "donna_rescue_desc" as const,
               },
             ].map((card) => (
               <div
-                key={card.title}
+                key={card.titleKey}
                 style={{
                   backgroundColor: "#F8F8F8",
                   borderRadius: "12px",
@@ -416,7 +381,7 @@ export default function DonnaWilliamsPage() {
                     marginBottom: "12px",
                   }}
                 >
-                  {card.title}
+                  {t(card.titleKey)}
                 </h3>
                 <p
                   style={{
@@ -426,7 +391,7 @@ export default function DonnaWilliamsPage() {
                     lineHeight: 1.7,
                   }}
                 >
-                  {card.desc}
+                  {t(card.descKey)}
                 </p>
               </div>
             ))}
@@ -446,14 +411,14 @@ export default function DonnaWilliamsPage() {
         <div style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, backgroundColor: "#FFF", opacity: 0.7, zIndex: 1 }} />
         <div style={{ maxWidth: "1520px", margin: "0 auto", position: "relative", zIndex: 2 }}>
           <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(26px,3vw,40px)", color: "#000", textAlign: "center", marginBottom: "50px" }}>
-            You Can Find Us At These Locations Near You
+            {t("you_can_find_us")}
           </h2>
 
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "30px", alignItems: "stretch" }}>
+          <div className="locations-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "30px", alignItems: "stretch" }}>
             {/* LEFT: Large Richmond Ave Card */}
-            <div style={{ backgroundColor: "#965B83", borderRadius: "16px", padding: "24px", display: "flex", flexDirection: "row", gap: "24px", alignItems: "center", minHeight: "100%" }}>
+            <div className="location-card" style={{ backgroundColor: "#965B83", borderRadius: "16px", padding: "24px", display: "flex", flexDirection: "row", gap: "24px", alignItems: "center", minHeight: "100%" }}>
               <div style={{ flex: "0 0 200px", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                <Image src={locations[0].img} alt={locations[0].address} width={200} height={200} quality={85}
+                <Image src={locations[0].img} alt={locations[0].address} width={200} height={200} quality={85} sizes="(max-width: 768px) 100px, 200px"
                   style={{ width: "200px", height: "200px", borderRadius: "30% 70% 70% 30% / 30% 30% 70% 70%", objectFit: "cover" }} />
               </div>
               <div style={{ flex: 1 }}>
@@ -481,9 +446,9 @@ export default function DonnaWilliamsPage() {
             {/* RIGHT: Stacked cards */}
             <div style={{ display: "flex", flexDirection: "column", gap: "30px" }}>
               {[locations[1], locations[2]].map((loc) => (
-                <div key={loc.address} style={{ backgroundColor: "#965B83", borderRadius: "16px", padding: "24px", display: "flex", flexDirection: "row", gap: "24px", alignItems: "center" }}>
+                <div key={loc.address} className="location-card" style={{ backgroundColor: "#965B83", borderRadius: "16px", padding: "24px", display: "flex", flexDirection: "row", gap: "24px", alignItems: "center" }}>
                   <div style={{ flex: "0 0 150px", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                    <Image src={loc.img} alt={loc.address} width={150} height={150} quality={85}
+                    <Image src={loc.img} alt={loc.address} width={150} height={150} quality={85} sizes="(max-width: 768px) 80px, 150px"
                       style={{ width: "150px", height: "150px", borderRadius: "30% 70% 70% 30% / 30% 30% 70% 70%", objectFit: "cover" }} />
                   </div>
                   <div style={{ flex: 1 }}>

@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import PetCamSettings from "./PetCamSettings";
+import PetCamHeroText from "@/components/PetCamHeroText";
+import PetCamIntroText from "@/components/PetCamIntroText";
+import PetCamSetupText from "@/components/PetCamSetupText";
+import PetCamBenefitsText from "@/components/PetCamBenefitsText";
+import PetCamTroubleshootText from "@/components/PetCamTroubleshootText";
+import PetCamCTAText from "@/components/PetCamCTAText";
 
 export const metadata: Metadata = {
   title: "Dog Daycare with Cameras for Peace of Mind | The Dog House",
@@ -93,14 +99,12 @@ export default function PetCamPage() {
           minHeight: "400px",
           display: "flex",
           alignItems: "center",
-          padding: "80px 20px 120px",
+          padding: "160px 20px 120px",
         }}
       >
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg, #7A4A6B 0%, #965B83 50%, #B07AA0 100%)" }} />
         <div style={{ maxWidth: "1520px", margin: "0 auto", position: "relative", zIndex: 2 }}>
-          <h1 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(36px,5vw,72px)", color: "#ffffff", marginBottom: "16px", lineHeight: 1.1 }}>
-            Dog Daycare <span style={{ color: "#ffddee" }}>With Cameras</span>
-          </h1>
+          <PetCamHeroText />
           <div style={{ marginTop: "32px" }}>
             <Link href="/appointment-request" style={{ backgroundColor: "#ffffff", color: "#965B83", padding: "15px 30px", borderRadius: "50px", fontFamily: '"Outfit", sans-serif', fontWeight: 700, fontSize: "18px", display: "inline-block", textDecoration: "none" }}>
               Schedule An Appointment
@@ -112,16 +116,7 @@ export default function PetCamPage() {
       {/* -- Intro -- */}
       <section style={{ backgroundColor: "#ffffff", padding: "80px 20px" }}>
         <div style={{ maxWidth: "900px", margin: "0 auto" }}>
-          <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(26px,3vw,40px)", color: "#1F2124", textAlign: "center", marginBottom: "16px" }}>
-            Dog Daycare With Cameras
-          </h2>
-          <h3 style={{ fontFamily: '"Outfit", sans-serif', fontSize: "20px", color: "#965B83", textAlign: "center", fontWeight: 400, marginBottom: "30px" }}>
-            These are the settings for our camera mobile app or pet cams
-          </h3>
-          <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", lineHeight: 1.7, textAlign: "center" }}>
-            You may download <strong>&quot;LTS-Connect&quot;</strong> to your mobile phone, Select <strong>America</strong>, then select <strong>USA</strong>, click the icon in the top left hand corner, select <strong>Devices</strong>, once selected click the icon in the top right hand corner; select <strong>Manual Adding</strong> and enter the below settings for the appropriate location&hellip;&hellip;&hellip;<br /><br />
-            After you&apos;ve entered the settings you will then select save in the top right corner and select <strong>Start Live View</strong> at the bottom of the screen.
-          </p>
+          <PetCamIntroText />
         </div>
       </section>
 
@@ -135,12 +130,7 @@ export default function PetCamPage() {
       {/* -- How to Set Up -- */}
       <section style={{ backgroundColor: "#ffffff", padding: "80px 20px" }}>
         <div style={{ maxWidth: "900px", margin: "0 auto" }}>
-          <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(24px,3vw,36px)", color: "#1F2124", textAlign: "center", marginBottom: "16px" }}>
-            How to Set Up and Access The Dog House Pet Salon Pet Cam App
-          </h2>
-          <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", lineHeight: 1.7, textAlign: "center", marginBottom: "50px" }}>
-            With our pet cam, staying connected to your pet has never been easier. By following a few simple steps, you can set up the LTS-Connect app on your mobile device, giving you the ability to check in on your pet from anywhere, any time.
-          </p>
+          <PetCamSetupText />
           <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "22px", color: "#1F2124", marginBottom: "30px" }}>
             Step-by-Step Guide for Downloading and Setting Up LTS-Connect
           </h3>
@@ -163,15 +153,7 @@ export default function PetCamPage() {
       {/* -- About Pet Cam -- */}
       <section style={{ backgroundColor: "#F8F8F8", padding: "80px 20px" }}>
         <div style={{ maxWidth: "900px", margin: "0 auto" }}>
-          <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(24px,3vw,36px)", color: "#1F2124", textAlign: "center", marginBottom: "24px" }}>
-            Using The Dog House Pet Salon Pet Cam
-          </h2>
-          <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", lineHeight: 1.7, textAlign: "center", marginBottom: "50px" }}>
-            The Dog House Pet Salon Pet Cam is a fantastic feature for pet parents who want reassurance that their furry family member is safe, happy, and having fun while at our facility. With the Pet Cam, you can easily check in on your pet during the day, monitor their play sessions, and even share memorable moments with family and friends.
-          </p>
-          <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "22px", color: "#1F2124", marginBottom: "30px" }}>
-            Key Benefits of Our Pet Cam for Pet Parents
-          </h3>
+          <PetCamBenefitsText />
           <style dangerouslySetInnerHTML={{ __html: `
             .petcam-benefits-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
             @media (max-width: 600px) { .petcam-benefits-grid { grid-template-columns: 1fr; } }
@@ -190,12 +172,7 @@ export default function PetCamPage() {
       {/* -- Troubleshooting -- */}
       <section style={{ backgroundColor: "#ffffff", padding: "80px 20px" }}>
         <div style={{ maxWidth: "900px", margin: "0 auto" }}>
-          <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(24px,3vw,36px)", color: "#1F2124", textAlign: "center", marginBottom: "16px" }}>
-            Troubleshooting Tips for the LTS-Connect Pet Cam App
-          </h2>
-          <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", lineHeight: 1.7, textAlign: "center", marginBottom: "40px" }}>
-            If you encounter any issues with the LTS-Connect app, here are a few quick troubleshooting steps:
-          </p>
+          <PetCamTroubleshootText />
           <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
             {troubleshootingTips.map((tip) => (
               <div key={tip.title} style={{ display: "flex", gap: "16px", alignItems: "flex-start", backgroundColor: "#F8F8F8", borderRadius: "12px", padding: "24px" }}>
@@ -218,12 +195,7 @@ export default function PetCamPage() {
       {/* -- CTA -- */}
       <section style={{ backgroundColor: "#965B83", padding: "80px 20px" }}>
         <div style={{ maxWidth: "800px", margin: "0 auto", textAlign: "center" }}>
-          <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(26px,3vw,40px)", color: "#ffffff", marginBottom: "16px" }}>
-            Ready to Enroll in Our Daycare?
-          </h2>
-          <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "18px", color: "rgba(255,255,255,0.9)", marginBottom: "30px", lineHeight: 1.6 }}>
-            Enjoy peace of mind with our live pet cam while your dog plays, socializes, and has the best day ever at The Dog House Pet Salon.
-          </p>
+          <PetCamCTAText />
           <div style={{ display: "flex", gap: "16px", justifyContent: "center", flexWrap: "wrap" }}>
             <Link href="/appointment-request" style={{ backgroundColor: "#ffffff", color: "#965B83", padding: "15px 30px", borderRadius: "50px", fontFamily: '"Outfit", sans-serif', fontWeight: 700, fontSize: "18px", display: "inline-block", textDecoration: "none" }}>
               Schedule An Appointment

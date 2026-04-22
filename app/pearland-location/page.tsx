@@ -4,6 +4,7 @@ import Link from "next/link";
 import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 import { ReviewWidget } from "@/components/ReviewWidget";
 import { LOCATIONS } from "@/lib/locations";
+import PearlandLocationContent from "@/components/location/PearlandLocationContent";
 
 export const metadata: Metadata = {
   title: "Pet Grooming Salon Pearland",
@@ -153,15 +154,12 @@ export default function PearlandLocationPage() {
           minHeight: "700px",
           display: "flex",
           alignItems: "center",
-          padding: "80px 20px 120px",
+          padding: "160px 20px 120px",
         }}
       >
         <div style={{ position: "absolute", inset: 0, backgroundColor: "#ffffff", opacity: 0.6 }} />
         <div style={{ maxWidth: "1520px", margin: "0 auto", position: "relative", zIndex: 2 }}>
-          <h1 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(32px,5vw,64px)", color: "#1F2124", marginBottom: "24px", lineHeight: 1.1 }}>
-            The Dog House <span style={{ color: "#965B83" }}>Pet Salon<br />– Pearland</span>
-          </h1>
-          <Link href="/appointment-request" className="btn-primary">Schedule An Appointment</Link>
+          <PearlandLocationContent />
         </div>
       </section>
 
@@ -411,7 +409,7 @@ export default function PearlandLocationPage() {
       {/* ── Need Directions ── */}
       <section style={{ backgroundColor: "#ffffff", padding: "80px 20px", textAlign: "center", marginBottom: "65px" }}>
         <div style={{ maxWidth: "700px", margin: "0 auto" }}>
-          <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(36px,5vw,72px)", color: "#965B83", marginBottom: "20px", lineHeight: 1.1 }}>
+          <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "60px", color: "#965B83", marginBottom: "20px", lineHeight: 1.1 }}>
             Need Directions?
           </h2>
           <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "18px", color: "#54595F", marginBottom: "36px" }}>

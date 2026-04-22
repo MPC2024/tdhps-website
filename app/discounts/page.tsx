@@ -1,6 +1,13 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import styles from "./discounts.module.css";
+import DiscountsHeroText from "@/components/DiscountsHeroText";
+import DiscountsOfferCard from "@/components/DiscountsOfferCard";
+import DiscountsPartnerCards from "@/components/DiscountsPartnerCards";
+import DiscountsSeasonalPromo from "@/components/DiscountsSeasonalPromo";
+import DiscountsRedeemText from "@/components/DiscountsRedeemText";
+import DiscountsCTAText from "@/components/DiscountsCTAText";
+import DiscountsLocationText from "@/components/DiscountsLocationText";
 
 export const metadata: Metadata = {
   title: "Special Offers & Discounts | The Dog House Pet Salon",
@@ -29,150 +36,27 @@ export default function DiscountsPage() {
       {/* Hero Section */}
       <section className={styles.hero}>
         <div className={styles.heroContent}>
-          <h1 className={styles.title}>Special Offers & Discounts</h1>
-          <p className={styles.subtitle}>
-            Save on premium pet grooming, daycare, and boarding services
-          </p>
+          <DiscountsHeroText />
         </div>
       </section>
 
       {/* Main Content */}
       <div className={styles.content}>
         {/* New Customer Discount */}
-        <section className={styles.offerCard}>
-          <div className={styles.offerHeader}>
-            <h2 className={styles.offerTitle}>New Customer Special</h2>
-            <div className={styles.badge}>10% OFF</div>
-          </div>
-          <p className={styles.offerDescription}>
-            First-time customers receive 10% off their first grooming, daycare,
-            or boarding service. We want to help your pup experience the premium
-            care that sets The Dog House Pet Salon apart.
-          </p>
-          <p className={styles.offerNote}>
-            Valid for first visit only. Cannot be combined with other offers.
-          </p>
-          <Link href="/appointment-request/" className={styles.ctaButton}>
-            Book Your First Appointment
-          </Link>
-        </section>
+        <DiscountsOfferCard />
 
-        {/* The Farmer's Dog Partnership */}
-        <section className={styles.partnerCard}>
-          <div className={styles.partnerHeader}>
-            <h2 className={styles.partnerTitle}>The Farmer's Dog Partnership</h2>
-          </div>
-          <p className={styles.partnerDescription}>
-            We're proud partners with The Farmer's Dog, providing fresh,
-            healthy meal plans delivered right to your door. Our clients
-            receive special pricing and personalized nutrition recommendations.
-          </p>
-          <p className={styles.partnerBenefit}>
-            Fresh, real ingredients • Customized nutrition • Convenient delivery
-          </p>
-          <a
-            href="https://www.thefarmersdog.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.partnerLink}
-          >
-            Learn More About The Farmer's Dog →
-          </a>
-        </section>
-
-        {/* NuVet Labs Partnership */}
-        <section className={styles.partnerCard}>
-          <div className={styles.partnerHeader}>
-            <h2 className={styles.partnerTitle}>NuVet Labs Supplements</h2>
-          </div>
-          <p className={styles.partnerDescription}>
-            We recommend NuVet Labs for comprehensive pet nutrition. Their
-            scientifically formulated supplements support immune health, joint
-            strength, and overall wellness for all dog breeds and ages.
-          </p>
-          <p className={styles.partnerBenefit}>
-            Veterinarian recommended • Clinically tested • All-natural ingredients
-          </p>
-          <a
-            href="https://www.nuvetlabs.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.partnerLink}
-          >
-            Explore NuVet Labs Products →
-          </a>
-        </section>
+        {/* Partner Cards */}
+        <DiscountsPartnerCards />
 
         {/* Seasonal Promotions */}
-        <section className={styles.seasonalCard}>
-          <h2 className={styles.seasonalTitle}>Seasonal Promotions</h2>
-          <div className={styles.promotionList}>
-            <div className={styles.promotion}>
-              <h3>Holiday Grooming Packages</h3>
-              <p>
-                Get your pup looking festive with our special holiday grooming
-                packages (November - December).
-              </p>
-            </div>
-            <div className={styles.promotion}>
-              <h3>Summer Wellness Special</h3>
-              <p>
-                Beat the heat with our cooling baths and summer daycare specials
-                (June - August).
-              </p>
-            </div>
-            <div className={styles.promotion}>
-              <h3>Spring Refresh Program</h3>
-              <p>
-                Fresh start this spring! Comprehensive grooming with special
-                grooming school discounts (March - May).
-              </p>
-            </div>
-          </div>
-        </section>
+        <DiscountsSeasonalPromo />
 
         {/* How to Redeem */}
-        <section className={styles.redeemCard}>
-          <h2 className={styles.redeemTitle}>How to Redeem Your Offer</h2>
-          <ol className={styles.steps}>
-            <li>
-              <span className={styles.stepNumber}>1</span>
-              <div>
-                <h3>Contact Us</h3>
-                <p>
-                  Call <strong>(832) 930-4060</strong> or visit one of our three
-                  convenient locations.
-                </p>
-              </div>
-            </li>
-            <li>
-              <span className={styles.stepNumber}>2</span>
-              <div>
-                <h3>Book Your Appointment</h3>
-                <p>
-                  Select the service you're interested in and mention your offer
-                  when booking.
-                </p>
-              </div>
-            </li>
-            <li>
-              <span className={styles.stepNumber}>3</span>
-              <div>
-                <h3>Enjoy the Savings</h3>
-                <p>
-                  Your discount will be applied at checkout. No coupon code needed!
-                </p>
-              </div>
-            </li>
-          </ol>
-        </section>
+        <DiscountsRedeemText />
 
         {/* CTA Section */}
         <section className={styles.finalCTA}>
-          <h2>Ready to Give Your Pup Premium Care?</h2>
-          <p>
-            Schedule your appointment today and take advantage of these exclusive offers
-          </p>
+          <DiscountsCTAText />
           <div className={styles.ctaButtonGroup}>
             <Link href="/appointment-request/" className={styles.primaryCTA}>
               Book an Appointment
@@ -186,7 +70,7 @@ export default function DiscountsPage() {
 
       {/* Location Quick Links */}
       <section className={styles.locations}>
-        <h2 className={styles.locationsTitle}>Visit One of Our Three Locations</h2>
+        <DiscountsLocationText />
         <div className={styles.locationGrid}>
           <Link href="/galleria-uptown-park-location" className={styles.locationCard}>
             <h3>Galleria / Uptown Park</h3>

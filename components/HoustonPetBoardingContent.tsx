@@ -3,7 +3,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
+import { useLanguage } from "@/lib/LanguageContext";
 import BlogCarousel, { type BlogPost } from "@/components/BlogCarousel";
+import StoreLocations from "@/components/StoreLocations";
+import type { TranslationKey } from "@/lib/translations";
 
 const boardingBlogPosts: BlogPost[] = [
   { title: "The Benefits of Routine Dog Grooming in Houston's Climate", img: "https://www.thedoghouseps.com/wp-content/uploads/2026/03/Shihtzu_Grooming_Pearland.jpg", href: "https://www.thedoghouseps.com/the-benefits-of-routine-dog-grooming-in-houstons-climate/" },
@@ -33,18 +36,22 @@ const reviews = [
   {
     name: "Kevin Garnepudi",
     text: "I have been using the dog house for weekend day care and grooming for a while and could not be happier with the way they treat my dog as well as myself. The staff is always friendly and accommodating and can tell they genuinely care about the dogs they look after. Finally as most German Shepherd owners know getting the dog dry after a bath is an impossible task yet some how the Dog House always is able to accomplish this!",
+    textEs: "He estado usando The Dog House para guardería de fin de semana y peluquería por un tiempo y no podría estar más feliz con la forma en que tratan a mi perro y a mí. El personal siempre es amable y servicial, y se nota que realmente se preocupan por los perros que cuidan. Finalmente, como la mayoría de los dueños de Pastor Alemán saben, secar al perro después de un baño es una tarea imposible, pero de alguna manera The Dog House siempre logra hacerlo.",
   },
   {
     name: "William Gillespie",
     text: "Alamo absolutely loves it here, they take awesome care of him while I am traveling for work. They are so good with all the pets, so I decided to donate five boxes worth of new Bark Box toys, so his friends and other pet parents could enjoy them.",
+    textEs: "A Alamo le encanta este lugar, lo cuidan increíblemente bien mientras viajo por trabajo. Son tan buenos con todas las mascotas que decidí donar cinco cajas de juguetes nuevos de Bark Box para que sus amigos y otros padres de mascotas pudieran disfrutarlos.",
   },
   {
     name: "Ross Monsen",
     text: "Love this place! I have been using them for years. I have taken my dog to a million different groomers, but this my got to. If you're like me and not a good planner, then this is your spot. They're able to squeeze me in last minute 90% of the time. Where others want an appointment 1-2 months in advance which is nuts. Great staff and my dog loves them. Price is in line with everyone else.",
+    textEs: "Me encanta este lugar. Los he estado usando por años. He llevado a mi perro a un millón de peluqueros diferentes, pero este es mi favorito. Si eres como yo y no planificas bien, este es tu lugar. Pueden atenderme de último momento el 90% de las veces. Otros quieren cita con 1-2 meses de anticipación, lo cual es una locura. Excelente personal y a mi perro le encantan. El precio está en línea con todos los demás.",
   },
   {
     name: "Tiffany Tegeler",
     text: "I've been taking Cooper here for about a year. He always leaves looking so fresh and clean! He is difficult when it comes to messing with his face and paws but I can tell they take their time with him. They have a punch program. After 10 punches you can get a free groom for your pup which is a great deal. He also ALWAYS leaves with a little bandana which is a huge perk here!",
+    textEs: "He estado trayendo a Cooper aquí por aproximadamente un año. Siempre sale viéndose tan fresco y limpio. Es difícil cuando se trata de tocarle la cara y las patas, pero se nota que se toman su tiempo con él. Tienen un programa de puntos. Después de 10 puntos puedes obtener una peluquería gratis para tu perro, lo cual es una gran oferta. También SIEMPRE sale con un pañuelo, lo cual es una gran ventaja aquí.",
   },
 ];
 
@@ -143,22 +150,22 @@ function CounterBox({ target, suffix, label }: { target: number; suffix: string;
   );
 }
 
-function HoursModal({ onClose }: { onClose: () => void }) {
+function HoursModal({ onClose, t }: { onClose: () => void; t: (key: TranslationKey) => string }) {
   return (
     <div style={{ position: "fixed", inset: 0, backgroundColor: "rgba(0,0,0,0.6)", zIndex: 100, display: "flex", alignItems: "center", justifyContent: "center", padding: "20px" }} onClick={onClose}>
       <div style={{ backgroundColor: "#fff", borderRadius: "16px", maxWidth: "700px", width: "100%", maxHeight: "85vh", overflowY: "auto", padding: "40px", position: "relative" }} onClick={(e) => e.stopPropagation()}>
         <button onClick={onClose} style={{ position: "absolute", top: "16px", right: "16px", background: "none", border: "none", cursor: "pointer", fontSize: "24px", color: "#965B83" }}><i className="fa-solid fa-xmark" /></button>
         <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "24px", color: "#965B83", marginBottom: "24px" }}>The Dog House Pet Salon</h2>
-        <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "18px", color: "#965B83", marginBottom: "12px" }}>Galleria / Memorial Hours</h3>
+        <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "18px", color: "#965B83", marginBottom: "12px" }}>{t("galleria_memorial_hours")}</h3>
         <table style={{ width: "100%", borderCollapse: "collapse", marginBottom: "16px" }}><tbody>
-          {[["Monday","7:00 am – 7:00 pm"],["Tuesday","7:00 am – 7:00 pm"],["Wednesday","7:00 am – 7:00 pm"],["Thursday","7:00 am – 7:00 pm"],["Friday","7:00 am – 7:00 pm"],["Saturday","8:00 am – 6:00 pm"],["Sunday","Closed"]].map(([d,h]) => (
+          {[[t("monday"),t("galleria_memorial_hours_time1")],[t("tuesday"),t("galleria_memorial_hours_time1")],[t("wednesday"),t("galleria_memorial_hours_time1")],[t("thursday"),t("galleria_memorial_hours_time1")],[t("friday"),t("galleria_memorial_hours_time1")],[t("saturday"),t("galleria_memorial_hours_time2")],[t("sunday"),t("closed")]].map(([d,h]) => (
             <tr key={d} style={{ borderBottom: "1px solid #f0f0f0" }}><td style={{ padding: "8px 0", fontWeight: 500 }}>{d}</td><td style={{ padding: "8px 0", textAlign: "right" }}>{h}</td></tr>
           ))}
         </tbody></table>
-        <p style={{ fontSize: "13px", fontStyle: "italic", color: "#965B83" }}>Sunday boarding drop off &amp; pick up from 8am–9am or 4pm–5pm only</p>
-        <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "18px", color: "#965B83", marginTop: "24px", marginBottom: "12px" }}>Pearland Hours</h3>
+        <p style={{ fontSize: "13px", fontStyle: "italic", color: "#965B83" }}>{t("sunday_note")}</p>
+        <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "18px", color: "#965B83", marginTop: "24px", marginBottom: "12px" }}>{t("pearland_hours")}</h3>
         <table style={{ width: "100%", borderCollapse: "collapse" }}><tbody>
-          {[["Monday","7:00 am – 6:00 pm"],["Tuesday","7:00 am – 6:00 pm"],["Wednesday","7:00 am – 6:00 pm"],["Thursday","7:00 am – 6:00 pm"],["Friday","7:00 am – 6:00 pm"],["Saturday","8:00 am – 6:00 pm"],["Sunday","Closed"]].map(([d,h]) => (
+          {[[t("monday"),t("pearland_hours_time1")],[t("tuesday"),t("pearland_hours_time1")],[t("wednesday"),t("pearland_hours_time1")],[t("thursday"),t("pearland_hours_time1")],[t("friday"),t("pearland_hours_time1")],[t("saturday"),t("pearland_hours_time2")],[t("sunday"),t("closed")]].map(([d,h]) => (
             <tr key={d} style={{ borderBottom: "1px solid #f0f0f0" }}><td style={{ padding: "8px 0", fontWeight: 500 }}>{d}</td><td style={{ padding: "8px 0", textAlign: "right" }}>{h}</td></tr>
           ))}
         </tbody></table>
@@ -167,21 +174,21 @@ function HoursModal({ onClose }: { onClose: () => void }) {
   );
 }
 
-function VaccinationsModal({ onClose }: { onClose: () => void }) {
+function VaccinationsModal({ onClose, t }: { onClose: () => void; t: (key: TranslationKey) => string }) {
   return (
     <div style={{ position: "fixed", inset: 0, backgroundColor: "rgba(0,0,0,0.6)", zIndex: 100, display: "flex", alignItems: "center", justifyContent: "center", padding: "20px" }} onClick={onClose}>
       <div style={{ backgroundColor: "#fff", borderRadius: "16px", maxWidth: "700px", width: "100%", maxHeight: "85vh", overflowY: "auto", padding: "40px", position: "relative" }} onClick={(e) => e.stopPropagation()}>
         <button onClick={onClose} style={{ position: "absolute", top: "16px", right: "16px", background: "none", border: "none", cursor: "pointer", fontSize: "24px", color: "#965B83" }}><i className="fa-solid fa-xmark" /></button>
-        <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "24px", color: "#965B83", marginBottom: "24px" }}>Required Vaccinations</h2>
-        <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "18px", color: "#965B83", marginBottom: "12px" }}>Boarding and Daycare Services</h3>
-        <p style={{ marginBottom: "12px" }}>The following unexpired vaccinations are required for Boarding and Daycare Services:</p>
-        <ol style={{ paddingLeft: "20px", listStyleType: "decimal" }}><li>Bordetella</li><li>Distemper</li><li>Rabies</li><li style={{ fontStyle: "italic", color: "#965B83" }}>Influenza is NOT REQUIRED but RECOMMENDED</li></ol>
+        <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "24px", color: "#965B83", marginBottom: "24px" }}>{t("required_vaccinations")}</h2>
+        <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "18px", color: "#965B83", marginBottom: "12px" }}>{t("boarding_daycare_services")}</h3>
+        <p style={{ marginBottom: "12px" }}>{t("vaccinations_boarding")}</p>
+        <ol style={{ paddingLeft: "20px", listStyleType: "decimal" }}><li>{t("bordetella")}</li><li>{t("distemper")}</li><li>{t("rabies")}</li><li style={{ fontStyle: "italic", color: "#965B83" }}>{t("influenza_recommended")}</li></ol>
       </div>
     </div>
   );
 }
 
-function PricingCarousel({ items }: { items: typeof boardingPackages }) {
+function PricingCarousel({ items, t }: { items: typeof boardingPackages; t: (key: TranslationKey) => string }) {
   const [activeIndex, setActiveIndex] = useState(1);
   const [sliding, setSliding] = useState(false);
   const [slideDirection, setSlideDirection] = useState<"left" | "right">("left");
@@ -262,6 +269,7 @@ function PricingCarousel({ items }: { items: typeof boardingPackages }) {
                   alt={item.suite}
                   width={200}
                   height={200}
+                  loading="lazy"
                   style={{ width: "100%", height: "100%", objectFit: "cover" }}
                 />
               </div>
@@ -315,7 +323,7 @@ function PricingCarousel({ items }: { items: typeof boardingPackages }) {
                   transition: "all 0.3s ease",
                 }}
               >
-                Book Now
+                {t("boarding_book_now")}
               </Link>
             </div>
           );
@@ -341,7 +349,7 @@ function PricingCarousel({ items }: { items: typeof boardingPackages }) {
   );
 }
 
-function TestimonialCarousel({ reviews: reviewsData }: { reviews: typeof reviews }) {
+function TestimonialCarousel({ reviews: reviewsData, language }: { reviews: typeof reviews; language: string }) {
   const [current, setCurrent] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
   const [sliding, setSliding] = useState(false);
@@ -380,31 +388,51 @@ function TestimonialCarousel({ reviews: reviewsData }: { reviews: typeof reviews
 
   return (
     <section style={{ backgroundColor: "#F8F8F8", padding: "80px 20px" }}>
+      <style>{`
+        @media (max-width: 767px) {
+          .review-card-boarding {
+            padding: 24px 16px !important;
+            min-height: auto !important;
+            gap: 16px !important;
+          }
+          .review-card-boarding .review-card-content {
+            flex-direction: column !important;
+            gap: 16px !important;
+          }
+          .review-carousel-arrows-boarding {
+            display: none !important;
+          }
+          .review-carousel-container-boarding {
+            gap: 0 !important;
+          }
+        }
+      `}</style>
       <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
         <div
+          className="review-carousel-container-boarding"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
           style={{ position: "relative", display: "flex", alignItems: "center", gap: "16px" }}
         >
-          <button onClick={goPrev} style={{ background: "none", border: "2px solid #E0E0E0", borderRadius: "50%", width: "44px", height: "44px", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, color: "#965B83" }} aria-label="Previous">
+          <button className="review-carousel-arrows-boarding" onClick={goPrev} style={{ background: "none", border: "2px solid #E0E0E0", borderRadius: "50%", width: "44px", height: "44px", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, color: "#965B83" }} aria-label="Previous">
             <i className="fa-solid fa-chevron-left" style={{ fontSize: "16px" }} />
           </button>
           <div className="review-card-boarding" style={{ flex: 1, backgroundColor: "#fff", borderRadius: "16px", padding: "40px", boxShadow: "0 2px 12px rgba(0,0,0,0.06)", display: "flex", alignItems: "center", gap: "32px", overflow: "hidden", minHeight: "180px" }}>
             <div className="review-card-content" style={{ transition: "transform 0.3s ease, opacity 0.3s ease", transform: sliding ? "translateX(-40px)" : "translateX(0)", opacity: sliding ? 0 : 1, display: "flex", alignItems: "center", gap: "32px", width: "100%" }}>
-              <div style={{ flexShrink: 0, width: "80px", height: "80px", borderRadius: "50%", border: "3px solid #965B83", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                <i className="fa-solid fa-comment-dots" style={{ fontSize: "28px", color: "#965B83" }} />
+              <div style={{ flexShrink: 0, width: "clamp(60px, 15vw, 80px)", height: "clamp(60px, 15vw, 80px)", borderRadius: "50%", border: "3px solid #965B83", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                <i className="fa-solid fa-comment-dots" style={{ fontSize: "clamp(20px, 5vw, 28px)", color: "#965B83" }} />
               </div>
               <div style={{ flex: 1 }}>
                 <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", lineHeight: 1.7, marginBottom: "16px" }}>
-                  {review.text}
+                  {language === "es" && review.textEs ? review.textEs : review.text}
                 </p>
-                <p style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "16px", color: "#965B83", margin: 0 }}>
+                <p style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(14px, 1.5vw, 16px)", color: "#965B83", margin: 0 }}>
                   {review.name}
                 </p>
               </div>
             </div>
           </div>
-          <button onClick={goNext} style={{ background: "none", border: "2px solid #E0E0E0", borderRadius: "50%", width: "44px", height: "44px", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, color: "#965B83" }} aria-label="Next">
+          <button className="review-carousel-arrows-boarding" onClick={goNext} style={{ background: "none", border: "2px solid #E0E0E0", borderRadius: "50%", width: "44px", height: "44px", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, color: "#965B83" }} aria-label="Next">
             <i className="fa-solid fa-chevron-right" style={{ fontSize: "16px" }} />
           </button>
         </div>
@@ -414,13 +442,14 @@ function TestimonialCarousel({ reviews: reviewsData }: { reviews: typeof reviews
 }
 
 export default function HoustonPetBoardingContent() {
+  const { t, language } = useLanguage();
   const [showHoursModal, setShowHoursModal] = useState(false);
   const [showVaccinationsModal, setShowVaccinationsModal] = useState(false);
 
   return (
     <>
-      {showHoursModal && <HoursModal onClose={() => setShowHoursModal(false)} />}
-      {showVaccinationsModal && <VaccinationsModal onClose={() => setShowVaccinationsModal(false)} />}
+      {showHoursModal && <HoursModal onClose={() => setShowHoursModal(false)} t={t} />}
+      {showVaccinationsModal && <VaccinationsModal onClose={() => setShowVaccinationsModal(false)} t={t} />}
 
       {/* ── Hero Banner ── */}
       <section
@@ -432,7 +461,7 @@ export default function HoustonPetBoardingContent() {
           minHeight: "700px",
           display: "flex",
           alignItems: "center",
-          padding: "80px 20px 120px",
+          padding: "160px 20px 120px",
         }}
       >
         {/* White overlay with 0.6 opacity */}
@@ -446,14 +475,14 @@ export default function HoustonPetBoardingContent() {
         </div>
 
         <div style={{ maxWidth: "1520px", margin: "0 auto", position: "relative", zIndex: 2 }}>
-          <h1 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(36px,5vw,72px)", color: "#1F2124", marginBottom: "16px", lineHeight: 1.1 }}>
-            Houston <span style={{ color: "#965B83" }}>pet boarding</span>
+          <h1 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "60px", color: "#1F2124", marginBottom: "16px", lineHeight: 1.1 }}>
+            Houston <span style={{ color: "#965B83" }}>{t("pet_boarding")}</span>
           </h1>
           <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "clamp(16px,2vw,20px)", color: "#54595F", marginBottom: "32px" }}>
-            All boarding clients get free daycare during their stay
+            {t("boarding_all_clients_free_daycare")}
           </p>
           <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
-            <Link href="/appointment-request" className="btn-primary">Schedule An Appointment</Link>
+            <Link href="/appointment-request" className="btn-primary">{t("schedule_appointment")}</Link>
           </div>
         </div>
       </section>
@@ -464,7 +493,7 @@ export default function HoustonPetBoardingContent() {
 
           {/* Title above video */}
           <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(28px,3.5vw,52px)", color: "#1F2124", textAlign: "center", marginBottom: "32px", lineHeight: 1.1 }}>
-            All boarding clients get <span style={{ color: "#965B83" }}>free daycare</span> during their stay
+            {t("boarding_all_clients_free_daycare")}
           </h2>
 
           {/* Video Player */}
@@ -488,11 +517,11 @@ export default function HoustonPetBoardingContent() {
           {/* Content below counter — matching screenshot layout */}
           <div style={{ textAlign: "center", maxWidth: "860px", marginInline: "auto" }}>
             <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(32px,4vw,56px)", color: "#1F2124", marginBottom: "24px", lineHeight: 1.1 }}>
-              Over <span style={{ color: "#965B83" }}>30+</span> Years of Success<br />
-              with <span style={{ color: "#965B83" }}>40,000+</span> Satisfied Clients
+              {t("boarding_over_30_years")}<br />
+              {t("boarding_with_40000_clients")}
             </h2>
             <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", lineHeight: 1.8, margin: 0 }}>
-              The Dog House Pet Salon has become the pet bathing center for all animal lovers in Houston. With over 30+ Years of pet grooming experience, we&apos;ve been successfully delivering a pet&apos;s paradise to our clients &amp; their furry friends. Our level of care &amp; attention to detail is unmatched in the industry, and that&apos;s what has kept our community growing &amp; returning for decades.
+              {t("boarding_center_description")}
             </p>
           </div>
 
@@ -520,14 +549,15 @@ export default function HoustonPetBoardingContent() {
               alt="The Dog House Logo"
               width={120}
               height={120}
+              loading="lazy"
               style={{ marginBottom: "20px", width: "120px", height: "auto" }}
             />
             <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(28px,3vw,42px)", color: "#1F2124", marginBottom: "24px" }}>
-              Boarding <span style={{ color: "#965B83" }}>Clients Special</span>
+              {t("boarding_clients_special")}
             </h2>
             <div style={{ width: "100%", height: "2px", backgroundColor: "#1F2124", marginBottom: "20px" }} />
             <div style={{ display: "flex", flexWrap: "wrap", gap: "8px 32px", marginBottom: "24px" }}>
-              {["Enjoy Daycare Included", "No Extra Charge", "It's All Part of your Boarding Price"].map((item) => (
+              {[t("boarding_enjoy_daycare_included"), t("boarding_no_extra_charge"), t("boarding_part_of_price")].map((item) => (
                 <p key={item} style={{ fontFamily: '"Outfit", sans-serif', fontSize: "15px", color: "#1F2124", fontStyle: "italic", margin: 0, display: "flex", alignItems: "center", gap: "8px" }}>
                   <i className="fa-solid fa-circle-check" style={{ color: "#965B83", fontSize: "16px", flexShrink: 0 }} />
                   {item}
@@ -535,7 +565,7 @@ export default function HoustonPetBoardingContent() {
               ))}
             </div>
             <Link href="/appointment-request" style={{ display: "inline-block", backgroundColor: "#965B83", color: "#ffffff", padding: "12px 32px", borderRadius: "50px", fontFamily: '"Outfit", sans-serif', fontWeight: 600, fontSize: "15px", textDecoration: "none", transition: "all 0.3s ease" }}>
-              Schedule An Appointment
+              {t("schedule_appointment")}
             </Link>
           </div>
         </div>
@@ -545,13 +575,13 @@ export default function HoustonPetBoardingContent() {
       <section style={{ backgroundColor: "#ffffff", padding: "80px 20px" }}>
         <div style={{ maxWidth: "1520px", margin: "0 auto" }}>
           <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(28px,3vw,42px)", color: "#1F2124", textAlign: "center", marginBottom: "12px" }}>
-            Our Pet Boarding Packages
+            {t("boarding_packages")}
           </h2>
           <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", textAlign: "center", lineHeight: 1.7, maxWidth: "700px", margin: "0 auto 50px" }}>
-            We provide personalized pet boarding packages for dogs and cats, ensuring enriching activities and a safe, happy stay. Enjoy perks like real-time webcam access, flexible schedules, and loyalty program discounts. Trust us to care for your pet like family!
+            {t("boarding_packages_desc")}
           </p>
 
-          <PricingCarousel items={boardingPackages.slice(0, 4)} />
+          <PricingCarousel items={boardingPackages.slice(0, 4)} t={t} />
         </div>
       </section>
 
@@ -559,7 +589,7 @@ export default function HoustonPetBoardingContent() {
       <section style={{ backgroundColor: "#965B83", padding: "80px 20px", position: "relative" }}>
         <div style={{ maxWidth: "1520px", margin: "0 auto" }}>
           <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(28px,3vw,42px)", color: "#ffffff", textAlign: "center", marginBottom: "50px" }}>
-            Luxury Pet Suites
+            {t("boarding_luxury_suites")}
           </h2>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "40px" }}>
             {boardingPackages.slice(4).map((pkg) => (
@@ -569,6 +599,7 @@ export default function HoustonPetBoardingContent() {
                     src={pkg.img}
                     alt={pkg.suite}
                     fill
+                    loading="lazy"
                     style={{ objectFit: "cover" }}
                     sizes="(max-width: 768px) 100vw, 50vw"
                   />
@@ -576,7 +607,7 @@ export default function HoustonPetBoardingContent() {
                 <div style={{ padding: "30px", textAlign: "center" }}>
                   <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "22px", color: "#000000", marginBottom: "4px" }}>
                     {pkg.suite}
-                    {pkg.galleria && <span style={{ fontSize: "14px", color: "#965B83", marginLeft: "8px" }}>(Galleria Only)</span>}
+                    {pkg.galleria && <span style={{ fontSize: "14px", color: "#965B83", marginLeft: "8px" }}>({t("boarding_galleria_only")})</span>}
                   </h3>
                   <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "15px", color: "#000000", marginBottom: "12px" }}>
                     {pkg.size}
@@ -588,7 +619,7 @@ export default function HoustonPetBoardingContent() {
                     href="/appointment-request"
                     style={{ display: "inline-block", backgroundColor: "#ffffff", color: "#965B83", padding: "10px 24px", borderRadius: "50px", fontFamily: '"Outfit", sans-serif', fontWeight: 600, fontSize: "14px", textDecoration: "none", transition: "all 0.3s ease" }}
                   >
-                    Book Now
+                    {t("boarding_book_now")}
                   </Link>
                 </div>
               </div>
@@ -599,24 +630,24 @@ export default function HoustonPetBoardingContent() {
         {/* Curved bottom border */}
         <div style={{ position: "absolute", bottom: -1, left: 0, width: "100%", lineHeight: 0, zIndex: 1 }}>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none" style={{ display: "block", width: "100%", height: "60px" }}>
-            <path fill="#ffffff" d="M500,97C126.7,96.3,0.8,19.8,0,0v100l1000,0V1C1000,19.4,873.3,97.8,500,97z" />
+            <path fill="#f8f8f8" d="M500,97C126.7,96.3,0.8,19.8,0,0v100l1000,0V1C1000,19.4,873.3,97.8,500,97z" />
           </svg>
         </div>
       </section>
 
       {/* ── Testimonial Carousel ── */}
-      <TestimonialCarousel reviews={reviews} />
+      <TestimonialCarousel reviews={reviews} language={language} />
 
       {/* ── Why Choose Our Pet Boarding Services ── */}
       <section style={{ backgroundColor: "#FFF", padding: "80px 20px" }}>
-        <div style={{ maxWidth: "1520px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 2fr", gap: "60px", alignItems: "start" }}>
+        <div className="service-info-grid" style={{ maxWidth: "1520px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 2fr", gap: "60px", alignItems: "start" }}>
           {/* Left Column — Icon Boxes */}
           <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
             {/* Hours of Operations Box */}
             <div style={{ backgroundColor: "#965B831A", borderRadius: "16px", padding: "30px", textAlign: "center" }}>
               <i className="fa-regular fa-calendar" style={{ fontSize: "40px", color: "#965B83", marginBottom: "16px", display: "block" }} />
               <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "20px", color: "#1F2124", marginBottom: "16px" }}>
-                Hours of Operations
+                {t("boarding_hours_title")}
               </h3>
               <button
                 onClick={() => setShowHoursModal(true)}
@@ -632,7 +663,7 @@ export default function HoustonPetBoardingContent() {
                   cursor: "pointer",
                 }}
               >
-                View
+                {t("boarding_hours_view")}
               </button>
             </div>
 
@@ -640,7 +671,7 @@ export default function HoustonPetBoardingContent() {
             <div style={{ backgroundColor: "#965B831A", borderRadius: "16px", padding: "30px", textAlign: "center" }}>
               <i className="fa-solid fa-syringe" style={{ fontSize: "40px", color: "#965B83", marginBottom: "16px", display: "block" }} />
               <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "20px", color: "#1F2124", marginBottom: "16px" }}>
-                Required Vaccinations
+                {t("boarding_vaccinations_title")}
               </h3>
               <button
                 onClick={() => setShowVaccinationsModal(true)}
@@ -656,7 +687,7 @@ export default function HoustonPetBoardingContent() {
                   cursor: "pointer",
                 }}
               >
-                View
+                {t("boarding_vaccinations_view")}
               </button>
             </div>
 
@@ -668,7 +699,7 @@ export default function HoustonPetBoardingContent() {
                 <path d="M15 32c0-2 2-4 4-4h12c2 0 4 2 4 4v4H15v-4z" stroke="#965B83" strokeWidth="2.5" fill="none" />
               </svg>
               <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "20px", color: "#1F2124", marginBottom: "16px" }}>
-                View Webcams
+                {t("boarding_webcams_title")}
               </h3>
               <Link
                 href="/pet-cam"
@@ -686,7 +717,7 @@ export default function HoustonPetBoardingContent() {
                   textDecoration: "none",
                 }}
               >
-                View
+                {t("boarding_webcams_view")}
               </Link>
             </div>
           </div>
@@ -694,22 +725,22 @@ export default function HoustonPetBoardingContent() {
           {/* Right Column — Text Content */}
           <div>
             <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "50px", color: "#1F2124", marginBottom: "24px", lineHeight: 1.1 }}>
-              Exceptional Pet Boarding in Houston Services
+              {t("boarding_exceptional_service")}
             </h2>
             <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "22px", color: "#965B83", marginBottom: "8px" }}>
-              The Paradise for All Pets
+              {t("boarding_paradise_for_pets")}
             </h3>
             <h4 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "16px", color: "#1F2124", marginBottom: "16px" }}>
-              Dog Boarding in Houston
+              {t("boarding_dog_boarding_houston")}
             </h4>
             <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", lineHeight: 1.7, marginBottom: "16px" }}>
-              At The Dog House Pet Salon in Houston, we offer the ultimate pet boarding experience. Our attentive, world-class staff is passionate about pets and willing to go the extra mile to ensure your loved ones have a safe and enjoyable experience. We have earned our reputation as the best cat and dog boarding provider in Houston and nearby locations.
+              {t("boarding_ultimate_experience")}
             </p>
             <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", lineHeight: 1.7, marginBottom: "16px" }}>
-              We are proud to offer top-tier pet boarding services to the residents of Houston, TX and its surrounding communities, including Pearland, Memorial Park, The Heights, Montrose, The Galleria, and Uptown Park. Our expertly trained staff provides specialized care tailored to your pet&apos;s unique needs, whether they&apos;re on a special diet, have a medical condition, or require extra attention.
+              {t("boarding_top_tier_services")}
             </p>
             <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", lineHeight: 1.7 }}>
-              Our Houston Dog Boarding, Doggy Daycare, Pet Grooming &amp; Bathing Services coupled with our caring staff and pet-friendly boarding facility are just a few reasons why The Dog House Pet Salon is truly a pet&apos;s paradise. Because your pet is a family member, we recommend taking advantage of our pet suites where owners are provided with the peace of mind that their animal is not only safe, but thoroughly enjoying their stay.
+              {t("boarding_grooming_coupled")}
             </p>
           </div>
         </div>
@@ -717,7 +748,7 @@ export default function HoustonPetBoardingContent() {
 
       {/* ── Loyalty / Punch Card ── */}
       <section style={{ backgroundColor: "#F8F8F8", padding: "80px 20px" }}>
-        <div style={{ maxWidth: "1520px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "60px", alignItems: "center", justifyItems: "center" }}>
+        <div className="grid-responsive" style={{ maxWidth: "1520px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "60px", alignItems: "center", justifyItems: "center" }}>
           {/* Left — Premium Shampoos + $30 Credit + Just For You */}
           <div style={{ textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center", gap: "20px" }}>
             <Image
@@ -725,6 +756,7 @@ export default function HoustonPetBoardingContent() {
               alt="Premium Shampoos"
               width={200}
               height={200}
+              loading="lazy"
               style={{ width: "150px", height: "auto" }}
             />
             <Image
@@ -732,6 +764,7 @@ export default function HoustonPetBoardingContent() {
               alt="$30 Credit - Groom Punch Card"
               width={400}
               height={400}
+              loading="lazy"
               style={{ width: "300px", height: "auto" }}
             />
             <Image
@@ -739,10 +772,11 @@ export default function HoustonPetBoardingContent() {
               alt="Just For You"
               width={200}
               height={200}
+              loading="lazy"
               style={{ width: "150px", height: "auto" }}
             />
             <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "18px", color: "#54595F", lineHeight: 1.6 }}>
-              Redeem on Your 12th Bath, Groom, or Basic Service
+              {t("boarding_redeem_12th")}
             </p>
           </div>
           {/* Right — Loyalty Card */}
@@ -752,6 +786,7 @@ export default function HoustonPetBoardingContent() {
               alt="Pawsitively Grateful Loyalty Card"
               width={500}
               height={350}
+              loading="lazy"
               style={{ width: "100%", maxWidth: "450px", height: "auto" }}
             />
           </div>
@@ -770,13 +805,13 @@ export default function HoustonPetBoardingContent() {
         <div style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, backgroundColor: "#FFF", opacity: 0.7, zIndex: 1 }} />
         <div style={{ maxWidth: "1520px", margin: "0 auto", position: "relative", zIndex: 2 }}>
           <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(26px,3vw,40px)", color: "#000", textAlign: "center", marginBottom: "50px" }}>
-            You Can Find Us At These Locations Near You
+            {t("boarding_locations")}
           </h2>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "30px", alignItems: "stretch" }}>
+          <div className="locations-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "30px", alignItems: "stretch" }}>
             {/* LEFT: Large Richmond Ave Card */}
-            <div style={{ backgroundColor: "#965B83", borderRadius: "16px", padding: "24px", display: "flex", flexDirection: "row", gap: "24px", alignItems: "center", minHeight: "100%" }}>
+            <div className="location-card" style={{ backgroundColor: "#965B83", borderRadius: "16px", padding: "24px", display: "flex", flexDirection: "row", gap: "24px", alignItems: "center", minHeight: "100%" }}>
               <div style={{ flex: "0 0 200px", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                <Image src={locations[0].img} alt={locations[0].address} width={200} height={200} quality={85} style={{ width: "200px", height: "200px", borderRadius: "30% 70% 70% 30% / 30% 30% 70% 70%", objectFit: "cover" }} />
+                <Image src={locations[0].img} alt={locations[0].address} width={200} height={200} quality={85} loading="lazy" style={{ width: "200px", height: "200px", borderRadius: "30% 70% 70% 30% / 30% 30% 70% 70%", objectFit: "cover" }} />
               </div>
               <div style={{ flex: 1 }}>
                 <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "12px", color: "#fff" }}>
@@ -801,9 +836,9 @@ export default function HoustonPetBoardingContent() {
             {/* RIGHT: Stacked cards */}
             <div style={{ display: "flex", flexDirection: "column", gap: "30px" }}>
               {locations.slice(1).map((loc) => (
-                <div key={loc.address} style={{ backgroundColor: "#965B83", borderRadius: "16px", padding: "24px", display: "flex", flexDirection: "row", gap: "24px", alignItems: "center" }}>
+                <div key={loc.address} className="location-card" style={{ backgroundColor: "#965B83", borderRadius: "16px", padding: "24px", display: "flex", flexDirection: "row", gap: "24px", alignItems: "center" }}>
                   <div style={{ flex: "0 0 150px", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                    <Image src={loc.img} alt={loc.address} width={150} height={150} quality={85} style={{ width: "150px", height: "150px", borderRadius: "30% 70% 70% 30% / 30% 30% 70% 70%", objectFit: "cover" }} />
+                    <Image src={loc.img} alt={loc.address} width={150} height={150} quality={85} loading="lazy" style={{ width: "150px", height: "150px", borderRadius: "30% 70% 70% 30% / 30% 30% 70% 70%", objectFit: "cover" }} />
                   </div>
                   <div style={{ flex: 1 }}>
                     <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "12px", color: "#fff" }}>
@@ -832,26 +867,26 @@ export default function HoustonPetBoardingContent() {
 
       {/* ── What's Included in Pet Boarding? ── */}
       <section style={{ backgroundColor: "#fff", padding: "80px 20px" }}>
-        <div style={{ maxWidth: "1520px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "60px", alignItems: "center" }}>
+        <div className="grid-responsive" style={{ maxWidth: "1520px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "60px", alignItems: "center" }}>
           {/* Left — Text */}
           <div>
             <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "50px", color: "#1F2124", lineHeight: 1.1, marginBottom: "24px" }}>
-              What&apos;s Included in <span style={{ color: "#965B83" }}>Pet Boarding?</span>
+              {t("boarding_whats_included")}
             </h2>
             <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", lineHeight: 1.7, marginBottom: "16px" }}>
-              Pets vacationing at The Dog House Pet Salon enjoy Houston&apos;s finest pet boarding facility. Experience the comfort of climate-controlled private suites furnished with elevated and padded beds, in addition to a minimum of four play periods per day at no additional charge.
+              {t("boarding_pets_vacationing")}
             </p>
             <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", lineHeight: 1.7, marginBottom: "16px" }}>
-              Each play period during a pet boarding in Houston stay includes a half hour of time outside in our dog park. For flat nose dogs or during heat waves, we limit each play period to 5-10 minutes for the safety of the animals.
+              {t("boarding_play_periods")}
             </p>
             <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", lineHeight: 1.7, marginBottom: "16px" }}>
-              Once your pet is introduced to the playgroup, they will continue to remain in their playgroup to develop social skills, build stronger bonds with new friends, and develop good community behavior.
+              {t("boarding_playgroup")}
             </p>
             <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", lineHeight: 1.7, marginBottom: "16px" }}>
-              While your pets stay at our pet paradise, we&apos;ll make sure they look their best at all times because we love pampering your pets just as much as you do!
+              {t("boarding_pampering")}
             </p>
             <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "14px", color: "#54595F", lineHeight: 1.7, fontStyle: "italic" }}>
-              * Please Note: In order to ensure the safety of our community and your loved ones, each pet will receive a $25.00 one-time temperament assessment to ensure your pet is not toy, water, or food aggressive. In addition, your pet will be assessed on the behavior towards staff or any other pets, prior to being assigned to a specific playgroup. Lastly, to avoid denial of admittance, current vaccination records will be required on initial intake.
+              {t("boarding_note")}
             </p>
           </div>
 
@@ -862,6 +897,7 @@ export default function HoustonPetBoardingContent() {
               alt="Pet boarding in Houston"
               width={600}
               height={500}
+              loading="lazy"
               style={{ width: "100%", height: "auto", display: "block" }}
             />
             <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(255,255,255,0) 20%, #965b83 100%)" }} />
@@ -880,7 +916,7 @@ export default function HoustonPetBoardingContent() {
                   textDecoration: "none",
                 }}
               >
-                Get An Appointment
+                {t("boarding_get_appointment")}
               </Link>
             </div>
           </div>
@@ -896,14 +932,16 @@ export default function HoustonPetBoardingContent() {
         </div>
         <div style={{ maxWidth: "1520px", margin: "0 auto", position: "relative", zIndex: 2 }}>
           <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "50px", color: "#FFF", textAlign: "center", marginBottom: "12px" }}>
-            Discover Expert Advice and the Latest Trends
+            {t("boarding_discover_expert")}
           </h2>
           <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "18px", color: "#FFF", textAlign: "center", marginBottom: "48px" }}>
-            Stay informed with our blog, featuring tips and trends to help you keep your pets clean, healthy, and looking their best.
+            {t("boarding_stay_informed")}
           </p>
           <BlogCarousel posts={boardingBlogPosts} />
         </div>
       </section>
+
+      <StoreLocations />
     </>
   );
 }

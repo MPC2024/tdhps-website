@@ -3,6 +3,8 @@ import Link from "next/link";
 import { getAllPosts } from "@/lib/blog";
 import BlogGrid from "./BlogGrid";
 import BlogCTAButton from "@/components/BlogCTAButton";
+import BlogHeroText from "@/components/BlogHeroText";
+import BlogCTAText from "@/components/BlogCTAText";
 
 export const metadata: Metadata = {
   title: "Dog Grooming Tips & Pet Care Advice | Dog House Pet Salon Blog",
@@ -33,7 +35,7 @@ export default function BlogPage() {
           minHeight: "700px",
           display: "flex",
           alignItems: "center",
-          padding: "80px 20px 120px",
+          padding: "160px 20px 120px",
           overflow: "hidden",
         }}
       >
@@ -78,26 +80,7 @@ export default function BlogPage() {
             zIndex: 2,
           }}
         >
-          <h1
-            style={{
-              fontFamily: '"Bowlby One SC", sans-serif',
-              fontSize: "clamp(36px,5vw,72px)",
-              color: "#000000",
-              lineHeight: 1.1,
-            }}
-          >
-            Blogs
-          </h1>
-          <p
-            style={{
-              fontFamily: '"Outfit", sans-serif',
-              fontSize: "18px",
-              color: "rgba(0,0,0,0.75)",
-              marginTop: "16px",
-            }}
-          >
-            {posts.length} articles on grooming, pet care, and more
-          </p>
+          <BlogHeroText postCount={posts.length} />
         </div>
       </section>
 
@@ -118,26 +101,7 @@ export default function BlogPage() {
         }}
       >
         <div style={{ maxWidth: "700px", margin: "0 auto" }}>
-          <h2
-            style={{
-              fontFamily: '"Bowlby One SC", sans-serif',
-              fontSize: "clamp(24px,3vw,36px)",
-              color: "#ffffff",
-              marginBottom: "16px",
-            }}
-          >
-            Ready to Book a Grooming Appointment?
-          </h2>
-          <p
-            style={{
-              fontFamily: '"Outfit", sans-serif',
-              fontSize: "18px",
-              color: "rgba(255,255,255,0.85)",
-              marginBottom: "32px",
-            }}
-          >
-            Houston&apos;s premier pet grooming, daycare, and boarding service.
-          </p>
+          <BlogCTAText />
           <BlogCTAButton />
         </div>
       </section>

@@ -4,6 +4,7 @@ import Link from "next/link";
 import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 import { ReviewWidget } from "@/components/ReviewWidget";
 import { LOCATIONS } from "@/lib/locations";
+import GalleriaLocationContent from "@/components/location/GalleriaLocationContent";
 
 export const metadata: Metadata = {
   title: "Pet Grooming Salon Galleria Houston",
@@ -109,39 +110,12 @@ export default function GalleriaLocationPage() {
           minHeight: "700px",
           display: "flex",
           alignItems: "center",
-          padding: "80px 20px 120px",
+          padding: "160px 20px 120px",
         }}
       >
         <div style={{ position: "absolute", inset: 0, backgroundColor: "#ffffff", opacity: 0.6 }} />
         <div style={{ maxWidth: "1520px", margin: "0 auto", position: "relative", zIndex: 2 }}>
-          <h1
-            style={{
-              fontFamily: '"Bowlby One SC", sans-serif',
-              fontSize: "clamp(32px,5vw,64px)",
-              color: "#1F2124",
-              marginBottom: "24px",
-              lineHeight: 1.1,
-            }}
-          >
-            The Dog House{" "}
-            <span style={{ color: "#965B83" }}>Pet Salon – Galleria</span>
-          </h1>
-          <Link
-            href="/appointment-request-form_location_richmond"
-            style={{
-              backgroundColor: "#965B83",
-              color: "#fff",
-              padding: "14px 32px",
-              borderRadius: "50px",
-              fontFamily: '"Outfit", sans-serif',
-              fontWeight: 700,
-              fontSize: "16px",
-              display: "inline-block",
-              textDecoration: "none",
-            }}
-          >
-            Schedule An Appointment
-          </Link>
+          <GalleriaLocationContent />
         </div>
       </section>
 
@@ -619,7 +593,7 @@ export default function GalleriaLocationPage() {
       {/* ── Need Directions ── */}
       <section style={{ backgroundColor: "#ffffff", padding: "80px 20px", textAlign: "center", marginBottom: "65px" }}>
         <div style={{ maxWidth: "700px", margin: "0 auto" }}>
-          <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(36px,5vw,72px)", color: "#965B83", marginBottom: "20px", lineHeight: 1.1 }}>
+          <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "60px", color: "#965B83", marginBottom: "20px", lineHeight: 1.1 }}>
             Need Directions?
           </h2>
           <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "18px", color: "#54595F", marginBottom: "36px" }}>

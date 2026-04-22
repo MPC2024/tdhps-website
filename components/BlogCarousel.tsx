@@ -2,10 +2,12 @@
 
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import { useLanguage } from "@/lib/LanguageContext";
 
 export type BlogPost = { title: string; img: string; href: string };
 
 export default function BlogCarousel({ posts }: { posts: BlogPost[] }) {
+  const { t } = useLanguage();
   const [startIndex, setStartIndex] = useState(0);
   const [fading, setFading] = useState(false);
 
@@ -62,7 +64,9 @@ export default function BlogCarousel({ posts }: { posts: BlogPost[] }) {
               alt={post.title}
               width={500}
               height={280}
+              loading="lazy"
               style={{ width: "100%", height: "200px", objectFit: "cover" }}
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             />
             <div style={{ padding: "24px" }}>
               <h3
@@ -84,7 +88,7 @@ export default function BlogCarousel({ posts }: { posts: BlogPost[] }) {
                   marginTop: "12px",
                 }}
               >
-                Read Article
+                {t("blog_read_more")}
               </p>
             </div>
           </a>

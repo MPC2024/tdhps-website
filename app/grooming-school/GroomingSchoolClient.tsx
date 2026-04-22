@@ -3,26 +3,28 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState, FormEvent } from "react";
+import { useLanguage } from "@/lib/LanguageContext";
 import BlogCarousel, { type BlogPost } from "@/components/BlogCarousel";
+import StoreLocations from "@/components/StoreLocations";
 
 const groomers = [
   {
     name: "Keylin Paulina Orellana Delcid",
-    role: "Master Pet Groomer",
+    roleKey: "school_master_groomer" as const,
     location: "Galleria / Uptown Park",
     img: "https://www.thedoghouseps.com/wp-content/uploads/2025/03/keylin-paulina-orellana-delcid.webp",
     href: "/keylin-paulina-orellana-delcid",
   },
   {
     name: "Margarita Batres",
-    role: "Master Pet Groomer",
+    roleKey: "school_master_groomer" as const,
     location: "Pearland",
     img: "https://www.thedoghouseps.com/wp-content/uploads/2025/03/margarita-batres.jpg",
     href: "/margarita-batres",
   },
   {
     name: "Francy Quevedo",
-    role: "Master Pet Groomer",
+    roleKey: "school_master_groomer" as const,
     location: "Memorial Park",
     img: "https://www.thedoghouseps.com/wp-content/uploads/2025/03/francy-quevedo.jpg",
     href: "/francy-quevedo",
@@ -60,13 +62,21 @@ const locations = [
 ];
 
 const programIcons = [
-  { img: "https://www.thedoghouseps.com/wp-content/uploads/2025/04/pet-shampoo.svg", label: "Bathing Techniques" },
-  { img: "https://www.thedoghouseps.com/wp-content/uploads/2025/04/pet-brush.svg", label: "Brushing & De-shedding" },
-  { img: "https://www.thedoghouseps.com/wp-content/uploads/2025/04/cut.svg", label: "Breed-Specific Cuts" },
-  { img: "https://www.thedoghouseps.com/wp-content/uploads/2025/04/scissors.svg", label: "Scissoring Skills" },
+  { img: "https://www.thedoghouseps.com/wp-content/uploads/2025/04/pet-shampoo.svg", labelKey: "school_bathing_techniques" as const },
+  { img: "https://www.thedoghouseps.com/wp-content/uploads/2025/04/pet-brush.svg", labelKey: "school_brushing_deshed" as const },
+  { img: "https://www.thedoghouseps.com/wp-content/uploads/2025/04/cut.svg", labelKey: "school_breed_cuts" as const },
+  { img: "https://www.thedoghouseps.com/wp-content/uploads/2025/04/scissors.svg", labelKey: "school_scissoring_skills" as const },
 ];
 
-const howReferralOptions = ["Existing Customer", "Google/Internet Search", "Social Media", "Referral from a Friend", "Drive By", "Website", "Other"];
+const howReferralOptions = [
+  { key: "school_existing_customer" as const },
+  { key: "school_google_internet_search" as const },
+  { key: "school_social_media" as const },
+  { key: "school_referral_friend" as const },
+  { key: "school_drive_by" as const },
+  { key: "school_website" as const },
+  { key: "school_other" as const },
+];
 
 const groomingBlogPosts: BlogPost[] = [
   { title: "The Benefits of Routine Dog Grooming in Houston's Climate", img: "https://www.thedoghouseps.com/wp-content/uploads/2026/03/Shihtzu_Grooming_Pearland.jpg", href: "https://www.thedoghouseps.com/the-benefits-of-routine-dog-grooming-in-houstons-climate/" },
@@ -110,15 +120,17 @@ const fieldSt: React.CSSProperties = { marginBottom: "20px" };
 const requiredStar = <span style={{ color: "#CC3366" }}>*</span>;
 
 function SuccessMessage() {
+  const { t } = useLanguage();
   return (
     <div style={{ textAlign: "center", padding: "40px", backgroundColor: "#f0faf0", borderRadius: "12px" }}>
-      <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "24px", color: "#1F2124", marginBottom: "12px" }}>Thank You!</h3>
-      <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F" }}>Your application has been received. We&apos;ll be in touch soon.</p>
+      <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "24px", color: "#1F2124", marginBottom: "12px" }}>{t("school_success_title")}</h3>
+      <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F" }}>{t("school_success_message")}</p>
     </div>
   );
 }
 
 function BathingProgramForm() {
+  const { t } = useLanguage();
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
@@ -171,46 +183,47 @@ function BathingProgramForm() {
           {error}
         </div>
       )}
-      <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "14px", color: "#54595F", marginBottom: "24px" }}><em>&quot;*&quot; indicates required fields</em></p>
-      <div style={fieldSt}><label style={labelSt}>Full Name: {requiredStar}</label><input name="fullName" type="text" required style={inputSt} /></div>
-      <div style={fieldSt}><label style={labelSt}>Email Address {requiredStar}</label><input name="email" type="email" required style={inputSt} /></div>
-      <div style={fieldSt}><label style={labelSt}>Phone Number {requiredStar}</label><input name="phone" type="tel" required style={inputSt} /></div>
+      <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "14px", color: "#54595F", marginBottom: "24px" }}><em>&quot;*&quot; {t("school_form_required_fields")}</em></p>
+      <div style={fieldSt}><label style={labelSt}>{t("school_form_full_name")}: {requiredStar}</label><input name="fullName" type="text" required style={inputSt} /></div>
+      <div style={fieldSt}><label style={labelSt}>{t("school_form_email")} {requiredStar}</label><input name="email" type="email" required style={inputSt} /></div>
+      <div style={fieldSt}><label style={labelSt}>{t("school_form_phone")} {requiredStar}</label><input name="phone" type="tel" required style={inputSt} /></div>
       <div style={fieldSt}>
-        <label style={labelSt}>Which program format are you interested in? {requiredStar}</label>
+        <label style={labelSt}>{t("school_form_program_format")} {requiredStar}</label>
         <div style={{ display: "flex", gap: "24px" }}>
-          {["Online", "In-Person"].map((opt) => (
+          {[t("school_form_online"), t("school_form_in_person")].map((opt) => (
             <label key={opt} style={{ fontFamily: '"Outfit", sans-serif', fontSize: "15px", color: "#1F2124", display: "flex", alignItems: "center", gap: "8px", cursor: "pointer" }}>
               <input type="radio" name="bathingFormat" value={opt} required style={{ accentColor: "#965B83" }} /> {opt}
             </label>
           ))}
         </div>
       </div>
-      <div style={fieldSt}><label style={labelSt}>What motivated you to apply to our bather program? {requiredStar}</label><textarea name="motivation" required rows={3} style={{ ...inputSt, resize: "vertical" }} /></div>
+      <div style={fieldSt}><label style={labelSt}>{t("school_form_motivation_bather")} {requiredStar}</label><textarea name="motivation" required rows={3} style={{ ...inputSt, resize: "vertical" }} /></div>
       <div style={fieldSt}>
-        <label style={labelSt}>On a scale from 0-5, how comfortable are you with animals? {requiredStar}</label>
-        <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "13px", color: "#69727D", marginBottom: "8px" }}>[0 (not at all) - 5 (I Love Animals)]</p>
+        <label style={labelSt}>{t("school_form_animal_comfort")} {requiredStar}</label>
+        <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "13px", color: "#69727D", marginBottom: "8px" }}>{t("school_form_not_at_all")}</p>
         <input name="animalComfort" type="number" min={0} max={5} required style={{ ...inputSt, width: "120px" }} />
       </div>
-      <div style={fieldSt}><label style={labelSt}>Have you had any previous experience in pet grooming or related fields? {requiredStar}</label><textarea name="priorExperience" required rows={3} style={{ ...inputSt, resize: "vertical" }} /></div>
-      <div style={fieldSt}><label style={labelSt}>Do you have any allergies or conditions we should be aware of? {requiredStar}</label><textarea name="allergies" required rows={3} style={{ ...inputSt, resize: "vertical" }} /></div>
-      <div style={fieldSt}><label style={labelSt}>What do you hope to achieve by completing our program? {requiredStar}</label><textarea name="programGoals" required rows={3} style={{ ...inputSt, resize: "vertical" }} /></div>
-      <div style={fieldSt}><label style={labelSt}>Are there any specific techniques or skills you are particularly interested in learning? {requiredStar}</label><textarea name="techniquesInterest" required rows={3} style={{ ...inputSt, resize: "vertical" }} /></div>
-      <div style={fieldSt}><label style={labelSt}>What are your career goals within the pet grooming industry? {requiredStar}</label><textarea name="careerGoals" required rows={3} style={{ ...inputSt, resize: "vertical" }} /></div>
+      <div style={fieldSt}><label style={labelSt}>{t("school_form_experience")} {requiredStar}</label><textarea name="priorExperience" required rows={3} style={{ ...inputSt, resize: "vertical" }} /></div>
+      <div style={fieldSt}><label style={labelSt}>{t("school_form_allergies")} {requiredStar}</label><textarea name="allergies" required rows={3} style={{ ...inputSt, resize: "vertical" }} /></div>
+      <div style={fieldSt}><label style={labelSt}>{t("school_form_program_goals")} {requiredStar}</label><textarea name="programGoals" required rows={3} style={{ ...inputSt, resize: "vertical" }} /></div>
+      <div style={fieldSt}><label style={labelSt}>{t("school_form_techniques")} {requiredStar}</label><textarea name="techniquesInterest" required rows={3} style={{ ...inputSt, resize: "vertical" }} /></div>
+      <div style={fieldSt}><label style={labelSt}>{t("school_form_career_goals")} {requiredStar}</label><textarea name="careerGoals" required rows={3} style={{ ...inputSt, resize: "vertical" }} /></div>
       <div style={fieldSt}>
-        <label style={labelSt}>How did you hear about our program? {requiredStar}</label>
+        <label style={labelSt}>{t("school_form_heard_about")} {requiredStar}</label>
         <select name="howHeard" required style={{ ...inputSt, cursor: "pointer" }}>
-          <option value="">Select All</option>
-          {howReferralOptions.map((opt) => <option key={opt} value={opt}>{opt}</option>)}
+          <option value="">{t("school_form_select_all")}</option>
+          {howReferralOptions.map((opt) => <option key={opt.key} value={t(opt.key)}>{t(opt.key)}</option>)}
         </select>
       </div>
       <button type="submit" disabled={submitting} style={{ width: "100%", padding: "15px 30px", backgroundColor: "#965B83", color: "#fff", border: "none", borderRadius: "50px", fontFamily: '"Outfit", sans-serif', fontWeight: 700, fontSize: "18px", cursor: "pointer", opacity: submitting ? 0.7 : 1 }}>
-        {submitting ? "Submitting..." : "Submit Application"}
+        {submitting ? t("school_form_submitting") : t("school_form_submit")}
       </button>
     </form>
   );
 }
 
 function BasicGroomingForm() {
+  const { t } = useLanguage();
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
@@ -263,60 +276,61 @@ function BasicGroomingForm() {
           {error}
         </div>
       )}
-      <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "14px", color: "#54595F", marginBottom: "24px" }}><em>&quot;*&quot; indicates required fields</em></p>
-      <div style={fieldSt}><label style={labelSt}>Full Name: {requiredStar}</label><input name="fullName" type="text" required style={inputSt} /></div>
-      <div style={fieldSt}><label style={labelSt}>Email Address {requiredStar}</label><input name="email" type="email" required style={inputSt} /></div>
-      <div style={fieldSt}><label style={labelSt}>Phone Number {requiredStar}</label><input name="phone" type="tel" required style={inputSt} /></div>
+      <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "14px", color: "#54595F", marginBottom: "24px" }}><em>&quot;*&quot; {t("school_form_required_fields")}</em></p>
+      <div style={fieldSt}><label style={labelSt}>{t("school_form_full_name")}: {requiredStar}</label><input name="fullName" type="text" required style={inputSt} /></div>
+      <div style={fieldSt}><label style={labelSt}>{t("school_form_email")} {requiredStar}</label><input name="email" type="email" required style={inputSt} /></div>
+      <div style={fieldSt}><label style={labelSt}>{t("school_form_phone")} {requiredStar}</label><input name="phone" type="tel" required style={inputSt} /></div>
       <div style={fieldSt}>
-        <label style={labelSt}>Preferred Program Format: {requiredStar}</label>
+        <label style={labelSt}>{t("school_form_program_format")} {requiredStar}</label>
         <div style={{ display: "flex", gap: "24px" }}>
-          {["Online", "In-Person"].map((opt) => (
+          {[t("school_form_online"), t("school_form_in_person")].map((opt) => (
             <label key={opt} style={{ fontFamily: '"Outfit", sans-serif', fontSize: "15px", color: "#1F2124", display: "flex", alignItems: "center", gap: "8px", cursor: "pointer" }}>
               <input type="radio" name="basicFormat" value={opt} required style={{ accentColor: "#965B83" }} /> {opt}
             </label>
           ))}
         </div>
       </div>
-      <div style={fieldSt}><label style={labelSt}>What motivated you to apply to our Basic Groomer program? {requiredStar}</label><textarea name="motivation" required rows={3} style={{ ...inputSt, resize: "vertical" }} /></div>
+      <div style={fieldSt}><label style={labelSt}>{t("school_form_motivation")}{t("school_form_motivation_bather")} {requiredStar}</label><textarea name="motivation" required rows={3} style={{ ...inputSt, resize: "vertical" }} /></div>
       <div style={fieldSt}>
-        <label style={labelSt}>On a scale from 0-5, how comfortable are you with animals? {requiredStar}</label>
-        <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "13px", color: "#69727D", marginBottom: "8px" }}>[0 (not at all) - 5 (extremely passionate)]</p>
+        <label style={labelSt}>{t("school_form_animal_comfort")} {requiredStar}</label>
+        <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "13px", color: "#69727D", marginBottom: "8px" }}>{t("school_form_comfort_extreme")}</p>
         <input name="animalComfort" type="number" min={0} max={5} required style={{ ...inputSt, width: "120px" }} />
       </div>
-      <div style={fieldSt}><label style={labelSt}>Do you have any prior experience in pet grooming or animal care? {requiredStar}</label><textarea name="priorExperience" required rows={3} style={{ ...inputSt, resize: "vertical" }} /></div>
-      <div style={fieldSt}><label style={labelSt}>Are there specific grooming techniques or skills you are eager to learn? {requiredStar}</label><textarea name="techniquesInterest" required rows={3} style={{ ...inputSt, resize: "vertical" }} /></div>
-      <div style={fieldSt}><label style={labelSt}>What are your career goals within the pet grooming industry? {requiredStar}</label><textarea name="careerGoals" required rows={3} style={{ ...inputSt, resize: "vertical" }} /></div>
-      <div style={fieldSt}><label style={labelSt}>What do you hope to achieve by completing our Basic Groomer program? {requiredStar}</label><textarea name="programGoals" required rows={3} style={{ ...inputSt, resize: "vertical" }} /></div>
-      <div style={fieldSt}><label style={labelSt}>Do you have any allergies or conditions we should be aware of? {requiredStar}</label><textarea name="allergies" required rows={3} style={{ ...inputSt, resize: "vertical" }} /></div>
+      <div style={fieldSt}><label style={labelSt}>{t("school_form_experience_prior")} {requiredStar}</label><textarea name="priorExperience" required rows={3} style={{ ...inputSt, resize: "vertical" }} /></div>
+      <div style={fieldSt}><label style={labelSt}>{t("school_form_techniques_eager")} {requiredStar}</label><textarea name="techniquesInterest" required rows={3} style={{ ...inputSt, resize: "vertical" }} /></div>
+      <div style={fieldSt}><label style={labelSt}>{t("school_form_career_goals")} {requiredStar}</label><textarea name="careerGoals" required rows={3} style={{ ...inputSt, resize: "vertical" }} /></div>
+      <div style={fieldSt}><label style={labelSt}>{t("school_form_program_goals_basic")} {requiredStar}</label><textarea name="programGoals" required rows={3} style={{ ...inputSt, resize: "vertical" }} /></div>
+      <div style={fieldSt}><label style={labelSt}>{t("school_form_allergies_affect")} {requiredStar}</label><textarea name="allergies" required rows={3} style={{ ...inputSt, resize: "vertical" }} /></div>
       <div style={fieldSt}>
-        <label style={labelSt}>How did you hear about our Basic Groomer program? {requiredStar}</label>
+        <label style={labelSt}>{t("school_form_heard_about")} {requiredStar}</label>
         <select name="howHeard" required style={{ ...inputSt, cursor: "pointer" }}>
-          <option value="">Select All</option>
-          {howReferralOptions.map((opt) => <option key={opt} value={opt}>{opt}</option>)}
+          <option value="">{t("school_form_select_all")}</option>
+          {howReferralOptions.map((opt) => <option key={opt.key} value={t(opt.key)}>{t(opt.key)}</option>)}
         </select>
       </div>
       <button type="submit" disabled={submitting} style={{ width: "100%", padding: "15px 30px", backgroundColor: "#965B83", color: "#fff", border: "none", borderRadius: "50px", fontFamily: '"Outfit", sans-serif', fontWeight: 700, fontSize: "18px", cursor: "pointer", opacity: submitting ? 0.7 : 1 }}>
-        {submitting ? "Submitting..." : "Submit Application"}
+        {submitting ? t("school_form_submitting") : t("school_form_submit")}
       </button>
     </form>
   );
 }
 
 function OurPromiseSection() {
+  const { t } = useLanguage();
   const [openPromise, setOpenPromise] = useState<number | null>(null);
 
   const items = [
     {
-      title: "Excellence in Grooming Education",
-      content: "At The Dog House Pet Salon, we know that skilled and professional groomers are the heart of the pet care industry. Our professional dog grooming classes are crafted to connect you with passionate experts who provide the knowledge and hands-on experience required for success in this rewarding field. Whether you're just starting your journey as a professional groomer or an experienced groomer aiming to refine your skills, our comprehensive dog grooming training courses are tailored to meet your needs.",
+      title: t("school_promise_item1_title"),
+      content: t("school_promise_item1_content"),
     },
     {
-      title: "Support Beyond Graduation",
-      content: "At The Dog House Pet Salon, our support doesn't end when you finish your courses. We are committed to your continuous growth and success in the pet grooming industry. Our graduates benefit from ongoing mentorship, career advice, and access to a network of professional groomers. We strive to ensure that each of our students has the resources and guidance needed to build a successful and fulfilling grooming career.",
+      title: t("school_promise_item2_title"),
+      content: t("school_promise_item2_content"),
     },
     {
-      title: "A Commitment to Quality",
-      content: "At The Dog House Pet Salon, we hold ourselves to the highest standards of grooming education. Our courses are meticulously designed to ensure that every student gains comprehensive knowledge and hands-on experience, fostering a deep understanding of pet care and grooming techniques. We prioritize the well-being and happiness of pets, instilling a sense of responsibility and professionalism in our students. By maintaining rigorous training protocols and up-to-date industry practices, we guarantee that our graduates are equipped to provide top-notch grooming services with confidence and expertise.",
+      title: t("school_promise_item3_title"),
+      content: t("school_promise_item3_content"),
     },
   ];
 
@@ -338,7 +352,7 @@ function OurPromiseSection() {
       <div style={{ maxWidth: "1520px", margin: "0 auto", width: "100%", position: "relative", zIndex: 2 }}>
         <div style={{ backgroundColor: "rgba(255,255,255,0.85)", borderRadius: "16px", padding: "48px", width: "850px", maxWidth: "100%", boxShadow: "6px 6px 20px rgba(0,0,0,0.08)" }}>
           <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(26px,3vw,40px)", color: "#1F2124", marginBottom: "32px" }}>
-            Our Promise to Students
+            {t("school_promise_title")}
           </h2>
           <div style={{ display: "flex", flexDirection: "column" }}>
             {items.map((item, i) => (
@@ -368,10 +382,13 @@ const programsData = [
   {
     id: "bathing",
     title: "Bathing Program",
+    titleEs: "Programa de Baño",
     hours: "160 class hours",
+    hoursEs: "160 horas de clase",
     imgUrl: "https://www.thedoghouseps.com/wp-content/uploads/2025/04/pet-shampoo.svg",
     price: "$3,800",
     duration: "4 week course / 160 class hours",
+    durationEs: "Curso de 4 semanas / 160 horas de clase",
     bullets: [
       "Professional Study Material",
       "Proper bathing and blow-drying",
@@ -383,15 +400,30 @@ const programsData = [
       "Proper toenail clipping",
       "Proper anal gland expression",
     ],
+    bulletsEs: [
+      "Material de Estudio Profesional",
+      "Baño y Secado Correcto",
+      "Anatomía",
+      "Desenredado Correcto",
+      "Trastornos de la Piel",
+      "Limpieza de Oídos Correcta",
+      "Tratamiento para Ojos y Oídos",
+      "Corte de Uñas Correcto",
+      "Expresión Correcta de Glándulas Anales",
+    ],
     footnote: "*This program includes (1 All Breed Dog Grooming Guide, 1 Bathing Apron, 1 Brush, 1 Comb, 1 Dematting Tool and 1 Nail Clipper)",
+    footnoteEs: "*Este programa incluye (1 Guía de Aseo para Todas las Razas, 1 Delantal de Baño, 1 Cepillo, 1 Peine, 1 Herramienta para Desenredar y 1 Cortaúñas)",
   },
   {
     id: "basic",
     title: "Basic Program",
+    titleEs: "Programa Básico",
     hours: "320 class hours",
+    hoursEs: "320 horas de clase",
     imgUrl: "https://www.thedoghouseps.com/wp-content/uploads/2025/04/pet-brush.svg",
     price: "$5,600",
     duration: "8 week course / 320 class hours",
+    durationEs: "Curso de 8 semanas / 320 horas de clase",
     bullets: [
       "Professional Study Material",
       "Anatomy",
@@ -405,15 +437,32 @@ const programsData = [
       "Grooming with blades",
       "Basic scissoring techniques",
     ],
+    bulletsEs: [
+      "Material de Estudio Profesional",
+      "Anatomía",
+      "Trastornos de la Piel",
+      "Tratamiento para Ojos y Oídos",
+      "Expresión Correcta de Glándulas Anales",
+      "Baño y Secado Correcto",
+      "Desenredado Correcto",
+      "Limpieza de Oídos Correcta",
+      "Corte de Uñas Correcto",
+      "Aseo con Cuchillas",
+      "Técnicas Básicas de Tijera",
+    ],
     footnote: "* This program includes (1 All Breed Dog Grooming Guide, 1 Grooming Apron, 1 Brush, 1 Comb, 1 Dematting Tool, 1 Nail Clipper, 1 Clipper, 2 Blades and 3 Scissors)",
+    footnoteEs: "* Este programa incluye (1 Guía de Aseo para Todas las Razas, 1 Delantal de Aseo, 1 Cepillo, 1 Peine, 1 Herramienta para Desenredar, 1 Cortaúñas, 1 Cortapelo, 2 Cuchillas y 3 Tijeras)",
   },
   {
     id: "professional",
     title: "Professional Groomer Program",
+    titleEs: "Programa de Peluquero Profesional",
     hours: "480 class hours",
+    hoursEs: "480 horas de clase",
     imgUrl: "https://www.thedoghouseps.com/wp-content/uploads/2025/04/cut.svg",
     price: "$8,500",
     duration: "12 week program / 480 class hours",
+    durationEs: "Programa de 12 semanas / 480 horas de clase",
     bullets: [
       "Professional Study Material",
       "Anatomy",
@@ -432,15 +481,37 @@ const programsData = [
       "Open book test on all breeds",
       "Grooming position training",
     ],
+    bulletsEs: [
+      "Material de Estudio Profesional",
+      "Anatomía",
+      "Trastornos de la Piel",
+      "Tratamiento para Ojos y Oídos",
+      "Expresión Correcta de Glándulas Anales",
+      "Baño y Secado Correcto",
+      "Desenredado Correcto",
+      "Limpieza de Oídos Correcta",
+      "Corte de Uñas Correcto",
+      "Todo Acerca de Cuchillas",
+      "Mantenimiento de Cortapelo",
+      "Aseo con Cuchillas",
+      "Aseo con Peines de Acoplamiento Rápido",
+      "Técnicas Avanzadas de Tijera",
+      "Examen de Libro Abierto en Todas las Razas",
+      "Entrenamiento de Posición de Aseo",
+    ],
     footnote: "*This program includes (1 All Breed Dog Grooming Guide, 1 Grooming Apron, 1 Brush, 1 Comb, 1 Dematting Tool, 1 Nail Clipper, 1 Clipper, 3 Scissors, 5 Blades and 8 Snap-On Combs)",
+    footnoteEs: "*Este programa incluye (1 Guía de Aseo para Todas las Razas, 1 Delantal de Aseo, 1 Cepillo, 1 Peine, 1 Herramienta para Desenredar, 1 Cortaúñas, 1 Cortapelo, 3 Tijeras, 5 Cuchillas y 8 Peines de Acoplamiento Rápido)",
   },
   {
     id: "franchise",
     title: "Franchise Program",
+    titleEs: "Programa de Franquicia",
     hours: "960 class hours",
+    hoursEs: "960 horas de clase",
     imgUrl: "https://www.thedoghouseps.com/wp-content/uploads/2025/04/scissors.svg",
     price: "$25,000",
     duration: "24 week course / 960 Class Hours",
+    durationEs: "Curso de 24 semanas / 960 horas de clase",
     bullets: [
       "Extensive Business Operations Training",
       "Facility Location and Acquisition Assistance",
@@ -463,7 +534,30 @@ const programsData = [
       "Open book test on all breeds",
       "Groomer Position Training",
     ],
+    bulletsEs: [
+      "Capacitación Extensa en Operaciones Comerciales",
+      "Asistencia en Ubicación y Adquisición de Instalaciones",
+      "Acceso a Financiamiento",
+      "Contactos de Productos y Equipos de Proveedores",
+      "Material de Estudio Profesional",
+      "Anatomía",
+      "Trastornos de la Piel",
+      "Tratamiento para Ojos y Oídos",
+      "Expresión Correcta de Glándulas Anales",
+      "Baño y Secado Completo",
+      "Desenredado Efectivo",
+      "Limpieza Segura de Oídos",
+      "Corte de Uñas Correcto",
+      "Todo Acerca de Cuchillas",
+      "Mantenimiento de Cortapelo",
+      "Aseo con Cuchillas",
+      "Aseo con Peines de Acoplamiento Rápido",
+      "Técnicas Avanzadas de Tijera",
+      "Examen de Libro Abierto en Todas las Razas",
+      "Entrenamiento de Posición de Peluquero",
+    ],
     footnote: "* This program includes (1 All Breed Dog Grooming Guide, 1 Bathing Apron, 1 Brush, 1 Comb, 1 Dematting Tool and 1 Nail Clipper)",
+    footnoteEs: "* Este programa incluye (1 Guía de Aseo para Todas las Razas, 1 Delantal de Baño, 1 Cepillo, 1 Peine, 1 Herramienta para Desenredar y 1 Cortaúñas)",
   },
 ];
 
@@ -492,6 +586,7 @@ interface FranchiseFormData {
 }
 
 function FranchiseModal({ isOpen, onClose }: FranchiseModalProps) {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState<FranchiseFormData>({
     fullName: "",
     email: "",
@@ -605,19 +700,19 @@ function FranchiseModal({ isOpen, onClose }: FranchiseModalProps) {
           {submitted ? (
             <div style={{ textAlign: "center", padding: "60px 20px" }}>
               <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "24px", color: "#965B83", marginBottom: "16px" }}>
-                Thank You!
+                {t("school_success_title")}
               </h3>
               <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", lineHeight: 1.6 }}>
-                Thank you for your franchise application! We'll be in touch soon.
+                {t("school_success_franchise_message")}
               </p>
             </div>
           ) : (
             <>
               <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "28px", color: "#1F2124", marginBottom: "8px" }}>
-                Apply — Franchise Program
+                {t("school_franchise_apply_title")}
               </h2>
               <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "12px", color: "#54595F", marginBottom: "32px" }}>
-                * indicates required fields
+                * {t("school_form_required_fields")}
               </p>
 
               <form onSubmit={handleSubmit}>
@@ -713,14 +808,14 @@ function FranchiseModal({ isOpen, onClose }: FranchiseModalProps) {
                         backgroundColor: "#ffffff",
                       }}
                     >
-                      <option value="">Select Format</option>
-                      <option value="Online">Online</option>
-                      <option value="In-Person">In-Person</option>
+                      <option value="">{t("school_form_select_format")}</option>
+                      <option value={t("school_form_online")}>{t("school_form_online")}</option>
+                      <option value={t("school_form_in_person")}>{t("school_form_in_person")}</option>
                     </select>
                   </div>
                   <div>
                     <label style={{ fontFamily: '"Outfit", sans-serif', fontSize: "14px", fontWeight: 600, color: "#1F2124", display: "block", marginBottom: "8px" }}>
-                      Which franchise model are you interested in?*
+                      {t("school_franchise_model")}*
                     </label>
                     <select
                       name="franchiseModel"
@@ -1016,7 +1111,7 @@ function FranchiseModal({ isOpen, onClose }: FranchiseModalProps) {
                   `}</style>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px" }}>
                     <label style={{ fontFamily: '"Outfit", sans-serif', fontSize: "14px", fontWeight: 600, color: "#1F2124" }}>
-                      How did you hear about our franchise opportunities?*
+                      {t("school_franchise_heard")}*
                     </label>
                     <button
                       type="button"
@@ -1036,7 +1131,7 @@ function FranchiseModal({ isOpen, onClose }: FranchiseModalProps) {
                       onMouseEnter={(e) => ((e.target as HTMLButtonElement).style.opacity = "0.85")}
                       onMouseLeave={(e) => ((e.target as HTMLButtonElement).style.opacity = "1")}
                     >
-                      {formData.howHeard.length > 0 ? "Deselect All" : "Select All"}
+                      {formData.howHeard.length > 0 ? t("school_form_deselect_all") : t("school_form_select_all")}
                     </button>
                   </div>
                   <div className="checkbox-grid-franchise">
@@ -1087,7 +1182,7 @@ function FranchiseModal({ isOpen, onClose }: FranchiseModalProps) {
                   onMouseEnter={(e) => ((e.target as HTMLButtonElement).style.opacity = "0.85")}
                   onMouseLeave={(e) => ((e.target as HTMLButtonElement).style.opacity = "1")}
                 >
-                  Submit Application
+                  {t("school_form_submit")}
                 </button>
               </form>
             </>
@@ -1120,6 +1215,7 @@ interface FormDataState {
 }
 
 function ApplyModal({ isOpen, programName, onClose }: ApplyModalProps) {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState<FormDataState>({
     fullName: "",
     email: "",
@@ -1227,17 +1323,17 @@ function ApplyModal({ isOpen, programName, onClose }: ApplyModalProps) {
 
           {submitted ? (
             <div style={{ textAlign: "center", padding: "40px" }}>
-              <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "24px", color: "#1F2124", marginBottom: "12px" }}>Thank You!</h3>
-              <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F" }}>Thank you for applying! We&apos;ll be in touch soon.</p>
+              <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "24px", color: "#1F2124", marginBottom: "12px" }}>{t("school_success_title")}</h3>
+              <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F" }}>{t("school_success_message")}</p>
             </div>
           ) : (
             <>
               {/* Header */}
               <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "28px", color: "#1F2124", marginBottom: "6px" }}>
-                Apply — {programName}
+                {t("school_apply_program")}{programName}
               </h2>
               <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "14px", color: "#54595F", marginBottom: "24px" }}>
-                * indicates required fields
+                * {t("school_form_required_fields")}
               </p>
 
               <form onSubmit={handleSubmit}>
@@ -1300,9 +1396,9 @@ function ApplyModal({ isOpen, programName, onClose }: ApplyModalProps) {
                       required
                       style={{ width: "100%", padding: "12px", border: "1px solid #ccc", borderRadius: "6px", fontFamily: '"Outfit", sans-serif', fontSize: "14px", boxSizing: "border-box", backgroundColor: "#fff", cursor: "pointer" }}
                     >
-                      <option value="">Select Format</option>
-                      <option value="Online">Online</option>
-                      <option value="In-Person">In-Person</option>
+                      <option value="">{t("school_form_select_format")}</option>
+                      <option value={t("school_form_online")}>{t("school_form_online")}</option>
+                      <option value={t("school_form_in_person")}>{t("school_form_in_person")}</option>
                     </select>
                   </div>
                   <div>
@@ -1424,7 +1520,7 @@ function ApplyModal({ isOpen, programName, onClose }: ApplyModalProps) {
                     }
                   `}</style>
                   <label style={{ fontFamily: '"Outfit", sans-serif', fontSize: "13px", fontWeight: 600, color: "#1F2124", display: "block", marginBottom: "12px" }}>
-                    How did you hear about our program?*
+                    {t("school_form_heard_about")}*
                   </label>
                   <div className="checkbox-grid-apply">
                     {["Existing Customer", "Google/Internet Search", "Social Media", "Referral from a Friend", "Drive By", "Website", "Other"].map((option) => (
@@ -1456,7 +1552,7 @@ function ApplyModal({ isOpen, programName, onClose }: ApplyModalProps) {
                       cursor: "pointer",
                     }}
                   >
-                    {formData.howHeard.length > 0 ? "Deselect All" : "Select All"}
+                    {formData.howHeard.length > 0 ? t("school_form_deselect_all") : t("school_form_select_all")}
                   </button>
                 </div>
 
@@ -1476,7 +1572,7 @@ function ApplyModal({ isOpen, programName, onClose }: ApplyModalProps) {
                   <input type="checkbox" style={{ accentColor: "#965B83", cursor: "pointer", width: "20px", height: "20px" }} />
                   <div>
                     <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "13px", color: "#1F2124", margin: 0, fontWeight: 600 }}>
-                      I&apos;m not a robot
+                      {t("school_form_not_robot")}
                     </p>
                     <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "11px", color: "#54595F", margin: "4px 0 0 0" }}>
                       reCAPTCHA
@@ -1503,7 +1599,7 @@ function ApplyModal({ isOpen, programName, onClose }: ApplyModalProps) {
                   onMouseEnter={(e) => ((e.target as HTMLButtonElement).style.opacity = "0.85")}
                   onMouseLeave={(e) => ((e.target as HTMLButtonElement).style.opacity = "1")}
                 >
-                  Submit Application
+                  {t("school_form_submit")}
                 </button>
               </form>
             </>
@@ -1515,6 +1611,7 @@ function ApplyModal({ isOpen, programName, onClose }: ApplyModalProps) {
 }
 
 function ProgramsTabbed() {
+  const { t, language } = useLanguage();
   const [activeTab, setActiveTab] = useState(0);
   const [showModal, setShowModal] = useState(false);
   const [showFranchiseModal, setShowFranchiseModal] = useState(false);
@@ -1534,15 +1631,16 @@ function ProgramsTabbed() {
         <div style={{ maxWidth: "1520px", margin: "0 auto" }}>
           {/* Header */}
           <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(28px,4vw,50px)", color: "#1F2124", textAlign: "center", marginBottom: "60px", lineHeight: 1.2 }}>
-            These programs have taught every groomer at The Dog House Pet Salon over the last 15 years...
+            {t("school_programs_heading")}
           </h2>
 
           {/* Tab Buttons */}
-          <div style={{ display: "flex", gap: "16px", marginBottom: "60px", flexWrap: "wrap", justifyContent: "center" }}>
+          <div className="programs-tab-buttons" style={{ display: "flex", gap: "16px", marginBottom: "60px", flexWrap: "wrap", justifyContent: "center" }}>
             {programsData.map((prog, idx) => (
               <button
                 key={prog.id}
                 onClick={() => setActiveTab(idx)}
+                className="programs-tab-btn"
                 style={{
                   display: "flex",
                   alignItems: "center",
@@ -1561,28 +1659,28 @@ function ProgramsTabbed() {
                   textAlign: "left",
                 }}
               >
-                <img src={prog.imgUrl} alt={prog.title} style={{ width: "40px", height: "40px", flexShrink: 0 }} />
+                <Image src={prog.imgUrl} alt={language === "es" ? prog.titleEs : prog.title} width={40} height={40} style={{ width: "40px", height: "40px", flexShrink: 0 }} />
                 <div>
-                  <div style={{ fontWeight: 600 }}>{prog.title}</div>
-                  <div style={{ fontSize: "12px", opacity: 0.8 }}>{prog.hours}</div>
+                  <div style={{ fontWeight: 600 }}>{language === "es" ? prog.titleEs : prog.title}</div>
+                  <div style={{ fontSize: "12px", opacity: 0.8 }}>{language === "es" ? prog.hoursEs : prog.hours}</div>
                 </div>
               </button>
             ))}
           </div>
 
           {/* Tab Content */}
-          <div style={{ backgroundColor: "#ffffff", padding: "40px", borderRadius: "12px", borderBottom: "1px solid #000", alignItems: "center" }}>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "40px", alignItems: "center" }}>
+          <div className="programs-tab-content" style={{ backgroundColor: "#ffffff", padding: "40px", borderRadius: "12px", alignItems: "center" }}>
+            <div className="programs-tab-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "40px", alignItems: "center" }}>
               {/* Left Column */}
               <div>
                 <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "22px", color: "#1F2124", marginBottom: "16px" }}>
-                  {active.title}
+                  {language === "es" ? active.titleEs : active.title}
                 </h3>
                 <p style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "32px", color: "#965B83", fontWeight: 700, marginBottom: "12px" }}>
                   {active.price}
                 </p>
                 <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "14px", color: "#54595F", marginBottom: "24px", lineHeight: 1.6 }}>
-                  {active.duration}
+                  {language === "es" ? active.durationEs : active.duration}
                 </p>
                 <button
                   onClick={() => handleApplyClick(activeTab)}
@@ -1603,26 +1701,26 @@ function ProgramsTabbed() {
                   onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.85")}
                   onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
                 >
-                  Apply Now
+                  {t("school_apply_now")}
                 </button>
               </div>
 
               {/* Middle Column — Icon */}
               <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
-                <img src={active.imgUrl} alt={active.title} style={{ width: "220px", height: "220px", objectFit: "contain" }} />
+                <Image src={active.imgUrl} alt={active.title} width={220} height={220} style={{ width: "220px", height: "220px", objectFit: "contain" }} />
               </div>
 
               {/* Right Column — Bullets */}
               <div>
                 <ul style={{ fontFamily: '"Outfit", sans-serif', fontSize: "14px", color: "#54595F", lineHeight: 1.8, listStyle: "disc", paddingLeft: "20px", marginBottom: "24px" }}>
-                  {active.bullets.map((bullet) => (
+                  {(language === "es" ? active.bulletsEs : active.bullets).map((bullet) => (
                     <li key={bullet} style={{ marginBottom: "8px" }}>
                       {bullet}
                     </li>
                   ))}
                 </ul>
-                <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "12px", color: "#54595F", fontStyle: "italic", borderTop: "1px solid #e0e0e0", paddingTop: "16px" }}>
-                  {active.footnote}
+                <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "12px", color: "#54595F", fontStyle: "italic", borderTop: "1px solid #e0e0e0", paddingTop: "45px" }}>
+                  {language === "es" ? active.footnoteEs : active.footnote}
                 </p>
               </div>
             </div>
@@ -1630,19 +1728,20 @@ function ProgramsTabbed() {
 
           {/* Footer Text */}
           <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", textAlign: "center", marginTop: "60px", lineHeight: 1.8, maxWidth: "900px", margin: "60px auto 0" }}>
-            Whether you&apos;re interested in pet grooming classes, or seeking reputable dog grooming courses, The Dog House Pet Salon&apos;s grooming school is your gateway to a rewarding career in the pet care industry. Contact us today to learn more about our professional dog grooming programs and take the first step toward an exciting and fulfilling career as a professional groomer.
+            {t("school_footer_text")}
           </p>
         </div>
       </section>
 
       {/* Modal */}
-      <ApplyModal isOpen={showModal} programName={active.title} onClose={() => setShowModal(false)} />
+      <ApplyModal isOpen={showModal} programName={language === "es" ? active.titleEs : active.title} onClose={() => setShowModal(false)} />
       <FranchiseModal isOpen={showFranchiseModal} onClose={() => setShowFranchiseModal(false)} />
     </>
   );
 }
 
 export default function GroomingSchoolClient() {
+  const { t } = useLanguage();
   return (
     <>
       {/* ── Hero Banner ── */}
@@ -1656,7 +1755,7 @@ export default function GroomingSchoolClient() {
           minHeight: "700px",
           display: "flex",
           alignItems: "center",
-          padding: "80px 20px 120px",
+          padding: "160px 20px 120px",
           overflow: "hidden",
         }}
       >
@@ -1670,14 +1769,14 @@ export default function GroomingSchoolClient() {
         </div>
         {/* Content — dark text since white overlay */}
         <div style={{ maxWidth: "1520px", margin: "0 auto", position: "relative", zIndex: 3 }}>
-          <h1 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(36px,5vw,72px)", color: "#1F2124", marginBottom: "16px", lineHeight: 1.1 }}>
-            Houston&apos;s Premiere Dog <span style={{ color: "#965B83" }}>Grooming School</span>
+          <h1 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "60px", color: "#1F2124", marginBottom: "16px", lineHeight: 1.1 }}>
+            {t("school_hero_title")} <span style={{ color: "#965B83" }}>{t("school_hero_highlight")}</span>
           </h1>
           <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "clamp(16px,2vw,22px)", color: "#1F2124", marginBottom: "32px", maxWidth: "600px" }}>
-            Start your pet grooming career learning from experienced dog groomers with decades of experience.
+            {t("school_hero_subtitle")}
           </p>
           <a href="#programs" style={{ backgroundColor: "#965B83", color: "#ffffff", padding: "15px 30px", borderRadius: "50px", fontFamily: '"Outfit", sans-serif', fontWeight: 700, fontSize: "18px", display: "inline-block", textDecoration: "none" }}>
-            View Our Programs
+            {t("school_view_programs")}
           </a>
         </div>
       </section>
@@ -1685,17 +1784,17 @@ export default function GroomingSchoolClient() {
       {/* ── Professional Pet Grooming School + Video ── */}
       <section style={{ backgroundColor: "#ffffff", padding: "80px 20px", textAlign: "center" }}>
         <div style={{ maxWidth: "1520px", margin: "0 auto" }}>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "60px", alignItems: "center" }}>
+          <div className="grid-responsive" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "60px", alignItems: "center" }}>
             {/* Left Column */}
             <div style={{ textAlign: "left" }}>
               <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(28px,4vw,50px)", color: "#1F2124", marginBottom: "16px", lineHeight: 1.2 }}>
-                Professional Pet <span style={{ color: "#965B83" }}>Grooming School!</span>
+                {t("school_professional_title")} <span style={{ color: "#965B83" }}>{t("school_professional_highlight")}</span>
               </h2>
               <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", marginBottom: "24px", lineHeight: 1.7 }}>
-                Learn professional pet grooming techniques from industry experts. Our comprehensive program teaches everything you need to become a skilled groomer, from basic bathing to advanced breed-specific cuts.
+                {t("school_professional_desc")}
               </p>
               <a href="#programs" style={{ backgroundColor: "#965B83", color: "#ffffff", padding: "15px 30px", borderRadius: "50px", fontFamily: '"Outfit", sans-serif', fontWeight: 700, fontSize: "18px", display: "inline-block", textDecoration: "none" }}>
-                Explore Programs
+                {t("school_explore_programs")}
               </a>
             </div>
 
@@ -1738,7 +1837,7 @@ export default function GroomingSchoolClient() {
 
       {/* ── Student Review Video Section ── */}
       <section style={{ backgroundColor: "#965B83", padding: "80px 20px" }}>
-        <div style={{ maxWidth: "1520px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "60px", alignItems: "center" }}>
+        <div className="grid-responsive" style={{ maxWidth: "1520px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "60px", alignItems: "center" }}>
           {/* Left Column — Video Player */}
           <div style={{ position: "relative", borderRadius: "12px", overflow: "hidden", boxShadow: "6px 6px 20px rgba(0,0,0,0.25)" }}>
             <video
@@ -1759,10 +1858,10 @@ export default function GroomingSchoolClient() {
           {/* Right Column — Text Content */}
           <div>
             <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(28px,4vw,48px)", color: "#ffffff", marginBottom: "24px", lineHeight: 1.1 }}>
-              What Our Students Are Saying
+              {t("school_student_testimonial_title")}
             </h2>
             <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#ffffff", lineHeight: 1.8 }}>
-              See what our students have to say about their hands-on experience and career success after graduation!
+              {t("school_student_testimonial_text")}
             </p>
           </div>
         </div>
@@ -1770,25 +1869,25 @@ export default function GroomingSchoolClient() {
 
       {/* ── Donna Williams Section ── */}
       <section style={{ backgroundColor: "#ffffff", padding: "80px 20px" }}>
-        <div style={{ maxWidth: "1520px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "60px", alignItems: "center" }}>
+        <div className="grid-responsive" style={{ maxWidth: "1520px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "60px", alignItems: "center" }}>
           {/* Left Column — Text */}
           <div>
             <p style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "14px", color: "#965B83", letterSpacing: "2px", marginBottom: "8px", textTransform: "uppercase" }}>
-              HOUSTON'S #1
+              {t("school_donna_houston")}
             </p>
             <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(28px,4vw,52px)", color: "#965B83", marginBottom: "24px", lineHeight: 1.1 }}>
-              PET GROOMING SERVICE
+              {t("school_donna_title")}
             </h2>
-            <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "20px", color: "#1F2124", marginBottom: "16px", fontWeight: 600 }}>
-              Her Highlights:
+            <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "20px", color: "#1F2124", marginBottom: "16px", fontWeight: 400 }}>
+              {t("school_donna_highlights")}
             </h3>
             <ul style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", lineHeight: 1.8, listStyle: "none", paddingLeft: 0, marginBottom: "24px" }}>
               {[
-                "30+ years of grooming experience",
-                "Built a successful pet salon in Houston, TX (15 yrs and counting)",
-                "3 convenient location serving Houston, Pearland, and the surrounding areas",
-                "Groomed over 50,000 dogs",
-                "Rescued 500+ dogs",
+                t("school_donna_item1"),
+                t("school_donna_item2"),
+                t("school_donna_item3"),
+                t("school_donna_item4"),
+                t("school_donna_item5"),
               ].map((item) => (
                 <li key={item} style={{ display: "flex", alignItems: "flex-start", gap: "10px", marginBottom: "8px" }}>
                   <i className="fa-solid fa-check-circle" style={{ color: "#965B83", marginTop: "4px", flexShrink: 0 }} />
@@ -1797,7 +1896,7 @@ export default function GroomingSchoolClient() {
               ))}
             </ul>
             <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", lineHeight: 1.7 }}>
-              Donna believes in high-quality grooming with top-notch safety and care for every dog.
+              {t("school_donna_bio_text")}
             </p>
           </div>
 
@@ -1825,17 +1924,17 @@ export default function GroomingSchoolClient() {
       <section style={{ backgroundColor: "#F8F8F8", padding: "80px 20px" }}>
         <div style={{ maxWidth: "1520px", margin: "0 auto" }}>
           <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(28px,3vw,42px)", color: "#1F2124", textAlign: "center", marginBottom: "50px" }}>
-            Meet Your Instructors
+            {t("school_instructors_title")}
           </h2>
           <div className="groomers-grid" style={{ gap: "30px" }}>
             {groomers.map((g) => (
               <div key={g.name} style={{ backgroundColor: "#ffffff", borderRadius: "12px", overflow: "hidden", boxShadow: "6px 6px 9px rgba(0,0,0,.08)", textAlign: "center" }}>
                 <Image src={g.img} alt={g.name} width={500} height={500} style={{ width: "100%", height: "300px", objectFit: "cover" }} />
                 <div style={{ padding: "30px 24px" }}>
-                  <p style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "13px", color: "#965B83", letterSpacing: "1px", marginBottom: "4px" }}>{g.role}</p>
+                  <p style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "13px", color: "#965B83", letterSpacing: "1px", marginBottom: "4px" }}>{t(g.roleKey)}</p>
                   <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "22px", color: "#1F2124", marginBottom: "4px" }}>{g.name}</h3>
                   <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "15px", color: "#54595F", marginBottom: "20px" }}>{g.location}</p>
-                  <Link href={g.href} style={{ fontFamily: '"Outfit", sans-serif', fontSize: "14px", color: "#fff", fontWeight: 600, textDecoration: "none", backgroundColor: "#965B83", padding: "10px 20px", borderRadius: "50px", display: "inline-block" }}>Read Full Bio</Link>
+                  <Link href={g.href} style={{ fontFamily: '"Outfit", sans-serif', fontSize: "14px", color: "#fff", fontWeight: 600, textDecoration: "none", backgroundColor: "#965B83", padding: "10px 20px", borderRadius: "50px", display: "inline-block" }}>{t("school_read_full_bio")}</Link>
                 </div>
               </div>
             ))}
@@ -1872,7 +1971,7 @@ export default function GroomingSchoolClient() {
             textAlign: "center",
             marginBottom: "12px",
           }}>
-            Train at One of Our Locations
+            {t("school_locations_train")}
           </h2>
           <p style={{
             fontFamily: '"Outfit", sans-serif',
@@ -1881,18 +1980,18 @@ export default function GroomingSchoolClient() {
             textAlign: "center",
             marginBottom: "50px",
           }}>
-            We have dog grooming schools at each of our 3 locations in Houston.
+            {t("school_locations_desc")}
           </p>
 
           {/* 2-Column Layout: Large card on left, stacked cards on right */}
-          <div style={{
+          <div className="locations-grid" style={{
             display: "grid",
             gridTemplateColumns: "1fr 1fr",
             gap: "30px",
             alignItems: "stretch",
           }}>
             {/* LEFT: Large Richmond Ave Card */}
-            <div style={{
+            <div className="location-card" style={{
               backgroundColor: "#965B83",
               borderRadius: "16px",
               padding: "24px",
@@ -1962,7 +2061,7 @@ export default function GroomingSchoolClient() {
                   fontWeight: 600,
                   letterSpacing: "1px",
                 }}>
-                  {locations[0].option}
+                  {t("school_option1")}
                 </p>
 
                 <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "8px", color: "#fff" }}>
@@ -1994,7 +2093,7 @@ export default function GroomingSchoolClient() {
             {/* RIGHT: Stacked cards (Washington Ave + Business Center) */}
             <div style={{ display: "flex", flexDirection: "column", gap: "30px" }}>
               {/* Washington Ave Card */}
-              <div style={{
+              <div className="location-card" style={{
                 backgroundColor: "#965B83",
                 borderRadius: "16px",
                 padding: "24px",
@@ -2062,7 +2161,7 @@ export default function GroomingSchoolClient() {
                     fontWeight: 600,
                     letterSpacing: "0.5px",
                   }}>
-                    {locations[1].option}
+                    {t("school_option2")}
                   </p>
 
                   <div style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "4px", color: "#fff" }}>
@@ -2092,7 +2191,7 @@ export default function GroomingSchoolClient() {
               </div>
 
               {/* Business Center Card */}
-              <div style={{
+              <div className="location-card" style={{
                 backgroundColor: "#965B83",
                 borderRadius: "16px",
                 padding: "24px",
@@ -2160,7 +2259,7 @@ export default function GroomingSchoolClient() {
                     fontWeight: 600,
                     letterSpacing: "0.5px",
                   }}>
-                    {locations[2].option}
+                    {t("school_option3")}
                   </p>
 
                   <div style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "4px", color: "#fff" }}>
@@ -2199,78 +2298,78 @@ export default function GroomingSchoolClient() {
             textAlign: "center",
             marginTop: "50px",
           }}>
-            Fun Fact: Most of our in-person students are from the local communities, including Pearland, The Heights, Montrose, The Galleria, Uptown Park, and beyond.
+            {t("school_fun_fact")}
           </p>
         </div>
       </section>
 
       {/* ── A Letter From Our Master Trainer ── */}
       <section style={{ backgroundColor: "#ffffff", padding: "80px 20px 130px" }}>
-        <div style={{ maxWidth: "1520px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "60px", alignItems: "start" }}>
+        <div className="grid-responsive" style={{ maxWidth: "1520px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "60px", alignItems: "start" }}>
           {/* Left Column — Heading */}
           <div>
             <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(36px,5vw,60px)", color: "#965B83", lineHeight: 1.1, marginBottom: "0px" }}>
-              A LETTER FROM OUR MASTER TRAINER
+              {t("school_master_trainer_letter")}
             </h2>
           </div>
 
           {/* Right Column — Letter Content */}
           <div>
             <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "24px", color: "#1F2124", marginBottom: "24px" }}>
-              TRAIN AT ONE OF OUR LOCATIONS
+              {t("school_train_locations")}
             </h3>
 
             <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", lineHeight: 1.8, marginBottom: "16px" }}>
-              Welcome to The Dog House Pet Salon Grooming School! My name is Donna Williams, and I'm excited to tell you about our dog grooming program here in Houston, Texas.
+              {t("school_letter_intro")}
             </p>
 
             <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", lineHeight: 1.8, marginBottom: "16px" }}>
-              When I started grooming pets over 25 years ago, it was tough. I didn't have anyone to show me the ropes, and there were so many things I had to figure out on my own. I prayed for a school that could teach me everything I needed to know to be successful.
+              {t("school_letter_p1")}
             </p>
 
             <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", lineHeight: 1.8, marginBottom: "16px" }}>
-              That's why I decided to start our grooming school – to help people like you who want to learn and succeed in pet grooming. After starting my first shop over 15 years ago, and now having 3 locations, I can tell you a thing or two about successful dog grooming.
+              {t("school_letter_p2")}
             </p>
 
             <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", lineHeight: 1.8, marginBottom: "16px" }}>
-              I designed our program to give you a ton of hands-on practice and real-world experience. One of the hardest things I faced was learning to groom pets quickly but still make them look great.
+              {t("school_letter_p3")}
             </p>
 
             <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", lineHeight: 1.8, marginBottom: "16px" }}>
-              That's why we focus on practical skills you'll use daily. We don't teach fancy stuff like color dyeing or crazy haircuts. Instead, we'll show you how to do high-quality grooming quickly with standard cuts that customers love. I'll share all my secret tricks to help you work efficiently and make pets look their best.
+              {t("school_letter_p4")}
             </p>
 
             <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", lineHeight: 1.8, marginBottom: "16px" }}>
-              At The Dog House Pet Salon Grooming School, we create a friendly and challenging learning environment.
+              {t("school_letter_p5")}
             </p>
 
             <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", lineHeight: 1.8, marginBottom: "16px" }}>
-              You'll learn everything from basic grooming to advanced styles, working with different breeds to learn how to meet each pet's unique needs.
+              {t("school_letter_p6")}
             </p>
 
             <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", lineHeight: 1.8, marginBottom: "16px" }}>
-              Work with experienced groomers in our busy salon, and it will build your skills and confidence, so you're ready for any grooming challenge.
+              {t("school_letter_p7")}
             </p>
 
             <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", lineHeight: 1.8, marginBottom: "16px" }}>
-              We are proud to be part of the Houston community and want to help it grow by training skilled and caring pet groomers. Many of our graduates have successful careers, and some even open their own salons. We're very proud of them and can't wait to see what you will achieve.
+              {t("school_letter_p8")}
             </p>
 
             <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", lineHeight: 1.8, marginBottom: "32px" }}>
-              Excited to start a career in dog grooming? We invite you to sign up for The Dog House Pet Salon Grooming School. We look forward to helping you reach your grooming dreams!
+              {t("school_letter_closing")}
             </p>
 
             {/* Signature */}
             <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "24px", color: "#965B83", fontStyle: "italic", marginBottom: "4px", margin: 0 }}>
-              Warmly
+              {t("school_letter_warmly")}
             </p>
 
             <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "28px", color: "#965B83", fontStyle: "italic", marginBottom: "4px", fontWeight: 600 }}>
-              Donna Williams
+              {t("school_letter_donna")}
             </p>
 
             <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "14px", color: "#54595F", marginBottom: "24px" }}>
-              Master Trainer
+              {t("school_letter_trainer")}
             </p>
 
             <Link
@@ -2302,14 +2401,16 @@ export default function GroomingSchoolClient() {
         </div>
         <div style={{ maxWidth: "1520px", margin: "0 auto", position: "relative", zIndex: 2 }}>
           <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "50px", color: "#FFF", textAlign: "center", marginBottom: "12px" }}>
-            Discover Expert Advice and the Latest Trends
+            {t("school_blog_title")}
           </h2>
           <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "18px", color: "#FFF", textAlign: "center", marginBottom: "48px" }}>
-            Stay informed with our blog, featuring tips and trends to help you keep your pets happy, healthy, and well cared for.
+            {t("school_blog_subtitle")}
           </p>
           <BlogCarousel posts={groomingBlogPosts} />
         </div>
       </section>
+
+      <StoreLocations />
     </>
   );
 }

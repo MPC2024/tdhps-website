@@ -36,6 +36,7 @@ export default function StoreLocations() {
     galleria: (
       <iframe
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3464.608356167197!2d-95.48587042302354!3d29.731101933346256!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8640c3d0d3c86635%3A0x907f8ce8816292c5!2sThe%20Dog%20House%20Pet%20Salon%20-%20Galleria!5e0!3m2!1sen!2sph!4v1775807330986!5m2!1sen!2sph"
+        title="Google Maps - The Dog House Pet Salon Galleria Location"
         width="100%"
         height="300"
         style={{ border: 0 }}
@@ -47,6 +48,7 @@ export default function StoreLocations() {
     memorial: (
       <iframe
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3464.6081190319214!2d-95.48328939999999!3d29.731108799999994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8640c3d0d3c8853d%3A0x7c6f412fd8196cef!2s5917%20Richmond%20Ave%2C%20Houston%2C%20TX%2077057%2C%20USA!5e0!3m2!1sen!2sph!4v1775807413457!5m2!1sen!2sph"
+        title="Google Maps - The Dog House Pet Salon Memorial Park Location"
         width="100%"
         height="300"
         style={{ border: 0 }}
@@ -58,6 +60,7 @@ export default function StoreLocations() {
     pearland: (
       <iframe
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3470.605565937552!2d-95.3920789!3d29.556979000000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8640933369770417%3A0x33fab8848295e333!2s2810%20Business%20Center%20Dr%2C%20Pearland%2C%20TX%2077584%2C%20USA!5e0!3m2!1sen!2sph!4v1775807459117!5m2!1sen!2sph"
+        title="Google Maps - The Dog House Pet Salon Pearland Location"
         width="100%"
         height="300"
         style={{ border: 0 }}

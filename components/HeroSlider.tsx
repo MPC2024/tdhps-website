@@ -67,7 +67,12 @@ export default function HeroSlider() {
       <style>{`
         @media (max-width: 768px) {
           .hero-slider-container {
-            height: 70vh !important;
+            height: 60vh !important;
+          }
+        }
+        @media (max-width: 480px) {
+          .hero-slider-container {
+            height: 55vh !important;
           }
         }
       `}</style>
@@ -93,8 +98,10 @@ export default function HeroSlider() {
             alt={slide.imgAlt}
             fill
             priority={i === 0}
+            fetchPriority={i === 0 ? "high" : "low"}
             style={{ objectFit: "cover", zIndex: 0 }}
-            sizes="100vw"
+            sizes="(max-width: 480px) 480px, (max-width: 768px) 768px, (max-width: 1200px) 1200px, 100vw"
+            quality={i === 0 ? 85 : 75}
           />
           {/* White overlay */}
           <div

@@ -78,6 +78,36 @@
     color: #1F2124;
   }
 
+  /* Desktop heading sizes */
+  h1 { font-size: 60px; }
+  h2 { font-size: 50px; }
+  h3 { font-size: 40px; }
+  h4 { font-size: 22px; }
+
+  /* Small desktop / tablet (1024px and below) */
+  @media (max-width: 1024px) {
+    h1 { font-size: 48px; }
+    h2 { font-size: 40px; }
+    h3 { font-size: 32px; }
+    h4 { font-size: 20px; }
+  }
+
+  /* Tablet (768px and below) */
+  @media (max-width: 768px) {
+    h1 { font-size: 38px; }
+    h2 { font-size: 32px; }
+    h3 { font-size: 26px; }
+    h4 { font-size: 18px; }
+  }
+
+  /* Mobile (480px and below) */
+  @media (max-width: 480px) {
+    h1 { font-size: 30px; }
+    h2 { font-size: 26px; }
+    h3 { font-size: 22px; }
+    h4 { font-size: 17px; }
+  }
+
   a {
     color: inherit;
     text-decoration: none;
@@ -313,6 +343,23 @@
   }
 }
 
+/* ── Grid Layouts ── */
+.groomers-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+@media (max-width: 1024px) {
+  .groomers-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .blog-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 24px !important;
+  }
+}
+
 /* ── Responsive Typography ── */
 @media (max-width: 1024px) {
   body {
@@ -331,6 +378,91 @@
   h2 { font-size: clamp(20px, 4vw, 28px) !important; }
   h3 { font-size: clamp(17px, 3.5vw, 24px) !important; }
   h4, h5, h6 { font-size: clamp(15px, 3vw, 18px) !important; }
+
+  .blog-grid {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+
+  .service-info-grid {
+    grid-template-columns: 1fr !important;
+    gap: 30px !important;
+  }
+
+  .locations-grid {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+
+  .location-card {
+    flex-direction: column !important;
+    text-align: left;
+    align-items: flex-start !important;
+  }
+
+  .location-card > div:first-child {
+    flex: none !important;
+    width: 100%;
+    justify-content: center !important;
+  }
+
+  .location-card > div:first-child img {
+    width: 150px !important;
+    height: 150px !important;
+  }
+
+  .location-card h3 {
+    font-size: 16px !important;
+    text-align: left !important;
+  }
+
+  .location-card p,
+  .location-card a {
+    font-size: 14px !important;
+    text-align: left !important;
+  }
+
+  .groomers-grid {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+
+  .grid-responsive {
+    grid-template-columns: 1fr !important;
+    gap: 30px !important;
+  }
+
+  .grid-responsive-4 {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 16px !important;
+  }
+
+  .programs-tab-buttons {
+    gap: 10px !important;
+    margin-bottom: 30px !important;
+  }
+
+  .programs-tab-btn {
+    min-width: unset !important;
+    width: 100% !important;
+    padding: 12px 16px !important;
+    font-size: 13px !important;
+  }
+
+  .programs-tab-content {
+    padding: 20px !important;
+  }
+
+  .programs-tab-grid {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+    text-align: center;
+  }
+
+  .programs-tab-grid img {
+    width: 150px !important;
+    height: 150px !important;
+  }
 }
 
 @media (max-width: 480px) {

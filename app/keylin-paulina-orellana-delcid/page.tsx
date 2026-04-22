@@ -1,28 +1,9 @@
-import type { Metadata } from "next";
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
-
-export const metadata: Metadata = {
-  title: "Keylin Orellana – Expert Dog Groomer in Galleria | The Dog House",
-  description:
-    "Meet Keylin Orellana, a dog groomer in Galleria at Dog House. With 5 years of experience & a passion for animals, she provides expert pet care",
-  openGraph: {
-    title: "Keylin Orellana – Expert Dog Groomer in Galleria | The Dog House",
-    description:
-      "Meet Keylin Orellana, a dog groomer in Galleria at Dog House. With 5 years of experience & a passion for animals, she provides expert pet care",
-    url: "https://www.thedoghouseps.com/keylin-paulina-orellana-delcid/",
-    images: [
-      {
-        url: "https://www.thedoghouseps.com/wp-content/uploads/2025/04/keylin-358.jpg.webp",
-        alt: "Keylin Paulina Orellana Delcid – Master Pet Groomer",
-      },
-    ],
-  },
-  alternates: {
-    canonical:
-      "https://www.thedoghouseps.com/keylin-paulina-orellana-delcid/",
-  },
-};
+import { useLanguage } from "@/lib/LanguageContext";
+import KeylinBio from "@/components/staff/KeylinBio";
 
 const locations = [
   {
@@ -64,6 +45,8 @@ const locations = [
 ];
 
 export default function KeylinOrellanaPage() {
+  const { t } = useLanguage();
+
   return (
     <>
       {/* ── Hero ── */}
@@ -76,7 +59,7 @@ export default function KeylinOrellanaPage() {
           minHeight: "700px",
           display: "flex",
           alignItems: "center",
-          padding: "80px 20px 120px",
+          padding: "160px 20px 120px",
           overflow: "hidden",
         }}
       >
@@ -93,7 +76,7 @@ export default function KeylinOrellanaPage() {
               textTransform: "uppercase",
             }}
           >
-            Galleria / Uptown Park
+            {t("keylin_location")}
           </p>
           <h1
             style={{
@@ -104,7 +87,7 @@ export default function KeylinOrellanaPage() {
               marginBottom: "8px",
             }}
           >
-            Keylin Paulina <span style={{ color: "#965B83" }}>Orellana Delcid</span>
+            {t("keylin_name")}
           </h1>
           <p
             style={{
@@ -114,7 +97,7 @@ export default function KeylinOrellanaPage() {
               marginBottom: "0",
             }}
           >
-            Master Pet Groomer
+            {t("staff_master_groomer")}
           </p>
         </div>
         {/* Curved bottom border */}
@@ -158,30 +141,21 @@ export default function KeylinOrellanaPage() {
                 margin: "0 auto",
                 display: "block",
               }}
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 400px"
             />
           </div>
           <div className="groomer-right" style={{ flex: "0 0 70%" }}>
-            <h2
-              style={{
-                fontFamily: '"Bowlby One SC", sans-serif',
-                fontSize: "clamp(22px,3vw,34px)",
-                color: "#1F2124",
-                marginBottom: "8px",
-                marginTop: 0,
-              }}
-            >
-              Keylin Paulina Orellana Delcid
-            </h2>
+            <KeylinBio />
             <p
               style={{
                 fontFamily: '"Outfit", sans-serif',
                 fontSize: "16px",
-                color: "#965B83",
-                fontWeight: 600,
-                marginBottom: "24px",
+                color: "#54595F",
+                lineHeight: 1.7,
+                marginBottom: "16px",
               }}
             >
-              Master Pet Groomer — Galleria / Uptown Park
+              {t("keylin_additional_bio")}
             </p>
             <p
               style={{
@@ -192,12 +166,7 @@ export default function KeylinOrellanaPage() {
                 marginBottom: "16px",
               }}
             >
-              Keylin Orellana is a certified pet groomer with 5 years of experience,
-              originally from Honduras. Her passion for animal care led her to pursue a
-              career in pet grooming after moving to the United States. Keylin values
-              creating happy, healthy lifestyles for pets and educating their owners.
-              Known for her positive attitude and resilience, she finds joy in helping
-              animals with their grooming needs.
+              {t("keylin_story")}
             </p>
             <p
               style={{
@@ -208,10 +177,7 @@ export default function KeylinOrellanaPage() {
                 marginBottom: "16px",
               }}
             >
-              Keylin Orellana&apos;s journey is one of passion, determination, and a
-              whole lot of puppy love. As a certified pet groomer with five years of
-              experience, Keylin has become a beloved figure at The Dog House Pet
-              Salon, where her skilled hands and warm heart work in perfect harmony.
+              {t("keylin_workplace")}
             </p>
             <p
               style={{
@@ -222,43 +188,7 @@ export default function KeylinOrellanaPage() {
                 marginBottom: "16px",
               }}
             >
-              Keylin&apos;s story begins in Honduras, where her love for animals first
-              took root. Upon moving to the United States, she saw an opportunity to
-              transform this affection into a fulfilling career. &ldquo;I wanted to
-              learn more about dogs and how I could help them,&rdquo; Keylin shares,
-              her eyes sparkling with the same enthusiasm that drove her to pursue pet
-              grooming.
-            </p>
-            <p
-              style={{
-                fontFamily: '"Outfit", sans-serif',
-                fontSize: "16px",
-                color: "#54595F",
-                lineHeight: 1.7,
-                marginBottom: "16px",
-              }}
-            >
-              At The Dog House Pet Salon, Keylin found not just a workplace, but a
-              second home. Her approach to grooming is a unique blend of technical
-              expertise and genuine care, driven by a profound belief in contributing
-              to the health and happiness of every pet she encounters. Keylin describes
-              herself as &ldquo;positive and resilient,&rdquo; two qualities that
-              shine through in her work.
-            </p>
-            <p
-              style={{
-                fontFamily: '"Outfit", sans-serif',
-                fontSize: "16px",
-                color: "#54595F",
-                lineHeight: 1.7,
-                marginBottom: "16px",
-              }}
-            >
-              One of Keylin&apos;s most cherished memories involves a dog named Teddy
-              and a scissors-only groom that took over an hour and a half. &ldquo;The
-              reward was his parents&apos; faces and how happy they were seeing the
-              vision they wanted for him actually applied. It was amazing!&rdquo; she
-              recalls, her voice brimming with pride.
+              {t("keylin_memory")}
             </p>
             <p
               style={{
@@ -269,12 +199,10 @@ export default function KeylinOrellanaPage() {
                 marginBottom: "28px",
               }}
             >
-              When not working her full-time job at The Dog House Pet Salon, Keylin
-              pursues her interest in finance through college classes — a testament to
-              her drive and dedication beyond the grooming table.
+              {t("keylin_college")}
             </p>
             <Link href="/appointment-request" className="btn-primary">
-              Schedule An Appointment
+              {t("schedule_appointment")}
             </Link>
           </div>
         </div>
@@ -292,12 +220,12 @@ export default function KeylinOrellanaPage() {
             }}
           >
             {[
-              { num: "5+", label: "Years of Experience" },
-              { num: "Certified", label: "Pet Groomer" },
-              { num: "1,000+", label: "Happy Pets Served" },
-              { num: "Galleria", label: "Location Specialist" },
+              { num: "5+", labelKey: "keylin_years_exp" as const },
+              { num: "Certified", labelKey: "keylin_pet_groomer" as const },
+              { num: "1,000+", labelKey: "keylin_happy_pets" as const },
+              { num: "Galleria", labelKey: "keylin_location_specialist" as const },
             ].map((stat) => (
-              <div key={stat.label}>
+              <div key={stat.labelKey}>
                 <p
                   style={{
                     fontFamily: '"Bowlby One SC", sans-serif',
@@ -316,7 +244,7 @@ export default function KeylinOrellanaPage() {
                     marginTop: "6px",
                   }}
                 >
-                  {stat.label}
+                  {t(stat.labelKey)}
                 </p>
               </div>
             ))}
@@ -336,7 +264,7 @@ export default function KeylinOrellanaPage() {
               marginBottom: "16px",
             }}
           >
-            What Sets <span style={{ color: "#965B83" }}>Keylin</span> Apart
+            {t("keylin_what_sets_apart")}
           </h2>
           <p
             style={{
@@ -349,8 +277,7 @@ export default function KeylinOrellanaPage() {
               lineHeight: 1.7,
             }}
           >
-            Positive, resilient, and deeply passionate — Keylin brings her
-            whole heart to every dog she grooms at the Galleria location.
+            {t("keylin_what_sets_apart_desc")}
           </p>
           <div
             style={{
@@ -362,22 +289,22 @@ export default function KeylinOrellanaPage() {
             {[
               {
                 icon: <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6l3 9h9l-7 5 3 9-8-6-8 6 3-9-7-5h9z" fill="#965B83" opacity=".3" stroke="#965B83" strokeWidth="2" strokeLinejoin="round"/></svg>,
-                title: "Transformative Results",
-                desc: "Keylin's scissors-only grooms are legendary. Her attention to detail and commitment to each pet's individual look ensures clients leave absolutely thrilled every time.",
+                titleKey: "keylin_transform_title" as const,
+                descKey: "keylin_transform_desc" as const,
               },
               {
                 icon: <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="16" cy="14" r="6" stroke="#965B83" strokeWidth="2.5"/><circle cx="16" cy="12.5" r="1.5" fill="#965B83"/><path d="M12 20c-3 2-5 5-5 9h18c0-4-2-7-5-9" stroke="#965B83" strokeWidth="2" fill="#965B83" opacity=".2"/><path d="M26 10l4-3m0 0l4 2m-4-2v5" stroke="#965B83" strokeWidth="2" strokeLinecap="round"/></svg>,
-                title: "Pet Health & Education",
-                desc: "Keylin believes in educating pet parents to create happy, healthy lifestyles. She takes the time to share tips on coat care and maintenance between visits.",
+                titleKey: "keylin_health_title" as const,
+                descKey: "keylin_health_desc" as const,
               },
               {
                 icon: <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 8c-3 0-6 2-6 6 0 3 2 5 4 7l2 2 2-2c2-2 4-4 4-7 0-4-3-6-6-6z" stroke="#965B83" strokeWidth="2.5" fill="#965B83" opacity=".2"/><line x1="14" y1="28" x2="26" y2="28" stroke="#965B83" strokeWidth="2.5" strokeLinecap="round"/><line x1="16" y1="32" x2="24" y2="32" stroke="#965B83" strokeWidth="2.5" strokeLinecap="round"/><line x1="20" y1="23" x2="20" y2="28" stroke="#965B83" strokeWidth="2"/></svg>,
-                title: "Positive & Resilient",
-                desc: "Keylin's upbeat attitude and determination make her a beloved presence at The Dog House. She finds joy in every challenge and every wagging tail that leaves her station.",
+                titleKey: "keylin_resilient_title" as const,
+                descKey: "keylin_resilient_desc" as const,
               },
             ].map((card) => (
               <div
-                key={card.title}
+                key={card.titleKey}
                 style={{
                   backgroundColor: "#F8F8F8",
                   borderRadius: "12px",
@@ -396,7 +323,7 @@ export default function KeylinOrellanaPage() {
                     marginBottom: "12px",
                   }}
                 >
-                  {card.title}
+                  {t(card.titleKey)}
                 </h3>
                 <p
                   style={{
@@ -406,7 +333,7 @@ export default function KeylinOrellanaPage() {
                     lineHeight: 1.7,
                   }}
                 >
-                  {card.desc}
+                  {t(card.descKey)}
                 </p>
               </div>
             ))}
@@ -438,17 +365,17 @@ export default function KeylinOrellanaPage() {
             textAlign: "center",
             marginBottom: "50px",
           }}>
-            You Can Find Us At These Locations Near You
+            {t("you_can_find_us")}
           </h2>
 
-          <div style={{
+          <div className="locations-grid" style={{
             display: "grid",
             gridTemplateColumns: "1fr 1fr",
             gap: "30px",
             alignItems: "stretch",
           }}>
             {/* LEFT: Large Richmond Ave Card */}
-            <div style={{
+            <div className="location-card" style={{
               backgroundColor: "#965B83",
               borderRadius: "16px",
               padding: "24px",
@@ -465,6 +392,7 @@ export default function KeylinOrellanaPage() {
                   width={200}
                   height={200}
                   quality={85}
+                  sizes="(max-width: 768px) 100px, 200px"
                   style={{ width: "200px", height: "200px", borderRadius: "30% 70% 70% 30% / 30% 30% 70% 70%", objectFit: "cover" }}
                 />
               </div>
@@ -499,7 +427,7 @@ export default function KeylinOrellanaPage() {
             {/* RIGHT: Stacked cards */}
             <div style={{ display: "flex", flexDirection: "column", gap: "30px" }}>
               {[locations[1], locations[2]].map((loc) => (
-                <div key={loc.address} style={{
+                <div key={loc.address} className="location-card" style={{
                   backgroundColor: "#965B83",
                   borderRadius: "16px",
                   padding: "24px",
@@ -515,6 +443,7 @@ export default function KeylinOrellanaPage() {
                       width={150}
                       height={150}
                       quality={85}
+                      sizes="(max-width: 768px) 80px, 150px"
                       style={{ width: "150px", height: "150px", borderRadius: "30% 70% 70% 30% / 30% 30% 70% 70%", objectFit: "cover" }}
                     />
                   </div>

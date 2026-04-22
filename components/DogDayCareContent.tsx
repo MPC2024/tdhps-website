@@ -3,7 +3,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
+import { useLanguage } from "@/lib/LanguageContext";
+import type { TranslationKey } from "@/lib/translations";
 import BlogCarousel, { type BlogPost } from "@/components/BlogCarousel";
+import StoreLocations from "@/components/StoreLocations";
 
 const daycareBlogPosts: BlogPost[] = [
   { title: "The Benefits of Routine Dog Grooming in Houston's Climate", img: "https://www.thedoghouseps.com/wp-content/uploads/2026/03/Shihtzu_Grooming_Pearland.jpg", href: "https://www.thedoghouseps.com/the-benefits-of-routine-dog-grooming-in-houstons-climate/" },
@@ -28,29 +31,33 @@ const daycarePackages = [
   { suite: "100 Day Pass", size: "25 Days Free", price: "$1,500", unit: "/ Pass", img: "https://www.thedoghouseps.com/wp-content/uploads/2025/03/dogs-in-group.jpg" },
 ];
 
-const luxuryFeatures = [
-  { img: "https://www.thedoghouseps.com/wp-content/uploads/2025/03/sportive-dog-performing-lure-coursing-competition.webp", label: "Supervised Playtime", desc: "Trained staff supervise every play session" },
-  { img: "https://www.thedoghouseps.com/wp-content/uploads/2025/03/dogs-in-pool.png", label: "Outdoor Activities", desc: "Dog park play periods throughout the day" },
-  { img: "https://www.thedoghouseps.com/wp-content/uploads/2025/03/twin-dogs.png", label: "Socialization", desc: "Playgroups matched by size and temperament" },
-  { img: "https://www.thedoghouseps.com/wp-content/uploads/2025/03/happy-dog.png", label: "Cage-Free Environment", desc: "Penthouse suites with soothing sounds and toys" },
+const luxuryFeatures = (t: (key: TranslationKey) => string) => [
+  { img: "https://www.thedoghouseps.com/wp-content/uploads/2025/03/sportive-dog-performing-lure-coursing-competition.webp", label: t("daycare_supervised_label"), desc: t("daycare_supervised_desc") },
+  { img: "https://www.thedoghouseps.com/wp-content/uploads/2025/03/dogs-in-pool.png", label: t("daycare_outdoor_label"), desc: t("daycare_outdoor_desc") },
+  { img: "https://www.thedoghouseps.com/wp-content/uploads/2025/03/twin-dogs.png", label: t("daycare_socialization_label"), desc: t("daycare_socialization_desc") },
+  { img: "https://www.thedoghouseps.com/wp-content/uploads/2025/03/happy-dog.png", label: t("daycare_cagefree_label"), desc: t("daycare_cagefree_desc") },
 ];
 
 const reviews = [
   {
     name: "Kevin Garnepudi",
     text: "I have been using the dog house for weekend day care and grooming for a while and could not be happier with the way they treat my dog as well as myself. The staff is always friendly and accommodating and can tell they genuinely care about the dogs they look after. Finally as most German Shepherd owners know getting the dog dry after a bath is an impossible task yet some how the Dog House always is able to accomplish this!",
+    textEs: "He estado usando The Dog House para guardería de fin de semana y peluquería por un tiempo y no podría estar más feliz con la forma en que tratan a mi perro y a mí. El personal siempre es amable y servicial, y se nota que realmente se preocupan por los perros que cuidan. Finalmente, como la mayoría de los dueños de Pastor Alemán saben, secar al perro después de un baño es una tarea imposible, pero de alguna manera The Dog House siempre logra hacerlo.",
   },
   {
     name: "William Gillespie",
     text: "Alamo absolutely loves it here, they take awesome care of him while I am traveling for work. They are so good with all the pets, so I decided to donate five boxes worth of new Bark Box toys, so his friends and other pet parents could enjoy them.",
+    textEs: "A Alamo le encanta este lugar, lo cuidan increíblemente bien mientras viajo por trabajo. Son tan buenos con todas las mascotas que decidí donar cinco cajas de juguetes nuevos de Bark Box para que sus amigos y otros padres de mascotas pudieran disfrutarlos.",
   },
   {
     name: "Ross Monsen",
     text: "Love this place! I have been using them for years. I have taken my dog to a million different groomers, but this my got to. If you're like me and not a good planner, then this is your spot. They're able to squeeze me in last minute 90% of the time. Where others want an appointment 1-2 months in advance which is nuts. Great staff and my dog loves them. Price is in line with everyone else.",
+    textEs: "Me encanta este lugar. Los he estado usando por años. He llevado a mi perro a un millón de peluqueros diferentes, pero este es mi favorito. Si eres como yo y no planificas bien, este es tu lugar. Pueden atenderme de último momento el 90% de las veces. Otros quieren cita con 1-2 meses de anticipación, lo cual es una locura. Excelente personal y a mi perro le encantan. El precio está en línea con todos los demás.",
   },
   {
     name: "Tiffany Tegeler",
     text: "I've been taking Cooper here for about a year. He always leaves looking so fresh and clean! He is difficult when it comes to messing with his face and paws but I can tell they take their time with him. They have a punch program. After 10 punches you can get a free groom for your pup which is a great deal. He also ALWAYS leaves with a little bandana which is a huge perk here!",
+    textEs: "He estado trayendo a Cooper aquí por aproximadamente un año. Siempre sale viéndose tan fresco y limpio. Es difícil cuando se trata de tocarle la cara y las patas, pero se nota que se toman su tiempo con él. Tienen un programa de puntos. Después de 10 puntos puedes obtener una peluquería gratis para tu perro, lo cual es una gran oferta. También SIEMPRE sale con un pañuelo, lo cual es una gran ventaja aquí.",
   },
 ];
 
@@ -144,20 +151,20 @@ function CounterBox({ target, suffix, label }: { target: number; suffix: string;
   );
 }
 
-function HoursModal({ onClose }: { onClose: () => void }) {
+function HoursModal({ onClose, t }: { onClose: () => void; t: (key: TranslationKey) => string }) {
   return (
     <div style={{ position: "fixed", inset: 0, backgroundColor: "rgba(0,0,0,0.6)", zIndex: 100, display: "flex", alignItems: "center", justifyContent: "center", padding: "20px" }} onClick={onClose}>
       <div style={{ backgroundColor: "#fff", borderRadius: "16px", maxWidth: "700px", width: "100%", maxHeight: "85vh", overflowY: "auto", padding: "40px", position: "relative" }} onClick={(e) => e.stopPropagation()}>
         <button onClick={onClose} style={{ position: "absolute", top: "16px", right: "16px", background: "none", border: "none", cursor: "pointer", fontSize: "24px", color: "#965B83" }}><i className="fa-solid fa-xmark" /></button>
-        <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "24px", color: "#965B83", marginBottom: "24px" }}>The Dog House Pet Salon</h2>
-        <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "18px", color: "#965B83", marginBottom: "12px" }}>Galleria / Memorial Hours</h3>
+        <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "24px", color: "#965B83", marginBottom: "24px" }}>{t("daycare_modal_title")}</h2>
+        <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "18px", color: "#965B83", marginBottom: "12px" }}>{t("daycare_modal_hours_title")}</h3>
         <table style={{ width: "100%", borderCollapse: "collapse", marginBottom: "16px" }}><tbody>
           {[["Monday","7:00 am – 7:00 pm"],["Tuesday","7:00 am – 7:00 pm"],["Wednesday","7:00 am – 7:00 pm"],["Thursday","7:00 am – 7:00 pm"],["Friday","7:00 am – 7:00 pm"],["Saturday","8:00 am – 6:00 pm"],["Sunday","Closed"]].map(([d,h]) => (
             <tr key={d} style={{ borderBottom: "1px solid #f0f0f0" }}><td style={{ padding: "8px 0", fontWeight: 500 }}>{d}</td><td style={{ padding: "8px 0", textAlign: "right" }}>{h}</td></tr>
           ))}
         </tbody></table>
-        <p style={{ fontSize: "13px", fontStyle: "italic", color: "#965B83" }}>Sunday daycare drop off &amp; pick up from 8am–9am or 4pm–5pm only</p>
-        <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "18px", color: "#965B83", marginTop: "24px", marginBottom: "12px" }}>Pearland Hours</h3>
+        <p style={{ fontSize: "13px", fontStyle: "italic", color: "#965B83" }}>{t("daycare_modal_sunday_note")}</p>
+        <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "18px", color: "#965B83", marginTop: "24px", marginBottom: "12px" }}>{t("daycare_modal_pearland_title")}</h3>
         <table style={{ width: "100%", borderCollapse: "collapse" }}><tbody>
           {[["Monday","7:00 am – 6:00 pm"],["Tuesday","7:00 am – 6:00 pm"],["Wednesday","7:00 am – 6:00 pm"],["Thursday","7:00 am – 6:00 pm"],["Friday","7:00 am – 6:00 pm"],["Saturday","8:00 am – 6:00 pm"],["Sunday","Closed"]].map(([d,h]) => (
             <tr key={d} style={{ borderBottom: "1px solid #f0f0f0" }}><td style={{ padding: "8px 0", fontWeight: 500 }}>{d}</td><td style={{ padding: "8px 0", textAlign: "right" }}>{h}</td></tr>
@@ -168,15 +175,15 @@ function HoursModal({ onClose }: { onClose: () => void }) {
   );
 }
 
-function VaccinationsModal({ onClose }: { onClose: () => void }) {
+function VaccinationsModal({ onClose, t }: { onClose: () => void; t: (key: TranslationKey) => string }) {
   return (
     <div style={{ position: "fixed", inset: 0, backgroundColor: "rgba(0,0,0,0.6)", zIndex: 100, display: "flex", alignItems: "center", justifyContent: "center", padding: "20px" }} onClick={onClose}>
       <div style={{ backgroundColor: "#fff", borderRadius: "16px", maxWidth: "700px", width: "100%", maxHeight: "85vh", overflowY: "auto", padding: "40px", position: "relative" }} onClick={(e) => e.stopPropagation()}>
         <button onClick={onClose} style={{ position: "absolute", top: "16px", right: "16px", background: "none", border: "none", cursor: "pointer", fontSize: "24px", color: "#965B83" }}><i className="fa-solid fa-xmark" /></button>
-        <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "24px", color: "#965B83", marginBottom: "24px" }}>Required Vaccinations</h2>
-        <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "18px", color: "#965B83", marginBottom: "12px" }}>Boarding and Daycare Services</h3>
-        <p style={{ marginBottom: "12px" }}>The following unexpired vaccinations are required for Daycare Services:</p>
-        <ol style={{ paddingLeft: "20px", listStyleType: "decimal" }}><li>Bordetella (Kennel Cough)</li><li>Distemper (DHPP)</li><li>Rabies</li><li style={{ fontStyle: "italic", color: "#965B83" }}>Influenza is NOT REQUIRED but RECOMMENDED</li></ol>
+        <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "24px", color: "#965B83", marginBottom: "24px" }}>{t("daycare_modal_vaccinations_title")}</h2>
+        <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "18px", color: "#965B83", marginBottom: "12px" }}>{t("daycare_modal_vaccinations_subtitle")}</h3>
+        <p style={{ marginBottom: "12px" }}>{t("daycare_modal_vax_text")}</p>
+        <ol style={{ paddingLeft: "20px", listStyleType: "decimal" }}><li>{t("daycare_modal_bordetella")}</li><li>{t("daycare_modal_distemper")}</li><li>{t("daycare_modal_rabies")}</li><li style={{ fontStyle: "italic", color: "#965B83" }}>{t("daycare_modal_influenza")}</li></ol>
       </div>
     </div>
   );
@@ -263,6 +270,7 @@ function PricingCarousel({ items }: { items: typeof daycarePackages }) {
                   alt={item.suite}
                   width={200}
                   height={200}
+                  loading="lazy"
                   style={{ width: "100%", height: "100%", objectFit: "cover" }}
                 />
               </div>
@@ -334,7 +342,7 @@ function PricingCarousel({ items }: { items: typeof daycarePackages }) {
   );
 }
 
-function TestimonialCarousel({ reviews: reviewsData }: { reviews: typeof reviews }) {
+function TestimonialCarousel({ reviews: reviewsData, language }: { reviews: typeof reviews; language: string }) {
   const [current, setCurrent] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
   const [sliding, setSliding] = useState(false);
@@ -373,31 +381,51 @@ function TestimonialCarousel({ reviews: reviewsData }: { reviews: typeof reviews
 
   return (
     <section style={{ backgroundColor: "#F8F8F8", padding: "80px 20px" }}>
+      <style>{`
+        @media (max-width: 767px) {
+          .review-card-daycare {
+            padding: 24px 16px !important;
+            min-height: auto !important;
+            gap: 16px !important;
+          }
+          .review-card-daycare .review-card-content {
+            flex-direction: column !important;
+            gap: 16px !important;
+          }
+          .review-carousel-arrows-daycare {
+            display: none !important;
+          }
+          .review-carousel-container-daycare {
+            gap: 0 !important;
+          }
+        }
+      `}</style>
       <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
         <div
+          className="review-carousel-container-daycare"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
           style={{ position: "relative", display: "flex", alignItems: "center", gap: "16px" }}
         >
-          <button onClick={goPrev} style={{ background: "none", border: "2px solid #E0E0E0", borderRadius: "50%", width: "44px", height: "44px", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, color: "#965B83" }} aria-label="Previous">
+          <button className="review-carousel-arrows-daycare" onClick={goPrev} style={{ background: "none", border: "2px solid #E0E0E0", borderRadius: "50%", width: "44px", height: "44px", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, color: "#965B83" }} aria-label="Previous">
             <i className="fa-solid fa-chevron-left" style={{ fontSize: "16px" }} />
           </button>
           <div className="review-card-daycare" style={{ flex: 1, backgroundColor: "#fff", borderRadius: "16px", padding: "40px", boxShadow: "0 2px 12px rgba(0,0,0,0.06)", display: "flex", alignItems: "center", gap: "32px", overflow: "hidden", minHeight: "180px" }}>
             <div className="review-card-content" style={{ transition: "transform 0.3s ease, opacity 0.3s ease", transform: sliding ? "translateX(-40px)" : "translateX(0)", opacity: sliding ? 0 : 1, display: "flex", alignItems: "center", gap: "32px", width: "100%" }}>
-              <div style={{ flexShrink: 0, width: "80px", height: "80px", borderRadius: "50%", border: "3px solid #965B83", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                <i className="fa-solid fa-comment-dots" style={{ fontSize: "28px", color: "#965B83" }} />
+              <div style={{ flexShrink: 0, width: "clamp(60px, 15vw, 80px)", height: "clamp(60px, 15vw, 80px)", borderRadius: "50%", border: "3px solid #965B83", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                <i className="fa-solid fa-comment-dots" style={{ fontSize: "clamp(20px, 5vw, 28px)", color: "#965B83" }} />
               </div>
               <div style={{ flex: 1 }}>
                 <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", lineHeight: 1.7, marginBottom: "16px" }}>
-                  {review.text}
+                  {language === "es" && review.textEs ? review.textEs : review.text}
                 </p>
-                <p style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "16px", color: "#965B83", margin: 0 }}>
+                <p style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(14px, 1.5vw, 16px)", color: "#965B83", margin: 0 }}>
                   {review.name}
                 </p>
               </div>
             </div>
           </div>
-          <button onClick={goNext} style={{ background: "none", border: "2px solid #E0E0E0", borderRadius: "50%", width: "44px", height: "44px", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, color: "#965B83" }} aria-label="Next">
+          <button className="review-carousel-arrows-daycare" onClick={goNext} style={{ background: "none", border: "2px solid #E0E0E0", borderRadius: "50%", width: "44px", height: "44px", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, color: "#965B83" }} aria-label="Next">
             <i className="fa-solid fa-chevron-right" style={{ fontSize: "16px" }} />
           </button>
         </div>
@@ -406,23 +434,24 @@ function TestimonialCarousel({ reviews: reviewsData }: { reviews: typeof reviews
   );
 }
 
-const daycareFaqs = [
-  { q: "Can I combine doggie daycare with pet grooming services?", a: "Yes, you can! For daycare, the required vaccinations are Bordetella (Kennel Cough), Distemper, and Rabies. We also recommend the Influenza vaccine. Please specify your preferred pickup time at check-in to maximize playtime before and/or after dog grooming." },
-  { q: "What's the Duration of Each Outdoor Session?", a: "Each session ranges from 45 minutes to 1 hour, weather and breed permitting." },
-  { q: "Are Play Areas Segregated by Size and Temperament?", a: "Yes, we offer separate, secure, and covered play yards, tailored to accommodate dogs of varying sizes and temperaments." },
-  { q: "Do You Offer Separate Daycare Rooms?", a: "Absolutely! Our daycare rooms are designed to cater to dogs of different sizes and temperaments for a safer and more enjoyable play experience." },
-  { q: "Can You Cater to Special Needs Pets?", a: "Yes! Our experienced staff is trained to care for pets with special needs, including senior dogs, dogs with medical conditions, and anxious pets. Please let us know your pet's specific requirements at check-in." },
+const getDaycareFaqs = (t: (key: TranslationKey) => string) => [
+  { q: t("daycare_faq_combine_q"), a: t("daycare_faq_combine_a") },
+  { q: t("daycare_faq_duration_q"), a: t("daycare_faq_duration_a") },
+  { q: t("daycare_faq_segregated_q"), a: t("daycare_faq_segregated_a") },
+  { q: t("daycare_faq_separate_q"), a: t("daycare_faq_separate_a") },
+  { q: t("daycare_faq_special_q"), a: t("daycare_faq_special_a") },
 ];
 
 export default function DogDayCareContent() {
+  const { t, language } = useLanguage();
   const [showHoursModal, setShowHoursModal] = useState(false);
   const [showVaccinationsModal, setShowVaccinationsModal] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   return (
     <>
-      {showHoursModal && <HoursModal onClose={() => setShowHoursModal(false)} />}
-      {showVaccinationsModal && <VaccinationsModal onClose={() => setShowVaccinationsModal(false)} />}
+      {showHoursModal && <HoursModal onClose={() => setShowHoursModal(false)} t={t} />}
+      {showVaccinationsModal && <VaccinationsModal onClose={() => setShowVaccinationsModal(false)} t={t} />}
 
       {/* ── Hero Banner ── */}
       <section
@@ -434,7 +463,7 @@ export default function DogDayCareContent() {
           minHeight: "700px",
           display: "flex",
           alignItems: "center",
-          padding: "80px 20px 120px",
+          padding: "160px 20px 120px",
         }}
       >
         <div style={{ position: "absolute", inset: 0, backgroundColor: "rgba(255,255,255,0.6)" }} />
@@ -444,11 +473,11 @@ export default function DogDayCareContent() {
           </svg>
         </div>
         <div style={{ maxWidth: "1520px", margin: "0 auto", position: "relative", zIndex: 2 }}>
-          <h1 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(36px,5vw,72px)", color: "#1F2124", marginBottom: "16px", lineHeight: 1.1 }}>
-            Houston <span style={{ color: "#965B83" }}>Dog Daycare</span>
+          <h1 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "60px", color: "#1F2124", marginBottom: "16px", lineHeight: 1.1 }}>
+            {t("daycare_hero_title")} <span style={{ color: "#965B83" }}>{t("daycare_dog_day_care")}</span>
           </h1>
           <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "clamp(16px,2vw,20px)", color: "#54595F", marginBottom: "32px" }}>
-            Safe, fun, and affordable daycare with loving supervision
+            {t("daycare_hero_subtitle")}
           </p>
           <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
             <Link href="/appointment-request" className="btn-primary">Schedule An Appointment</Link>
@@ -469,18 +498,17 @@ export default function DogDayCareContent() {
 
           {/* Counter */}
           <div style={{ display: "flex", gap: "30px", justifyContent: "center", marginBottom: "50px", flexWrap: "wrap" }}>
-            <CounterBox target={30} suffix="+" label="Years" />
-            <CounterBox target={40000} suffix="+" label="Satisfied Clients" />
+            <CounterBox target={30} suffix="+" label={t("daycare_years")} />
+            <CounterBox target={40000} suffix="+" label={t("daycare_satisfied_clients")} />
           </div>
 
           {/* Content below counter */}
           <div style={{ textAlign: "center", maxWidth: "860px", marginInline: "auto" }}>
             <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(32px,4vw,56px)", color: "#1F2124", marginBottom: "24px", lineHeight: 1.1 }}>
-              Over <span style={{ color: "#965B83" }}>30+</span> Years of Success<br />
-              with <span style={{ color: "#965B83" }}>40,000+</span> Satisfied Clients
+              {t("daycare_success_heading")}
             </h2>
             <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", lineHeight: 1.8, margin: 0 }}>
-              The Dog House Pet Salon has become the pet grooming center for all animal lovers &amp; owners in Houston. With over 30+ Years of pet grooming experience, we&apos;ve been successfully delivering a pet&apos;s paradise to our clients &amp; their furry friends. Our level of care &amp; attention to detail is unmatched in the industry, and that&apos;s what has kept our community growing &amp; returning for decades.
+              {t("daycare_center_description")}
             </p>
           </div>
 
@@ -508,14 +536,15 @@ export default function DogDayCareContent() {
               alt="The Dog House Logo"
               width={120}
               height={120}
+              loading="lazy"
               style={{ marginBottom: "20px", width: "120px", height: "auto" }}
             />
             <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(28px,3vw,42px)", color: "#1F2124", marginBottom: "24px" }}>
-              Daycare <span style={{ color: "#965B83" }}>Clients Special</span>
+              {t("daycare_clients_special")}
             </h2>
             <div style={{ width: "100%", height: "2px", backgroundColor: "#1F2124", marginBottom: "20px" }} />
             <div style={{ display: "flex", flexWrap: "wrap", gap: "8px 32px", marginBottom: "24px" }}>
-              {["Supervised Playtime Included", "Up to 4 Outdoor Sessions", "Cage-Free Environment"].map((item) => (
+              {[t("daycare_supervised_playtime"), t("daycare_outdoor_sessions"), t("daycare_cage_free")].map((item) => (
                 <p key={item} style={{ fontFamily: '"Outfit", sans-serif', fontSize: "15px", color: "#1F2124", fontStyle: "italic", margin: 0, display: "flex", alignItems: "center", gap: "8px" }}>
                   <i className="fa-solid fa-circle-check" style={{ color: "#965B83", fontSize: "16px", flexShrink: 0 }} />
                   {item}
@@ -533,17 +562,17 @@ export default function DogDayCareContent() {
       <section style={{ backgroundColor: "#ffffff", padding: "80px 20px" }}>
         <div style={{ maxWidth: "1520px", margin: "0 auto" }}>
           <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(28px,3vw,42px)", color: "#1F2124", textAlign: "center", marginBottom: "12px" }}>
-            Our Dog Day Care Services
+            {t("daycare_services_title")}
           </h2>
           <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", textAlign: "center", lineHeight: 1.7, maxWidth: "700px", margin: "0 auto 50px" }}>
-            Outdoor Activities &amp; Playtime for your Pets. Choose the pass that fits your schedule — more days means more savings and more free days for your furry friend!
+            {t("daycare_services_description")}
           </p>
           <PricingCarousel items={daycarePackages} />
           <div style={{ textAlign: "center", marginTop: "40px" }}>
             <p style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(28px,3.5vw,48px)", color: "#1F2124", marginBottom: "24px", lineHeight: 1.1 }}>
-              Ready to Treat Your Furry Friend?
+              {t("daycare_ready_to_treat")}
             </p>
-            <Link href="/appointment-request" className="btn-primary">Schedule An Appointment</Link>
+            <Link href="/appointment-request" className="btn-primary">{t("schedule_appointment")}</Link>
           </div>
         </div>
       </section>
@@ -552,16 +581,17 @@ export default function DogDayCareContent() {
       <section style={{ backgroundColor: "#965B83", padding: "80px 20px", position: "relative" }}>
         <div style={{ maxWidth: "1520px", margin: "0 auto" }}>
           <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(28px,3vw,42px)", color: "#ffffff", textAlign: "center", marginBottom: "50px" }}>
-            What Makes Our Daycare Special
+            {t("daycare_features_title")}
           </h2>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "40px" }}>
-            {luxuryFeatures.map((f) => (
+            {luxuryFeatures(t).map((f) => (
               <div key={f.label} style={{ backgroundColor: "#f7f2f5", borderRadius: "20px", overflow: "hidden", boxShadow: "6px 6px 20px rgba(0,0,0,0.15)" }}>
                 <div style={{ position: "relative", height: "280px", overflow: "hidden" }}>
                   <Image
                     src={f.img}
                     alt={f.label}
                     fill
+                    loading="lazy"
                     style={{ objectFit: "cover" }}
                     sizes="(max-width: 768px) 100vw, 50vw"
                   />
@@ -581,24 +611,24 @@ export default function DogDayCareContent() {
       </section>
 
       {/* ── Testimonial Carousel ── */}
-      <TestimonialCarousel reviews={reviews} />
+      <TestimonialCarousel reviews={reviews} language={language} />
 
       {/* ── Why Choose Our Daycare Services ── */}
       <section style={{ backgroundColor: "#FFF", padding: "80px 20px" }}>
-        <div style={{ maxWidth: "1520px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 2fr", gap: "60px", alignItems: "start" }}>
+        <div className="service-info-grid" style={{ maxWidth: "1520px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 2fr", gap: "60px", alignItems: "start" }}>
           {/* Left Column — Icon Boxes */}
           <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
             {/* Hours of Operations Box */}
             <div style={{ backgroundColor: "#965B831A", borderRadius: "16px", padding: "30px", textAlign: "center" }}>
               <i className="fa-regular fa-calendar" style={{ fontSize: "40px", color: "#965B83", marginBottom: "16px", display: "block" }} />
               <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "20px", color: "#1F2124", marginBottom: "16px" }}>
-                Hours of Operations
+                {t("daycare_hours_title")}
               </h3>
               <button
                 onClick={() => setShowHoursModal(true)}
                 style={{ fontFamily: '"Outfit", sans-serif', fontSize: "14px", fontWeight: 600, color: "#965B83", backgroundColor: "transparent", border: "2px dashed #965B83", borderRadius: "50px", padding: "10px 30px", cursor: "pointer" }}
               >
-                View
+                {t("daycare_hours_view")}
               </button>
             </div>
 
@@ -606,13 +636,13 @@ export default function DogDayCareContent() {
             <div style={{ backgroundColor: "#965B831A", borderRadius: "16px", padding: "30px", textAlign: "center" }}>
               <i className="fa-solid fa-syringe" style={{ fontSize: "40px", color: "#965B83", marginBottom: "16px", display: "block" }} />
               <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "20px", color: "#1F2124", marginBottom: "16px" }}>
-                Required Vaccinations
+                {t("daycare_vaccinations_title")}
               </h3>
               <button
                 onClick={() => setShowVaccinationsModal(true)}
                 style={{ fontFamily: '"Outfit", sans-serif', fontSize: "14px", fontWeight: 600, color: "#965B83", backgroundColor: "transparent", border: "2px dashed #965B83", borderRadius: "50px", padding: "10px 30px", cursor: "pointer" }}
               >
-                View
+                {t("daycare_vaccinations_view")}
               </button>
             </div>
 
@@ -624,13 +654,13 @@ export default function DogDayCareContent() {
                 <path d="M15 32c0-2 2-4 4-4h12c2 0 4 2 4 4v4H15v-4z" stroke="#965B83" strokeWidth="2.5" fill="none" />
               </svg>
               <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "20px", color: "#1F2124", marginBottom: "16px" }}>
-                View Webcams
+                {t("daycare_webcams_title")}
               </h3>
               <Link
                 href="/pet-cam"
                 style={{ fontFamily: '"Outfit", sans-serif', fontSize: "14px", fontWeight: 600, color: "#965B83", backgroundColor: "transparent", border: "2px dashed #965B83", borderRadius: "50px", padding: "10px 30px", cursor: "pointer", display: "inline-block", textDecoration: "none" }}
               >
-                View
+                {t("daycare_webcams_view")}
               </Link>
             </div>
           </div>
@@ -638,16 +668,16 @@ export default function DogDayCareContent() {
           {/* Right Column — Text Content */}
           <div>
             <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "50px", color: "#1F2124", marginBottom: "24px", lineHeight: 1.1 }}>
-              The Dog House Pet Salon<br /><span style={{ color: "#965B83" }}>#1 Pet Daycare Service in Houston!</span>
+              {t("daycare_why_choose_title")}
             </h2>
             <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", lineHeight: 1.7, marginBottom: "16px" }}>
-              At The Dog House Pet Salon, we take pride in offering exceptional dog daycare services to the residents of Houston, TX, including Memorial Park, The Heights, The Galleria, Uptown Park, Montrose and neighboring communities.
+              {t("daycare_why_choose_text1")}
             </p>
             <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", lineHeight: 1.7, marginBottom: "16px" }}>
-              Enrolling your beloved pet in our Houston dog daycare program offers numerous benefits. Our facility provides a safe and stimulating environment where dogs can socialize, exercise, and receive the attention and care they need while you&apos;re away.
+              {t("daycare_why_choose_text2")}
             </p>
             <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", lineHeight: 1.7 }}>
-              Our experienced staff members are dedicated to ensuring that each dog in our care receives the highest level of attention, supervision, and love.
+              {t("daycare_why_choose_text3")}
             </p>
           </div>
         </div>
@@ -655,17 +685,17 @@ export default function DogDayCareContent() {
 
       {/* ── Loyalty / Punch Card ── */}
       <section style={{ backgroundColor: "#F8F8F8", padding: "80px 20px" }}>
-        <div style={{ maxWidth: "1520px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "60px", alignItems: "center", justifyItems: "center" }}>
+        <div className="grid-responsive" style={{ maxWidth: "1520px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "60px", alignItems: "center", justifyItems: "center" }}>
           <div style={{ textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center", gap: "20px" }}>
-            <Image src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/image778.png" alt="Premium Amenities" width={200} height={200} style={{ width: "150px", height: "auto" }} />
-            <Image src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/30.png" alt="$30 Credit - Groom Punch Card" width={400} height={400} style={{ width: "300px", height: "auto" }} />
-            <Image src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/just4you.png" alt="Just For You" width={200} height={200} style={{ width: "150px", height: "auto" }} />
+            <Image src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/image778.png" alt="Premium Amenities" width={200} height={200} loading="lazy" style={{ width: "150px", height: "auto" }} />
+            <Image src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/30.png" alt="$30 Credit - Groom Punch Card" width={400} height={400} loading="lazy" style={{ width: "300px", height: "auto" }} />
+            <Image src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/just4you.png" alt="Just For You" width={200} height={200} loading="lazy" style={{ width: "150px", height: "auto" }} />
             <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "18px", color: "#54595F", lineHeight: 1.6 }}>
-              Redeem on Your 12th Bath, Groom, or Basic Service
+              {t("daycare_loyalty_redeem")}
             </p>
           </div>
           <div style={{ textAlign: "center" }}>
-            <Image src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/loyalty-card.png" alt="Pawsitively Grateful Loyalty Card" width={500} height={350} style={{ width: "100%", maxWidth: "450px", height: "auto" }} />
+            <Image src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/loyalty-card.png" alt="Pawsitively Grateful Loyalty Card" width={500} height={350} loading="lazy" style={{ width: "100%", maxWidth: "450px", height: "auto" }} />
           </div>
         </div>
       </section>
@@ -682,12 +712,12 @@ export default function DogDayCareContent() {
         <div style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, backgroundColor: "#FFF", opacity: 0.7, zIndex: 1 }} />
         <div style={{ maxWidth: "1520px", margin: "0 auto", position: "relative", zIndex: 2 }}>
           <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(26px,3vw,40px)", color: "#000", textAlign: "center", marginBottom: "50px" }}>
-            You Can Find Us At These Locations Near You
+            {t("daycare_locations_title")}
           </h2>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "30px", alignItems: "stretch" }}>
-            <div style={{ backgroundColor: "#965B83", borderRadius: "16px", padding: "24px", display: "flex", flexDirection: "row", gap: "24px", alignItems: "center", minHeight: "100%" }}>
+          <div className="locations-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "30px", alignItems: "stretch" }}>
+            <div className="location-card" style={{ backgroundColor: "#965B83", borderRadius: "16px", padding: "24px", display: "flex", flexDirection: "row", gap: "24px", alignItems: "center", minHeight: "100%" }}>
               <div style={{ flex: "0 0 200px", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                <Image src={locations[0].img} alt={locations[0].address} width={200} height={200} quality={85} style={{ width: "200px", height: "200px", borderRadius: "30% 70% 70% 30% / 30% 30% 70% 70%", objectFit: "cover" }} />
+                <Image src={locations[0].img} alt={locations[0].address} width={200} height={200} quality={85} loading="lazy" style={{ width: "200px", height: "200px", borderRadius: "30% 70% 70% 30% / 30% 30% 70% 70%", objectFit: "cover" }} />
               </div>
               <div style={{ flex: 1 }}>
                 <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "12px" }}>
@@ -710,9 +740,9 @@ export default function DogDayCareContent() {
             </div>
             <div style={{ display: "flex", flexDirection: "column", gap: "30px" }}>
               {locations.slice(1).map((loc) => (
-                <div key={loc.address} style={{ backgroundColor: "#965B83", borderRadius: "16px", padding: "24px", display: "flex", flexDirection: "row", gap: "24px", alignItems: "center" }}>
+                <div key={loc.address} className="location-card" style={{ backgroundColor: "#965B83", borderRadius: "16px", padding: "24px", display: "flex", flexDirection: "row", gap: "24px", alignItems: "center" }}>
                   <div style={{ flex: "0 0 150px", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                    <Image src={loc.img} alt={loc.address} width={150} height={150} quality={85} style={{ width: "150px", height: "150px", borderRadius: "30% 70% 70% 30% / 30% 30% 70% 70%", objectFit: "cover" }} />
+                    <Image src={loc.img} alt={loc.address} width={150} height={150} quality={85} loading="lazy" style={{ width: "150px", height: "150px", borderRadius: "30% 70% 70% 30% / 30% 30% 70% 70%", objectFit: "cover" }} />
                   </div>
                   <div style={{ flex: 1 }}>
                     <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "12px" }}>
@@ -741,22 +771,22 @@ export default function DogDayCareContent() {
 
       {/* ── Benefits of Our Daycare ── */}
       <section style={{ backgroundColor: "#fff", padding: "80px 20px" }}>
-        <div style={{ maxWidth: "1520px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "60px", alignItems: "center" }}>
+        <div className="grid-responsive" style={{ maxWidth: "1520px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "60px", alignItems: "center" }}>
           <div>
             <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "50px", color: "#1F2124", lineHeight: 1.1, marginBottom: "24px" }}>
-              The Benefits of Our Premier <span style={{ color: "#965B83" }}>Dog Daycare Services</span>
+              {t("daycare_benefits_title")}
             </h2>
             <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", lineHeight: 1.7, marginBottom: "16px" }}>
-              At The Dog House Pet Salon, we believe love and attention are key to making pets happy. Our Doggy Daycare offers supervised playtime, sunshine, and socialization in a cage-free environment with penthouse suites, soothing sounds, and toys.
+              {t("daycare_benefits_text1")}
             </p>
             <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", lineHeight: 1.7, marginBottom: "16px" }}>
-              Guests enjoy up to 4 outdoor rotations lasting 45 minutes to 1 hour, depending on weather conditions. For flat nose dogs or during heat waves, we limit each play period to 5-10 minutes for the safety of the animals.
+              {t("daycare_benefits_text2")}
             </p>
             <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", lineHeight: 1.7, marginBottom: "16px" }}>
-              Once your pet is introduced to the playgroup, they will continue to remain in their playgroup to develop social skills, build stronger bonds with new friends, and develop good community behavior.
+              {t("daycare_benefits_text3")}
             </p>
             <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "14px", color: "#54595F", lineHeight: 1.7, fontStyle: "italic" }}>
-              * Please Note: Each pet will receive a $25.00 one-time temperament assessment. Current vaccination records are required on initial intake.
+              {t("daycare_benefits_note")}
             </p>
           </div>
           <div style={{ position: "relative", borderRadius: "16px", overflow: "hidden" }}>
@@ -765,12 +795,13 @@ export default function DogDayCareContent() {
               alt="Dog daycare benefits Houston"
               width={600}
               height={500}
+              loading="lazy"
               style={{ width: "100%", height: "auto", display: "block" }}
             />
             <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(255,255,255,0) 20%, #965b83 100%)" }} />
             <div style={{ position: "absolute", bottom: "30px", left: "50%", transform: "translateX(-50%)", zIndex: 2 }}>
               <Link href="/appointment-request" style={{ display: "inline-block", backgroundColor: "#fff", color: "#1F2124", padding: "12px 30px", borderRadius: "50px", fontFamily: '"Outfit", sans-serif', fontWeight: 600, fontSize: "14px", textDecoration: "none" }}>
-                Get An Appointment
+                {t("daycare_benefits_appointment")}
               </Link>
             </div>
           </div>
@@ -794,10 +825,10 @@ export default function DogDayCareContent() {
         <div style={{ maxWidth: "1520px", margin: "0 auto", width: "100%", position: "relative", zIndex: 2 }}>
           <div style={{ backgroundColor: "rgba(255,255,255,0.85)", borderRadius: "16px", padding: "48px", width: "850px", maxWidth: "100%", boxShadow: "6px 6px 20px rgba(0,0,0,0.08)" }}>
             <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(26px,3vw,40px)", color: "#1F2124", marginBottom: "32px" }}>
-              Frequently Asked Questions
+              {t("daycare_faq_title")}
             </h2>
             <div style={{ display: "flex", flexDirection: "column" }}>
-              {daycareFaqs.map((faq, i) => (
+              {getDaycareFaqs(t).map((faq, i) => (
                 <div key={i} style={{ borderTop: i === 0 ? "1px solid #e0e0e0" : "none", borderBottom: "1px solid #e0e0e0" }}>
                   <button
                     onClick={() => setOpenFaq(openFaq === i ? null : i)}
@@ -827,14 +858,16 @@ export default function DogDayCareContent() {
         </div>
         <div style={{ maxWidth: "1520px", margin: "0 auto", position: "relative", zIndex: 2 }}>
           <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "50px", color: "#FFF", textAlign: "center", marginBottom: "12px" }}>
-            Discover Expert Advice and the Latest Trends
+            {t("daycare_blog_title")}
           </h2>
           <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "18px", color: "#FFF", textAlign: "center", marginBottom: "48px" }}>
-            Stay informed with our blog, featuring tips and trends to help you keep your pets happy, healthy, and well cared for.
+            {t("daycare_blog_description")}
           </p>
           <BlogCarousel posts={daycareBlogPosts} />
         </div>
       </section>
+
+      <StoreLocations />
     </>
   );
 }

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 import { useLanguage } from "@/lib/LanguageContext";
 import BlogCarousel, { type BlogPost } from "@/components/BlogCarousel";
+import StoreLocations from "@/components/StoreLocations";
 
 const groomingBlogPosts: BlogPost[] = [
   { title: "The Benefits of Routine Dog Grooming in Houston's Climate", img: "https://www.thedoghouseps.com/wp-content/uploads/2026/03/Shihtzu_Grooming_Pearland.jpg", href: "https://www.thedoghouseps.com/the-benefits-of-routine-dog-grooming-in-houstons-climate/" },
@@ -371,6 +372,7 @@ function PricingCarousel({ items, t }: { items: typeof pricingExtras; t: (key: a
                   alt={t(item.labelKey)}
                   width={200}
                   height={200}
+                  loading="lazy"
                   style={{ width: "100%", height: "100%", objectFit: "cover" }}
                 />
               </div>
@@ -466,6 +468,7 @@ function VideoPlayer() {
             src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/image54.jpg"
             alt="Watch The Dog House Pet Salon Video"
             fill
+            loading="lazy"
             style={{ objectFit: "cover" }}
             sizes="100vw"
           />
@@ -503,20 +506,20 @@ function VideoPlayer() {
   );
 }
 
-function HoursModal({ onClose }: { onClose: () => void }) {
+function HoursModal({ onClose, t }: { onClose: () => void; t: (key: any) => string }) {
   return (
     <div style={{ position: "fixed", inset: 0, backgroundColor: "rgba(0,0,0,0.6)", zIndex: 100, display: "flex", alignItems: "center", justifyContent: "center", padding: "20px" }} onClick={onClose}>
       <div style={{ backgroundColor: "#fff", borderRadius: "16px", maxWidth: "700px", width: "100%", maxHeight: "85vh", overflowY: "auto", padding: "40px", position: "relative" }} onClick={(e) => e.stopPropagation()}>
         <button onClick={onClose} style={{ position: "absolute", top: "16px", right: "16px", background: "none", border: "none", cursor: "pointer", fontSize: "24px", color: "#965B83" }}><i className="fa-solid fa-xmark" /></button>
         <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "24px", color: "#965B83", marginBottom: "24px" }}>The Dog House Pet Salon</h2>
-        <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "18px", color: "#965B83", marginBottom: "12px" }}>Galleria / Memorial Hours</h3>
+        <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "18px", color: "#965B83", marginBottom: "12px" }}>{t("grooming_gallery_memorial_hours")}</h3>
         <table style={{ width: "100%", borderCollapse: "collapse", marginBottom: "16px" }}><tbody>
           {[["Monday","7:00 am – 7:00 pm"],["Tuesday","7:00 am – 7:00 pm"],["Wednesday","7:00 am – 7:00 pm"],["Thursday","7:00 am – 7:00 pm"],["Friday","7:00 am – 7:00 pm"],["Saturday","8:00 am – 6:00 pm"],["Sunday","Closed"]].map(([d,h]) => (
             <tr key={d} style={{ borderBottom: "1px solid #f0f0f0" }}><td style={{ padding: "8px 0", fontWeight: 500 }}>{d}</td><td style={{ padding: "8px 0", textAlign: "right" }}>{h}</td></tr>
           ))}
         </tbody></table>
-        <p style={{ fontSize: "13px", fontStyle: "italic", color: "#965B83" }}>Sunday boarding drop off &amp; pick up from 8am–9am or 4pm–5pm only</p>
-        <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "18px", color: "#965B83", marginTop: "24px", marginBottom: "12px" }}>Pearland Hours</h3>
+        <p style={{ fontSize: "13px", fontStyle: "italic", color: "#965B83" }}>{t("sunday_note")}</p>
+        <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "18px", color: "#965B83", marginTop: "24px", marginBottom: "12px" }}>{t("grooming_pearland_hours")}</h3>
         <table style={{ width: "100%", borderCollapse: "collapse" }}><tbody>
           {[["Monday","7:00 am – 6:00 pm"],["Tuesday","7:00 am – 6:00 pm"],["Wednesday","7:00 am – 6:00 pm"],["Thursday","7:00 am – 6:00 pm"],["Friday","7:00 am – 6:00 pm"],["Saturday","8:00 am – 6:00 pm"],["Sunday","Closed"]].map(([d,h]) => (
             <tr key={d} style={{ borderBottom: "1px solid #f0f0f0" }}><td style={{ padding: "8px 0", fontWeight: 500 }}>{d}</td><td style={{ padding: "8px 0", textAlign: "right" }}>{h}</td></tr>
@@ -527,12 +530,12 @@ function HoursModal({ onClose }: { onClose: () => void }) {
   );
 }
 
-function VaccinationsModal({ onClose }: { onClose: () => void }) {
+function VaccinationsModal({ onClose, t }: { onClose: () => void; t: (key: any) => string }) {
   return (
     <div style={{ position: "fixed", inset: 0, backgroundColor: "rgba(0,0,0,0.6)", zIndex: 100, display: "flex", alignItems: "center", justifyContent: "center", padding: "20px" }} onClick={onClose}>
       <div style={{ backgroundColor: "#fff", borderRadius: "16px", maxWidth: "700px", width: "100%", maxHeight: "85vh", overflowY: "auto", padding: "40px", position: "relative" }} onClick={(e) => e.stopPropagation()}>
         <button onClick={onClose} style={{ position: "absolute", top: "16px", right: "16px", background: "none", border: "none", cursor: "pointer", fontSize: "24px", color: "#965B83" }}><i className="fa-solid fa-xmark" /></button>
-        <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "24px", color: "#965B83", marginBottom: "24px" }}>Required Vaccinations</h2>
+        <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "24px", color: "#965B83", marginBottom: "24px" }}>{t("form_vaccinations_required_grooming_heading")}</h2>
         <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "18px", color: "#965B83", marginBottom: "12px" }}>Grooming Services</h3>
         <p style={{ marginBottom: "12px" }}>The following unexpired vaccinations are required for Grooming Services:</p>
         <ol style={{ paddingLeft: "20px", listStyleType: "decimal", marginBottom: "24px" }}><li>Bordetella</li></ol>
@@ -545,14 +548,14 @@ function VaccinationsModal({ onClose }: { onClose: () => void }) {
 }
 
 export default function PetGroomingContent() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [showHoursModal, setShowHoursModal] = useState(false);
   const [showVaccinationsModal, setShowVaccinationsModal] = useState(false);
 
   return (
     <>
-      {showHoursModal && <HoursModal onClose={() => setShowHoursModal(false)} />}
-      {showVaccinationsModal && <VaccinationsModal onClose={() => setShowVaccinationsModal(false)} />}
+      {showHoursModal && <HoursModal onClose={() => setShowHoursModal(false)} t={t} />}
+      {showVaccinationsModal && <VaccinationsModal onClose={() => setShowVaccinationsModal(false)} t={t} />}
       {/* ── Hero ── */}
       <section
         style={{
@@ -563,14 +566,14 @@ export default function PetGroomingContent() {
           minHeight: "700px",
           display: "flex",
           alignItems: "center",
-          padding: "80px 20px 120px",
+          padding: "160px 20px 120px",
           overflow: "hidden",
         }}
       >
         {/* white overlay */}
         <div style={{ position: "absolute", inset: 0, backgroundColor: "#FFF", opacity: 0.6 }} />
         <div style={{ maxWidth: "1520px", margin: "0 auto", position: "relative", zIndex: 2 }}>
-          <h1 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(36px,5vw,72px)", color: "#1F2124", marginBottom: "16px", lineHeight: 1.1 }}>
+          <h1 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "60px", color: "#1F2124", marginBottom: "16px", lineHeight: 1.1 }}>
             {t("grooming_pet_grooming")} <span style={{ color: "#965B83" }}>{t("grooming_houston")}</span>
           </h1>
           <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "clamp(16px,2vw,22px)", color: "#1F2124", marginBottom: "32px", maxWidth: "600px" }}>
@@ -596,10 +599,10 @@ export default function PetGroomingContent() {
       <section style={{ backgroundColor: "#ffffff", padding: "80px 20px", textAlign: "center" }}>
         <div style={{ maxWidth: "1520px", margin: "0 auto" }}>
           <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "50px", color: "#1F2124", maxWidth: "892px", margin: "0 auto 16px", lineHeight: 1.2 }}>
-            Professional Pet Grooming Services for <span style={{ color: "#965B83" }}>a Happier, Healthier Pet.</span>
+            {t("grooming_professional_happy_pet")} <span style={{ color: "#965B83" }}>{t("grooming_happier_healthier")}</span>
           </h2>
           <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "18px", color: "#54595F", marginBottom: "40px" }}>
-            Book Now a Spa Day Your Pet Will Love!
+            {t("grooming_book_spa_day")}
           </p>
 
           {/* YouTube Video Player with Poster */}
@@ -607,16 +610,16 @@ export default function PetGroomingContent() {
 
           {/* Counter Boxes */}
           <div style={{ display: "flex", justifyContent: "center", gap: "30px", marginBottom: "50px", flexWrap: "wrap" }}>
-            <CounterBox target={30} suffix="+" label="30+ Years" />
-            <CounterBox target={40000} suffix="+" label="Satisfied Clients" />
+            <CounterBox target={30} suffix="+" label={t("grooming_years_label")} />
+            <CounterBox target={40000} suffix="+" label={t("grooming_satisfied_clients_label")} />
           </div>
 
           {/* Success Text */}
           <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "50px", color: "#1F2124", maxWidth: "892px", margin: "0 auto 16px", lineHeight: "1.2em" }}>
-            Over <span style={{ color: "#965B83" }}>30+ Years</span> of Success with <span style={{ color: "#965B83" }}>40,000+</span> Satisfied Clients
+            {language === "es" ? (<>Más de <span style={{ color: "#965B83" }}>30+ Años</span> de Éxito con <span style={{ color: "#965B83" }}>40,000+</span> Clientes Satisfechos</>) : (<>Over <span style={{ color: "#965B83" }}>30+ Years</span> of Success with <span style={{ color: "#965B83" }}>40,000+</span> Satisfied Clients</>)}
           </h3>
           <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "18px", color: "#54595F", lineHeight: 1.7, maxWidth: "800px", margin: "0 auto" }}>
-            The Dog House Pet Salon has become the dog grooming Houston center for all animal lovers. With over 30+ Years of pet grooming experience, we&apos;ve been successfully delivering a pet&apos;s paradise to our clients &amp; their furry friends. Our level of care &amp; attention to detail is unmatched in the industry, and that&apos;s what has kept our community growing &amp; returning for decades.
+            {t("grooming_center_description")}
           </p>
         </div>
       </section>
@@ -658,32 +661,32 @@ export default function PetGroomingContent() {
             {/* Complete Grooming */}
             <div style={{ backgroundColor: "#fff", borderRadius: "20px", padding: "40px 30px" }}>
               <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "40px", fontWeight: 400, marginBottom: "20px" }}>
-                <span style={{ color: "#1F2124" }}>Complete </span>
-                <span style={{ color: "#965B83" }}>Pet Grooming</span>
+                <span style={{ color: "#1F2124" }}>{language === "es" ? "Peluquería " : "Complete "}</span>
+                <span style={{ color: "#965B83" }}>{language === "es" ? "Completa de Mascotas" : "Pet Grooming"}</span>
               </h3>
               <ul style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", lineHeight: 2.2, listStyle: "disc", paddingLeft: "20px", margin: 0 }}>
-                <li>Meet with the pet groomer to discuss your desired haircut</li>
-                <li>A complete bath</li>
-                <li>A complete brush out (de-matting cost $10 / 15 minutes)</li>
-                <li>Anal glands expressed (external)</li>
-                <li>Ear cleaning and plucking</li>
-                <li>Nail clip (file or grind is additional $10)</li>
-                <li>Breed-specific or client-requested haircut</li>
+                <li>{t("grooming_meet_groomer")}</li>
+                <li>{t("grooming_complete_bath")}</li>
+                <li>{t("grooming_brush_dematting")}</li>
+                <li>{t("grooming_anal_glands")}</li>
+                <li>{t("grooming_ear_cleaning")}</li>
+                <li>{t("grooming_nail_clip")}</li>
+                <li>{t("grooming_breed_haircut")}</li>
               </ul>
             </div>
             {/* Basic Grooming */}
             <div style={{ backgroundColor: "#fff", borderRadius: "20px", padding: "40px 30px" }}>
               <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "40px", fontWeight: 400, marginBottom: "20px" }}>
-                <span style={{ color: "#1F2124" }}>Basic </span>
-                <span style={{ color: "#965B83" }}>Pet Grooming</span>
+                <span style={{ color: "#1F2124" }}>{language === "es" ? "Peluquería " : "Basic "}</span>
+                <span style={{ color: "#965B83" }}>{language === "es" ? "Básica de Mascotas" : "Pet Grooming"}</span>
               </h3>
               <ul style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", lineHeight: 2.2, listStyle: "disc", paddingLeft: "20px", margin: 0 }}>
-                <li>A complete bath</li>
-                <li>A complete brush out (de-matting cost $10 / 15 Minutes)</li>
-                <li>Anal glands expressed (external)</li>
-                <li>Ear cleaning and plucking</li>
-                <li>Nail clip (file or grind is additional $10)</li>
-                <li>Trimming of the Face, trimming the butt and leg feathers, shaving the privates and paw pads. <em style={{ color: "#965B83" }}>(Body trimming is considered a Complete Groom)</em></li>
+                <li>{t("grooming_complete_bath")}</li>
+                <li>{t("grooming_brush_dematting")}</li>
+                <li>{t("grooming_anal_glands")}</li>
+                <li>{t("grooming_ear_cleaning")}</li>
+                <li>{t("grooming_nail_clip")}</li>
+                <li>{t("grooming_face_trimming")} <em style={{ color: "#965B83" }}>{t("grooming_body_trim_note")}</em></li>
               </ul>
             </div>
           </div>
@@ -691,7 +694,7 @@ export default function PetGroomingContent() {
           {/* Looking for Pet Bathing */}
           <div style={{ textAlign: "center" }}>
             <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(24px,2.5vw,36px)", color: "#fff", marginBottom: "12px" }}>
-              Looking for Just Pet Bathing?
+              {t("grooming_looking_bathing").split("?")[0]}?
             </h3>
             <Link
               href="/pet-bathing"
@@ -704,7 +707,7 @@ export default function PetGroomingContent() {
                 textUnderlineOffset: "4px",
               }}
             >
-              CLICK HERE
+              {t("grooming_click_here")}
             </Link>
           </div>
         </div>
@@ -719,20 +722,20 @@ export default function PetGroomingContent() {
       {/* ── Pricing ── */}
       <section style={{ backgroundColor: "#F8F8F8", padding: "80px 20px" }}>
         <div style={{ maxWidth: "1520px", margin: "0 auto" }}>
-          <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "50px", color: "#1F2124", textAlign: "center", marginBottom: "8px", lineHeight: 1.2 }}>
-            Professional Pet Grooming Pet Grooming Services &amp; Pricing
+          <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "50px", color: "#1F2124", textAlign: "center", marginBottom: "8px", lineHeight: 1.2, maxWidth: "800px", margin: "0 auto 8px" }}>
+            {t("grooming_professional_pricing_title")}
           </h2>
           <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "18px", color: "#54595F", textAlign: "center", marginBottom: "40px" }}>
-            Groomed To Perfection
+            {t("grooming_groomed_perfection")}
           </p>
           <PricingCarousel items={pricingExtras} t={t} />
           <div style={{ backgroundColor: "#fff", borderRadius: "12px", padding: "30px", boxShadow: "0 1px 4px rgba(0,0,0,.08)", border: "1px solid #E0E0E0" }}>
             <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#1F2124", lineHeight: 1.7, textAlign: "center", marginBottom: "16px" }}>
-              Pricing can vary from breed to breed. Upon arrival with your pet, our groomers will consult with you to determine an exact price.
+              {t("grooming_pricing_vary")}
             </p>
             <hr style={{ border: "none", borderTop: "1px solid #E0E0E0", margin: "16px 0" }} />
             <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#1F2124", lineHeight: 1.7, textAlign: "center" }}>
-              <strong>*Please Note:</strong> There is an additional difficulty fee of $15 for pets that exhibit aggressive behavior or are particularly challenging to groom. There is an additional rush fee for expedited pet grooming services.
+              {t("grooming_pricing_note")}
             </p>
           </div>
         </div>
@@ -742,7 +745,7 @@ export default function PetGroomingContent() {
       <section style={{ backgroundColor: "#965B83", padding: "32px 20px" }}>
         <div style={{ maxWidth: "1520px", margin: "0 auto", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "20px" }}>
           <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(22px,3vw,36px)", color: "#fff", margin: 0 }}>
-            Ready to Treat Your Furry Friend?
+            {t("grooming_ready_treat")}
           </h2>
           <Link
             href="/appointment-request"
@@ -759,7 +762,7 @@ export default function PetGroomingContent() {
               whiteSpace: "nowrap",
             }}
           >
-            Schedule An Appointment
+            {t("schedule_appointment")}
           </Link>
         </div>
       </section>
@@ -787,10 +790,10 @@ export default function PetGroomingContent() {
             boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
           }}>
             <p style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "16px", color: "#54595F", letterSpacing: "2px", marginBottom: "8px", textTransform: "uppercase" }}>
-              Special Discount
+              {t("grooming_special_discount")}
             </p>
             <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(28px,4vw,54px)", color: "#1F2124", marginBottom: "16px", lineHeight: 1.2 }}>
-              New Client? Get <span style={{ color: "#965B83" }}>10% Off</span>
+              {t("grooming_new_client")} <span style={{ color: "#965B83" }}>{t("grooming_get_10_off")}</span>
             </h2>
             <Link
               href="/appointment-request"
@@ -807,12 +810,12 @@ export default function PetGroomingContent() {
                 marginBottom: "24px",
               }}
             >
-              Book Now
+              {t("grooming_book_now")}
             </Link>
             {/* Description inside box with top black border */}
             <div style={{ borderTop: "2px solid #1F2124", marginTop: "24px", paddingTop: "16px" }}>
               <p style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "14px", color: "#54595F", letterSpacing: "1px", textTransform: "uppercase", margin: 0 }}>
-                New Clients Get 10% Off Any Bath, Groom or Basic Service.
+                {t("grooming_new_clients_get_off")}
               </p>
             </div>
           </div>
@@ -824,14 +827,14 @@ export default function PetGroomingContent() {
 
       {/* ── Never Miss a Moment Section ── */}
       <section style={{ backgroundColor: "#FFF", padding: "80px 20px" }}>
-        <div style={{ maxWidth: "1520px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 2fr", gap: "60px", alignItems: "start" }}>
+        <div className="service-info-grid" style={{ maxWidth: "1520px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 2fr", gap: "60px", alignItems: "start" }}>
           {/* Left Column — Icon Boxes */}
           <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
             {/* Hours of Operations Box */}
             <div style={{ backgroundColor: "#965B831A", borderRadius: "16px", padding: "30px", textAlign: "center" }}>
               <i className="fa-regular fa-calendar" style={{ fontSize: "40px", color: "#965B83", marginBottom: "16px", display: "block" }} />
               <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "20px", color: "#1F2124", marginBottom: "16px" }}>
-                Hours of Operations
+                {t("hours_operations")}
               </h3>
               <button
                 onClick={() => setShowHoursModal(true)}
@@ -847,7 +850,7 @@ export default function PetGroomingContent() {
                   cursor: "pointer",
                 }}
               >
-                View
+                {t("grooming_view_button")}
               </button>
             </div>
 
@@ -855,7 +858,7 @@ export default function PetGroomingContent() {
             <div style={{ backgroundColor: "#965B831A", borderRadius: "16px", padding: "30px", textAlign: "center" }}>
               <i className="fa-solid fa-syringe" style={{ fontSize: "40px", color: "#965B83", marginBottom: "16px", display: "block" }} />
               <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "20px", color: "#1F2124", marginBottom: "16px" }}>
-                Required Vaccinations
+                {t("form_vaccinations_required_grooming_heading")}
               </h3>
               <button
                 onClick={() => setShowVaccinationsModal(true)}
@@ -871,7 +874,7 @@ export default function PetGroomingContent() {
                   cursor: "pointer",
                 }}
               >
-                View
+                {t("grooming_view_button")}
               </button>
             </div>
           </div>
@@ -879,22 +882,22 @@ export default function PetGroomingContent() {
           {/* Right Column — Text Content */}
           <div>
             <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "50px", color: "#1F2124", marginBottom: "8px", lineHeight: 1.1 }}>
-              Never Miss a Moment!
+              {t("grooming_never_miss_moment")}
             </h2>
             <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(22px,3vw,36px)", color: "#965B83", marginBottom: "16px", lineHeight: 1.2 }}>
-              Live Pet Daycare Streaming
+              {t("grooming_live_streaming")}
             </h3>
             <p style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "14px", color: "#54595F", letterSpacing: "1px", marginBottom: "20px" }}>
               #THEDOGHOUSEPETSALON Daycare TV
             </p>
             <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", lineHeight: 1.7, marginBottom: "16px" }}>
-              Leaving your loved ones is hard, we understand. That&apos;s why The Dog House Pet Salon is equipped with webcams; allowing you to receive real time updates on your loved ones whenever you desire.
+              {t("grooming_webcam_text1")}
             </p>
             <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", lineHeight: 1.7, marginBottom: "16px" }}>
-              Transparency is key in any relationship, especially when caring for furry family members. That&apos;s exactly why our dog day care in Houston will always provide this incredible resource to get an inside look at our operations &amp; monitor the luxurious conditions of your loved ones.
+              {t("grooming_webcam_text2")}
             </p>
             <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", lineHeight: 1.7, marginBottom: "24px" }}>
-              Communities are built on trust. That&apos;s why The Dog House Pet Salon has been the best doggy daycare &amp; pet boarding service in Houston for over a decade! When you&apos;re here, you&apos;re family.
+              {t("grooming_webcam_text3")}
             </p>
             <Link
               href="/pet-cam"
@@ -910,7 +913,7 @@ export default function PetGroomingContent() {
                 textDecoration: "none",
               }}
             >
-              View Webcams
+              {t("grooming_view_webcams")}
             </Link>
           </div>
         </div>
@@ -945,18 +948,18 @@ export default function PetGroomingContent() {
             textAlign: "center",
             marginBottom: "50px",
           }}>
-            You Can Find Us At These Locations Near You
+            {t("grooming_you_can_find")}
           </h2>
 
           {/* 2-Column Layout: Large card on left, stacked cards on right */}
-          <div style={{
+          <div className="locations-grid" style={{
             display: "grid",
             gridTemplateColumns: "1fr 1fr",
             gap: "30px",
             alignItems: "stretch",
           }}>
             {/* LEFT: Large Richmond Ave Card */}
-            <div style={{
+            <div className="location-card" style={{
               backgroundColor: "#965B83",
               borderRadius: "16px",
               padding: "24px",
@@ -979,6 +982,7 @@ export default function PetGroomingContent() {
                   width={200}
                   height={200}
                   quality={85}
+                  loading="lazy"
                   style={{
                     width: "200px",
                     height: "200px",
@@ -1058,7 +1062,7 @@ export default function PetGroomingContent() {
             {/* RIGHT: Stacked cards (Washington Ave + Business Center) */}
             <div style={{ display: "flex", flexDirection: "column", gap: "30px" }}>
               {/* Washington Ave Card */}
-              <div style={{
+              <div className="location-card" style={{
                 backgroundColor: "#965B83",
                 borderRadius: "16px",
                 padding: "24px",
@@ -1080,6 +1084,7 @@ export default function PetGroomingContent() {
                     width={150}
                     height={150}
                     quality={85}
+                    loading="lazy"
                     style={{
                       width: "150px",
                       height: "150px",
@@ -1156,7 +1161,7 @@ export default function PetGroomingContent() {
               </div>
 
               {/* Business Center Card */}
-              <div style={{
+              <div className="location-card" style={{
                 backgroundColor: "#965B83",
                 borderRadius: "16px",
                 padding: "24px",
@@ -1178,6 +1183,7 @@ export default function PetGroomingContent() {
                     width={150}
                     height={150}
                     quality={85}
+                    loading="lazy"
                     style={{
                       width: "150px",
                       height: "150px",
@@ -1259,27 +1265,27 @@ export default function PetGroomingContent() {
 
       {/* ── Donna Williams Section ── */}
       <section style={{ backgroundColor: "#fff", padding: "80px 20px" }}>
-        <div style={{ maxWidth: "1520px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "60px", alignItems: "center" }}>
+        <div className="grid-responsive" style={{ maxWidth: "1520px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "60px", alignItems: "center" }}>
           {/* Left — Text */}
           <div>
             <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "50px", color: "#1F2124", lineHeight: 1.1, marginBottom: "16px" }}>
-              Nationally Renowned Certified Master <span style={{ color: "#965B83" }}>Pet Groomer &amp; Trainer</span>
+              {language === "es" ? (<>Maestra Certificada de Renombre Nacional <span style={{ color: "#965B83" }}>Peluquera y Entrenadora de Mascotas</span></>) : (<>Nationally Renowned Certified Master <span style={{ color: "#965B83" }}>Pet Groomer &amp; Trainer</span></>)}
             </h2>
             <p style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "18px", color: "#1F2124", marginBottom: "20px", letterSpacing: "1px" }}>
-              DONNA WILLIAMS
+              {t("grooming_donna_name")}
             </p>
             <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#965B83", fontStyle: "italic", marginBottom: "16px" }}>
-              Career Highlights:
+              {t("grooming_career_highlights")}
             </p>
             <ul style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", lineHeight: 2, listStyle: "disc", paddingLeft: "20px", marginBottom: "24px" }}>
-              <li>30+ years of pet grooming experience</li>
-              <li>Built a successful pet salon franchise in Houston, TX (15 yrs and counting)</li>
-              <li>3 convenient location serving Houston, Pearland, and the surrounding areas</li>
-              <li>Groomed over 50,000+ Dogs</li>
-              <li>Rescued 500+ Dogs</li>
+              <li>{t("grooming_donna_item1")}</li>
+              <li>{t("grooming_donna_item2")}</li>
+              <li>{t("grooming_donna_item3")}</li>
+              <li>{t("grooming_donna_item4")}</li>
+              <li>{t("grooming_donna_item5")}</li>
             </ul>
             <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", lineHeight: 1.7 }}>
-              Donna believes in high-quality pet grooming with top-notch safety and care for every dog.
+              {t("grooming_donna_believes")}
             </p>
           </div>
 
@@ -1290,6 +1296,7 @@ export default function PetGroomingContent() {
               alt="Donna Williams - Master Pet Groomer"
               width={600}
               height={500}
+              loading="lazy"
               style={{ width: "100%", height: "auto", display: "block" }}
             />
             {/* Gradient overlay */}
@@ -1335,7 +1342,7 @@ export default function PetGroomingContent() {
 
         <div style={{ maxWidth: "1520px", margin: "0 auto", position: "relative", zIndex: 2 }}>
           <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "50px", color: "#1F2124", textAlign: "center", marginBottom: "50px" }}>
-            Our Pet Groomers
+            {t("grooming_our_pet_groomers")}
           </h2>
 
           <div className="groomers-grid">
@@ -1362,6 +1369,7 @@ export default function PetGroomingContent() {
                     alt={g.name}
                     width={200}
                     height={200}
+                    loading="lazy"
                     style={{ width: "100%", height: "100%", objectFit: "cover" }}
                   />
                 </div>
@@ -1402,10 +1410,10 @@ export default function PetGroomingContent() {
           {/* Left — Title + Button */}
           <div>
             <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "14px", color: "#965B83", textTransform: "uppercase", letterSpacing: "2px", marginBottom: "8px" }}>
-              HOUSTON&apos;S #1
+              {language === "es" ? "EL #1 DE HOUSTON" : "HOUSTON'S #1"}
             </p>
             <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "50px", color: "#1F2124", lineHeight: 1.1, marginBottom: "24px" }}>
-              Pet Grooming Service
+              {language === "es" ? "Servicio de Peluquería de Mascotas" : "Pet Grooming Service"}
             </h2>
             <Link
               href="/appointment-request"
@@ -1432,6 +1440,7 @@ export default function PetGroomingContent() {
               alt="Houston Pet Grooming Team"
               width={500}
               height={400}
+              loading="lazy"
               style={{ width: "100%", height: "auto", display: "block" }}
             />
           </div>
@@ -1439,7 +1448,7 @@ export default function PetGroomingContent() {
           {/* Right — Text Content */}
           <div>
             <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", lineHeight: 1.8 }}>
-              The Dog House Pet Salon has become the pet grooming center for all animal lovers &amp; owners in Houston. With over 30+ Years of pet grooming experience, we&apos;ve been successfully delivering a pet&apos;s paradise to our clients &amp; their furry friends. Our level of care &amp; attention to detail is unmatched in the industry, and that&apos;s what has kept our community growing &amp; returning for decades. Whether you&apos;re a dog or cat owner, we&apos;ll treat and love them as our own. We believe in creating soothing pet grooming experiences for your pets. Professional pet grooming is our passion.
+              {t("grooming_houston_center_desc")}
             </p>
           </div>
         </div>
@@ -1451,13 +1460,13 @@ export default function PetGroomingContent() {
           {/* Left — Title + Content + Button */}
           <div>
             <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "50px", color: "#1F2124", lineHeight: 1.1, marginBottom: "8px" }}>
-              Our Pet <span style={{ color: "#965B83" }}>Grooming Academy</span>
+              {language === "es" ? (<>Nuestra <span style={{ color: "#965B83" }}>Academia de Peluquería</span></>) : (<>Our Pet <span style={{ color: "#965B83" }}>Grooming Academy</span></>)}
             </h2>
             <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#965B83", fontStyle: "italic", marginBottom: "20px" }}>
-              Creating World-Class Groomers One Student at a Time
+              {t("grooming_school_subtitle")}
             </p>
             <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", lineHeight: 1.8, marginBottom: "24px" }}>
-              Our dedication to shaping world-class pet groomers stems from our unwavering commitment to providing all animals with the highest quality of service. It&apos;s our pet grooming mission to improve the level of care for pets by providing the world with more world-class groomers that will carry out our message &amp; values.
+              {t("grooming_school_desc")}
             </p>
             <Link
               href="/grooming-school"
@@ -1473,7 +1482,7 @@ export default function PetGroomingContent() {
                 textDecoration: "none",
               }}
             >
-              View Courses
+              {t("grooming_view_courses")}
             </Link>
           </div>
 
@@ -1481,35 +1490,35 @@ export default function PetGroomingContent() {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "20px" }} className="grid-responsive-4">
             {[
               {
-                label: "Pet Care",
+                label: t("grooming_pet_care"),
                 svg: <svg width="48" height="48" viewBox="0 0 48 48" fill="#965B83" xmlns="http://www.w3.org/2000/svg"><ellipse cx="14" cy="10" rx="5" ry="6"/><ellipse cx="34" cy="10" rx="5" ry="6"/><ellipse cx="7" cy="24" rx="4" ry="5"/><ellipse cx="41" cy="24" rx="4" ry="5"/><path d="M24 44c-8 0-14-6-14-14 0-6 4-10 8-12a10 10 0 0 1 12 0c4 2 8 6 8 12 0 8-6 14-14 14z"/></svg>,
               },
               {
-                label: "Bathing",
+                label: t("grooming_bathing"),
                 svg: <svg width="48" height="48" viewBox="0 0 48 48" fill="#965B83" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="24" width="32" height="16" rx="8"/><path d="M12 24V12a8 8 0 0 1 16 0" stroke="#965B83" strokeWidth="3" fill="none"/><circle cx="20" cy="8" r="3"/><ellipse cx="14" cy="6" rx="2" ry="2.5"/><ellipse cx="18" cy="3" rx="1.5" ry="2"/><rect x="14" y="40" width="4" height="4" rx="1"/><rect x="30" y="40" width="4" height="4" rx="1"/></svg>,
               },
               {
-                label: "Shampoo",
+                label: t("grooming_shampoo"),
                 svg: <svg width="48" height="48" viewBox="0 0 48 48" fill="#965B83" xmlns="http://www.w3.org/2000/svg"><rect x="14" y="16" width="20" height="28" rx="4"/><rect x="18" y="8" width="12" height="8" rx="2"/><path d="M30 12h6v4a2 2 0 0 1-2 2h-4" fill="#965B83"/><circle cx="24" cy="30" r="4" fill="#faf7f9"/></svg>,
               },
               {
-                label: "Brushing",
+                label: t("grooming_brushing_category"),
                 svg: <svg width="48" height="48" viewBox="0 0 48 48" fill="#965B83" xmlns="http://www.w3.org/2000/svg"><rect x="12" y="4" width="24" height="14" rx="3"/><rect x="16" y="18" width="16" height="26" rx="2"/><rect x="19" y="22" width="3" height="6" rx="1"/><rect x="25" y="22" width="3" height="6" rx="1"/><rect x="19" y="30" width="3" height="6" rx="1"/><rect x="25" y="30" width="3" height="6" rx="1"/></svg>,
               },
               {
-                label: "Cutting",
+                label: t("grooming_cutting"),
                 svg: <svg width="48" height="48" viewBox="0 0 48 48" fill="#965B83" xmlns="http://www.w3.org/2000/svg"><circle cx="14" cy="38" r="6" fill="none" stroke="#965B83" strokeWidth="3"/><circle cx="34" cy="38" r="6" fill="none" stroke="#965B83" strokeWidth="3"/><path d="M18 34L30 10M30 34L18 10" stroke="#965B83" strokeWidth="3" strokeLinecap="round"/></svg>,
               },
               {
-                label: "Combing",
+                label: t("grooming_combing"),
                 svg: <svg width="48" height="48" viewBox="0 0 48 48" fill="#965B83" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="4" width="32" height="12" rx="3"/><rect x="12" y="16" width="3" height="28" rx="1"/><rect x="18" y="16" width="3" height="28" rx="1"/><rect x="24" y="16" width="3" height="28" rx="1"/><rect x="30" y="16" width="3" height="28" rx="1"/><rect x="36" y="16" width="3" height="20" rx="1"/></svg>,
               },
               {
-                label: "Styling",
+                label: t("grooming_styling"),
                 svg: <svg width="48" height="48" viewBox="0 0 48 48" fill="#965B83" xmlns="http://www.w3.org/2000/svg"><rect x="16" y="16" width="16" height="28" rx="4"/><rect x="20" y="8" width="8" height="8" rx="2"/><path d="M28 12h4v4a2 2 0 0 1-2 2h-2"/><path d="M36 6l2-4M38 10l4-2M36 14l2 4" stroke="#965B83" strokeWidth="2" strokeLinecap="round"/><circle cx="24" cy="28" r="3" fill="#965b831a"/></svg>,
               },
               {
-                label: "Handling",
+                label: t("grooming_handling"),
                 svg: <svg width="48" height="48" viewBox="0 0 48 48" fill="#965B83" xmlns="http://www.w3.org/2000/svg"><path d="M36 36H12v-4l4-8h16l4 8v4z"/><circle cx="18" cy="18" r="6"/><rect x="28" y="14" width="4" height="12" rx="2"/><circle cx="14" cy="38" r="2"/><circle cx="32" cy="38" r="2"/><path d="M8 20h4M36 20h4" stroke="#965B83" strokeWidth="2"/></svg>,
               },
             ].map((item) => (
@@ -1554,6 +1563,7 @@ export default function PetGroomingContent() {
         </div>
       </section>
 
+      <StoreLocations />
     </>
   );
 }

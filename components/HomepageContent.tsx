@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useLanguage } from "@/lib/LanguageContext";
 import ReviewsCarousel from "@/components/ReviewsCarousel";
+import StoreLocations from "@/components/StoreLocations";
 
 /* ── Data ── */
 const services = [
@@ -70,22 +71,28 @@ const blogPosts = [
     imgSrc: "https://www.thedoghouseps.com/wp-content/uploads/2026/03/Shihtzu_Grooming_Pearland.jpg",
     imgAlt: "Shih Tzu freshly groomed at The Dog House Pet Salon in Pearland Texas professional dog grooming",
     title: "The Benefits of Routine Dog Grooming in Houston's Climate",
+    titleEs: "Los Beneficios del Cuidado Regular de Mascotas en el Clima de Houston",
     excerpt: "Houston's heat and humidity take a toll on your pet's coat. Learn how routine grooming protects your dog's skin, reduces shedding, and keeps them comfortable year-round.",
-    href: "/blog/the-benefits-of-routine-dog-grooming-in-houstons-climate",
+    excerptEs: "El calor y la humedad de Houston afectan el pelaje de tu mascota. Aprende cómo el cuidado regular protege la piel de tu perro, reduce la muda y los mantiene cómodos todo el año.",
+    href: "https://www.thedoghouseps.com/blog/the-benefits-of-routine-dog-grooming-in-houstons-climate/",
   },
   {
     imgSrc: "https://www.thedoghouseps.com/wp-content/uploads/2026/01/doggy-day-care-galleria-1024x1005.jpg",
     imgAlt: "Dogs playing safely in a supervised dog daycare environment at The Dog House Pet Salon in Houston",
     title: "Is Dog Daycare Worth It? Here's What Houston Pet Parents Should Know",
+    titleEs: "¿Vale la Pena la Guardería para Perros? Lo Que los Padres de Mascotas en Houston Deben Saber",
     excerpt: "Modern dogs need more than a quick walk around the block. Discover whether dog daycare in Houston is worth it, the real benefits it provides, and what to look for in a facility.",
-    href: "/blog/is-dog-daycare-worth-it-heres-what-houston-pet-parents-should-know",
+    excerptEs: "Los perros modernos necesitan más que un paseo rápido. Descubre si la guardería para perros en Houston vale la pena, los beneficios reales que ofrece y qué buscar en una instalación.",
+    href: "https://www.thedoghouseps.com/blog/is-dog-daycare-worth-it-heres-what-houston-pet-parents-should-know/",
   },
   {
     imgSrc: "https://www.thedoghouseps.com/wp-content/uploads/2026/01/winter-dog-grooming-houston-1024x750.jpg",
     imgAlt: "Winter dog grooming in Houston to protect coat and skin during cold weather",
     title: "Why Winter Grooming Is Essential for Your Dog's Health and Comfort",
+    titleEs: "Por Qué el Cuidado de Invierno es Esencial para la Salud y Comodidad de tu Perro",
     excerpt: "Even in Houston's mild winters, your dog's coat needs seasonal care. Here's why skipping winter grooming can lead to matting, skin issues, and discomfort — and how to prevent it.",
-    href: "/blog/why-winter-grooming-is-essential-for-your-dogs-health-and-comfort",
+    excerptEs: "Incluso en los inviernos suaves de Houston, el pelaje de tu perro necesita cuidado estacional. Descubre por qué saltarse el cuidado de invierno puede causar enredos, problemas de piel y malestar.",
+    href: "https://www.thedoghouseps.com/blog/why-winter-grooming-is-essential-for-your-dogs-health-and-comfort/",
   },
 ];
 
@@ -93,7 +100,7 @@ const blogPosts = [
 const sectionPadding = { padding: "clamp(40px, 10vw, 80px) 20px" } as const;
 
 export default function HomepageContent() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   return (
     <>
@@ -118,10 +125,13 @@ export default function HomepageContent() {
             width={191}
             height={178}
             style={{ width: "120px", height: "auto" }}
+            loading="lazy"
+            sizes="120px"
           />
         </div>
 
         <div
+          className="section-2-grid"
           style={{
             maxWidth: "1520px",
             margin: "0 auto",
@@ -139,7 +149,8 @@ export default function HomepageContent() {
               width={465}
               height={566}
               style={{ width: "clamp(200px, 32vw, 465px)", height: "auto", borderRadius: "8px" }}
-              sizes="(max-width: 768px) 200px, (max-width: 1024px) 320px, 465px"
+              sizes="(max-width: 480px) 150px, (max-width: 768px) 200px, (max-width: 1024px) 320px, 465px"
+              quality={80}
             />
             <Image
               src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/German-Shephard.jpg"
@@ -147,7 +158,8 @@ export default function HomepageContent() {
               width={220}
               height={558}
               style={{ width: "clamp(100px, 15vw, 220px)", height: "auto", borderRadius: "8px", marginTop: "85px" }}
-              sizes="(max-width: 768px) 100px, (max-width: 1024px) 150px, 220px"
+              sizes="(max-width: 480px) 70px, (max-width: 768px) 100px, (max-width: 1024px) 150px, 220px"
+              quality={80}
             />
           </div>
 
@@ -227,6 +239,9 @@ export default function HomepageContent() {
                   width={250}
                   height={250}
                   style={{ width: "250px", height: "250px", objectFit: "cover", borderRadius: "50%" }}
+                  loading="lazy"
+                  sizes="(max-width: 480px) 180px, (max-width: 768px) 200px, 250px"
+                  quality={80}
                 />
               </Link>
               <h2
@@ -281,7 +296,7 @@ export default function HomepageContent() {
         style={{
           position: "relative",
           backgroundColor: "#965B83",
-          padding: "80px 20px 120px",
+          padding: "160px 20px 120px",
         }}
       >
         <div style={{ maxWidth: "1520px", margin: "0 auto", position: "relative", zIndex: 2 }}>
@@ -338,7 +353,9 @@ export default function HomepageContent() {
                   width={210}
                   height={200}
                   style={{ width: "auto", height: "200px", marginBottom: "20px" }}
-                  sizes="210px"
+                  sizes="(max-width: 480px) 160px, (max-width: 768px) 180px, 210px"
+                  loading="lazy"
+                  quality={80}
                 />
                 <h2
                   style={{
@@ -401,6 +418,7 @@ export default function HomepageContent() {
                 height={294}
                 style={{ width: "clamp(180px, 25vw, 385px)", height: "auto", display: "block", marginBottom: "50px" }}
                 sizes="(max-width: 768px) 180px, 385px"
+                loading="lazy"
               />
             </div>
             <style>{`
@@ -449,6 +467,7 @@ export default function HomepageContent() {
       ══════════════════════════════════════════════ */}
       <section style={{ ...sectionPadding, backgroundColor: "#ffffff" }}>
         <div
+          className="section-5-grid"
           style={{
             maxWidth: "1520px",
             margin: "0 auto",
@@ -519,7 +538,8 @@ export default function HomepageContent() {
               width={500}
               height={417}
               style={{ width: "100%", maxWidth: "475px", height: "auto" }}
-              sizes="(max-width: 768px) 100vw, 500px"
+              sizes="(max-width: 480px) 90vw, (max-width: 768px) 95vw, 500px"
+              quality={80}
             />
           </div>
         </div>
@@ -549,10 +569,13 @@ export default function HomepageContent() {
           alt="Family with dog"
           fill
           style={{ objectFit: "cover", objectPosition: "center center" }}
+          priority={false}
+          quality={85}
         />
 
         {/* Content area */}
         <div
+          className="mpc-content-area"
           style={{
             position: "relative",
             zIndex: 3,
@@ -650,6 +673,7 @@ export default function HomepageContent() {
       ══════════════════════════════════════════════ */}
       <section style={{ ...sectionPadding, backgroundColor: "#ffffff" }}>
         <div
+          className="section-7-grid"
           style={{
             maxWidth: "1520px",
             margin: "0 auto",
@@ -702,6 +726,8 @@ export default function HomepageContent() {
               width={800}
               height={778}
               style={{ width: "100%", maxWidth: "380px", height: "auto" }}
+              loading="lazy"
+              sizes="(max-width: 768px) 100%, (max-width: 1024px) 380px, 380px"
             />
           </div>
 
@@ -743,6 +769,7 @@ export default function HomepageContent() {
       ══════════════════════════════════════════════ */}
       <section style={{ backgroundColor: "#ffffff", padding: "80px 20px" }}>
         <div
+          className="section-9-grid"
           style={{
             maxWidth: "1520px",
             margin: "0 auto",
@@ -982,30 +1009,33 @@ export default function HomepageContent() {
                     borderRadius: "50%",
                     marginBottom: "20px",
                   }}
+                  loading="lazy"
+                  sizes="(max-width: 480px) 180px, (max-width: 768px) 200px, (max-width: 1024px) 220px, 250px"
+                  quality={80}
                 />
                 <h3
                   className="blog-card-title"
                   style={{
                     fontFamily: '"Bowlby One SC", Sans-serif',
-                    fontSize: "28px",
+                    fontSize: "clamp(18px, 1.8vw, 24px)",
                     fontWeight: 400,
                     lineHeight: 1.4,
                     color: "#1F2124",
                     marginBottom: "16px",
                   }}
                 >
-                  {post.title}
+                  {language === "es" && post.titleEs ? post.titleEs : post.title}
                 </h3>
                 <p
                   style={{
                     fontFamily: '"Outfit", sans-serif',
-                    fontSize: "18px",
-                    lineHeight: 1.5,
-                    color: "#1F2124",
+                    fontSize: "16px",
+                    lineHeight: 1.6,
+                    color: "#54595F",
                     marginBottom: "20px",
                   }}
                 >
-                  {post.excerpt}
+                  {language === "es" && post.excerptEs ? post.excerptEs : post.excerpt}
                 </p>
                 <a
                   href={post.href}
@@ -1033,6 +1063,46 @@ export default function HomepageContent() {
           </div>
         </div>
       </section>
+
+      {/* ══════════════════════════════════════════════
+          SECTION: Store Locations with Google Maps
+      ══════════════════════════════════════════════ */}
+      <StoreLocations />
+
+      <style>{`
+        @media (max-width: 768px) {
+          .section-2-grid {
+            grid-template-columns: 1fr !important;
+            gap: 30px !important;
+          }
+
+          .section-5-grid {
+            grid-template-columns: 1fr !important;
+            gap: 30px !important;
+          }
+
+          .mpc-content-area {
+            flex-direction: column !important;
+            gap: 20px !important;
+            padding: 60px 20px 40px !important;
+          }
+
+          .mpc-content-area > div {
+            margin-left: 0 !important;
+            max-width: 100% !important;
+          }
+
+          .section-7-grid {
+            grid-template-columns: 1fr !important;
+            gap: 30px !important;
+          }
+
+          .section-9-grid {
+            grid-template-columns: 1fr !important;
+            gap: 30px !important;
+          }
+        }
+      `}</style>
     </>
   );
 }

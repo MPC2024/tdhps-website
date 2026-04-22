@@ -353,6 +353,7 @@ export default function Footer() {
             width={120}
             height={120}
             style={{ height: "auto", width: "auto", maxWidth: "120px" }}
+            sizes="120px"
           />
         </div>
       </div>

@@ -76,6 +76,7 @@ export default function HomepageRegistrationSection() {
                   width={200}
                   height={200}
                   style={{ width: "200px", height: "200px", objectFit: "contain", marginBottom: "24px" }}
+                  sizes="(max-width: 640px) 150px, (max-width: 1024px) 180px, 200px"
                 />
                 <h3
                   style={{

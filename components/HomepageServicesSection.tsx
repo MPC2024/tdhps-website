@@ -66,6 +66,7 @@ export default function HomepageServicesSection() {
                 width={250}
                 height={250}
                 style={{ width: "250px", height: "250px", objectFit: "cover", borderRadius: "50%" }}
+                sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 250px"
               />
             </Link>
             <h2

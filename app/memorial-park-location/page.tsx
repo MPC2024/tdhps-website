@@ -4,6 +4,7 @@ import Link from "next/link";
 import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 import { ReviewWidget } from "@/components/ReviewWidget";
 import { LOCATIONS } from "@/lib/locations";
+import MemorialParkLocationContent from "@/components/location/MemorialParkLocationContent";
 
 export const metadata: Metadata = {
   title: "Dog Grooming in Memorial Park Houston",
@@ -75,13 +76,10 @@ export default function MemorialParkLocationPage() {
           { name: "Memorial Park", url: "https://www.thedoghouseps.com/memorial-park-location" },
         ]}
       />
-      <section style={{ position: "relative", backgroundImage: "url(/images/memorial-location.jpg)", backgroundSize: "cover", backgroundPosition: "center", minHeight: "480px", display: "flex", alignItems: "center", padding: "80px 20px 120px" }}>
+      <section style={{ position: "relative", backgroundImage: "url(/images/memorial-location.jpg)", backgroundSize: "cover", backgroundPosition: "center", minHeight: "480px", display: "flex", alignItems: "center", padding: "160px 20px 120px" }}>
         <div style={{ position: "absolute", inset: 0, backgroundColor: "rgba(0,0,0,0.5)" }} />
-        <div style={{ maxWidth: "1520px", margin: "0 auto", position: "relative", zIndex: 2 }}>
-          <h1 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(32px,5vw,64px)", color: "#ffffff", marginBottom: "24px", lineHeight: 1.1 }}>
-            The Dog House <span style={{ color: "#965B83" }}>Pet Salon – Memorial Park</span>
-          </h1>
-          <Link href="/appointment-request" style={{ backgroundColor: "#965B83", color: "#fff", padding: "14px 32px", borderRadius: "50px", fontFamily: '"Outfit", sans-serif', fontWeight: 700, fontSize: "16px", display: "inline-block", textDecoration: "none" }}>Schedule An Appointment</Link>
+        <div style={{ maxWidth: "1520px", margin: "0 auto", position: "relative", zIndex: 2, color: "#ffffff" }}>
+          <MemorialParkLocationContent />
         </div>
       </section>
 

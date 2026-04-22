@@ -1,45 +1,32 @@
-import type { Metadata } from "next";
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { useLanguage } from "@/lib/LanguageContext";
+import StaffPageHero from "@/components/staff/StaffPageHero";
 
-export const metadata: Metadata = {
-  title: "Our Staff",
-  description:
-    "Meet The Dog House team in Houston! With 30+ years of pet grooming, daycare, and boarding expertise, we ensure your pets receive the best care.",
-  openGraph: {
-    title: "Our Staff",
-    description:
-      "Meet The Dog House team in Houston! With 30+ years of pet grooming, daycare, and boarding expertise, we ensure your pets receive the best care.",
-    url: "https://www.thedoghouseps.com/our-staff/",
-    images: [
-      {
-        url: "https://www.thedoghouseps.com/wp-content/uploads/2025/03/keylin-paulina-orellana-delcid.webp",
-        alt: "Our Staff at The Dog House Pet Salon",
-      },
-    ],
-  },
-  alternates: { canonical: "https://www.thedoghouseps.com/our-staff/" },
-};
+export default function OurStaffPage() {
+  const { t } = useLanguage();
 
 const groomers = [
   {
     name: "Keylin Paulina Orellana Delcid",
-    title: "Master Pet Groomer",
-    location: "Galleria / Uptown Park",
+    titleKey: "staff_master_groomer" as const,
+    locationKey: "keylin_location" as const,
     img: "https://www.thedoghouseps.com/wp-content/uploads/2025/03/keylin-paulina-orellana-delcid.webp",
     slug: "/keylin-paulina-orellana-delcid",
   },
   {
     name: "Margarita Batres",
-    title: "Master Pet Groomer",
-    location: "Pearland",
+    titleKey: "staff_master_groomer" as const,
+    locationKey: "margarita_location" as const,
     img: "https://www.thedoghouseps.com/wp-content/uploads/2025/03/margarita-batres.jpg",
     slug: "/margarita-batres",
   },
   {
     name: "Francy Quevedo",
-    title: "Master Pet Groomer",
-    location: "Memorial Park",
+    titleKey: "staff_master_groomer" as const,
+    locationKey: "francy_location" as const,
     img: "https://www.thedoghouseps.com/wp-content/uploads/2025/03/francy-quevedo.jpg",
     slug: "/francy-quevedo",
   },
@@ -81,73 +68,32 @@ const locations = [
   },
 ];
 
-export default function OurStaffPage() {
   return (
     <>
-      {/* ── Hero ── */}
+      {/* ── Hero (pet-grooming style) ── */}
       <section
         style={{
           position: "relative",
-          backgroundImage:
-            "url(https://www.thedoghouseps.com/wp-content/uploads/2025/03/image-2.jpg)",
+          backgroundImage: "url(https://www.thedoghouseps.com/wp-content/uploads/2025/03/image-2.jpg)",
           backgroundSize: "cover",
           backgroundPosition: "center",
-          minHeight: "480px",
+          minHeight: "700px",
           display: "flex",
           alignItems: "center",
-          padding: "80px 20px 120px",
+          padding: "160px 20px 120px",
+          overflow: "hidden",
         }}
       >
-        <div
-          style={{ position: "absolute", inset: 0, backgroundColor: "rgba(0,0,0,0.5)" }}
-        />
-        <div
-          aria-hidden="true"
-          style={{
-            position: "absolute",
-            bottom: -1,
-            left: 0,
-            width: "100%",
-            lineHeight: 0,
-            zIndex: 1,
-          }}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 1000 100"
-            preserveAspectRatio="none"
-            style={{ display: "block", width: "100%", height: "60px" }}
-          >
-            <path
-              fill="#ffffff"
-              d="M500,97C126.7,96.3,0.8,19.8,0,0v100l1000,0V1C1000,19.4,873.3,97.8,500,97z"
-            />
-          </svg>
+        {/* white overlay */}
+        <div style={{ position: "absolute", inset: 0, backgroundColor: "#FFF", opacity: 0.6 }} />
+        <div style={{ maxWidth: "1520px", margin: "0 auto", position: "relative", zIndex: 2 }}>
+          <StaffPageHero />
         </div>
-        <div
-          style={{
-            maxWidth: "1520px",
-            margin: "0 auto",
-            position: "relative",
-            zIndex: 2,
-          }}
-        >
-          <h1
-            style={{
-              fontFamily: '"Bowlby One SC", sans-serif',
-              fontSize: "clamp(36px,5vw,72px)",
-              color: "#ffffff",
-              marginBottom: "16px",
-              lineHeight: 1.1,
-            }}
-          >
-            Our <span style={{ color: "#965B83" }}>Staff</span>
-          </h1>
-          <div style={{ marginTop: "32px" }}>
-            <Link href="/appointment-request" className="btn-primary">
-              Get An Appointment
-            </Link>
-          </div>
+        {/* Curved bottom border SVG */}
+        <div style={{ position: "absolute", bottom: -1, left: 0, width: "100%", lineHeight: 0, zIndex: 2 }}>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none" style={{ display: "block", width: "100%", height: "60px" }}>
+            <path fill="#ffffff" d="M500,97C126.7,96.3,0.8,19.8,0,0v100l1000,0V1C1000,19.4,873.3,97.8,500,97z" />
+          </svg>
         </div>
       </section>
 
@@ -174,7 +120,7 @@ export default function OurStaffPage() {
                 textTransform: "uppercase",
               }}
             >
-              Nationally Renowned Certified Master Pet Groomer &amp; Trainer
+              {t("staff_donna_title")}
             </p>
             <h2
               style={{
@@ -185,7 +131,7 @@ export default function OurStaffPage() {
                 lineHeight: 1.1,
               }}
             >
-              Donna Williams
+              {t("staff_donna_name")}
             </h2>
             <h3
               style={{
@@ -195,7 +141,7 @@ export default function OurStaffPage() {
                 marginBottom: "16px",
               }}
             >
-              Career Highlights:
+              {t("staff_donna_highlights")}
             </h3>
             <ul
               style={{
@@ -203,21 +149,26 @@ export default function OurStaffPage() {
                 fontSize: "16px",
                 color: "#54595F",
                 lineHeight: 1.8,
-                paddingLeft: "20px",
+                listStyle: "none",
+                paddingLeft: 0,
                 marginBottom: "24px",
+                display: "flex",
+                flexDirection: "column",
+                gap: "8px",
               }}
             >
-              <li>30+ years of pet grooming experience</li>
-              <li>
-                Built a successful pet salon franchise in Houston, TX (15 yrs and
-                counting)
-              </li>
-              <li>
-                3 convenient location serving Houston, Pearland, and the surrounding
-                areas
-              </li>
-              <li>Groomed over 50,000+ Dogs</li>
-              <li>Rescued 500+ Dogs</li>
+              {[
+                t("staff_donna_item1"),
+                t("staff_donna_item2"),
+                t("staff_donna_item3"),
+                t("staff_donna_item4"),
+                t("staff_donna_item5"),
+              ].map((item) => (
+                <li key={item} style={{ display: "flex", alignItems: "flex-start", gap: "10px" }}>
+                  <i className="fa-solid fa-circle-check" style={{ color: "#965B83", fontSize: "18px", marginTop: "4px", flexShrink: 0 }} />
+                  <span>{item}</span>
+                </li>
+              ))}
             </ul>
             <p
               style={{
@@ -228,11 +179,10 @@ export default function OurStaffPage() {
                 marginBottom: "24px",
               }}
             >
-              Donna believes in high-quality pet grooming staff with top-notch safety
-              and care for every dog
+              {t("staff_donna_beliefs")}
             </p>
             <Link href="/donna-williams" className="btn-primary">
-              Read Full Bio
+              {t("staff_read_full_bio")}
             </Link>
           </div>
           <div style={{ textAlign: "center" }}>
@@ -247,6 +197,7 @@ export default function OurStaffPage() {
                 height: "auto",
                 borderRadius: "12px",
               }}
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 460px"
             />
           </div>
         </div>
@@ -264,7 +215,7 @@ export default function OurStaffPage() {
               marginBottom: "50px",
             }}
           >
-            Our Pet Groomers
+            {t("staff_our_pet_groomers")}
           </h2>
           <div
             style={{
@@ -290,6 +241,7 @@ export default function OurStaffPage() {
                   width={500}
                   height={500}
                   style={{ width: "100%", height: "300px", objectFit: "cover" }}
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
                 <div style={{ padding: "30px 24px" }}>
                   <p
@@ -301,7 +253,7 @@ export default function OurStaffPage() {
                       marginBottom: "4px",
                     }}
                   >
-                    {g.title}
+                    {t(g.titleKey)}
                   </p>
                   <h3
                     style={{
@@ -321,10 +273,10 @@ export default function OurStaffPage() {
                       marginBottom: "20px",
                     }}
                   >
-                    {g.location}
+                    {t(g.locationKey)}
                   </p>
                   <Link href={g.slug} className="btn-primary">
-                    Read Full Bio
+                    {t("staff_read_full_bio")}
                   </Link>
                 </div>
               </div>
@@ -333,94 +285,71 @@ export default function OurStaffPage() {
         </div>
       </section>
 
-      {/* ── Locations ── */}
-      <section style={{ backgroundColor: "#ffffff", padding: "80px 20px" }}>
-        <div style={{ maxWidth: "1520px", margin: "0 auto" }}>
-          <h2
-            style={{
-              fontFamily: '"Bowlby One SC", sans-serif',
-              fontSize: "clamp(26px,3vw,40px)",
-              color: "#1F2124",
-              textAlign: "center",
-              marginBottom: "50px",
-            }}
-          >
-            You Can Find Us At These Locations
+      {/* ── Locations (pet-grooming style) ── */}
+      <section style={{
+        backgroundImage: "url('https://www.thedoghouseps.com/wp-content/uploads/2025/03/image67.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundColor: "#F8F8F8",
+        padding: "80px 20px",
+        position: "relative",
+      }}>
+        <div style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, backgroundColor: "#FFF", opacity: 0.7, zIndex: 1 }} />
+        <div style={{ maxWidth: "1520px", margin: "0 auto", position: "relative", zIndex: 2 }}>
+          <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(26px,3vw,40px)", color: "#000", textAlign: "center", marginBottom: "50px" }}>
+            {t("you_can_find_us")}
           </h2>
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-              gap: "30px",
-            }}
-          >
-            {locations.map((loc) => (
-              <div
-                key={loc.address}
-                style={{
-                  backgroundColor: "#F8F8F8",
-                  borderRadius: "12px",
-                  overflow: "hidden",
-                  boxShadow: "6px 6px 9px rgba(0,0,0,.1)",
-                }}
-              >
-                <Image
-                  src={loc.img}
-                  alt={loc.address}
-                  width={500}
-                  height={300}
-                  style={{ width: "100%", height: "200px", objectFit: "cover" }}
-                />
-                <div style={{ padding: "24px" }}>
-                  <h3
-                    style={{
-                      fontFamily: '"Bowlby One SC", sans-serif',
-                      fontSize: "20px",
-                      color: "#1F2124",
-                      marginBottom: "12px",
-                    }}
-                  >
-                    {loc.address}
-                  </h3>
-                  {loc.hours.map((h) => (
-                    <p
-                      key={h}
-                      style={{
-                        fontFamily: '"Outfit", sans-serif',
-                        fontSize: "14px",
-                        color: "#54595F",
-                        margin: "2px 0",
-                      }}
-                    >
-                      {h}
-                    </p>
+
+          <div className="locations-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "30px", alignItems: "stretch" }}>
+            {/* LEFT: Large Galleria Card */}
+            <div className="location-card" style={{ backgroundColor: "#965B83", borderRadius: "16px", padding: "24px", display: "flex", flexDirection: "row", gap: "24px", alignItems: "center", minHeight: "100%" }}>
+              <div style={{ flex: "0 0 200px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                <Image src={locations[0].img} alt={locations[0].address} width={200} height={200} quality={85} sizes="(max-width: 768px) 100px, 200px" style={{ width: "200px", height: "200px", borderRadius: "30% 70% 70% 30% / 30% 30% 70% 70%", objectFit: "cover" }} />
+              </div>
+              <div style={{ flex: 1 }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "12px", color: "#fff" }}>
+                  <i className="fa-solid fa-location-dot" style={{ fontSize: "18px" }} />
+                  <h3 style={{ fontFamily: '"Outfit", sans-serif', fontSize: "18px", fontWeight: 600, color: "#fff", margin: 0 }}>{locations[0].address}</h3>
+                </div>
+                <div style={{ marginBottom: "16px" }}>
+                  {locations[0].hours.map((h) => (
+                    <p key={h} style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#fff", margin: "4px 0", lineHeight: 1.6, letterSpacing: "0.3px" }}>{h}</p>
                   ))}
-                  <p
-                    style={{
-                      fontFamily: '"Outfit", sans-serif',
-                      fontSize: "14px",
-                      color: "#965B83",
-                      marginTop: "10px",
-                      fontWeight: 600,
-                    }}
-                  >
-                    {loc.phone}
-                  </p>
-                  <a
-                    href={`mailto:${loc.email}`}
-                    style={{
-                      fontFamily: '"Outfit", sans-serif',
-                      fontSize: "14px",
-                      color: "#965B83",
-                      display: "block",
-                      marginTop: "4px",
-                    }}
-                  >
-                    {loc.email}
-                  </a>
+                </div>
+                <p style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "18px", color: "#fff", marginBottom: "12px", fontWeight: 600, letterSpacing: "1px" }}>{locations[0].phone}</p>
+                <div style={{ display: "flex", alignItems: "center", gap: "8px", color: "#fff" }}>
+                  <i className="fa-solid fa-envelope" style={{ fontSize: "16px" }} />
+                  <a href={`mailto:${locations[0].email}`} style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#fff", textDecoration: "none" }}>{locations[0].email}</a>
                 </div>
               </div>
-            ))}
+            </div>
+
+            {/* RIGHT: Stacked cards */}
+            <div style={{ display: "flex", flexDirection: "column", gap: "30px" }}>
+              {[locations[1], locations[2]].map((loc) => (
+                <div key={loc.address} className="location-card" style={{ backgroundColor: "#965B83", borderRadius: "16px", padding: "24px", display: "flex", flexDirection: "row", gap: "24px", alignItems: "center" }}>
+                  <div style={{ flex: "0 0 150px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                    <Image src={loc.img} alt={loc.address} width={150} height={150} quality={85} sizes="(max-width: 768px) 80px, 150px" style={{ width: "150px", height: "150px", borderRadius: "30% 70% 70% 30% / 30% 30% 70% 70%", objectFit: "cover" }} />
+                  </div>
+                  <div style={{ flex: 1 }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "12px", color: "#fff" }}>
+                      <i className="fa-solid fa-location-dot" style={{ fontSize: "16px" }} />
+                      <h3 style={{ fontFamily: '"Outfit", sans-serif', fontSize: "14px", fontWeight: 600, color: "#fff", margin: 0 }}>{loc.address}</h3>
+                    </div>
+                    <div style={{ marginBottom: "12px" }}>
+                      {loc.hours.map((h) => (
+                        <p key={h} style={{ fontFamily: '"Outfit", sans-serif', fontSize: "11px", color: "#fff", margin: "2px 0", lineHeight: 1.3 }}>{h}</p>
+                      ))}
+                    </div>
+                    <p style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "11px", color: "#fff", marginBottom: "8px", fontWeight: 600, letterSpacing: "0.5px" }}>{loc.phone}</p>
+                    <div style={{ display: "flex", alignItems: "center", gap: "6px", color: "#fff" }}>
+                      <i className="fa-solid fa-envelope" style={{ fontSize: "12px" }} />
+                      <a href={`mailto:${loc.email}`} style={{ fontFamily: '"Outfit", sans-serif', fontSize: "11px", color: "#fff", textDecoration: "none" }}>{loc.email}</a>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

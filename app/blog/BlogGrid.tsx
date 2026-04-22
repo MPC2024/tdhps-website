@@ -86,6 +86,7 @@ export default function BlogGrid({ posts }: { posts: BlogPost[] }) {
     <div ref={gridRef}>
       {/* Blog Grid */}
       <div
+        className="blog-grid"
         style={{
           display: "grid",
           gridTemplateColumns: "repeat(3, 1fr)",
@@ -119,6 +120,7 @@ export default function BlogGrid({ posts }: { posts: BlogPost[] }) {
                     objectFit: "cover",
                     display: "block",
                   }}
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
               ) : (
                 <div

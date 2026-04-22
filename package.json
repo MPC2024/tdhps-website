@@ -9,6 +9,11 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@lingui/cli": "^5.9.5",
+    "@lingui/core": "^5.9.5",
+    "@lingui/macro": "^5.9.5",
+    "@lingui/react": "^5.9.5",
+    "@lingui/swc-plugin": "^5.11.0",
     "gray-matter": "^4.0.3",
     "next": "16.2.0",
     "next-mdx-remote": "^6.0.0",
@@ -34,8 +39,11 @@
     "vitest": "^4.1.4"
   },
   "browserslist": [
-    "last 2 versions",
-    "not dead",
-    "> 0.2%"
+    "Chrome >= 90",
+    "Firefox >= 90",
+    "Safari >= 15",
+    "Edge >= 90",
+    "iOS >= 15",
+    "not dead"
   ]
 }

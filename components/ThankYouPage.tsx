@@ -1,5 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
+import ThankYouText from "./ThankYouText";
+import ThankYouOfferText from "./ThankYouOfferText";
+import ThankYouCTAText from "./ThankYouCTAText";
+import ThankYouActionCards from "./ThankYouActionCards";
+import ThankYouOfferSection from "./ThankYouOfferSection";
+import ThankYouConnectSection from "./ThankYouConnectSection";
 
 export interface ThankYouConfig {
   location: "Galleria" | "Memorial" | "Pearland";
@@ -48,7 +54,7 @@ export default function ThankYouPage({ config }: { config: ThankYouConfig }) {
           minHeight: "300px",
           display: "flex",
           alignItems: "center",
-          padding: "80px 20px 120px",
+          padding: "160px 20px 120px",
           overflow: "hidden",
         }}
       >
@@ -106,6 +112,7 @@ export default function ThankYouPage({ config }: { config: ThankYouConfig }) {
             height={150}
             style={{ width: "100%", height: "auto", borderRadius: "8px" }}
             priority
+            sizes="100vw"
           />
         </div>
       </section>
@@ -137,319 +144,24 @@ export default function ThankYouPage({ config }: { config: ThankYouConfig }) {
                   width={1024}
                   height={713}
                   style={{ width: "100%", height: "auto", display: "block" }}
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 512px"
                 />
               </div>
 
-              <h2
-                style={{
-                  fontFamily: '"Bowlby One SC", sans-serif',
-                  fontSize: "clamp(22px,3vw,32px)",
-                  color: "#965B83",
-                  marginBottom: "12px",
-                  lineHeight: 1.2,
-                }}
-              >
-                {location}
-              </h2>
-              <p
-                style={{
-                  fontFamily: '"Outfit", sans-serif',
-                  fontSize: "17px",
-                  color: "#54595F",
-                  lineHeight: 1.7,
-                  marginBottom: "0",
-                }}
-              >
-                {subMessage}
-              </p>
+              <ThankYouText location={location} isNew={isNew} />
             </div>
 
-            {/* Right: Action cards */}
-            <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
-              {/* Write a Review */}
-              <a
-                href={reviewLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "16px",
-                  background: "#F8F8F8",
-                  borderRadius: "12px",
-                  padding: "20px 24px",
-                  textDecoration: "none",
-                  transition: "box-shadow 0.2s ease",
-                  boxShadow: "0 2px 8px rgba(0,0,0,0.06)",
-                }}
-              >
-                <Image
-                  src="https://www.thedoghouseps.com/wp-content/uploads/2025/04/Layer-6-5-1.png"
-                  alt="Review icon"
-                  width={56}
-                  height={56}
-                  style={{ flexShrink: 0 }}
-                />
-                <div>
-                  <h3
-                    style={{
-                      fontFamily: '"Bowlby One SC", sans-serif',
-                      fontSize: "18px",
-                      color: "#1F2124",
-                      margin: "0 0 4px",
-                    }}
-                  >
-                    Write a Review
-                  </h3>
-                  <p
-                    style={{
-                      fontFamily: '"Outfit", sans-serif',
-                      fontSize: "14px",
-                      color: "#54595F",
-                      margin: 0,
-                    }}
-                  >
-                    Share your experience on Google
-                  </p>
-                </div>
-              </a>
+            {/* Right: Action cards - using client wrapper */}
+            <ThankYouActionCards reviewLink={reviewLink} directionsLink={directionsLink} />
 
-              {/* Get Directions */}
-              <a
-                href={directionsLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "16px",
-                  background: "#F8F8F8",
-                  borderRadius: "12px",
-                  padding: "20px 24px",
-                  textDecoration: "none",
-                  boxShadow: "0 2px 8px rgba(0,0,0,0.06)",
-                }}
-              >
-                <Image
-                  src="https://www.thedoghouseps.com/wp-content/uploads/2025/04/direction.png"
-                  alt="Directions icon"
-                  width={56}
-                  height={56}
-                  style={{ flexShrink: 0 }}
-                />
-                <div>
-                  <h3
-                    style={{
-                      fontFamily: '"Bowlby One SC", sans-serif',
-                      fontSize: "18px",
-                      color: "#1F2124",
-                      margin: "0 0 4px",
-                    }}
-                  >
-                    Get Directions
-                  </h3>
-                  <p
-                    style={{
-                      fontFamily: '"Outfit", sans-serif',
-                      fontSize: "14px",
-                      color: "#54595F",
-                      margin: 0,
-                    }}
-                  >
-                    Open in Google Maps
-                  </p>
-                </div>
-              </a>
-
-              {/* Connect with Us */}
-              <div
-                style={{
-                  background: "#F8F8F8",
-                  borderRadius: "12px",
-                  padding: "20px 24px",
-                  boxShadow: "0 2px 8px rgba(0,0,0,0.06)",
-                }}
-              >
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "16px",
-                    marginBottom: "16px",
-                  }}
-                >
-                  <Image
-                    src="https://www.thedoghouseps.com/wp-content/uploads/2025/04/Layer-5-3.png"
-                    alt="Social icon"
-                    width={56}
-                    height={56}
-                    style={{ flexShrink: 0 }}
-                  />
-                  <h3
-                    style={{
-                      fontFamily: '"Bowlby One SC", sans-serif',
-                      fontSize: "18px",
-                      color: "#1F2124",
-                      margin: 0,
-                    }}
-                  >
-                    Connect with Us
-                  </h3>
-                </div>
-                <div style={{ display: "flex", flexWrap: "wrap" as const, gap: "10px" }}>
-                  {SOCIAL_LINKS.map((s) => (
-                    <a
-                      key={s.label}
-                      href={s.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={{
-                        fontFamily: '"Outfit", sans-serif',
-                        fontSize: "14px",
-                        color: "#965B83",
-                        fontWeight: 600,
-                        textDecoration: "none",
-                        background: "#fff",
-                        padding: "6px 14px",
-                        borderRadius: "20px",
-                        border: "1px solid #E0D0E0",
-                      }}
-                    >
-                      {s.label}
-                    </a>
-                  ))}
-                </div>
-              </div>
-            </div>
+            {/* Connect with Us */}
+            <ThankYouConnectSection />
           </div>
         </div>
       </section>
 
       {/* ── Offer Section ── */}
-      <section style={{ backgroundColor: "#F8F8F8", padding: "60px 20px" }}>
-        <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
-          {isNew ? (
-            /* New customer: 10% discount offer */
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-                gap: "40px",
-                alignItems: "center",
-                background: "#fff",
-                borderRadius: "16px",
-                padding: "40px",
-                boxShadow: "6px 6px 9px rgba(0,0,0,0.08)",
-              }}
-            >
-              <div style={{ textAlign: "center" }}>
-                <Image
-                  src="https://www.thedoghouseps.com/wp-content/uploads/2025/04/Offer.png"
-                  alt="Special offer"
-                  width={300}
-                  height={300}
-                  style={{ width: "100%", maxWidth: "280px", height: "auto" }}
-                />
-              </div>
-              <div>
-                <p
-                  style={{
-                    fontFamily: '"Outfit", sans-serif',
-                    fontSize: "13px",
-                    fontWeight: 700,
-                    letterSpacing: "2px",
-                    color: "#965B83",
-                    textTransform: "uppercase" as const,
-                    marginBottom: "8px",
-                  }}
-                >
-                  SPECIAL OFFER
-                </p>
-                <h2
-                  style={{
-                    fontFamily: '"Bowlby One SC", sans-serif',
-                    fontSize: "clamp(28px,4vw,48px)",
-                    color: "#1F2124",
-                    marginBottom: "12px",
-                    lineHeight: 1.1,
-                  }}
-                >
-                  Receive a 10%{" "}
-                  <span style={{ color: "#965B83" }}>DISCOUNT</span>
-                </h2>
-                <p
-                  style={{
-                    fontFamily: '"Outfit", sans-serif',
-                    fontSize: "17px",
-                    color: "#54595F",
-                    marginBottom: "24px",
-                    lineHeight: 1.6,
-                  }}
-                >
-                  <strong>(new customers only)</strong>
-                  <br />
-                  With any Bath, Groom or Basic Service
-                </p>
-                <a
-                  href="https://www.nuvetlabs.com/order_new2/products.asp"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-primary"
-                >
-                  Shop
-                </a>
-              </div>
-            </div>
-          ) : (
-            /* Existing customer: punchcard offer */
-            <div
-              style={{
-                background: "#fff",
-                borderRadius: "16px",
-                padding: "48px 40px",
-                textAlign: "center",
-                boxShadow: "6px 6px 9px rgba(0,0,0,0.08)",
-                maxWidth: "700px",
-                margin: "0 auto",
-              }}
-            >
-              <h2
-                style={{
-                  fontFamily: '"Bowlby One SC", sans-serif',
-                  fontSize: "clamp(32px,5vw,60px)",
-                  color: "#965B83",
-                  marginBottom: "20px",
-                }}
-              >
-                Free
-              </h2>
-              <p
-                style={{
-                  fontFamily: '"Outfit", sans-serif',
-                  fontSize: "18px",
-                  color: "#54595F",
-                  lineHeight: 1.7,
-                  marginBottom: "32px",
-                }}
-              >
-                Ask about our groom punchcard and take advantage of a{" "}
-                <strong style={{ color: "#1F2124" }}>
-                  Free Bath, Groom, or Basic Service
-                </strong>
-                .
-              </p>
-              <a
-                href={reviewLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-primary"
-              >
-                Write a Review
-              </a>
-            </div>
-          )}
-        </div>
-      </section>
+      <ThankYouOfferSection isNew={isNew} reviewLink={reviewLink} />
 
       {/* ── CTA Bottom ── */}
       <section
@@ -460,26 +172,7 @@ export default function ThankYouPage({ config }: { config: ThankYouConfig }) {
         }}
       >
         <div style={{ maxWidth: "700px", margin: "0 auto" }}>
-          <h2
-            style={{
-              fontFamily: '"Bowlby One SC", sans-serif',
-              fontSize: "clamp(24px,3vw,36px)",
-              color: "#ffffff",
-              marginBottom: "16px",
-            }}
-          >
-            Book Another Appointment
-          </h2>
-          <p
-            style={{
-              fontFamily: '"Outfit", sans-serif',
-              fontSize: "17px",
-              color: "rgba(255,255,255,0.9)",
-              marginBottom: "32px",
-            }}
-          >
-            Need to schedule for another pet or location? We&apos;re always here!
-          </p>
+          <ThankYouCTAText />
           <div
             style={{
               display: "flex",

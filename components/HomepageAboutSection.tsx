@@ -26,6 +26,7 @@ export default function HomepageAboutSection() {
           width={191}
           height={178}
           style={{ width: "120px", height: "auto" }}
+          sizes="120px"
         />
       </div>
 

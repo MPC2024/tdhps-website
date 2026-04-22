@@ -3,7 +3,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
+import { useLanguage } from "@/lib/LanguageContext";
 import BlogCarousel, { type BlogPost } from "@/components/BlogCarousel";
+import StoreLocations from "@/components/StoreLocations";
 
 const bathingBlogPosts: BlogPost[] = [
   { title: "The Benefits of Routine Dog Grooming in Houston's Climate", img: "https://www.thedoghouseps.com/wp-content/uploads/2026/03/Shihtzu_Grooming_Pearland.jpg", href: "https://www.thedoghouseps.com/the-benefits-of-routine-dog-grooming-in-houstons-climate/" },
@@ -24,26 +26,30 @@ const reviews = [
   {
     name: "Kevin Garnepudi",
     text: "I have been using the dog house for weekend day care and grooming for a while and could not be happier with the way they treat my dog as well as myself. The staff is always friendly and accommodating and can tell they genuinely care about the dogs they look after. Finally as most German Shepherd owners know getting the dog dry after a bath is an impossible task yet some how the Dog House always is able to accomplish this!",
+    textEs: "He estado usando The Dog House para guardería de fin de semana y peluquería por un tiempo y no podría estar más feliz con la forma en que tratan a mi perro y a mí. El personal siempre es amable y servicial, y se nota que realmente se preocupan por los perros que cuidan. Finalmente, como la mayoría de los dueños de Pastor Alemán saben, secar al perro después de un baño es una tarea imposible, pero de alguna manera The Dog House siempre logra hacerlo.",
   },
   {
     name: "William Gillespie",
     text: "Alamo absolutely loves it here, they take awesome care of him while I am traveling for work. They are so good with all the pets, so I decided to donate five boxes worth of new Bark Box toys, so his friends and other pet parents could enjoy them.",
+    textEs: "A Alamo le encanta este lugar, lo cuidan increíblemente bien mientras viajo por trabajo. Son tan buenos con todas las mascotas que decidí donar cinco cajas de juguetes nuevos de Bark Box para que sus amigos y otros padres de mascotas pudieran disfrutarlos.",
   },
   {
     name: "Ross Monsen",
     text: "Love this place! I have been using them for years. I have taken my dog to a million different groomers, but this my got to. If you're like me and not a good planner, then this is your spot. They're able to squeeze me in last minute 90% of the time. Where others want an appointment 1-2 months in advance which is nuts. Great staff and my dog loves them. Price is in line with everyone else.",
+    textEs: "Me encanta este lugar. Los he estado usando por años. He llevado a mi perro a un millón de peluqueros diferentes, pero este es mi favorito. Si eres como yo y no planificas bien, este es tu lugar. Pueden atenderme de último momento el 90% de las veces. Otros quieren cita con 1-2 meses de anticipación, lo cual es una locura. Excelente personal y a mi perro le encantan. El precio está en línea con todos los demás.",
   },
   {
     name: "Tiffany Tegeler",
     text: "I've been taking Cooper here for about a year. He always leaves looking so fresh and clean! He is difficult when it comes to messing with his face and paws but I can tell they take their time with him. They have a punch program. After 10 punches you can get a free groom for your pup which is a great deal. He also ALWAYS leaves with a little bandana which is a huge perk here!",
+    textEs: "He estado trayendo a Cooper aquí por aproximadamente un año. Siempre sale viéndose tan fresco y limpio. Es difícil cuando se trata de tocarle la cara y las patas, pero se nota que se toman su tiempo con él. Tienen un programa de puntos. Después de 10 puntos puedes obtener una peluquería gratis para tu perro, lo cual es una gran oferta. También SIEMPRE sale con un pañuelo, lo cual es una gran ventaja aquí.",
   },
 ];
 
 const pricingExtras = [
-  { img: "https://www.thedoghouseps.com/wp-content/uploads/2025/03/de-matting.jpg", label: "De-Matting", price: "$40 / Hour" },
-  { img: "https://www.thedoghouseps.com/wp-content/uploads/2025/03/dog-brushing.jpg", label: "Brushing", price: "$40 / Hour" },
-  { img: "https://www.thedoghouseps.com/wp-content/uploads/2025/03/dog-furminating.jpg", label: "Furminating", price: "$40 / Hour" },
-  { img: "https://www.thedoghouseps.com/wp-content/uploads/2025/03/dog-de-tick.jpg", label: "De-Tick", price: "$20 / Hour" },
+  { img: "https://www.thedoghouseps.com/wp-content/uploads/2025/03/de-matting.jpg", label: "De-Matting", labelEs: "Desenredado", price: "$40 / Hour", priceEs: "$40 / Hora" },
+  { img: "https://www.thedoghouseps.com/wp-content/uploads/2025/03/dog-brushing.jpg", label: "Brushing", labelEs: "Cepillado", price: "$40 / Hour", priceEs: "$40 / Hora" },
+  { img: "https://www.thedoghouseps.com/wp-content/uploads/2025/03/dog-furminating.jpg", label: "Furminating", labelEs: "Deslanado", price: "$40 / Hour", priceEs: "$40 / Hora" },
+  { img: "https://www.thedoghouseps.com/wp-content/uploads/2025/03/dog-de-tick.jpg", label: "De-Tick", labelEs: "Desparasitación", price: "$20 / Hour", priceEs: "$20 / Hora" },
 ];
 
 const loyaltyPerks = [
@@ -172,6 +178,7 @@ function VideoPlayer() {
             src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/video-post.png"
             alt="Watch The Dog House Pet Salon Video"
             fill
+            loading="lazy"
             style={{ objectFit: "cover" }}
             sizes="100vw"
           />
@@ -208,7 +215,7 @@ function VideoPlayer() {
   );
 }
 
-function PricingCarousel({ items }: { items: typeof pricingExtras }) {
+function PricingCarousel({ items, language }: { items: typeof pricingExtras; language: string }) {
   const [activeIndex, setActiveIndex] = useState(1);
   const [sliding, setSliding] = useState(false);
   const [slideDirection, setSlideDirection] = useState<"left" | "right">("left");
@@ -289,6 +296,7 @@ function PricingCarousel({ items }: { items: typeof pricingExtras }) {
                   alt={item.label}
                   width={200}
                   height={200}
+                  loading="lazy"
                   style={{ width: "100%", height: "100%", objectFit: "cover" }}
                 />
               </div>
@@ -299,7 +307,7 @@ function PricingCarousel({ items }: { items: typeof pricingExtras }) {
                 marginBottom: "12px",
                 transition: "all 0.3s ease",
               }}>
-                {item.label}
+                {language === "es" && item.labelEs ? item.labelEs : item.label}
               </h4>
               <div style={{
                 display: "inline-block",
@@ -312,7 +320,7 @@ function PricingCarousel({ items }: { items: typeof pricingExtras }) {
                 color: isCenter ? "#fff" : "#965B83",
                 transition: "all 0.3s ease",
               }}>
-                {item.price}
+                {language === "es" && item.priceEs ? item.priceEs : item.price}
               </div>
             </div>
           );
@@ -339,7 +347,7 @@ function PricingCarousel({ items }: { items: typeof pricingExtras }) {
   );
 }
 
-function TestimonialCarousel({ reviews: reviewsData }: { reviews: typeof reviews }) {
+function TestimonialCarousel({ reviews: reviewsData, language }: { reviews: typeof reviews; language: string }) {
   const [current, setCurrent] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
   const [sliding, setSliding] = useState(false);
@@ -378,31 +386,51 @@ function TestimonialCarousel({ reviews: reviewsData }: { reviews: typeof reviews
 
   return (
     <section style={{ backgroundColor: "#F8F8F8", padding: "80px 20px" }}>
+      <style>{`
+        @media (max-width: 767px) {
+          .review-card-bathing {
+            padding: 24px 16px !important;
+            min-height: auto !important;
+            gap: 16px !important;
+          }
+          .review-card-bathing .review-card-content {
+            flex-direction: column !important;
+            gap: 16px !important;
+          }
+          .review-carousel-arrows-bathing {
+            display: none !important;
+          }
+          .review-carousel-container-bathing {
+            gap: 0 !important;
+          }
+        }
+      `}</style>
       <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
         <div
+          className="review-carousel-container-bathing"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
           style={{ position: "relative", display: "flex", alignItems: "center", gap: "16px" }}
         >
-          <button onClick={goPrev} style={{ background: "none", border: "2px solid #E0E0E0", borderRadius: "50%", width: "44px", height: "44px", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, color: "#965B83" }} aria-label="Previous">
+          <button className="review-carousel-arrows-bathing" onClick={goPrev} style={{ background: "none", border: "2px solid #E0E0E0", borderRadius: "50%", width: "44px", height: "44px", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, color: "#965B83" }} aria-label="Previous">
             <i className="fa-solid fa-chevron-left" style={{ fontSize: "16px" }} />
           </button>
           <div className="review-card-bathing" style={{ flex: 1, backgroundColor: "#fff", borderRadius: "16px", padding: "40px", boxShadow: "0 2px 12px rgba(0,0,0,0.06)", display: "flex", alignItems: "center", gap: "32px", overflow: "hidden", minHeight: "180px" }}>
             <div className="review-card-content" style={{ transition: "transform 0.3s ease, opacity 0.3s ease", transform: sliding ? "translateX(-40px)" : "translateX(0)", opacity: sliding ? 0 : 1, display: "flex", alignItems: "center", gap: "32px", width: "100%" }}>
-              <div style={{ flexShrink: 0, width: "80px", height: "80px", borderRadius: "50%", border: "3px solid #965B83", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                <i className="fa-solid fa-comment-dots" style={{ fontSize: "28px", color: "#965B83" }} />
+              <div style={{ flexShrink: 0, width: "clamp(60px, 15vw, 80px)", height: "clamp(60px, 15vw, 80px)", borderRadius: "50%", border: "3px solid #965B83", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                <i className="fa-solid fa-comment-dots" style={{ fontSize: "clamp(20px, 5vw, 28px)", color: "#965B83" }} />
               </div>
               <div style={{ flex: 1 }}>
                 <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", lineHeight: 1.7, marginBottom: "16px" }}>
-                  {review.text}
+                  {language === "es" && review.textEs ? review.textEs : review.text}
                 </p>
-                <p style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "16px", color: "#965B83", margin: 0 }}>
+                <p style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(14px, 1.5vw, 16px)", color: "#965B83", margin: 0 }}>
                   {review.name}
                 </p>
               </div>
             </div>
           </div>
-          <button onClick={goNext} style={{ background: "none", border: "2px solid #E0E0E0", borderRadius: "50%", width: "44px", height: "44px", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, color: "#965B83" }} aria-label="Next">
+          <button className="review-carousel-arrows-bathing" onClick={goNext} style={{ background: "none", border: "2px solid #E0E0E0", borderRadius: "50%", width: "44px", height: "44px", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, color: "#965B83" }} aria-label="Next">
             <i className="fa-solid fa-chevron-right" style={{ fontSize: "16px" }} />
           </button>
         </div>
@@ -412,19 +440,20 @@ function TestimonialCarousel({ reviews: reviewsData }: { reviews: typeof reviews
 }
 
 function HoursModal({ onClose }: { onClose: () => void }) {
+  const { t } = useLanguage();
   return (
     <div style={{ position: "fixed", inset: 0, backgroundColor: "rgba(0,0,0,0.6)", zIndex: 100, display: "flex", alignItems: "center", justifyContent: "center", padding: "20px" }} onClick={onClose}>
       <div style={{ backgroundColor: "#fff", borderRadius: "16px", maxWidth: "700px", width: "100%", maxHeight: "85vh", overflowY: "auto", padding: "40px", position: "relative" }} onClick={(e) => e.stopPropagation()}>
         <button onClick={onClose} style={{ position: "absolute", top: "16px", right: "16px", background: "none", border: "none", cursor: "pointer", fontSize: "24px", color: "#965B83" }}><i className="fa-solid fa-xmark" /></button>
-        <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "24px", color: "#965B83", marginBottom: "24px" }}>The Dog House Pet Salon</h2>
-        <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "18px", color: "#965B83", marginBottom: "12px" }}>Galleria / Memorial Hours</h3>
+        <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "24px", color: "#965B83", marginBottom: "24px" }}>{t("bathing_hours_modal_title")}</h2>
+        <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "18px", color: "#965B83", marginBottom: "12px" }}>{t("bathing_galleria_memorial")}</h3>
         <table style={{ width: "100%", borderCollapse: "collapse", marginBottom: "16px" }}><tbody>
           {[["Monday","7:00 am – 7:00 pm"],["Tuesday","7:00 am – 7:00 pm"],["Wednesday","7:00 am – 7:00 pm"],["Thursday","7:00 am – 7:00 pm"],["Friday","7:00 am – 7:00 pm"],["Saturday","8:00 am – 6:00 pm"],["Sunday","Closed"]].map(([d,h]) => (
             <tr key={d} style={{ borderBottom: "1px solid #f0f0f0" }}><td style={{ padding: "8px 0", fontWeight: 500 }}>{d}</td><td style={{ padding: "8px 0", textAlign: "right" }}>{h}</td></tr>
           ))}
         </tbody></table>
-        <p style={{ fontSize: "13px", fontStyle: "italic", color: "#965B83" }}>Sunday boarding drop off &amp; pick up from 8am–9am or 4pm–5pm only</p>
-        <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "18px", color: "#965B83", marginTop: "24px", marginBottom: "12px" }}>Pearland Hours</h3>
+        <p style={{ fontSize: "13px", fontStyle: "italic", color: "#965B83" }}>{t("sunday_note")}</p>
+        <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "18px", color: "#965B83", marginTop: "24px", marginBottom: "12px" }}>{t("bathing_pearland_hours")}</h3>
         <table style={{ width: "100%", borderCollapse: "collapse" }}><tbody>
           {[["Monday","7:00 am – 6:00 pm"],["Tuesday","7:00 am – 6:00 pm"],["Wednesday","7:00 am – 6:00 pm"],["Thursday","7:00 am – 6:00 pm"],["Friday","7:00 am – 6:00 pm"],["Saturday","8:00 am – 6:00 pm"],["Sunday","Closed"]].map(([d,h]) => (
             <tr key={d} style={{ borderBottom: "1px solid #f0f0f0" }}><td style={{ padding: "8px 0", fontWeight: 500 }}>{d}</td><td style={{ padding: "8px 0", textAlign: "right" }}>{h}</td></tr>
@@ -436,16 +465,17 @@ function HoursModal({ onClose }: { onClose: () => void }) {
 }
 
 function VaccinationsModal({ onClose }: { onClose: () => void }) {
+  const { t } = useLanguage();
   return (
     <div style={{ position: "fixed", inset: 0, backgroundColor: "rgba(0,0,0,0.6)", zIndex: 100, display: "flex", alignItems: "center", justifyContent: "center", padding: "20px" }} onClick={onClose}>
       <div style={{ backgroundColor: "#fff", borderRadius: "16px", maxWidth: "700px", width: "100%", maxHeight: "85vh", overflowY: "auto", padding: "40px", position: "relative" }} onClick={(e) => e.stopPropagation()}>
         <button onClick={onClose} style={{ position: "absolute", top: "16px", right: "16px", background: "none", border: "none", cursor: "pointer", fontSize: "24px", color: "#965B83" }}><i className="fa-solid fa-xmark" /></button>
-        <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "24px", color: "#965B83", marginBottom: "24px" }}>Required Vaccinations</h2>
-        <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "18px", color: "#965B83", marginBottom: "12px" }}>Grooming Services</h3>
-        <p style={{ marginBottom: "12px" }}>The following unexpired vaccinations are required for Grooming Services:</p>
+        <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "24px", color: "#965B83", marginBottom: "24px" }}>{t("bathing_vaccinations_modal_title")}</h2>
+        <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "18px", color: "#965B83", marginBottom: "12px" }}>{t("bathing_vax_grooming")}</h3>
+        <p style={{ marginBottom: "12px" }}>{t("bathing_vax_grooming_text")}</p>
         <ol style={{ paddingLeft: "20px", listStyleType: "decimal", marginBottom: "24px" }}><li>Bordetella</li></ol>
-        <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "18px", color: "#965B83", marginBottom: "12px" }}>Boarding and Daycare Services</h3>
-        <p style={{ marginBottom: "12px" }}>The following unexpired vaccinations are required for Boarding and Daycare Services:</p>
+        <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "18px", color: "#965B83", marginBottom: "12px" }}>{t("bathing_vax_boarding")}</h3>
+        <p style={{ marginBottom: "12px" }}>{t("bathing_vax_boarding_text")}</p>
         <ol style={{ paddingLeft: "20px", listStyleType: "decimal" }}><li>Bordetella</li><li>Distemper</li><li>Rabies</li><li style={{ fontStyle: "italic", color: "#965B83" }}>Influenza is NOT REQUIRED but RECOMMENDED</li></ol>
       </div>
     </div>
@@ -453,15 +483,26 @@ function VaccinationsModal({ onClose }: { onClose: () => void }) {
 }
 
 const bathingServices = [
-  { title: "Teeth Brushing", text: "We finish with teeth brushing to remove plaque buildup and freshen your pet\u2019s breath, contributing to their overall oral health." },
-  { title: "Thorough Wash and Conditioning", text: "Using shampoos and conditioners suited to your pet\u2019s skin type, we wash away all dirt and grime while nourishing their coat." },
-  { title: "Nail Trimming", text: "Routine nail trimming helps prevent painful splitting or snagging and ensures that your pet can walk comfortably." },
-  { title: "Ear Cleaning", text: "Ear cleanings are crucial to avoid infections, particularly for dog breeds prone to ear issues." },
+  { titleKey: "bathing_teeth_brushing" as const, textKey: "bathing_teeth_desc" as const },
+  { titleKey: "bathing_thorough_wash" as const, textKey: "bathing_wash_desc" as const },
+  { titleKey: "bathing_nail_trimming" as const, textKey: "bathing_nail_desc" as const },
+  { titleKey: "bathing_ear_cleaning" as const, textKey: "bathing_ear_desc" as const },
 ];
 
 function BathingServicesCarousel() {
   const [startIndex, setStartIndex] = useState(0);
-  const visibleCount = 3;
+  const [visibleCount, setVisibleCount] = useState(3);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 768) setVisibleCount(1);
+      else if (window.innerWidth <= 1024) setVisibleCount(2);
+      else setVisibleCount(3);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const goNext = () => {
     setStartIndex((prev) => (prev + 1) % bathingServices.length);
@@ -479,16 +520,18 @@ function BathingServicesCarousel() {
     return items;
   };
 
+  const { t } = useLanguage();
+
   return (
     <div>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "24px", marginBottom: "40px" }}>
+      <div className="bathing-services-grid" style={{ display: "grid", gridTemplateColumns: `repeat(${visibleCount}, 1fr)`, gap: "24px", marginBottom: "40px" }}>
         {getVisibleItems().map((item) => (
-          <div key={item.title} style={{ backgroundColor: "#fff", borderRadius: "16px", padding: "30px", boxShadow: "0 2px 12px rgba(0,0,0,0.06)", textAlign: "center" }}>
+          <div key={item.titleKey} style={{ backgroundColor: "#fff", borderRadius: "16px", padding: "30px", boxShadow: "0 2px 12px rgba(0,0,0,0.06)", textAlign: "center" }}>
             <h4 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "18px", color: "#1F2124", marginBottom: "12px", lineHeight: 1.3 }}>
-              {item.title}
+              {t(item.titleKey)}
             </h4>
             <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "15px", color: "#54595F", lineHeight: 1.7, margin: 0 }}>
-              {item.text}
+              {t(item.textKey)}
             </p>
           </div>
         ))}
@@ -514,33 +557,44 @@ function BathingServicesCarousel() {
 }
 
 const benefitsData = [
-  { icon: "fa-solid fa-hand-sparkles", title: "Prevents Skin Issues", text: "Regular baths help wash away dirt, bacteria, and other environmental irritants that can lead to skin conditions. For pets prone to allergies, our specialized shampoos help relieve itchy skin and reduce flare-ups, creating a more comfortable experience." },
-  { icon: "fa-solid fa-shirt", title: "Healthier Coat and Less Shedding", text: "Routine bathing and conditioning treatments support a soft, shiny coat and control shedding. For dog owners, especially those with breeds that shed frequently, this means less fur around the house and a healthier coat for your pet." },
-  { icon: "fa-solid fa-wind", title: "Odor Control", text: "Regular pet bathing prevents unpleasant odors caused by oils, dirt, and bacteria buildup. Our bathing services include deodorizing treatments, so your pet feels and smells clean long after their visit." },
-  { icon: "fa-solid fa-stethoscope", title: "Early Detection of Health Issues", text: "Our world-class pet bathers carefully inspect your pet's skin for any unusual lumps, sores, or signs of infection. Early detection can be crucial in preventing potential health issues from escalating." },
-  { icon: "fa-solid fa-scissors", title: "Additional Grooming Benefits", text: "Along with bathing, our service includes essential grooming tasks like nail trimming, ear cleaning, and dental care. Each of these tasks contributes to reducing the chances of infections and keeping your pet in peak condition." },
+  { icon: "fa-solid fa-hand-sparkles", titleKey: "bathing_benefits_skin" as const, textKey: "bathing_benefits_skin_text" as const },
+  { icon: "fa-solid fa-shirt", titleKey: "bathing_benefits_coat" as const, textKey: "bathing_benefits_coat_text" as const },
+  { icon: "fa-solid fa-wind", titleKey: "bathing_benefits_odor" as const, textKey: "bathing_benefits_odor_text" as const },
+  { icon: "fa-solid fa-stethoscope", titleKey: "bathing_benefits_health" as const, textKey: "bathing_benefits_health_text" as const },
+  { icon: "fa-solid fa-scissors", titleKey: "bathing_benefits_grooming" as const, textKey: "bathing_benefits_grooming_text" as const },
 ];
 
 function BenefitsCarousel() {
+  const { t } = useLanguage();
   const [startIndex, setStartIndex] = useState(0);
   const [sliding, setSliding] = useState(false);
+  const [visibleCount, setVisibleCount] = useState(2);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setVisibleCount(window.innerWidth <= 768 ? 1 : 2);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     const timer = setInterval(() => {
       setSliding(true);
       setTimeout(() => {
-        setStartIndex((prev) => (prev + 2) % benefitsData.length);
+        setStartIndex((prev) => (prev + visibleCount) % benefitsData.length);
         setSliding(false);
       }, 300);
     }, 8000);
     return () => clearInterval(timer);
-  }, []);
+  }, [visibleCount]);
 
   const goNext = () => {
     if (sliding) return;
     setSliding(true);
     setTimeout(() => {
-      setStartIndex((prev) => (prev + 2) % benefitsData.length);
+      setStartIndex((prev) => (prev + visibleCount) % benefitsData.length);
       setSliding(false);
     }, 300);
   };
@@ -549,21 +603,21 @@ function BenefitsCarousel() {
     if (sliding) return;
     setSliding(true);
     setTimeout(() => {
-      setStartIndex((prev) => (prev - 2 + benefitsData.length) % benefitsData.length);
+      setStartIndex((prev) => (prev - visibleCount + benefitsData.length) % benefitsData.length);
       setSliding(false);
     }, 300);
   };
 
-  const visible = [
-    benefitsData[startIndex % benefitsData.length],
-    benefitsData[(startIndex + 1) % benefitsData.length],
-  ];
+  const visible = [];
+  for (let i = 0; i < visibleCount; i++) {
+    visible.push(benefitsData[(startIndex + i) % benefitsData.length]);
+  }
 
   return (
     <div>
       <div style={{
         display: "grid",
-        gridTemplateColumns: "1fr 1fr",
+        gridTemplateColumns: `repeat(${visibleCount}, 1fr)`,
         gap: "24px",
         marginBottom: "40px",
         transition: "opacity 0.3s ease, transform 0.3s ease",
@@ -571,16 +625,16 @@ function BenefitsCarousel() {
         transform: sliding ? "translateX(-20px)" : "translateX(0)",
       }}>
         {visible.map((item) => (
-          <div key={item.title} style={{ backgroundColor: "#fff", borderRadius: "16px", padding: "30px", boxShadow: "0 2px 12px rgba(0,0,0,0.06)", display: "flex", gap: "20px", alignItems: "flex-start" }}>
+          <div key={item.titleKey} style={{ backgroundColor: "#fff", borderRadius: "16px", padding: "30px", boxShadow: "0 2px 12px rgba(0,0,0,0.06)", display: "flex", gap: "20px", alignItems: "flex-start" }}>
             <div style={{ flexShrink: 0, width: "50px", height: "50px", borderRadius: "12px", backgroundColor: "#965B831A", display: "flex", alignItems: "center", justifyContent: "center" }}>
               <i className={item.icon} style={{ fontSize: "22px", color: "#965B83" }} />
             </div>
             <div>
               <h4 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "18px", color: "#1F2124", marginBottom: "8px", lineHeight: 1.3 }}>
-                {item.title}
+                {t(item.titleKey)}
               </h4>
               <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "15px", color: "#54595F", lineHeight: 1.7, margin: 0 }}>
-                {item.text}
+                {t(item.textKey)}
               </p>
             </div>
           </div>
@@ -599,6 +653,7 @@ function BenefitsCarousel() {
 }
 
 export default function PetBathingContent() {
+  const { t, language } = useLanguage();
   const [showHoursModal, setShowHoursModal] = useState(false);
   const [showVaccinationsModal, setShowVaccinationsModal] = useState(false);
 
@@ -617,7 +672,7 @@ export default function PetBathingContent() {
           minHeight: "700px",
           display: "flex",
           alignItems: "center",
-          padding: "80px 20px 120px",
+          padding: "160px 20px 120px",
         }}
       >
         {/* White overlay with 0.6 opacity */}
@@ -631,21 +686,21 @@ export default function PetBathingContent() {
         </div>
 
         <div style={{ maxWidth: "1520px", margin: "0 auto", position: "relative", zIndex: 2 }}>
-          <h1 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(36px,5vw,72px)", color: "#1F2124", marginBottom: "16px", lineHeight: 1.1 }}>
-            Professional Pet Bathing for <span style={{ color: "#965B83" }}>a Happier, Healthier Pet</span>
+          <h1 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "60px", color: "#1F2124", marginBottom: "16px", lineHeight: 1.1 }}>
+            {t("bathing_pet_bathing")} <span style={{ color: "#965B83" }}>{t("bathing_houston")}</span>
           </h1>
           <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "clamp(16px,2vw,22px)", color: "#1F2124", marginBottom: "32px", maxWidth: "600px" }}>
-            Fresh, fluffy, and oh-so-clean — schedule your pet's spa day with us!
+            {t("bathing_hero_text")}
           </p>
           <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
-            <Link href="/appointment-request" className="btn-primary">Book An Appointment</Link>
+            <Link href="/appointment-request" className="btn-primary">{t("book_appointment")}</Link>
             <a href="https://calculator.thedoghouseps.com/" target="_blank" rel="noopener noreferrer" style={{ backgroundColor: "#1fb6b0", color: "#ffffff", padding: "15px 30px", borderRadius: "50px", fontFamily: '"Outfit", sans-serif', fontWeight: 600, fontSize: "18px", display: "inline-flex", alignItems: "center", textDecoration: "none", transition: "opacity 0.3s ease" }}>
-              Get Bath Price Estimate
+              {t("bathing_get_price_estimate")}
             </a>
           </div>
           <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "14px", color: "#54595F", marginTop: "12px" }}>
             <i className="fa-solid fa-circle-check" style={{ color: "#965B83", marginRight: "6px" }} />
-            No obligation &bull; Takes 30 seconds
+            {t("bathing_no_obligation")}
           </p>
         </div>
       </section>
@@ -654,10 +709,10 @@ export default function PetBathingContent() {
       <section style={{ backgroundColor: "#ffffff", padding: "80px 20px", textAlign: "center" }}>
         <div style={{ maxWidth: "1520px", margin: "0 auto" }}>
           <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "50px", color: "#1F2124", maxWidth: "892px", margin: "0 auto 16px", lineHeight: 1.2 }}>
-            Professional Pet Bathing Services for <span style={{ color: "#965B83" }}>a Happier, Healthier Pet.</span>
+            {t("bathing_professional_title")} <span style={{ color: "#965B83" }}>{t("bathing_professional_title_highlight")}</span>
           </h2>
           <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "18px", color: "#54595F", marginBottom: "40px" }}>
-            Book Now a Spa Day Your Pet Will Love!
+            {t("bathing_book_spa_day")}
           </p>
 
           {/* YouTube Video Player with Poster */}
@@ -665,16 +720,20 @@ export default function PetBathingContent() {
 
           {/* Counter Boxes */}
           <div style={{ display: "flex", justifyContent: "center", gap: "30px", marginBottom: "50px", flexWrap: "wrap" }}>
-            <CounterBox target={30} suffix="+" label="30+ Years" />
-            <CounterBox target={40000} suffix="+" label="Satisfied Clients" />
+            <CounterBox target={30} suffix="+" label={t("bathing_30_years_label")} />
+            <CounterBox target={40000} suffix="+" label={t("bathing_satisfied_clients")} />
           </div>
 
           {/* Success Text */}
           <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "50px", color: "#1F2124", maxWidth: "892px", margin: "0 auto 16px", lineHeight: "1.2em" }}>
-            Over <span style={{ color: "#965B83" }}>30+ Years</span> of Success with <span style={{ color: "#965B83" }}>40,000+</span> Satisfied Clients
+            {language === "es" ? (
+              <>Más de <span style={{ color: "#965B83" }}>30+ Años</span> de Éxito con <span style={{ color: "#965B83" }}>40,000+</span> Clientes Satisfechos</>
+            ) : (
+              <>Over <span style={{ color: "#965B83" }}>30+ Years</span> of Success with <span style={{ color: "#965B83" }}>40,000+</span> Satisfied Clients</>
+            )}
           </h3>
           <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "18px", color: "#54595F", lineHeight: 1.7, maxWidth: "800px", margin: "0 auto" }}>
-            The Dog House Pet Salon has become the pet bathing center for all animal lovers in Houston. With over 30+ Years of pet grooming experience, we&apos;ve been successfully delivering a pet&apos;s paradise to our clients &amp; their furry friends. Our level of care &amp; attention to detail is unmatched in the industry, and that&apos;s what has kept our community growing &amp; returning for decades.
+            {t("bathing_center_description")}
           </p>
         </div>
       </section>
@@ -703,19 +762,19 @@ export default function PetBathingContent() {
             }}
           >
             <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(26px,3vw,40px)", color: "#1F2124", marginBottom: "24px" }}>
-              Total Bathing Package
+              {t("bathing_total_package")}
             </h2>
             <div style={{ marginBottom: "24px", paddingBottom: "24px", borderBottom: "2px solid #1F2124" }}>
-              <Link href="/appointment-request" className="btn-primary">Book Now</Link>
+              <Link href="/appointment-request" className="btn-primary">{t("bathing_book_now")}</Link>
             </div>
-            <h3 style={{ fontFamily: '"Outfit", sans-serif', fontSize: "20px", color: "#965B83", fontWeight: 600, marginBottom: "16px" }}>Pet bathing includes:</h3>
+            <h3 style={{ fontFamily: '"Outfit", sans-serif', fontSize: "20px", color: "#965B83", fontWeight: 600, marginBottom: "16px" }}>{t("bathing_includes")}</h3>
             <ul style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", lineHeight: 2.2, listStyle: "none", padding: 0, margin: 0 }}>
+              <li>{t("bathing_item1")}</li>
+              <li>{t("bathing_item2")}</li>
+              <li>{t("bathing_item3")}</li>
+              <li>{t("bathing_item4")}</li>
+              <li>{t("bathing_item5")}</li>
               <li>✔ Pet bathing</li>
-              <li>✔ Thorough brush out (De-matting cost $10/15 minutes)</li>
-              <li>✔ External expression of anal glands</li>
-              <li>✔ Nail trimming (File or grind is an additional $10)</li>
-              <li>✔ Ear cleaning and plucking</li>
-              <li>✔ Total drying</li>
             </ul>
           </div>
         </div>
@@ -725,19 +784,19 @@ export default function PetBathingContent() {
       <section style={{ backgroundColor: "#F8F8F8", padding: "80px 20px" }}>
         <div style={{ maxWidth: "1520px", margin: "0 auto" }}>
           <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "50px", color: "#1F2124", textAlign: "center", marginBottom: "8px", lineHeight: 1.2 }}>
-            Pet Grooming Services &amp; Pricing
+            {t("bathing_services_pricing")}
           </h2>
           <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "18px", color: "#54595F", textAlign: "center", marginBottom: "40px" }}>
-            Groomed To Perfection
+            {t("bathing_groomed_perfection")}
           </p>
-          <PricingCarousel items={pricingExtras} />
+          <PricingCarousel items={pricingExtras} language={language} />
           <div style={{ backgroundColor: "#fff", borderRadius: "12px", padding: "30px", boxShadow: "0 1px 4px rgba(0,0,0,.08)", border: "1px solid #E0E0E0" }}>
             <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#1F2124", lineHeight: 1.7, textAlign: "center", marginBottom: "16px" }}>
-              Pricing can vary from breed to breed. Upon arrival with your pet, our groomers will consult with you to determine an exact price.
+              {t("bathing_pricing_vary")}
             </p>
             <hr style={{ border: "none", borderTop: "1px solid #E0E0E0", margin: "16px 0" }} />
             <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#1F2124", lineHeight: 1.7, textAlign: "center" }}>
-              <strong>*Please Note:</strong> There is an additional difficulty fee of $15 for pets that exhibit aggressive behavior or are particularly challenging to groom. There is an additional rush fee for expedited pet grooming services.
+              <strong>*Please Note:</strong> {t("bathing_pricing_note")}
             </p>
           </div>
         </div>
@@ -747,7 +806,7 @@ export default function PetBathingContent() {
       <section style={{ backgroundColor: "#965B83", padding: "32px 20px" }}>
         <div style={{ maxWidth: "1520px", margin: "0 auto", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "20px" }}>
           <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(22px,3vw,36px)", color: "#fff", margin: 0 }}>
-            Ready to Treat Your Furry Friend?
+            {t("bathing_ready_treat")}
           </h2>
           <Link
             href="/appointment-request"
@@ -764,24 +823,24 @@ export default function PetBathingContent() {
               whiteSpace: "nowrap",
             }}
           >
-            Schedule An Appointment
+            {t("bathing_schedule_appointment")}
           </Link>
         </div>
       </section>
 
       {/* ── Testimonials Carousel ── */}
-      <TestimonialCarousel reviews={reviews} />
+      <TestimonialCarousel reviews={reviews} language={language} />
 
       {/* ── Why Choose Our Pet Bathing Services Section ── */}
       <section style={{ backgroundColor: "#FFF", padding: "80px 20px" }}>
-        <div style={{ maxWidth: "1520px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 2fr", gap: "60px", alignItems: "start" }}>
+        <div className="service-info-grid" style={{ maxWidth: "1520px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 2fr", gap: "60px", alignItems: "start" }}>
           {/* Left Column — Icon Boxes */}
           <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
             {/* Hours of Operations Box */}
             <div style={{ backgroundColor: "#965B831A", borderRadius: "16px", padding: "30px", textAlign: "center" }}>
               <i className="fa-regular fa-calendar" style={{ fontSize: "40px", color: "#965B83", marginBottom: "16px", display: "block" }} />
               <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "20px", color: "#1F2124", marginBottom: "16px" }}>
-                Hours of Operations
+                {t("bathing_hours_title")}
               </h3>
               <button
                 onClick={() => setShowHoursModal(true)}
@@ -797,7 +856,7 @@ export default function PetBathingContent() {
                   cursor: "pointer",
                 }}
               >
-                View
+                {t("bathing_view_btn")}
               </button>
             </div>
 
@@ -805,7 +864,7 @@ export default function PetBathingContent() {
             <div style={{ backgroundColor: "#965B831A", borderRadius: "16px", padding: "30px", textAlign: "center" }}>
               <i className="fa-solid fa-syringe" style={{ fontSize: "40px", color: "#965B83", marginBottom: "16px", display: "block" }} />
               <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "20px", color: "#1F2124", marginBottom: "16px" }}>
-                Required Vaccinations
+                {t("bathing_vaccinations_title")}
               </h3>
               <button
                 onClick={() => setShowVaccinationsModal(true)}
@@ -821,7 +880,7 @@ export default function PetBathingContent() {
                   cursor: "pointer",
                 }}
               >
-                View
+                {t("bathing_view_btn")}
               </button>
             </div>
 
@@ -833,7 +892,7 @@ export default function PetBathingContent() {
                 <path d="M15 32c0-2 2-4 4-4h12c2 0 4 2 4 4v4H15v-4z" stroke="#965B83" strokeWidth="2.5" fill="none" />
               </svg>
               <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "20px", color: "#1F2124", marginBottom: "16px" }}>
-                View Webcams
+                {t("bathing_webcams_title")}
               </h3>
               <Link
                 href="/pet-cam"
@@ -859,27 +918,27 @@ export default function PetBathingContent() {
           {/* Right Column — Text Content */}
           <div>
             <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "50px", color: "#1F2124", marginBottom: "16px", lineHeight: 1.1 }}>
-              Why Choose Our Pet Bathing Services
+              {t("bathing_why_choose_title")}
             </h2>
             <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", lineHeight: 1.7, marginBottom: "16px" }}>
-              With a skilled team that&apos;s passionate about pet care, pet bathing services go beyond basic grooming. We combine attention to detail, specialized care, and top-tier products to provide a bathing experience that leaves your pet looking and feeling refreshed.
+              {t("bathing_why_choose_intro")}
             </p>
             <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", lineHeight: 1.7, marginBottom: "16px" }}>
-              Experienced bathers at The Dog House use techniques that make the process calm and enjoyable, even for pets that may be anxious about water or grooming. Whether you&apos;re looking for a dog bather who can pamper your pup or a gentle hand for your cat, we are the perfect fit for your pet&apos;s needs.
+              {t("bathing_why_choose_p1")}
             </p>
             <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", lineHeight: 1.7, marginBottom: "24px" }}>
-              By choosing professional pet bathing, you invest in your pet&apos;s happiness, comfort, and health.
+              {t("bathing_why_choose_p2")}
             </p>
             <h4 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "20px", color: "#965B83", marginBottom: "16px" }}>
-              Pamper Your Fur-Baby With:
+              {t("bathing_pamper_with")}
             </h4>
             <ul style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", lineHeight: 2.2, listStyle: "disc", paddingLeft: "20px", margin: "0 0 24px" }}>
-              <li>Comprehensive pet bathing</li>
-              <li>Nail trimming (File or grind is an additional $10)</li>
-              <li>Thorough brush out (De-matting coat $10/15 minutes)</li>
-              <li>Ear cleaning and plucking</li>
-              <li>External expression of anal glands</li>
-              <li>Complete drying</li>
+              <li>{t("bathing_service_item1")}</li>
+              <li>{t("bathing_service_item2")}</li>
+              <li>{t("bathing_service_item3")}</li>
+              <li>{t("bathing_service_item4")}</li>
+              <li>{t("bathing_service_item5")}</li>
+              <li>{t("bathing_service_item6")}</li>
             </ul>
             <Link
               href="/pet-cam"
@@ -895,14 +954,14 @@ export default function PetBathingContent() {
                 textDecoration: "none",
               }}
             >
-              View Webcams
+              {language === "es" ? "Ver Cámaras Web" : "View Webcams"}
             </Link>
           </div>
         </div>
       </section>
 
       {/* ── Pet Bathing Info Cards ── */}
-      <section style={{ position: "relative", backgroundColor: "#965B83", padding: "80px 20px 120px" }}>
+      <section style={{ position: "relative", backgroundColor: "#965B83", padding: "160px 20px 120px" }}>
         <div style={{ maxWidth: "1520px", margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(400px, 1fr))", gap: "40px" }}>
           {/* Left Column — What Is Pet Bathing */}
           <div style={{ borderRadius: "16px", overflow: "hidden" }}>
@@ -911,17 +970,18 @@ export default function PetBathingContent() {
               alt="Pet bathing - washing corgi"
               width={700}
               height={400}
+              loading="lazy"
               style={{ width: "100%", height: "300px", objectFit: "cover", display: "block" }}
             />
             <div style={{ backgroundColor: "#fff", padding: "30px", borderRadius: "0 0 16px 16px" }}>
               <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(20px,2.5vw,28px)", color: "#1F2124", marginBottom: "8px", lineHeight: 1.2 }}>
-                What Is Pet Bathing or Dog Bathing?
+                {t("bathing_what_is_title")}
               </h3>
               <p style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "14px", color: "#965B83", marginBottom: "16px" }}>
-                Pet Bathing Is An Essential &amp; Healthy Process For All Animals
+                {t("bathing_what_is_subtitle")}
               </p>
               <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "15px", color: "#54595F", lineHeight: 1.7 }}>
-                Pet bathing, sometimes referred to as pet grooming baths, is a fundamental part of maintaining the overall health and hygiene of your animal companion. Regular bathing is crucial for pets of all kinds — from dogs and cats to other furry friends — as it removes dirt, bacteria, and potential irritants from their skin and fur, promoting a comfortable, itch-free experience. By investing in routine pet bathing, pet owners help prevent many common health issues that can arise from poor hygiene, including skin infections, matted fur, and even stress-related conditions.
+                {t("bathing_what_is_text")}
               </p>
             </div>
           </div>
@@ -933,17 +993,18 @@ export default function PetBathingContent() {
               alt="Professional pet bathing service"
               width={700}
               height={400}
+              loading="lazy"
               style={{ width: "100%", height: "300px", objectFit: "cover", display: "block" }}
             />
             <div style={{ backgroundColor: "#fff", padding: "30px", borderRadius: "0 0 16px 16px" }}>
               <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(20px,2.5vw,28px)", color: "#1F2124", marginBottom: "16px", lineHeight: 1.2 }}>
-                Why Pet Bathing Is Essential for a Happy and Healthy Pet
+                {t("bathing_why_essential_title")}
               </h3>
               <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "15px", color: "#54595F", lineHeight: 1.7, marginBottom: "12px" }}>
-                For pets, a clean coat and skin are directly linked to overall well-being. When they go too long without a bath, they can develop tangled fur, flaky skin, and, in some cases, unpleasant odors that could signal underlying health concerns. Matted fur can quickly escalate into a painful issue, causing irritation, trapping debris, and even restricting movement. For this reason, professional bathing services are not just a luxury but an essential service that contributes to your pet&apos;s happiness and health.
+                {t("bathing_why_essential_p1")}
               </p>
               <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "15px", color: "#54595F", lineHeight: 1.7 }}>
-                At our facility, pet bathing services are tailored to each animal&apos;s specific needs. Dog bathing differs from cat bathing in both method and products used, and our trained bathers understand how to approach each pet type uniquely. The process includes gentle washing with specially formulated shampoos, addressing specific concerns such as shedding or dandruff, and conditioning treatments to keep fur manageable and smooth.
+                {t("bathing_why_essential_p2")}
               </p>
             </div>
           </div>
@@ -961,10 +1022,10 @@ export default function PetBathingContent() {
       <section style={{ backgroundColor: "#ffffff", padding: "80px 20px" }}>
         <div style={{ maxWidth: "1520px", margin: "0 auto", textAlign: "center" }}>
           <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(28px,3vw,42px)", color: "#1F2124", marginBottom: "16px", lineHeight: 1.2 }}>
-            Our Comprehensive Pet Bathing Services
+            {t("bathing_comprehensive_services")}
           </h2>
           <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", maxWidth: "700px", margin: "0 auto 40px", lineHeight: 1.7 }}>
-            We offer a complete bathing and grooming experience that covers everything your pet needs for optimal comfort and hygiene. Our pet bathing process includes:
+            {t("bathing_services_intro")}
           </p>
           <BathingServicesCarousel />
         </div>
@@ -972,7 +1033,7 @@ export default function PetBathingContent() {
 
       {/* ── Loyalty / Punch Card ── */}
       <section style={{ backgroundColor: "#F8F8F8", padding: "80px 20px" }}>
-        <div style={{ maxWidth: "1520px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "60px", alignItems: "center", justifyItems: "center" }}>
+        <div className="grid-responsive" style={{ maxWidth: "1520px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "60px", alignItems: "center", justifyItems: "center" }}>
           {/* Left — Premium Shampoos + $30 Credit + Just For You */}
           <div style={{ textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center", gap: "20px" }}>
             <Image
@@ -980,6 +1041,7 @@ export default function PetBathingContent() {
               alt="Premium Shampoos"
               width={200}
               height={200}
+              loading="lazy"
               style={{ width: "150px", height: "auto" }}
             />
             <Image
@@ -987,6 +1049,7 @@ export default function PetBathingContent() {
               alt="$30 Credit - Groom Punch Card"
               width={400}
               height={400}
+              loading="lazy"
               style={{ width: "300px", height: "auto" }}
             />
             <Image
@@ -994,10 +1057,11 @@ export default function PetBathingContent() {
               alt="Just For You"
               width={200}
               height={200}
+              loading="lazy"
               style={{ width: "150px", height: "auto" }}
             />
             <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "18px", color: "#54595F", lineHeight: 1.6 }}>
-              Redeem on Your 12th Bath, Groom, or Basic Service
+              {t("bathing_redeem_loyalty")}
             </p>
           </div>
           {/* Right — Loyalty Card */}
@@ -1007,6 +1071,7 @@ export default function PetBathingContent() {
               alt="Pawsitively Grateful Loyalty Card"
               width={500}
               height={350}
+              loading="lazy"
               style={{ width: "100%", maxWidth: "450px", height: "auto" }}
             />
           </div>
@@ -1025,13 +1090,13 @@ export default function PetBathingContent() {
         <div style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, backgroundColor: "#FFF", opacity: 0.7, zIndex: 1 }} />
         <div style={{ maxWidth: "1520px", margin: "0 auto", position: "relative", zIndex: 2 }}>
           <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(26px,3vw,40px)", color: "#000", textAlign: "center", marginBottom: "50px" }}>
-            You Can Find Us At These Locations Near You
+            {t("bathing_locations_heading")}
           </h2>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "30px", alignItems: "stretch" }}>
+          <div className="locations-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "30px", alignItems: "stretch" }}>
             {/* LEFT: Large Richmond Ave Card */}
-            <div style={{ backgroundColor: "#965B83", borderRadius: "16px", padding: "24px", display: "flex", flexDirection: "row", gap: "24px", alignItems: "center", minHeight: "100%" }}>
+            <div className="location-card" style={{ backgroundColor: "#965B83", borderRadius: "16px", padding: "24px", display: "flex", flexDirection: "row", gap: "24px", alignItems: "center", minHeight: "100%" }}>
               <div style={{ flex: "0 0 200px", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                <Image src={locations[0].img} alt={locations[0].address} width={200} height={200} quality={85} style={{ width: "200px", height: "200px", borderRadius: "30% 70% 70% 30% / 30% 30% 70% 70%", objectFit: "cover" }} />
+                <Image src={locations[0].img} alt={locations[0].address} width={200} height={200} quality={85} loading="lazy" style={{ width: "200px", height: "200px", borderRadius: "30% 70% 70% 30% / 30% 30% 70% 70%", objectFit: "cover" }} />
               </div>
               <div style={{ flex: 1 }}>
                 <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "12px", color: "#fff" }}>
@@ -1056,9 +1121,9 @@ export default function PetBathingContent() {
             {/* RIGHT: Stacked cards */}
             <div style={{ display: "flex", flexDirection: "column", gap: "30px" }}>
               {locations.slice(1).map((loc) => (
-                <div key={loc.address} style={{ backgroundColor: "#965B83", borderRadius: "16px", padding: "24px", display: "flex", flexDirection: "row", gap: "24px", alignItems: "center" }}>
+                <div key={loc.address} className="location-card" style={{ backgroundColor: "#965B83", borderRadius: "16px", padding: "24px", display: "flex", flexDirection: "row", gap: "24px", alignItems: "center" }}>
                   <div style={{ flex: "0 0 150px", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                    <Image src={loc.img} alt={loc.address} width={150} height={150} quality={85} style={{ width: "150px", height: "150px", borderRadius: "30% 70% 70% 30% / 30% 30% 70% 70%", objectFit: "cover" }} />
+                    <Image src={loc.img} alt={loc.address} width={150} height={150} quality={85} loading="lazy" style={{ width: "150px", height: "150px", borderRadius: "30% 70% 70% 30% / 30% 30% 70% 70%", objectFit: "cover" }} />
                   </div>
                   <div style={{ flex: 1 }}>
                     <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "12px", color: "#fff" }}>
@@ -1089,7 +1154,7 @@ export default function PetBathingContent() {
       <section style={{ backgroundColor: "#ffffff", padding: "80px 20px" }}>
         <div style={{ maxWidth: "1520px", margin: "0 auto", textAlign: "center" }}>
           <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(28px,3vw,42px)", color: "#1F2124", marginBottom: "40px" }}>
-            Benefits of Professional Dog and Pet Bathing
+            {t("bathing_benefits_title")}
           </h2>
           <BenefitsCarousel />
         </div>
@@ -1097,20 +1162,20 @@ export default function PetBathingContent() {
 
       {/* ── The Best Pet Bathing Services ── */}
       <section style={{ backgroundColor: "#fff", padding: "80px 20px" }}>
-        <div style={{ maxWidth: "1520px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "60px", alignItems: "center" }}>
+        <div className="grid-responsive" style={{ maxWidth: "1520px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "60px", alignItems: "center" }}>
           {/* Left — Text */}
           <div>
             <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "50px", color: "#1F2124", lineHeight: 1.1, marginBottom: "16px" }}>
-              The Best Pet Bathing Services for <span style={{ color: "#965B83" }}>Cats &amp; Dogs in Houston</span>
+              {t("bathing_best_services_title")}
             </h2>
             <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", lineHeight: 1.7, marginBottom: "16px" }}>
-              For pets, a clean coat and skin are directly linked to overall well-being. When they go too long without a bath, they can develop tangled fur, flaky skin, and, in some cases, unpleasant odors that could signal underlying health concerns. Matted fur can trap moisture and harbor bacteria, leading to discomfort and potential infections.
+              {t("bathing_best_services_p1")}
             </p>
             <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", lineHeight: 1.7, marginBottom: "16px" }}>
-              At our facility, pet bathing services are tailored to each animal&apos;s specific needs. Dog bathing differs from cat bathing in both method and products used, and our trained bathers understand how to approach each pet type uniquely.
+              {t("bathing_best_services_p2")}
             </p>
             <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", lineHeight: 1.7 }}>
-              The process includes gentle washing with specially formulated shampoos, addressing specific concerns such as shedding or dandruff, and conditioning treatments to keep fur manageable and smooth.
+              {t("bathing_best_services_p3")}
             </p>
           </div>
 
@@ -1121,6 +1186,7 @@ export default function PetBathingContent() {
               alt="Pet bathing services Houston"
               width={600}
               height={500}
+              loading="lazy"
               style={{ width: "100%", height: "auto", display: "block" }}
             />
             <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(255,255,255,0) 20%, #965b83 100%)" }} />
@@ -1139,7 +1205,7 @@ export default function PetBathingContent() {
                   textDecoration: "none",
                 }}
               >
-                Get An Appointment
+                {t("bathing_get_appointment")}
               </Link>
             </div>
           </div>
@@ -1155,14 +1221,16 @@ export default function PetBathingContent() {
         </div>
         <div style={{ maxWidth: "1520px", margin: "0 auto", position: "relative", zIndex: 2 }}>
           <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "50px", color: "#FFF", textAlign: "center", marginBottom: "12px" }}>
-            Discover Expert Advice and the Latest Trends
+            {t("bathing_discover_expert")}
           </h2>
           <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "18px", color: "#FFF", textAlign: "center", marginBottom: "48px" }}>
-            Stay informed with our blog, featuring tips and trends to help you keep your pets clean, healthy, and looking their best.
+            {t("bathing_blog_intro")}
           </p>
           <BlogCarousel posts={bathingBlogPosts} />
         </div>
       </section>
+
+      <StoreLocations />
     </>
   );
 }

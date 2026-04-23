@@ -67,6 +67,7 @@ const sections = [
       "A statement that the information in the notification is accurate, and under penalty of perjury, that you are authorized to act on behalf of the owner of the copyright interest.",
     ],
     listPrefix: "Send DMCA notices to: The Dog House Pet Salon, 5917 Richmond Ave., Houston, TX 77057 or by email at galleria@thedoghouseps.com. Your notice must include all of the following:",
+    listType: "ol" as const,
   },
   {
     heading: "Third-Party Sites and Other Users",
@@ -206,27 +207,53 @@ export default function TermsOfUsePage() {
                     {section.listPrefix}
                   </p>
                 )}
-                <ul
-                  style={{
-                    paddingLeft: "24px",
-                    margin: 0,
-                  }}
-                >
-                  {section.list.map((item, j) => (
-                    <li
-                      key={j}
-                      style={{
-                        fontFamily: '"Outfit", Sans-serif',
-                        fontSize: "15px",
-                        color: "#54595F",
-                        lineHeight: 1.8,
-                        marginBottom: "6px",
-                      }}
-                    >
-                      {item}
-                    </li>
-                  ))}
-                </ul>
+                {("listType" in section && section.listType === "ol") ? (
+                  <ol
+                    style={{
+                      paddingLeft: "24px",
+                      margin: 0,
+                      listStyleType: "decimal",
+                    }}
+                  >
+                    {section.list.map((item, j) => (
+                      <li
+                        key={j}
+                        style={{
+                          fontFamily: '"Outfit", Sans-serif',
+                          fontSize: "15px",
+                          color: "#54595F",
+                          lineHeight: 1.8,
+                          marginBottom: "6px",
+                        }}
+                      >
+                        {item}
+                      </li>
+                    ))}
+                  </ol>
+                ) : (
+                  <ul
+                    style={{
+                      paddingLeft: "24px",
+                      margin: 0,
+                      listStyleType: "disc",
+                    }}
+                  >
+                    {section.list.map((item, j) => (
+                      <li
+                        key={j}
+                        style={{
+                          fontFamily: '"Outfit", Sans-serif',
+                          fontSize: "15px",
+                          color: "#54595F",
+                          lineHeight: 1.8,
+                          marginBottom: "6px",
+                        }}
+                      >
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </>
             )}
           </div>

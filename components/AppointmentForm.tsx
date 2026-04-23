@@ -424,6 +424,8 @@ export default function AppointmentForm({
   const [ecPhone, setEcPhone] = useState("");
   const [hearAbout, setHearAbout] = useState("");
   const [errors, setErrors] = useState<string[]>([]);
+  const [smsOptIn, setSmsOptIn] = useState(false);
+  const [emailOptIn, setEmailOptIn] = useState(false);
   const [submitting, setSubmitting] = useState(false);
 
   const totalPets = 1 + additionalPets;
@@ -512,6 +514,8 @@ export default function AppointmentForm({
           ecEmail,
           ecPhone,
           hearAbout,
+          smsOptIn,
+          emailOptIn,
           pets: pets.slice(0, totalPets),
         }),
       });
@@ -834,6 +838,32 @@ export default function AppointmentForm({
               <option value="Other">{t("form_other")}</option>
             </select>
           </div>
+        </div>
+
+        {/* SMS & Email Opt-In */}
+        <div style={{ backgroundColor: "#F9FAFB", borderRadius: "8px", padding: "20px 24px", marginBottom: "24px", border: "1px solid #E5E7EB" }}>
+          <label style={{ display: "flex", alignItems: "flex-start", gap: "12px", cursor: "pointer", marginBottom: "16px" }}>
+            <input
+              type="checkbox"
+              checked={smsOptIn}
+              onChange={(e) => setSmsOptIn(e.target.checked)}
+              style={{ accentColor: "#965B83", width: "18px", height: "18px", marginTop: "2px", flexShrink: 0 }}
+            />
+            <span style={{ fontFamily: '"Outfit", sans-serif', fontSize: "14px", color: "#54595F", lineHeight: 1.5 }}>
+              I agree to receive SMS notifications about my pet's grooming status, appointment reminders, and pickup alerts from The Dog House Pet Salon. Message and data rates may apply. Reply STOP to opt out. <a href="/terms-of-use" target="_blank" style={{ color: "#965B83", textDecoration: "underline" }}>SMS Terms of Service</a>
+            </span>
+          </label>
+          <label style={{ display: "flex", alignItems: "flex-start", gap: "12px", cursor: "pointer" }}>
+            <input
+              type="checkbox"
+              checked={emailOptIn}
+              onChange={(e) => setEmailOptIn(e.target.checked)}
+              style={{ accentColor: "#965B83", width: "18px", height: "18px", marginTop: "2px", flexShrink: 0 }}
+            />
+            <span style={{ fontFamily: '"Outfit", sans-serif', fontSize: "14px", color: "#54595F", lineHeight: 1.5 }}>
+              I agree to receive email updates about my appointments and promotions from The Dog House Pet Salon. You can unsubscribe at any time.
+            </span>
+          </label>
         </div>
 
         {/* Submit */}

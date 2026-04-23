@@ -28,6 +28,7 @@ export const metadata: Metadata = {
     type: "website",
     url: "https://www.thedoghouseps.com/discounts",
   },
+  alternates: { canonical: "https://www.thedoghouseps.com/discounts/" },
 };
 
 export default function DiscountsPage() {

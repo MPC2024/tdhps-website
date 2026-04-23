@@ -11,7 +11,7 @@ export default function MemorialParkLocationContent() {
         style={{
           fontFamily: '"Bowlby One SC", sans-serif',
           fontSize: "clamp(32px,5vw,64px)",
-          color: "#ffffff",
+          color: "#1F2124",
           marginBottom: "24px",
           lineHeight: 1.1,
         }}

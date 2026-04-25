@@ -1,61 +1,78 @@
 "use client";
 
+import Link from "next/link";
 import { useLanguage } from "@/lib/LanguageContext";
 
 export default function PearlandHoursSection() {
   const { t } = useLanguage();
 
   return (
-    <section style={{ backgroundColor: "#965B83", padding: "60px 20px" }}>
-      <div style={{ maxWidth: "1520px", margin: "0 auto", textAlign: "center" }}>
+    <section style={{ backgroundColor: "#ffffff", padding: "60px 20px", borderTop: "1px solid #E8E8E8", borderBottom: "1px solid #E8E8E8" }}>
+      <div style={{ maxWidth: "900px", margin: "0 auto", textAlign: "center" }}>
         <h2
           style={{
             fontFamily: '"Bowlby One SC", sans-serif',
             fontSize: "clamp(24px,3vw,36px)",
-            color: "#ffffff",
-            marginBottom: "30px",
+            color: "#965B83",
+            marginBottom: "16px",
           }}
         >
           {t("location_operational_hours")}
         </h2>
-        <div style={{ display: "flex", flexWrap: "wrap", gap: "30px", justifyContent: "center" }}>
-          {[
-            { day: "loc_hours_monday_friday", hours: "loc_hours_pearland_weekday" },
-            { day: "loc_hours_saturday", hours: "loc_hours_pearland_saturday" },
-            { day: "loc_hours_sunday", hours: "loc_hours_pearland_sunday" },
-          ].map((h) => (
-            <div
-              key={h.day}
-              style={{
-                backgroundColor: "rgba(255,255,255,0.15)",
-                borderRadius: "12px",
-                padding: "20px 30px",
-                minWidth: "180px",
-              }}
-            >
-              <p
-                style={{
-                  fontFamily: '"Bowlby One SC", sans-serif',
-                  fontSize: "16px",
-                  color: "#ffffff",
-                  marginBottom: "6px",
-                }}
-              >
-                {t(h.day as any)}
-              </p>
-              <p
-                style={{
-                  fontFamily: '"Outfit", sans-serif',
-                  fontSize: "20px",
-                  color: "#ffffff",
-                  fontWeight: 700,
-                }}
-              >
-                {t(h.hours as any)}
-              </p>
-            </div>
-          ))}
+        <p
+          style={{
+            fontFamily: '"Outfit", sans-serif',
+            fontSize: "15px",
+            color: "#54595F",
+            lineHeight: 1.6,
+            marginBottom: "24px",
+          }}
+        >
+          Our operating hours are Monday through Friday from 7:00 am to 6:00 pm, Saturday from 8:00 am to 6:00 pm, and Sunday is closed.
+        </p>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "20px", justifyContent: "center", marginBottom: "24px" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+            <span style={{ color: "#965B83", fontSize: "18px" }}>&#128197;</span>
+            <span style={{ fontFamily: '"Outfit", sans-serif', fontSize: "14px", color: "#1F2124", fontWeight: 500 }}>Monday-Friday, 7AM - 6PM</span>
+          </div>
+          <span style={{ color: "#E8E8E8", fontSize: "20px" }}>|</span>
+          <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+            <span style={{ color: "#965B83", fontSize: "18px" }}>&#128197;</span>
+            <span style={{ fontFamily: '"Outfit", sans-serif', fontSize: "14px", color: "#1F2124", fontWeight: 500 }}>Saturday, 8AM - 6PM</span>
+          </div>
+          <span style={{ color: "#E8E8E8", fontSize: "20px" }}>|</span>
+          <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+            <span style={{ color: "#965B83", fontSize: "18px" }}>&#128197;</span>
+            <span style={{ fontFamily: '"Outfit", sans-serif', fontSize: "14px", color: "#1F2124", fontWeight: 500 }}>Sunday, Closed</span>
+          </div>
         </div>
+        <p
+          style={{
+            fontFamily: '"Outfit", sans-serif',
+            fontSize: "15px",
+            color: "#54595F",
+            lineHeight: 1.6,
+            marginBottom: "24px",
+          }}
+        >
+          Schedule an appointment today and experience the exceptional care and services that make us a trusted choice for pet owners in the Pearland area.
+        </p>
+        <Link
+          href="/appointment-request?location=pearland"
+          style={{
+            display: "inline-block",
+            backgroundColor: "#965B83",
+            color: "#ffffff",
+            padding: "14px 32px",
+            borderRadius: "50px",
+            fontFamily: '"Outfit", sans-serif',
+            fontWeight: 600,
+            fontSize: "16px",
+            textDecoration: "none",
+          }}
+        >
+          {t("schedule_appointment")}
+        </Link>
       </div>
     </section>
   );

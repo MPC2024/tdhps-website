@@ -19,6 +19,7 @@ interface PetInfo {
   vetPhone: string;
   boarding: string;
   grooming: string;
+  kennel: string;
   additionalNailFile: boolean;
   additionalTeethBrush: boolean;
   appointmentDate: string;
@@ -38,6 +39,7 @@ const defaultPet = (): PetInfo => ({
   vetPhone: "",
   boarding: "none",
   grooming: "",
+  kennel: "",
   additionalNailFile: false,
   additionalTeethBrush: false,
   appointmentDate: "",
@@ -150,6 +152,7 @@ interface PetSectionProps {
   pet: PetInfo;
   onChange: (updated: PetInfo) => void;
   t: any;
+  currentLocation: LocationKey;
 }
 
 function PetSection({
@@ -157,6 +160,7 @@ function PetSection({
   pet,
   onChange,
   t,
+  currentLocation,
 }: PetSectionProps) {
   const label = index === 0 ? t("form_pet_details") : `Pet #${index + 1} Details`;
   const idPrefix = `pet${index}`;
@@ -313,21 +317,26 @@ function PetSection({
         <p style={{ ...labelStyle, marginBottom: "10px" }}>
           {t("form_services_label")} <span style={{ color: "#CC3366" }}>{t("form_required_asterisk")}</span>
         </p>
+        {currentLocation !== "pearland" && (
         <div style={{ marginBottom: "12px" }}>
           <p style={{ ...labelStyle, fontWeight: 500, color: "#54595F", marginBottom: "8px" }}>
             {t("form_boarding_label")}
           </p>
           <div style={radioGroupStyle}>
-            <RadioOption name={`${idPrefix}-boarding`} value="none" checked={pet.boarding === "none"} onChange={() => onChange({ ...pet, boarding: "none" })} label={t("form_no_service")} />
-            <RadioOption name={`${idPrefix}-boarding`} value="Daycare" checked={pet.boarding === "Daycare"} onChange={() => onChange({ ...pet, boarding: "Daycare" })} label={t("form_daycare")} />
-            <RadioOption name={`${idPrefix}-boarding`} value="Boarding" checked={pet.boarding === "Boarding"} onChange={() => onChange({ ...pet, boarding: "Boarding" })} label={t("form_boarding")} />
+            <RadioOption name={`${idPrefix}-boarding`} value="none" checked={pet.boarding === "none"} onChange={() => onChange({ ...pet, boarding: "none", kennel: "", grooming: "" })} label={t("form_no_service")} />
+            <RadioOption name={`${idPrefix}-boarding`} value="Daycare" checked={pet.boarding === "Daycare"} onChange={() => onChange({ ...pet, boarding: "Daycare", kennel: "", checkOutDate: "", grooming: "none" })} label={t("form_daycare")} />
+            <RadioOption name={`${idPrefix}-boarding`} value="Boarding" checked={pet.boarding === "Boarding"} onChange={() => onChange({ ...pet, boarding: "Boarding", grooming: "none" })} label={t("form_boarding")} />
           </div>
         </div>
+        )}
         <div style={{ marginBottom: "12px" }}>
           <p style={{ ...labelStyle, fontWeight: 500, color: "#54595F", marginBottom: "8px" }}>
             {t("form_grooming_label")} <span style={{ color: "#CC3366" }}>{t("form_required_asterisk")}</span>
           </p>
           <div style={radioGroupStyle}>
+            {(pet.boarding === "Daycare" || pet.boarding === "Boarding") && (
+              <RadioOption name={`${idPrefix}-grooming`} value="none" checked={pet.grooming === "none"} onChange={() => onChange({ ...pet, grooming: "none" })} label="No Service Selected" />
+            )}
             <RadioOption name={`${idPrefix}-grooming`} value="Bath" checked={pet.grooming === "Bath"} onChange={() => onChange({ ...pet, grooming: "Bath" })} label={t("form_bath")} />
             <RadioOption name={`${idPrefix}-grooming`} value="Basic" checked={pet.grooming === "Basic"} onChange={() => onChange({ ...pet, grooming: "Basic" })} label={t("form_basic")} />
             <RadioOption name={`${idPrefix}-grooming`} value="Complete Groom" checked={pet.grooming === "Complete Groom"} onChange={() => onChange({ ...pet, grooming: "Complete Groom" })} label={t("form_complete_groom")} />
@@ -364,7 +373,7 @@ function PetSection({
             style={inputStyle}
           />
         </div>
-        {pet.boarding !== "none" && (
+        {pet.boarding === "Boarding" && (
           <div>
             <label htmlFor={`${idPrefix}-checkout`} style={labelStyle}>
               {t("form_checkout_date")} <span style={{ color: "#CC3366" }}>{t("form_required_asterisk")}</span>
@@ -376,6 +385,27 @@ function PetSection({
               onChange={(e) => onChange({ ...pet, checkOutDate: e.target.value })}
               style={inputStyle}
             />
+          </div>
+        )}
+        {pet.boarding === "Boarding" && (
+          <div>
+            <label htmlFor={`${idPrefix}-kennel`} style={labelStyle}>
+              Kennel Selection <span style={{ color: "#CC3366" }}>{t("form_required_asterisk")}</span>
+            </label>
+            <select
+              id={`${idPrefix}-kennel`}
+              value={pet.kennel}
+              onChange={(e) => onChange({ ...pet, kennel: e.target.value })}
+              style={inputStyle}
+            >
+              <option value="">Select a kennel...</option>
+              <option value="Standard Suite (3x3) - $40">Standard Suite (3&apos;x3&apos;) - $40/Night</option>
+              <option value="Standard + Suite (5x3) - $50">Standard + Suite (5&apos;x3&apos;) - $50/Night</option>
+              <option value="The Hideaway (5x5) - $55">The Hideaway (5&apos;x5&apos;) - $55/Night</option>
+              <option value="The Post Oak (6x6) - $55" disabled={currentLocation !== "galleria"}>The Post Oak (6&apos;x6&apos;) - $55/Night {currentLocation !== "galleria" ? "(Galleria Only)" : ""}</option>
+              <option value="The Richmond / The Westheimer (7x7) - $55" disabled={currentLocation !== "galleria"}>The Richmond / The Westheimer (7&apos;x7&apos;) - $55/Night {currentLocation !== "galleria" ? "(Galleria Only)" : ""}</option>
+              <option value="Penthouse Suite (15x12) - $65">Penthouse Suite (15&apos;x12&apos;) - $65/Night</option>
+            </select>
           </div>
         )}
       </div>
@@ -679,6 +709,7 @@ export default function AppointmentForm({
             pet={pet}
             onChange={(updated) => handlePetChange(i, updated)}
             t={t}
+            currentLocation={(LOCATION_VALUES[locationValue] || defaultLocation) as LocationKey}
           />
         ))}
 

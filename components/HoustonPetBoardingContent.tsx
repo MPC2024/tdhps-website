@@ -281,6 +281,7 @@ function PricingCarousel({ items, t }: { items: typeof boardingPackages; t: (key
                 transition: "all 0.3s ease",
               }}>
                 {item.suite}
+                {item.galleria && <span style={{ display: "block", fontSize: "13px", color: isCenter ? "rgba(255,255,255,0.7)" : "#965B83", marginTop: "4px" }}>(Galleria Only)</span>}
               </h4>
               <p style={{
                 fontFamily: '"Outfit", sans-serif',

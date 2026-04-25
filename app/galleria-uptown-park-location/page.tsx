@@ -8,10 +8,10 @@ import GalleriaLocationContent from "@/components/location/GalleriaLocationConte
 import GalleriaAboutSection from "@/components/location/GalleriaAboutSection";
 import GalleriaServicesSection from "@/components/location/GalleriaServicesSection";
 import GalleriaStaffSection from "@/components/location/GalleriaStaffSection";
+import LocationGroomersSection from "@/components/location/LocationGroomersSection";
 import GalleriaHoursSection from "@/components/location/GalleriaHoursSection";
 import GalleriaFaqSection from "@/components/location/GalleriaFaqSection";
 import GalleriaBoardingFaqSection from "@/components/location/GalleriaBoardingFaqSection";
-import GalleriaAttractionsSection from "@/components/location/GalleriaAttractionsSection";
 import GalleriaDirectionsSection from "@/components/location/GalleriaDirectionsSection";
 
 export const metadata: Metadata = {
@@ -48,87 +48,194 @@ export default function GalleriaLocationPage() {
           display: "flex",
           alignItems: "center",
           padding: "160px 20px 120px",
+          overflow: "hidden",
         }}
       >
         <div style={{ position: "absolute", inset: 0, backgroundColor: "#ffffff", opacity: 0.6 }} />
         <div style={{ maxWidth: "1520px", margin: "0 auto", position: "relative", zIndex: 2 }}>
           <GalleriaLocationContent />
         </div>
-      </section>
-
-      {/* Info Bar */}
-      <section style={{ backgroundColor: "#33373D", padding: "20px" }}>
-        <div
-          style={{
-            maxWidth: "1520px",
-            margin: "0 auto",
-            display: "flex",
-            flexWrap: "wrap",
-            gap: "16px",
-            alignItems: "center",
-            justifyContent: "space-between",
-          }}
-        >
-          <div style={{ display: "flex", flexWrap: "wrap", gap: "20px", alignItems: "center" }}>
-            <a
-              href="https://maps.google.com/?q=5917+Richmond+Ave,+Houston,+TX+77057"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ color: "#ffffff", textDecoration: "none", fontFamily: '"Outfit", sans-serif', fontSize: "14px" }}
-            >
-              📍 5917 Richmond Ave, Houston, TX 77057
-            </a>
-            <span style={{ color: "#ffffff", fontFamily: '"Outfit", sans-serif', fontSize: "14px" }}>
-              <span style={{ color: "#965B83", fontWeight: 700 }}>Option 1</span> ·{" "}
-              <a href="tel:7138206140" style={{ color: "#ffffff", textDecoration: "none" }}>
-                (713) 820-6140
-              </a>
-            </span>
-            <span
-              style={{ color: "#965B83", fontFamily: '"Outfit", sans-serif', fontSize: "14px", fontWeight: 600 }}
-            >
-              ¡Hablamos Español!
-            </span>
-            <a
-              href="mailto:galleria@thedoghouseps.com"
-              style={{ color: "#ffffff", textDecoration: "none", fontFamily: '"Outfit", sans-serif', fontSize: "14px" }}
-            >
-              galleria@thedoghouseps.com
-            </a>
-          </div>
-          <Link
-            href="/appointment-request-form_location_richmond"
-            style={{
-              backgroundColor: "#965B83",
-              color: "#ffffff",
-              padding: "10px 24px",
-              borderRadius: "50px",
-              fontFamily: '"Outfit", sans-serif',
-              fontWeight: 700,
-              fontSize: "15px",
-              display: "inline-block",
-              textDecoration: "none",
-              whiteSpace: "nowrap",
-            }}
-          >
-            Book Now
-          </Link>
+        <div style={{ position: "absolute", bottom: -1, left: 0, width: "100%", lineHeight: 0, zIndex: 2 }}>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none" style={{ display: "block", width: "100%", height: "60px" }}>
+            <path fill="#ffffff" d="M500,97C126.7,96.3,0.8,19.8,0,0v100l1000,0V1C1000,19.4,873.3,97.8,500,97z" />
+          </svg>
         </div>
       </section>
+
 
       <GalleriaAboutSection />
 
       <GalleriaServicesSection />
 
+      {/* Additional Services */}
+      <section style={{ backgroundColor: "#ffffff", padding: "60px 20px" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto", display: "flex", alignItems: "center", gap: "60px", flexWrap: "wrap" }}>
+          <div style={{ flex: "1 1 500px", backgroundColor: "#965B83", borderRadius: "20px", padding: "50px 40px" }}>
+            <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(24px,3vw,36px)", color: "#ffffff", marginBottom: "16px" }}>
+              Additional Services
+            </h2>
+            <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "rgba(255,255,255,0.9)", lineHeight: 1.7, marginBottom: "28px" }}>
+              To maintain your pet&apos;s overall health, we offer nail filing, teeth brushing, de-matting, and furminating services.
+            </p>
+            <Link href="/appointment-request?location=galleria" style={{ display: "inline-block", backgroundColor: "#ffffff", color: "#965B83", padding: "12px 28px", borderRadius: "50px", fontFamily: '"Outfit", sans-serif', fontWeight: 600, fontSize: "15px", textDecoration: "none" }}>
+              Book Now
+            </Link>
+          </div>
+          <div style={{ flex: "0 0 300px", display: "flex", justifyContent: "center" }}>
+            <div style={{ width: "300px", height: "300px", borderRadius: "50%", overflow: "hidden" }}>
+              <Image
+                src="https://www.thedoghouseps.com/wp-content/uploads/2025/01/24-Common-Dog-Skin-Conditions-and-How-to-Treat-Them.jpeg"
+                alt="Additional Pet Services"
+                width={300}
+                height={300}
+                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                sizes="300px"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
       <GalleriaStaffSection />
+
+      <LocationGroomersSection exclude="/keylin-paulina-orellana-delcid" />
+
+      {/* Why Choose Us */}
+      <section style={{ backgroundColor: "#ffffff", padding: "60px 20px" }}>
+        <div style={{ maxWidth: "1000px", margin: "0 auto", textAlign: "center" }}>
+          <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(24px,3vw,40px)", color: "#1F2124", marginBottom: "20px" }}>
+            Why Choose Us in the Galleria Neighborhood
+          </h2>
+          <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", lineHeight: 1.7, maxWidth: "900px", margin: "0 auto" }}>
+            Our salon&apos;s prime location offers unparalleled convenience for pet owners residing in nearby communities such as Uptown, Tanglewood, and Briargrove. Being in the vibrant Galleria area means you&apos;re never far from Houston&apos;s premier shopping and dining destinations, making it easy to drop off your pet for care while you run errands or enjoy the local attractions.
+          </p>
+        </div>
+      </section>
+
+      {/* Exploring the Galleria Area */}
+      <section style={{
+        backgroundColor: "#965B83",
+        padding: "80px 20px 120px",
+        position: "relative",
+        overflow: "hidden",
+      }}>
+        <div style={{
+          position: "absolute",
+          bottom: -1,
+          left: 0,
+          right: 0,
+          lineHeight: 0,
+          zIndex: 2,
+        }}>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none" style={{ display: "block", width: "100%", height: "60px" }}>
+            <path fill="#ffffff" d="M500,97C126.7,96.3,0.8,19.8,0,0v100l1000,0V1C1000,19.4,873.3,97.8,500,97z" />
+          </svg>
+        </div>
+        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+          <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(24px,3vw,40px)", color: "#ffffff", marginBottom: "16px" }}>
+            Exploring the Galleria Area
+          </h2>
+          <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "rgba(255,255,255,0.9)", lineHeight: 1.7, marginBottom: "40px", maxWidth: "900px" }}>
+            The Galleria neighborhood is renowned for its dynamic blend of retail, dining, and entertainment options. The Galleria Mall stands as a premier shopping destination, while the nearby Gerald D. Hines Waterwall Park offers a serene escape with its iconic water feature. For pet owners, the area boasts several dog-friendly parks:
+          </p>
+          <style dangerouslySetInnerHTML={{ __html: `
+            .galleria-attractions-grid {
+              display: grid;
+              grid-template-columns: repeat(2, 1fr);
+              gap: 24px;
+            }
+            @media (max-width: 768px) {
+              .galleria-attractions-grid {
+                grid-template-columns: 1fr;
+              }
+            }
+          `}} />
+          <div className="galleria-attractions-grid">
+            <div style={{ backgroundColor: "rgba(255,255,255,0.2)", borderRadius: "16px", padding: "30px", backdropFilter: "blur(4px)" }}>
+              <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "20px", color: "#ffffff", marginBottom: "12px" }}>Danny Jackson Family Dog Park</h3>
+              <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "15px", color: "rgba(255,255,255,0.9)", lineHeight: 1.6 }}>Located just south of the Galleria area along Westpark Drive, this 2.76-acre park features separate sections for large and small dogs, swimming ponds, shaded seating, and water fountains.</p>
+            </div>
+            <div style={{ backgroundColor: "rgba(255,255,255,0.2)", borderRadius: "16px", padding: "30px", backdropFilter: "blur(4px)" }}>
+              <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "20px", color: "#ffffff", marginBottom: "12px" }}>Memorial Park</h3>
+              <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "15px", color: "rgba(255,255,255,0.9)", lineHeight: 1.6 }}>Approximately 3 miles north of the Galleria area, Memorial Park offers extensive trails suitable for leashed dogs, providing a great environment for exercise and leisure.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Community Engagement */}
+      <section style={{ backgroundColor: "#ffffff", padding: "60px 20px" }}>
+        <div style={{ maxWidth: "1000px", margin: "0 auto", textAlign: "center" }}>
+          <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(24px,3vw,40px)", color: "#1F2124", marginBottom: "20px" }}>
+            Community Engagement and Events
+          </h2>
+          <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", lineHeight: 1.7, maxWidth: "900px", margin: "0 auto" }}>
+            We believe in fostering a strong sense of community and regularly participate in local events and collaborate with nearby pet organizations. Stay connected with us through our social media channels for updates on events, promotions, and pet care tips.
+          </p>
+        </div>
+      </section>
+
+      {/* Contact Information and Appointment Scheduling */}
+      <section style={{
+        position: "relative",
+        backgroundImage: "url(https://www.thedoghouseps.com/wp-content/uploads/2025/03/image22.jpg)",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        padding: "80px 20px",
+        overflow: "hidden",
+      }}>
+        <div style={{ position: "absolute", inset: 0, backgroundColor: "#FFF", opacity: 0.85 }} />
+        <div style={{ maxWidth: "1200px", margin: "0 auto", position: "relative", zIndex: 1, textAlign: "center" }}>
+          <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(24px,3vw,40px)", color: "#1F2124", marginBottom: "16px" }}>
+            Contact Information and Appointment Scheduling
+          </h2>
+          <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", lineHeight: 1.6, marginBottom: "40px", maxWidth: "800px", margin: "0 auto 40px" }}>
+            We look forward to welcoming you and your pet to The Dog House Pet Salon&apos;s Galleria location. For appointments or inquiries
+          </p>
+          <style dangerouslySetInnerHTML={{ __html: `
+            .galleria-contact-cards-grid {
+              display: grid;
+              grid-template-columns: repeat(3, 1fr);
+              gap: 30px;
+            }
+            @media (max-width: 768px) {
+              .galleria-contact-cards-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+              }
+            }
+          `}} />
+          <div className="galleria-contact-cards-grid">
+            <div style={{ backgroundColor: "rgba(255,255,255,0.9)", borderRadius: "16px", padding: "40px 24px", textAlign: "center", border: "1px solid rgba(150,91,131,0.2)" }}>
+              <div style={{ fontSize: "40px", color: "#965B83", marginBottom: "16px" }}>
+                <i className="fa-solid fa-phone" style={{ fontSize: "36px" }} />
+              </div>
+              <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "20px", color: "#1F2124", marginBottom: "12px" }}>Phone</h3>
+              <a href="tel:7138206140" style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", textDecoration: "none" }}>713-820-6140</a>
+            </div>
+            <div style={{ backgroundColor: "rgba(255,255,255,0.9)", borderRadius: "16px", padding: "40px 24px", textAlign: "center", border: "1px solid rgba(150,91,131,0.2)" }}>
+              <div style={{ fontSize: "40px", color: "#965B83", marginBottom: "16px" }}>
+                <i className="fa-solid fa-envelope" style={{ fontSize: "36px" }} />
+              </div>
+              <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "20px", color: "#1F2124", marginBottom: "12px" }}>Email</h3>
+              <a href="mailto:galleria@thedoghouseps.com" style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", textDecoration: "none" }}>galleria@thedoghouseps.com</a>
+            </div>
+            <div style={{ backgroundColor: "rgba(255,255,255,0.9)", borderRadius: "16px", padding: "40px 24px", textAlign: "center", border: "1px solid rgba(150,91,131,0.2)" }}>
+              <div style={{ fontSize: "40px", color: "#965B83", marginBottom: "16px" }}>
+                <i className="fa-solid fa-location-dot" style={{ fontSize: "36px" }} />
+              </div>
+              <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "20px", color: "#1F2124", marginBottom: "12px" }}>Location</h3>
+              <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F" }}>5917 Richmond Ave, Houston, TX 77057</p>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <GalleriaHoursSection />
 
       <GalleriaFaqSection />
 
       <GalleriaBoardingFaqSection />
-
-      <GalleriaAttractionsSection />
 
       {/* ── Reviews ── */}
       <section style={{ backgroundColor: "#F8F8F8", padding: "80px 20px" }}>

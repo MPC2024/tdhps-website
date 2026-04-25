@@ -6,36 +6,22 @@ import { useLanguage } from "@/lib/LanguageContext";
 
 const services = [
   {
-    label: "loc_service_pet_grooming",
-    img: "https://www.thedoghouseps.com/wp-content/uploads/2025/04/pet-grooming.png",
-    desc: "loc_service_grooming_desc",
+    title: "loc_grooming_bathing_title",
+    desc: "loc_grooming_bathing_desc",
+    img: "https://www.thedoghouseps.com/wp-content/uploads/2025/03/pet-grooming.jpg",
     link: "/pet-grooming",
-    linkText: "loc_service_priced_by",
   },
   {
-    label: "loc_service_pet_bathing",
-    img: "https://www.thedoghouseps.com/wp-content/uploads/2025/04/pet-bathing.png",
-    desc: "loc_service_bathing_desc",
-    link: "/pet-bathing",
-    linkText: "loc_service_priced_by",
+    title: "loc_boarding_title",
+    desc: "loc_boarding_desc",
+    img: "https://www.thedoghouseps.com/wp-content/uploads/2025/03/pet-boarding.jpg",
+    link: "/houston-pet-boarding",
   },
   {
-    label: "loc_service_nail_file",
-    img: "https://www.thedoghouseps.com/wp-content/uploads/2025/04/pet-boarding.png",
-    desc: "loc_service_nail_file_desc",
-    price: "loc_service_nail_file_price",
-  },
-  {
-    label: "loc_service_teeth_brush",
-    img: "https://www.thedoghouseps.com/wp-content/uploads/2025/04/teeth-brush.png",
-    desc: "loc_service_teeth_brush_desc",
-    price: "loc_service_teeth_brush_price",
-  },
-  {
-    label: "loc_pearland_pet_shop",
-    img: "https://www.thedoghouseps.com/wp-content/uploads/2025/04/pet-shop.png",
-    desc: "loc_pearland_pet_shop_desc",
-    extra: "loc_pearland_pet_shop_extra",
+    title: "loc_daycare_title",
+    desc: "loc_daycare_desc",
+    img: "https://www.thedoghouseps.com/wp-content/uploads/2025/03/dogie-daycare.jpg",
+    link: "/houston-pet-dog-daycare",
   },
 ];
 
@@ -43,28 +29,172 @@ export default function PearlandServicesSection() {
   const { t } = useLanguage();
 
   return (
-    <section style={{ backgroundColor: "#F8F8F8", padding: "80px 20px" }}>
-      <div style={{ maxWidth: "1520px", margin: "0 auto" }}>
+    <section
+      style={{
+        backgroundImage: "url(https://www.thedoghouseps.com/wp-content/uploads/2025/03/image22.jpg)",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundAttachment: "fixed",
+        padding: "100px 20px",
+        position: "relative",
+      }}
+    >
+      {/* White overlay */}
+      <div
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundColor: "#FFFFFF",
+          opacity: 0.85,
+        }}
+      />
+
+      {/* Content container */}
+      <div style={{ maxWidth: "1400px", margin: "0 auto", position: "relative", zIndex: 1 }}>
+        {/* Heading */}
         <h2
           style={{
             fontFamily: '"Bowlby One SC", sans-serif',
-            fontSize: "clamp(26px,3vw,40px)",
+            fontSize: "clamp(32px, 4vw, 48px)",
             color: "#1F2124",
             textAlign: "center",
-            marginBottom: "50px",
+            marginBottom: "20px",
           }}
         >
-          {t("location_services_heading")}
+          {t("loc_our_services")}
         </h2>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "24px" }}>
+
+        {/* Subtitle */}
+        <p
+          style={{
+            fontFamily: '"Outfit", sans-serif',
+            fontSize: "16px",
+            color: "#54595F",
+            textAlign: "center",
+            maxWidth: "700px",
+            margin: "0 auto 80px",
+            lineHeight: 1.6,
+          }}
+        >
+          {t("loc_our_services_desc")}
+        </p>
+
+        {/* Cards grid */}
+        <style dangerouslySetInnerHTML={{ __html: `
+          .services-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin: 0 auto;
+          }
+          @media (max-width: 1024px) {
+            .services-cards-grid {
+              grid-template-columns: repeat(2, 1fr);
+              gap: 30px;
+            }
+          }
+          @media (max-width: 640px) {
+            .services-cards-grid {
+              grid-template-columns: 1fr;
+              gap: 30px;
+            }
+          }
+        `}} />
+
+        <div className="services-cards-grid">
           {services.map((svc) => (
-            <div key={svc.label} style={{ backgroundColor: "#ffffff", borderRadius: "12px", padding: "30px 20px", textAlign: "center", boxShadow: "6px 6px 9px rgba(0,0,0,.1)" }}>
-              <Image src={svc.img} alt={t(svc.label as any)} width={80} height={80} style={{ width: "80px", height: "80px", objectFit: "contain", margin: "0 auto 16px", display: "block" }} />
-              <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "18px", color: "#1F2124", marginBottom: "8px" }}>{t(svc.label as any)}</h3>
-              <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "14px", color: "#54595F", lineHeight: 1.6 }}>
-                {t(svc.desc as any)}{"link" in svc && svc.link ? <> (<Link href={svc.link} style={{ color: "#965B83" }}>{t(svc.linkText as any)}</Link>)</> : null}{"price" in svc && svc.price ? ` (${t(svc.price as any)})` : ""}
+            <div
+              key={svc.link}
+              style={{
+                backgroundColor: "#FFFFFF",
+                borderRadius: "20px",
+                padding: "40px 30px",
+                textAlign: "center",
+                border: "1px solid #965B83",
+                boxShadow: "0 4px 12px rgba(0, 0, 0, 0.08)",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              {/* Circular image */}
+              <div
+                style={{
+                  position: "relative",
+                  width: "200px",
+                  height: "200px",
+                  borderRadius: "50%",
+                  overflow: "hidden",
+                  marginBottom: "30px",
+                  flexShrink: 0,
+                }}
+              >
+                <Image
+                  src={svc.img}
+                  alt={t(svc.title as any)}
+                  fill
+                  style={{ objectFit: "cover" }}
+                  sizes="200px"
+                  priority={false}
+                />
+              </div>
+
+              {/* Title */}
+              <h3
+                style={{
+                  fontFamily: '"Bowlby One SC", sans-serif',
+                  fontSize: "22px",
+                  color: "#1F2124",
+                  marginBottom: "16px",
+                  lineHeight: 1.3,
+                }}
+              >
+                {t(svc.title as any)}
+              </h3>
+
+              {/* Description */}
+              <p
+                style={{
+                  fontFamily: '"Outfit", sans-serif',
+                  fontSize: "14px",
+                  color: "#54595F",
+                  lineHeight: 1.6,
+                  marginBottom: "30px",
+                  flex: 1,
+                }}
+              >
+                {t(svc.desc as any)}
               </p>
-              {"extra" in svc && svc.extra ? <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "13px", color: "#965B83", marginTop: "8px" }}>{t(svc.extra as any)}</p> : null}
+
+              {/* Read More button */}
+              <Link
+                href={svc.link}
+                style={{
+                  display: "inline-block",
+                  backgroundColor: "#965B83",
+                  color: "#FFFFFF",
+                  padding: "12px 32px",
+                  borderRadius: "25px",
+                  fontFamily: '"Outfit", sans-serif',
+                  fontSize: "14px",
+                  fontWeight: 500,
+                  textDecoration: "none",
+                  transition: "background-color 0.3s ease",
+                  border: "none",
+                  cursor: "pointer",
+                }}
+                onMouseEnter={(e) => {
+                  (e.target as HTMLElement).style.backgroundColor = "#7d4968";
+                }}
+                onMouseLeave={(e) => {
+                  (e.target as HTMLElement).style.backgroundColor = "#965B83";
+                }}
+              >
+                {t("loc_read_more")}
+              </Link>
             </div>
           ))}
         </div>

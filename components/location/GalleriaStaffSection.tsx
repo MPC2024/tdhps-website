@@ -8,7 +8,7 @@ export default function GalleriaStaffSection() {
   const { t } = useLanguage();
 
   return (
-    <section style={{ backgroundColor: "#ffffff", padding: "80px 20px" }}>
+    <section style={{ backgroundColor: "#f8f8f8", padding: "80px 20px" }}>
       <div
         style={{
           maxWidth: "1520px",

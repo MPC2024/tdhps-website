@@ -8,7 +8,7 @@ export default function PearlandStaffSection() {
   const { t } = useLanguage();
 
   return (
-    <section style={{ backgroundColor: "#ffffff", padding: "80px 20px" }}>
+    <section style={{ backgroundColor: "#f8f8f8", padding: "80px 20px" }}>
       <div style={{ maxWidth: "1520px", margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "60px", alignItems: "center" }}>
         <div style={{ textAlign: "center" }}>
           <Image src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/margarita-batres.jpg" alt={t("loc_margarita_name")} width={220} height={220} style={{ width: "220px", height: "220px", borderRadius: "50%", objectFit: "cover", margin: "0 auto 16px", display: "block" }} />

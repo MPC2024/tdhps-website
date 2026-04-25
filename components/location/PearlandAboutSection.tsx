@@ -42,7 +42,7 @@ export default function PearlandAboutSection() {
             {t("loc_pearland_about_desc")}
           </p>
           <Link
-            href="/appointment-request-pearland"
+            href="/appointment-request?location=pearland"
             style={{
               backgroundColor: "#965B83",
               color: "#fff",

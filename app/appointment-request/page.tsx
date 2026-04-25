@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import AppointmentForm from "@/components/AppointmentForm";
+import AppointmentFormWithLocation from "@/components/AppointmentFormWithLocation";
 import AppointmentRequestContent from "@/components/AppointmentRequestContent";
 import AppointmentHeroText from "@/components/AppointmentHeroText";
 
@@ -73,7 +73,7 @@ export default function AppointmentRequestPage() {
 
       {/* ── Form ── */}
       <section style={{ backgroundColor: "#FFFFFF", paddingBottom: "60px" }}>
-        <AppointmentForm />
+        <AppointmentFormWithLocation />
       </section>
     </>
   );

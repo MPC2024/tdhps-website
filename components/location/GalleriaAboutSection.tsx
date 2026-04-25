@@ -42,7 +42,7 @@ export default function GalleriaAboutSection() {
             {t("loc_galleria_about_desc")}
           </p>
           <Link
-            href="/appointment-request-form_location_richmond"
+            href="/appointment-request?location=galleria"
             style={{
               backgroundColor: "#965B83",
               color: "#fff",

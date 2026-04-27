@@ -457,6 +457,10 @@ export default function AppointmentForm({
   const [smsOptIn, setSmsOptIn] = useState(false);
   const [emailOptIn, setEmailOptIn] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [cardNumber, setCardNumber] = useState("");
+  const [cardExpiryMonth, setCardExpiryMonth] = useState("");
+  const [cardExpiryYear, setCardExpiryYear] = useState("");
+  const [cardCvc, setCardCvc] = useState("");
 
   const totalPets = 1 + additionalPets;
 
@@ -896,6 +900,73 @@ export default function AppointmentForm({
             </span>
           </label>
         </div>
+
+        {/* Card Details - shown when any pet has Boarding selected */}
+        {pets.some((p) => p.boarding === "Boarding") && (
+          <div style={{ marginBottom: "40px", padding: "32px", border: "1px solid #E5E7EB", borderRadius: "12px", backgroundColor: "#FAFAFA" }}>
+            <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "20px", color: "#1F2124", marginBottom: "8px" }}>
+              Card Details
+            </h3>
+            <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "14px", color: "#54595F", marginBottom: "24px" }}>
+              A boarding deposit is required to secure your reservation.
+            </p>
+            <div style={{ marginBottom: "16px" }}>
+              <label htmlFor="card-number" style={labelStyle}>
+                Card Number <span style={{ color: "#CC3366" }}>*</span>
+              </label>
+              <input
+                id="card-number"
+                type="text"
+                placeholder="1111 2222 3333 4444"
+                value={cardNumber}
+                onChange={(e) => setCardNumber(e.target.value.replace(/[^0-9\s]/g, "").slice(0, 19))}
+                style={inputStyle}
+                maxLength={19}
+              />
+            </div>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "16px", marginBottom: "16px" }}>
+              <div>
+                <label htmlFor="card-expiry-month" style={labelStyle}>
+                  Expiry Month <span style={{ color: "#CC3366" }}>*</span>
+                </label>
+                <select id="card-expiry-month" value={cardExpiryMonth} onChange={(e) => setCardExpiryMonth(e.target.value)} style={inputStyle}>
+                  <option value="">Month</option>
+                  {Array.from({ length: 12 }, (_, i) => String(i + 1).padStart(2, "0")).map((m) => (
+                    <option key={m} value={m}>{m}</option>
+                  ))}
+                </select>
+              </div>
+              <div>
+                <label htmlFor="card-expiry-year" style={labelStyle}>
+                  Expiry Year <span style={{ color: "#CC3366" }}>*</span>
+                </label>
+                <select id="card-expiry-year" value={cardExpiryYear} onChange={(e) => setCardExpiryYear(e.target.value)} style={inputStyle}>
+                  <option value="">Year</option>
+                  {Array.from({ length: 10 }, (_, i) => String(2026 + i)).map((y) => (
+                    <option key={y} value={y}>{y}</option>
+                  ))}
+                </select>
+              </div>
+              <div>
+                <label htmlFor="card-cvc" style={labelStyle}>
+                  CVC <span style={{ color: "#CC3366" }}>*</span>
+                </label>
+                <input
+                  id="card-cvc"
+                  type="text"
+                  placeholder="123"
+                  value={cardCvc}
+                  onChange={(e) => setCardCvc(e.target.value.replace(/[^0-9]/g, "").slice(0, 4))}
+                  style={inputStyle}
+                  maxLength={4}
+                />
+              </div>
+            </div>
+            <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "13px", color: "#6B7280" }}>
+              Amount: <strong>$25.00</strong>
+            </p>
+          </div>
+        )}
 
         {/* Submit */}
         <div style={{ textAlign: "center" }}>

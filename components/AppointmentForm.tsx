@@ -902,7 +902,14 @@ export default function AppointmentForm({
         </div>
 
         {/* Card Details - shown when any pet has Boarding selected */}
-        {pets.some((p) => p.boarding === "Boarding") && (
+        {pets.some((p) => p.boarding === "Boarding") && (() => {
+          const boardingTotal = pets.reduce((sum, p) => {
+            if (p.boarding !== "Boarding" || !p.kennel) return sum;
+            const priceMatch = p.kennel.match(/\$(\d+)/);
+            return sum + (priceMatch ? parseInt(priceMatch[1], 10) : 0);
+          }, 0);
+          const boardingPetCount = pets.filter((p) => p.boarding === "Boarding").length;
+          return (
           <div style={{ marginBottom: "40px", padding: "32px", border: "1px solid #E5E7EB", borderRadius: "12px", backgroundColor: "#FAFAFA" }}>
             <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "20px", color: "#1F2124", marginBottom: "8px" }}>
               Card Details
@@ -962,11 +969,28 @@ export default function AppointmentForm({
                 />
               </div>
             </div>
-            <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "13px", color: "#6B7280" }}>
-              Amount: <strong>$25.00</strong>
-            </p>
+            <div style={{ fontFamily: '"Outfit", sans-serif', fontSize: "14px", color: "#1F2124", padding: "16px", backgroundColor: "#fff", borderRadius: "8px", border: "1px solid #E5E7EB" }}>
+              <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "8px" }}>
+                <span style={{ color: "#54595F" }}>Boarding pets:</span>
+                <span>{boardingPetCount}</span>
+              </div>
+              {pets.map((p, i) => p.boarding === "Boarding" && p.kennel ? (
+                <div key={i} style={{ display: "flex", justifyContent: "space-between", marginBottom: "4px", fontSize: "13px", color: "#6B7280" }}>
+                  <span>{p.name || `Pet ${i + 1}`} - {p.kennel.split(" - ")[0]}</span>
+                  <span>{p.kennel.split(" - ")[1] || ""}</span>
+                </div>
+              ) : null)}
+              <div style={{ borderTop: "1px solid #E5E7EB", marginTop: "12px", paddingTop: "12px", display: "flex", justifyContent: "space-between", fontWeight: 700, fontSize: "16px" }}>
+                <span>Amount</span>
+                <span style={{ color: "#965B83" }}>${boardingTotal > 0 ? `${boardingTotal}.00` : "0.00"}</span>
+              </div>
+              {boardingTotal === 0 && boardingPetCount > 0 && (
+                <p style={{ fontSize: "12px", color: "#CC3366", marginTop: "8px" }}>Please select a kennel for each boarding pet to calculate the deposit amount.</p>
+              )}
+            </div>
           </div>
-        )}
+          );
+        })()}
 
         {/* Submit */}
         <div style={{ textAlign: "center" }}>

@@ -52,7 +52,7 @@ export default function GalleriaLocationContent() {
           {t("book_appointment")}
         </a>
         <a
-          href="https://calculator.thedoghouseps.com/"
+          href="/calculator"
           target="_blank"
           rel="noopener noreferrer"
           style={{

@@ -694,7 +694,7 @@ export default function PetBathingContent() {
           </p>
           <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
             <Link href="/appointment-request" className="btn-primary">{t("book_appointment")}</Link>
-            <a href="https://calculator.thedoghouseps.com/" target="_blank" rel="noopener noreferrer" style={{ backgroundColor: "#1fb6b0", color: "#ffffff", padding: "12px clamp(20px, 3vw, 30px)", borderRadius: "50px", fontFamily: '"Outfit", sans-serif', fontWeight: 600, fontSize: "18px", display: "inline-flex", alignItems: "center", textDecoration: "none", transition: "opacity 0.3s ease" }}>
+            <a href="/calculator" target="_blank" rel="noopener noreferrer" style={{ backgroundColor: "#1fb6b0", color: "#ffffff", padding: "12px clamp(20px, 3vw, 30px)", borderRadius: "50px", fontFamily: '"Outfit", sans-serif', fontWeight: 600, fontSize: "18px", display: "inline-flex", alignItems: "center", textDecoration: "none", transition: "opacity 0.3s ease" }}>
               {t("bathing_get_price_estimate")}
             </a>
           </div>

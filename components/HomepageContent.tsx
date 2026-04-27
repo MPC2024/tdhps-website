@@ -228,8 +228,15 @@ export default function HomepageContent() {
       ══════════════════════════════════════════════ */}
       <section
         id="services"
-        style={{ backgroundColor: "#F8F8F8", padding: "80px 20px" }}
+        style={{
+          backgroundImage: "url(https://www.thedoghouseps.com/wp-content/uploads/2025/05/The-dog-house-pet-salon-hero-1.webp)",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          padding: "80px 20px",
+          position: "relative",
+        }}
       >
+        <div style={{ position: "absolute", inset: 0, backgroundColor: "rgba(255, 255, 255, 0.88)" }} />
         <div
           style={{
             maxWidth: "1520px",
@@ -237,20 +244,24 @@ export default function HomepageContent() {
             display: "grid",
             gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
             gap: "30px",
+            position: "relative",
+            zIndex: 1,
           }}
         >
           {services.map((svc) => (
             <div
               key={svc.href}
               style={{
-                backgroundColor: "#ffffff",
+                backgroundColor: "rgba(255, 255, 255, 0.85)",
+                backdropFilter: "blur(4px)",
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
                 padding: "40px 30px",
                 textAlign: "center",
-                borderRadius: "8px",
-                boxShadow: "6px 6px 9px rgba(0,0,0,.1)",
+                borderRadius: "12px",
+                border: "2px solid rgba(150, 91, 131, 0.3)",
+                boxShadow: "none",
               }}
             >
               <Link href={svc.href} style={{ display: "block", marginBottom: "16px" }}>

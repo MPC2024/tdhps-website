@@ -1,13 +1,10 @@
 "use client";
 
 import { useLanguage } from "@/lib/LanguageContext";
-import styles from "@/app/discounts/discounts.module.css";
 
 export default function DiscountsLocationText() {
   const { t } = useLanguage();
   return (
-    <section className={styles.locations}>
-      <h2 className={styles.locationsTitle}>{t("discount_locations_title")}</h2>
-    </section>
+    <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(24px, 4vw, 32px)", textAlign: "center", margin: "0 0 40px 0", color: "#1F2124", fontWeight: "700" }}>{t("discount_locations_title")}</h2>
   );
 }

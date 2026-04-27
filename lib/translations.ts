@@ -172,7 +172,7 @@ export const translations = {
     // Homepage - Client of the Month
     client_of_the_month: "Client of the Month",
     avery_dustin: "Avery & Dustin",
-    client_spotlight_intro: "Take a look at some of our happiest clients and their fresh new looks!",
+    client_spotlight_intro: "Take a look at some of our happiest clients.",
     client_spotlight_text: "Each month, we're thrilled to spotlight a few of our most fabulous clients who brighten our salon with their charm and personalities. From playful puppies to wise senior companions, every visit from these beloved pets brings joy to our team and warmth to our hearts. Our furry friends' unique styles and spirits inspire us every day, and we love pampering them with the care they deserve.",
     client_quote: "'Amazing experience for my dog's groom! This was our first time trying a new groomer since moving and they did not disappoint. The whole staff is friendly and thoughtful and most importantly my goldendoodle's haircut is perfect! Highly recommend and very fair pricing' — Dustin",
 
@@ -1483,7 +1483,7 @@ export const translations = {
     // Homepage - Client of the Month
     client_of_the_month: "Cliente del Mes",
     avery_dustin: "Avery y Dustin",
-    client_spotlight_intro: "¡Echa un vistazo a algunos de nuestros clientes más felices y sus nuevos looks frescos!",
+    client_spotlight_intro: "Echa un vistazo a algunos de nuestros clientes más felices.",
     client_spotlight_text: "Cada mes, nos encanta destacar a algunos de nuestros clientes más fabulosos que iluminan nuestro salón con su encanto y personalidades. Desde cachorros juguetones hasta compañeros senior sabios, cada visita de estas mascotas queridas trae alegría a nuestro equipo y calidez a nuestros corazones. Los estilos únicos y espíritus de nuestras queridas mascotas nos inspiran cada día, y nos encanta mimarlos con el cuidado que se merecen.",
     client_quote: "'¡Experiencia increíble para el aseo de mi perro! Esta fue nuestra primera vez probando un nuevo peluquero desde que nos mudamos y no nos decepcionó. Todo el personal es amable y considerado, y lo más importante es que el corte de cabello de mi goldendoodle es perfecto! Altamente recomendado y precios muy justos' — Dustin",
 

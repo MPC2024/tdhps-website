@@ -525,8 +525,9 @@ export default function HomepageContent() {
           style={{
             maxWidth: "1520px",
             margin: "0 auto",
+            padding: "0 40px",
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+            gridTemplateColumns: "1fr 1fr",
             gap: "60px",
             alignItems: "center",
           }}
@@ -535,7 +536,7 @@ export default function HomepageContent() {
           <div>
             <Image
               src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/image-8.png"
-              alt="Donna's Love Pet Rescue"
+              alt="Donna&apos;s Love Pet Rescue"
               width={64}
               height={77}
               style={{ width: "64px", height: "auto", marginBottom: "20px" }}
@@ -585,19 +586,51 @@ export default function HomepageContent() {
             </a>
           </div>
 
-          {/* Right: image */}
-          <div style={{ display: "flex", justifyContent: "center" }}>
-            <Image
-              src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/loving-dog-1024x855.png"
-              alt="loving dog"
-              width={500}
-              height={417}
-              style={{ width: "100%", maxWidth: "475px", height: "auto" }}
-              sizes="(max-width: 480px) 90vw, (max-width: 768px) 95vw, 500px"
-              quality={80}
-            />
+          {/* Right: Mosaic pet photo grid */}
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gridTemplateRows: "1fr 1fr", gap: "12px", maxWidth: "500px", justifySelf: "center" }}>
+            <div style={{ borderRadius: "16px", overflow: "hidden", gridRow: "1 / 3", aspectRatio: "3/4" }}>
+              <Image
+                src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/pet-grooming.jpg"
+                alt="Rescue pet grooming"
+                width={300}
+                height={400}
+                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                sizes="(max-width: 768px) 40vw, 250px"
+                loading="lazy"
+                quality={80}
+              />
+            </div>
+            <div style={{ borderRadius: "16px", overflow: "hidden" }}>
+              <Image
+                src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/dogie-daycare.jpg"
+                alt="Rescue pets at daycare"
+                width={250}
+                height={200}
+                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                sizes="(max-width: 768px) 40vw, 250px"
+                loading="lazy"
+                quality={80}
+              />
+            </div>
+            <div style={{ borderRadius: "16px", overflow: "hidden" }}>
+              <Image
+                src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/pet-boarding.jpg"
+                alt="Rescue pets boarding"
+                width={250}
+                height={200}
+                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                sizes="(max-width: 768px) 40vw, 250px"
+                loading="lazy"
+                quality={80}
+              />
+            </div>
           </div>
         </div>
+        <style>{`
+          @media (max-width: 768px) {
+            .section-5-grid { grid-template-columns: 1fr !important; padding: 0 20px !important; }
+          }
+        `}</style>
       </section>
 
       {/* ══════════════════════════════════════════════

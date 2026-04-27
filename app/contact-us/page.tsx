@@ -11,6 +11,7 @@ const locations = [
     address: "5917 Richmond Ave",
     hours: ["Monday - Friday: 7:00 AM - 7:00 PM", "Saturday: 8:00 AM - 6:00 PM", "Sunday: 8:00 AM - 9:00 AM, 4:00 PM - 5:00 PM"],
     phone: "(713) 820-6140",
+    afterHoursPhone: "(713) 966-6350",
     email: "galleria@thedoghouseps.com",
     option: "OPTION 1",
     appointmentLink: "/appointment-request-form_location_richmond",
@@ -21,6 +22,7 @@ const locations = [
     address: "6434 Washington Ave",
     hours: ["Monday - Friday: 7:00 AM - 7:00 PM", "Saturday: 8:00 AM - 6:00 PM", "Sunday: 8:00 AM - 9:00 AM, 4:00 PM - 5:00 PM"],
     phone: "(713) 820-6140",
+    afterHoursPhone: "(713) 966-6350",
     email: "memorial@thedoghouseps.com",
     option: "OPTION 2",
     appointmentLink: "/appointment-request-memorial",
@@ -31,6 +33,7 @@ const locations = [
     address: "2810 Business Center Dr.",
     hours: ["Monday - Friday: 7:00 AM - 6:00 PM", "Saturday: 8:00 AM - 6:00 PM", "Sunday: Closed"],
     phone: "(713) 820-6140",
+    afterHoursPhone: "(713) 966-6350",
     email: "pearland@thedoghouseps.com",
     option: "OPTION 3",
     appointmentLink: "/appointment-request-pearland",
@@ -237,7 +240,7 @@ export default function ContactUsPage() {
                   {locations[0].option}
                 </p>
 
-                <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "8px", color: "#fff" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "4px", color: "#fff" }}>
                   <i className="fa-solid fa-phone" style={{ fontSize: "16px" }} />
                   <p style={{
                     fontFamily: '"Outfit", sans-serif',
@@ -246,6 +249,17 @@ export default function ContactUsPage() {
                     margin: 0,
                   }}>
                     {locations[0].phone}
+                  </p>
+                </div>
+
+                <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "8px", color: "#fff", marginLeft: "24px" }}>
+                  <p style={{
+                    fontFamily: '"Outfit", sans-serif',
+                    fontSize: "14px",
+                    color: "#fff",
+                    margin: 0,
+                  }}>
+                    After Hours: {locations[0].afterHoursPhone}
                   </p>
                 </div>
 
@@ -331,7 +345,7 @@ export default function ContactUsPage() {
                   }}>
                     {locations[1].option}
                   </p>
-                  <div style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "4px", color: "#fff" }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "2px", color: "#fff" }}>
                     <i className="fa-solid fa-phone" style={{ fontSize: "12px" }} />
                     <p style={{
                       fontFamily: '"Outfit", sans-serif',
@@ -340,6 +354,16 @@ export default function ContactUsPage() {
                       margin: 0,
                     }}>
                       {locations[1].phone}
+                    </p>
+                  </div>
+                  <div style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "4px", color: "#fff", marginLeft: "18px" }}>
+                    <p style={{
+                      fontFamily: '"Outfit", sans-serif',
+                      fontSize: "10px",
+                      color: "#fff",
+                      margin: 0,
+                    }}>
+                      After Hours: {locations[1].afterHoursPhone}
                     </p>
                   </div>
                   <div style={{ display: "flex", alignItems: "center", gap: "6px", color: "#fff" }}>
@@ -422,7 +446,7 @@ export default function ContactUsPage() {
                   }}>
                     {locations[2].option}
                   </p>
-                  <div style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "4px", color: "#fff" }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "2px", color: "#fff" }}>
                     <i className="fa-solid fa-phone" style={{ fontSize: "12px" }} />
                     <p style={{
                       fontFamily: '"Outfit", sans-serif',
@@ -431,6 +455,16 @@ export default function ContactUsPage() {
                       margin: 0,
                     }}>
                       {locations[2].phone}
+                    </p>
+                  </div>
+                  <div style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "4px", color: "#fff", marginLeft: "18px" }}>
+                    <p style={{
+                      fontFamily: '"Outfit", sans-serif',
+                      fontSize: "10px",
+                      color: "#fff",
+                      margin: 0,
+                    }}>
+                      After Hours: {locations[2].afterHoursPhone}
                     </p>
                   </div>
                   <div style={{ display: "flex", alignItems: "center", gap: "6px", color: "#fff" }}>

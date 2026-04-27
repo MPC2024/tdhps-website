@@ -452,7 +452,7 @@ export default function Footer() {
             </h3>
 
             {/* Phone */}
-            <div className="flex items-center gap-3 mb-6">
+            <div className="flex items-center gap-3 mb-2">
               <i className="fa-solid fa-phone" style={{ color: "#FFF", fontSize: "18px" }} />
               <a
                 href="tel:+17138206140"
@@ -461,6 +461,11 @@ export default function Footer() {
               >
                 713-820-6140
               </a>
+            </div>
+
+            {/* After Hours Phone */}
+            <div className="flex items-center gap-3 ml-7 mb-6">
+              <span style={textStyle}>After Hours: <a href="tel:+17139666350" className="transition-colors hover:opacity-80">(713) 966-6350</a></span>
             </div>
 
             {/* Option 1 */}

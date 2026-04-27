@@ -102,7 +102,7 @@ const sectionPadding = { padding: "clamp(40px, 10vw, 80px) 20px" } as const;
 
 export default function HomepageContent() {
   const { t, language } = useLanguage();
-  const [expandedCard, setExpandedCard] = useState<number | null>(null);
+  const [cardsExpanded, setCardsExpanded] = useState(false);
   const mpcSectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -420,21 +420,21 @@ export default function HomepageContent() {
                   {t(step.titleKey as any)}
                 </h2>
                 <div style={{ fontFamily: '"Outfit", Sans-serif', fontSize: "15px", color: "#54595F", lineHeight: 1.7 }}>
-                  {(i === 1 || i === 2) && expandedCard !== i ? (
+                  {(i === 1 || i === 2) && !cardsExpanded ? (
                     <p style={{ margin: 0 }}>
                       {(t(step.descKey as any) as string).slice(0, 200)}...{" "}
                       <button
-                        onClick={() => setExpandedCard(i)}
+                        onClick={() => setCardsExpanded(true)}
                         style={{ background: "none", border: "none", color: "#965B83", fontWeight: 600, cursor: "pointer", fontFamily: '"Outfit", Sans-serif', fontSize: "15px", padding: 0 }}
                       >
                         read more
                       </button>
                     </p>
-                  ) : (i === 1 || i === 2) && expandedCard === i ? (
+                  ) : (i === 1 || i === 2) && cardsExpanded ? (
                     <p style={{ margin: 0 }}>
                       {t(step.descKey as any)}{" "}
                       <button
-                        onClick={() => setExpandedCard(null)}
+                        onClick={() => setCardsExpanded(false)}
                         style={{ background: "none", border: "none", color: "#965B83", fontWeight: 600, cursor: "pointer", fontFamily: '"Outfit", Sans-serif', fontSize: "15px", padding: 0 }}
                       >
                         show less
@@ -599,11 +599,11 @@ export default function HomepageContent() {
           </div>
 
           {/* Right: Mosaic pet photo grid */}
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gridTemplateRows: "1fr 1fr", gap: "12px", maxWidth: "500px", justifySelf: "center" }}>
-            <div style={{ borderRadius: "16px", overflow: "hidden", gridRow: "1 / 3", aspectRatio: "3/4" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gridTemplateRows: "auto auto", gap: "12px", maxWidth: "500px", justifySelf: "center" }}>
+            <div style={{ borderRadius: "16px", overflow: "hidden", gridRow: "1 / 3" }}>
               <Image
-                src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/pet-grooming.jpg"
-                alt="Rescue pet grooming"
+                src="https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=400&h=500&fit=crop"
+                alt="Rescue dog looking for a home"
                 width={300}
                 height={400}
                 style={{ width: "100%", height: "100%", objectFit: "cover" }}
@@ -614,8 +614,8 @@ export default function HomepageContent() {
             </div>
             <div style={{ borderRadius: "16px", overflow: "hidden" }}>
               <Image
-                src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/dogie-daycare.jpg"
-                alt="Rescue pets at daycare"
+                src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=400&h=300&fit=crop"
+                alt="Dogs playing together at rescue"
                 width={250}
                 height={200}
                 style={{ width: "100%", height: "100%", objectFit: "cover" }}
@@ -626,8 +626,8 @@ export default function HomepageContent() {
             </div>
             <div style={{ borderRadius: "16px", overflow: "hidden" }}>
               <Image
-                src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/pet-boarding.jpg"
-                alt="Rescue pets boarding"
+                src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=400&h=300&fit=crop"
+                alt="Happy rescue dog with family"
                 width={250}
                 height={200}
                 style={{ width: "100%", height: "100%", objectFit: "cover" }}

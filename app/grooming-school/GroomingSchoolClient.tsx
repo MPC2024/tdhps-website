@@ -4,127 +4,22 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, FormEvent } from "react";
 import { useLanguage } from "@/lib/LanguageContext";
-import BlogCarousel, { type BlogPost } from "@/components/BlogCarousel";
+import BlogCarousel from "@/components/BlogCarousel";
 import StoreLocations from "@/components/StoreLocations";
+// Training: Single Responsibility — Import constants and styles from dedicated modules
+// WHY: Moving data and styles to separate files reduces cognitive load. The component
+// can now focus on rendering and state management without 100+ lines of static data.
+import { GROOMERS, SCHOOL_LOCATIONS, PROGRAM_ICONS, HOW_REFERRAL_OPTIONS, GROOMING_BLOG_POSTS } from "./constants";
+import { FORM_STYLES, SUCCESS_MESSAGE_STYLES, SECTION_STYLES, ACCORDION_ITEM_STYLES, getFormInputStyle } from "./styles";
 
-const groomers = [
-  {
-    name: "Keylin Paulina Orellana Delcid",
-    roleKey: "school_master_groomer" as const,
-    location: "Galleria / Uptown Park",
-    img: "https://www.thedoghouseps.com/wp-content/uploads/2025/03/keylin-paulina-orellana-delcid.webp",
-    href: "/keylin-paulina-orellana-delcid",
-  },
-  {
-    name: "Margarita Batres",
-    roleKey: "school_master_groomer" as const,
-    location: "Pearland",
-    img: "https://www.thedoghouseps.com/wp-content/uploads/2025/03/margarita-batres.jpg",
-    href: "/margarita-batres",
-  },
-  {
-    name: "Francy Quevedo",
-    roleKey: "school_master_groomer" as const,
-    location: "Memorial Park",
-    img: "https://www.thedoghouseps.com/wp-content/uploads/2025/03/francy-quevedo.jpg",
-    href: "/francy-quevedo",
-  },
-];
-
-const locations = [
-  {
-    img: "https://www.thedoghouseps.com/wp-content/uploads/2025/03/5917-richmond-ave.png",
-    address: "5917 Richmond Ave",
-    hours: ["Monday – Friday: 7:00 AM – 7:00 PM", "Saturday: 8:00 AM – 6:00 PM", "Sunday: 8:00 AM – 9:00 AM, 4:00 PM – 5:00 PM"],
-    phone: "(713) 820-6140",
-    email: "galleria@thedoghouseps.com",
-    option: "OPTION 1",
-    isLarge: true,
-  },
-  {
-    img: "https://www.thedoghouseps.com/wp-content/uploads/2025/03/6434-washington-ave.png",
-    address: "6434 Washington Ave",
-    hours: ["Monday – Friday: 7:00 AM – 7:00 PM", "Saturday: 8:00 AM – 6:00 PM", "Sunday: 8:00 AM – 9:00 AM, 4:00 PM – 5:00 PM"],
-    phone: "(713) 820-6140",
-    email: "memorial@thedoghouseps.com",
-    option: "OPTION 2",
-    isLarge: false,
-  },
-  {
-    img: "https://www.thedoghouseps.com/wp-content/uploads/2025/03/2810-business-center-dr.png",
-    address: "2810 Business Center Dr.",
-    hours: ["Monday – Friday: 7:00 AM – 6:00 PM", "Saturday: 8:00 AM – 6:00 PM", "Sunday: Closed"],
-    phone: "(713) 820-6140",
-    email: "pearland@thedoghouseps.com",
-    option: "OPTION 3",
-    isLarge: false,
-  },
-];
-
-const programIcons = [
-  { img: "https://www.thedoghouseps.com/wp-content/uploads/2025/04/pet-shampoo.svg", labelKey: "school_bathing_techniques" as const },
-  { img: "https://www.thedoghouseps.com/wp-content/uploads/2025/04/pet-brush.svg", labelKey: "school_brushing_deshed" as const },
-  { img: "https://www.thedoghouseps.com/wp-content/uploads/2025/04/cut.svg", labelKey: "school_breed_cuts" as const },
-  { img: "https://www.thedoghouseps.com/wp-content/uploads/2025/04/scissors.svg", labelKey: "school_scissoring_skills" as const },
-];
-
-const howReferralOptions = [
-  { key: "school_existing_customer" as const },
-  { key: "school_google_internet_search" as const },
-  { key: "school_social_media" as const },
-  { key: "school_referral_friend" as const },
-  { key: "school_drive_by" as const },
-  { key: "school_website" as const },
-  { key: "school_other" as const },
-];
-
-const groomingBlogPosts: BlogPost[] = [
-  { title: "The Benefits of Routine Dog Grooming in Houston's Climate", img: "https://www.thedoghouseps.com/wp-content/uploads/2026/03/Shihtzu_Grooming_Pearland.jpg", href: "https://www.thedoghouseps.com/the-benefits-of-routine-dog-grooming-in-houstons-climate/" },
-  { title: "How Often Should You Groom Your Dog? (Complete Guide)", img: "https://www.thedoghouseps.com/wp-content/uploads/2025/12/golden-doodle-grooming-haircut-memorial-park-rice-village-1024x768.jpg", href: "https://www.thedoghouseps.com/how-often-should-you-groom-your-dog-complete-guide/" },
-  { title: "5 Must-Know Grooming Trends for Galleria Pup Parents", img: "https://www.thedoghouseps.com/wp-content/uploads/2025/05/Dog-Grooming-Trends.jpg", href: "https://www.thedoghouseps.com/galleria-grooming-trends-2025/" },
-  { title: "Best Dog Grooming Tools Every Houston Pet Owner Should Have", img: "https://www.thedoghouseps.com/wp-content/uploads/2025/03/cute-jack-russell-terrier-puppy-studio.webp", href: "https://www.thedoghouseps.com/blog/" },
-  { title: "How to Choose the Right Groomer for Your Dog's Breed", img: "https://www.thedoghouseps.com/wp-content/uploads/2025/03/sportive-dog-performing-lure-coursing-competition.webp", href: "https://www.thedoghouseps.com/blog/" },
-  { title: "Puppy's First Grooming Appointment: What to Expect", img: "https://www.thedoghouseps.com/wp-content/uploads/2025/03/playful-dog.png", href: "https://www.thedoghouseps.com/blog/" },
-  { title: "Cat Grooming 101: Tips from Houston's Top Stylists", img: "https://www.thedoghouseps.com/wp-content/uploads/2025/03/twin-dogs.png", href: "https://www.thedoghouseps.com/blog/" },
-  { title: "Signs Your Dog Needs a Professional Grooming Session", img: "https://www.thedoghouseps.com/wp-content/uploads/2025/03/happy-dog.png", href: "https://www.thedoghouseps.com/blog/" },
-  { title: "Grooming Anxiety in Dogs: How to Make It Stress-Free", img: "https://www.thedoghouseps.com/wp-content/uploads/2025/03/dogs-in-pool.png", href: "https://www.thedoghouseps.com/blog/" },
-  { title: "Why Regular Nail Trims Matter for Your Dog's Health", img: "https://www.thedoghouseps.com/wp-content/uploads/2025/03/small-dog-in-bed.webp", href: "https://www.thedoghouseps.com/blog/" },
-  { title: "The Difference Between a Bath & Full Groom Explained", img: "https://www.thedoghouseps.com/wp-content/uploads/2025/03/dog-in-bed.webp", href: "https://www.thedoghouseps.com/blog/" },
-  { title: "Seasonal Grooming Tips for Houston Pet Owners", img: "https://www.thedoghouseps.com/wp-content/uploads/2025/03/dark-brown-dog-in-bed.webp", href: "https://www.thedoghouseps.com/blog/" },
-];
-
-const inputSt: React.CSSProperties = {
-  width: "100%",
-  padding: "12px 16px",
-  border: "1px solid #ddd",
-  borderRadius: "8px",
-  fontFamily: '"Outfit", sans-serif',
-  fontSize: "15px",
-  color: "#1F2124",
-  outline: "none",
-  boxSizing: "border-box",
-  backgroundColor: "#fff",
-};
-
-const labelSt: React.CSSProperties = {
-  fontFamily: '"Outfit", sans-serif',
-  fontSize: "15px",
-  fontWeight: 600,
-  color: "#1F2124",
-  display: "block",
-  marginBottom: "6px",
-};
-
-const fieldSt: React.CSSProperties = { marginBottom: "20px" };
-
-const requiredStar = <span style={{ color: "#CC3366" }}>*</span>;
+const requiredStar = <span style={FORM_STYLES.requiredStar}>*</span>;
 
 function SuccessMessage() {
   const { t } = useLanguage();
   return (
-    <div style={{ textAlign: "center", padding: "40px", backgroundColor: "#f0faf0", borderRadius: "12px" }}>
-      <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "24px", color: "#1F2124", marginBottom: "12px" }}>{t("school_success_title")}</h3>
-      <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F" }}>{t("school_success_message")}</p>
+    <div style={SUCCESS_MESSAGE_STYLES.container}>
+      <h3 style={SUCCESS_MESSAGE_STYLES.heading}>{t("school_success_title")}</h3>
+      <p style={SUCCESS_MESSAGE_STYLES.text}>{t("school_success_message")}</p>
     </div>
   );
 }
@@ -177,45 +72,41 @@ function BathingProgramForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} style={{ backgroundColor: "#F8F8F8", borderRadius: "12px", padding: "40px" }}>
-      {error && (
-        <div style={{ background: "#FEE2E2", border: "1px solid #FCA5A5", borderRadius: "8px", padding: "12px 16px", marginBottom: "20px", fontFamily: '"Outfit", sans-serif', fontSize: "14px", color: "#B91C1C" }}>
-          {error}
-        </div>
-      )}
+    <form onSubmit={handleSubmit} style={FORM_STYLES.container}>
+      {error && <div style={FORM_STYLES.errorBox}>{error}</div>}
       <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "14px", color: "#54595F", marginBottom: "24px" }}><em>&quot;*&quot; {t("school_form_required_fields")}</em></p>
-      <div style={fieldSt}><label style={labelSt}>{t("school_form_full_name")}: {requiredStar}</label><input name="fullName" type="text" required style={inputSt} /></div>
-      <div style={fieldSt}><label style={labelSt}>{t("school_form_email")} {requiredStar}</label><input name="email" type="email" required style={inputSt} /></div>
-      <div style={fieldSt}><label style={labelSt}>{t("school_form_phone")} {requiredStar}</label><input name="phone" type="tel" required style={inputSt} /></div>
-      <div style={fieldSt}>
-        <label style={labelSt}>{t("school_form_program_format")} {requiredStar}</label>
+      <div style={FORM_STYLES.field}><label style={FORM_STYLES.label}>{t("school_form_full_name")}: {requiredStar}</label><input name="fullName" type="text" required style={FORM_STYLES.input} /></div>
+      <div style={FORM_STYLES.field}><label style={FORM_STYLES.label}>{t("school_form_email")} {requiredStar}</label><input name="email" type="email" required style={FORM_STYLES.input} /></div>
+      <div style={FORM_STYLES.field}><label style={FORM_STYLES.label}>{t("school_form_phone")} {requiredStar}</label><input name="phone" type="tel" required style={FORM_STYLES.input} /></div>
+      <div style={FORM_STYLES.field}>
+        <label style={FORM_STYLES.label}>{t("school_form_program_format")} {requiredStar}</label>
         <div style={{ display: "flex", gap: "24px" }}>
           {[t("school_form_online"), t("school_form_in_person")].map((opt) => (
-            <label key={opt} style={{ fontFamily: '"Outfit", sans-serif', fontSize: "15px", color: "#1F2124", display: "flex", alignItems: "center", gap: "8px", cursor: "pointer" }}>
+            <label key={opt} style={FORM_STYLES.radioLabel}>
               <input type="radio" name="bathingFormat" value={opt} required style={{ accentColor: "#965B83" }} /> {opt}
             </label>
           ))}
         </div>
       </div>
-      <div style={fieldSt}><label style={labelSt}>{t("school_form_motivation_bather")} {requiredStar}</label><textarea name="motivation" required rows={3} style={{ ...inputSt, resize: "vertical" }} /></div>
-      <div style={fieldSt}>
-        <label style={labelSt}>{t("school_form_animal_comfort")} {requiredStar}</label>
+      <div style={FORM_STYLES.field}><label style={FORM_STYLES.label}>{t("school_form_motivation_bather")} {requiredStar}</label><textarea name="motivation" required rows={3} style={{ ...FORM_STYLES.input, resize: "vertical" }} /></div>
+      <div style={FORM_STYLES.field}>
+        <label style={FORM_STYLES.label}>{t("school_form_animal_comfort")} {requiredStar}</label>
         <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "13px", color: "#69727D", marginBottom: "8px" }}>{t("school_form_not_at_all")}</p>
-        <input name="animalComfort" type="number" min={0} max={5} required style={{ ...inputSt, width: "120px" }} />
+        <input name="animalComfort" type="number" min={0} max={5} required style={{ ...FORM_STYLES.input, width: "120px" }} />
       </div>
-      <div style={fieldSt}><label style={labelSt}>{t("school_form_experience")} {requiredStar}</label><textarea name="priorExperience" required rows={3} style={{ ...inputSt, resize: "vertical" }} /></div>
-      <div style={fieldSt}><label style={labelSt}>{t("school_form_allergies")} {requiredStar}</label><textarea name="allergies" required rows={3} style={{ ...inputSt, resize: "vertical" }} /></div>
-      <div style={fieldSt}><label style={labelSt}>{t("school_form_program_goals")} {requiredStar}</label><textarea name="programGoals" required rows={3} style={{ ...inputSt, resize: "vertical" }} /></div>
-      <div style={fieldSt}><label style={labelSt}>{t("school_form_techniques")} {requiredStar}</label><textarea name="techniquesInterest" required rows={3} style={{ ...inputSt, resize: "vertical" }} /></div>
-      <div style={fieldSt}><label style={labelSt}>{t("school_form_career_goals")} {requiredStar}</label><textarea name="careerGoals" required rows={3} style={{ ...inputSt, resize: "vertical" }} /></div>
-      <div style={fieldSt}>
-        <label style={labelSt}>{t("school_form_heard_about")} {requiredStar}</label>
-        <select name="howHeard" required style={{ ...inputSt, cursor: "pointer" }}>
+      <div style={FORM_STYLES.field}><label style={FORM_STYLES.label}>{t("school_form_experience")} {requiredStar}</label><textarea name="priorExperience" required rows={3} style={{ ...FORM_STYLES.input, resize: "vertical" }} /></div>
+      <div style={FORM_STYLES.field}><label style={FORM_STYLES.label}>{t("school_form_allergies")} {requiredStar}</label><textarea name="allergies" required rows={3} style={{ ...FORM_STYLES.input, resize: "vertical" }} /></div>
+      <div style={FORM_STYLES.field}><label style={FORM_STYLES.label}>{t("school_form_program_goals")} {requiredStar}</label><textarea name="programGoals" required rows={3} style={{ ...FORM_STYLES.input, resize: "vertical" }} /></div>
+      <div style={FORM_STYLES.field}><label style={FORM_STYLES.label}>{t("school_form_techniques")} {requiredStar}</label><textarea name="techniquesInterest" required rows={3} style={{ ...FORM_STYLES.input, resize: "vertical" }} /></div>
+      <div style={FORM_STYLES.field}><label style={FORM_STYLES.label}>{t("school_form_career_goals")} {requiredStar}</label><textarea name="careerGoals" required rows={3} style={{ ...FORM_STYLES.input, resize: "vertical" }} /></div>
+      <div style={FORM_STYLES.field}>
+        <label style={FORM_STYLES.label}>{t("school_form_heard_about")} {requiredStar}</label>
+        <select name="howHeard" required style={{ ...FORM_STYLES.input, cursor: "pointer" }}>
           <option value="">{t("school_form_select_all")}</option>
-          {howReferralOptions.map((opt) => <option key={opt.key} value={t(opt.key)}>{t(opt.key)}</option>)}
+          {HOW_REFERRAL_OPTIONS.map((opt) => <option key={opt.key} value={t(opt.key)}>{t(opt.key)}</option>)}
         </select>
       </div>
-      <button type="submit" disabled={submitting} style={{ width: "100%", padding: "15px 30px", backgroundColor: "#965B83", color: "#fff", border: "none", borderRadius: "50px", fontFamily: '"Outfit", sans-serif', fontWeight: 700, fontSize: "18px", cursor: "pointer", opacity: submitting ? 0.7 : 1 }}>
+      <button type="submit" disabled={submitting} style={getFormInputStyle(submitting)}>
         {submitting ? t("school_form_submitting") : t("school_form_submit")}
       </button>
     </form>
@@ -270,45 +161,41 @@ function BasicGroomingForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} style={{ backgroundColor: "#F8F8F8", borderRadius: "12px", padding: "40px" }}>
-      {error && (
-        <div style={{ background: "#FEE2E2", border: "1px solid #FCA5A5", borderRadius: "8px", padding: "12px 16px", marginBottom: "20px", fontFamily: '"Outfit", sans-serif', fontSize: "14px", color: "#B91C1C" }}>
-          {error}
-        </div>
-      )}
+    <form onSubmit={handleSubmit} style={FORM_STYLES.container}>
+      {error && <div style={FORM_STYLES.errorBox}>{error}</div>}
       <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "14px", color: "#54595F", marginBottom: "24px" }}><em>&quot;*&quot; {t("school_form_required_fields")}</em></p>
-      <div style={fieldSt}><label style={labelSt}>{t("school_form_full_name")}: {requiredStar}</label><input name="fullName" type="text" required style={inputSt} /></div>
-      <div style={fieldSt}><label style={labelSt}>{t("school_form_email")} {requiredStar}</label><input name="email" type="email" required style={inputSt} /></div>
-      <div style={fieldSt}><label style={labelSt}>{t("school_form_phone")} {requiredStar}</label><input name="phone" type="tel" required style={inputSt} /></div>
-      <div style={fieldSt}>
-        <label style={labelSt}>{t("school_form_program_format")} {requiredStar}</label>
+      <div style={FORM_STYLES.field}><label style={FORM_STYLES.label}>{t("school_form_full_name")}: {requiredStar}</label><input name="fullName" type="text" required style={FORM_STYLES.input} /></div>
+      <div style={FORM_STYLES.field}><label style={FORM_STYLES.label}>{t("school_form_email")} {requiredStar}</label><input name="email" type="email" required style={FORM_STYLES.input} /></div>
+      <div style={FORM_STYLES.field}><label style={FORM_STYLES.label}>{t("school_form_phone")} {requiredStar}</label><input name="phone" type="tel" required style={FORM_STYLES.input} /></div>
+      <div style={FORM_STYLES.field}>
+        <label style={FORM_STYLES.label}>{t("school_form_program_format")} {requiredStar}</label>
         <div style={{ display: "flex", gap: "24px" }}>
           {[t("school_form_online"), t("school_form_in_person")].map((opt) => (
-            <label key={opt} style={{ fontFamily: '"Outfit", sans-serif', fontSize: "15px", color: "#1F2124", display: "flex", alignItems: "center", gap: "8px", cursor: "pointer" }}>
+            <label key={opt} style={FORM_STYLES.radioLabel}>
               <input type="radio" name="basicFormat" value={opt} required style={{ accentColor: "#965B83" }} /> {opt}
             </label>
           ))}
         </div>
       </div>
-      <div style={fieldSt}><label style={labelSt}>{t("school_form_motivation")}{t("school_form_motivation_bather")} {requiredStar}</label><textarea name="motivation" required rows={3} style={{ ...inputSt, resize: "vertical" }} /></div>
-      <div style={fieldSt}>
-        <label style={labelSt}>{t("school_form_animal_comfort")} {requiredStar}</label>
+      <div style={FORM_STYLES.field}><label style={FORM_STYLES.label}>{t("school_form_motivation")}{t("school_form_motivation_bather")} {requiredStar}</label><textarea name="motivation" required rows={3} style={{ ...FORM_STYLES.input, resize: "vertical" }} /></div>
+      <div style={FORM_STYLES.field}>
+        <label style={FORM_STYLES.label}>{t("school_form_animal_comfort")} {requiredStar}</label>
         <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "13px", color: "#69727D", marginBottom: "8px" }}>{t("school_form_comfort_extreme")}</p>
-        <input name="animalComfort" type="number" min={0} max={5} required style={{ ...inputSt, width: "120px" }} />
+        <input name="animalComfort" type="number" min={0} max={5} required style={{ ...FORM_STYLES.input, width: "120px" }} />
       </div>
-      <div style={fieldSt}><label style={labelSt}>{t("school_form_experience_prior")} {requiredStar}</label><textarea name="priorExperience" required rows={3} style={{ ...inputSt, resize: "vertical" }} /></div>
-      <div style={fieldSt}><label style={labelSt}>{t("school_form_techniques_eager")} {requiredStar}</label><textarea name="techniquesInterest" required rows={3} style={{ ...inputSt, resize: "vertical" }} /></div>
-      <div style={fieldSt}><label style={labelSt}>{t("school_form_career_goals")} {requiredStar}</label><textarea name="careerGoals" required rows={3} style={{ ...inputSt, resize: "vertical" }} /></div>
-      <div style={fieldSt}><label style={labelSt}>{t("school_form_program_goals_basic")} {requiredStar}</label><textarea name="programGoals" required rows={3} style={{ ...inputSt, resize: "vertical" }} /></div>
-      <div style={fieldSt}><label style={labelSt}>{t("school_form_allergies_affect")} {requiredStar}</label><textarea name="allergies" required rows={3} style={{ ...inputSt, resize: "vertical" }} /></div>
-      <div style={fieldSt}>
-        <label style={labelSt}>{t("school_form_heard_about")} {requiredStar}</label>
-        <select name="howHeard" required style={{ ...inputSt, cursor: "pointer" }}>
+      <div style={FORM_STYLES.field}><label style={FORM_STYLES.label}>{t("school_form_experience_prior")} {requiredStar}</label><textarea name="priorExperience" required rows={3} style={{ ...FORM_STYLES.input, resize: "vertical" }} /></div>
+      <div style={FORM_STYLES.field}><label style={FORM_STYLES.label}>{t("school_form_techniques_eager")} {requiredStar}</label><textarea name="techniquesInterest" required rows={3} style={{ ...FORM_STYLES.input, resize: "vertical" }} /></div>
+      <div style={FORM_STYLES.field}><label style={FORM_STYLES.label}>{t("school_form_career_goals")} {requiredStar}</label><textarea name="careerGoals" required rows={3} style={{ ...FORM_STYLES.input, resize: "vertical" }} /></div>
+      <div style={FORM_STYLES.field}><label style={FORM_STYLES.label}>{t("school_form_program_goals_basic")} {requiredStar}</label><textarea name="programGoals" required rows={3} style={{ ...FORM_STYLES.input, resize: "vertical" }} /></div>
+      <div style={FORM_STYLES.field}><label style={FORM_STYLES.label}>{t("school_form_allergies_affect")} {requiredStar}</label><textarea name="allergies" required rows={3} style={{ ...FORM_STYLES.input, resize: "vertical" }} /></div>
+      <div style={FORM_STYLES.field}>
+        <label style={FORM_STYLES.label}>{t("school_form_heard_about")} {requiredStar}</label>
+        <select name="howHeard" required style={{ ...FORM_STYLES.input, cursor: "pointer" }}>
           <option value="">{t("school_form_select_all")}</option>
-          {howReferralOptions.map((opt) => <option key={opt.key} value={t(opt.key)}>{t(opt.key)}</option>)}
+          {HOW_REFERRAL_OPTIONS.map((opt) => <option key={opt.key} value={t(opt.key)}>{t(opt.key)}</option>)}
         </select>
       </div>
-      <button type="submit" disabled={submitting} style={{ width: "100%", padding: "15px 30px", backgroundColor: "#965B83", color: "#fff", border: "none", borderRadius: "50px", fontFamily: '"Outfit", sans-serif', fontWeight: 700, fontSize: "18px", cursor: "pointer", opacity: submitting ? 0.7 : 1 }}>
+      <button type="submit" disabled={submitting} style={getFormInputStyle(submitting)}>
         {submitting ? t("school_form_submitting") : t("school_form_submit")}
       </button>
     </form>
@@ -1927,7 +1814,7 @@ export default function GroomingSchoolClient() {
             {t("school_instructors_title")}
           </h2>
           <div className="groomers-grid" style={{ gap: "30px" }}>
-            {groomers.map((g) => (
+            {GROOMERS.map((g) => (
               <div key={g.name} style={{ backgroundColor: "#ffffff", borderRadius: "12px", overflow: "hidden", boxShadow: "6px 6px 9px rgba(0,0,0,.08)", textAlign: "center" }}>
                 <Image src={g.img} alt={g.name} width={500} height={500} style={{ width: "100%", height: "300px", objectFit: "cover" }} />
                 <div style={{ padding: "30px 24px" }}>
@@ -2009,8 +1896,8 @@ export default function GroomingSchoolClient() {
                 justifyContent: "center",
               }}>
                 <Image
-                  src={locations[0].img}
-                  alt={locations[0].address}
+                  src={SCHOOL_LOCATIONS[0].img}
+                  alt={SCHOOL_LOCATIONS[0].address}
                   width={200}
                   height={200}
                   quality={85}
@@ -2034,12 +1921,12 @@ export default function GroomingSchoolClient() {
                     color: "#fff",
                     margin: 0,
                   }}>
-                    {locations[0].address}
+                    {SCHOOL_LOCATIONS[0].address}
                   </h3>
                 </div>
 
                 <div style={{ marginBottom: "16px" }}>
-                  {locations[0].hours.map((h) => (
+                  {SCHOOL_LOCATIONS[0].hours.map((h) => (
                     <p key={h} style={{
                       fontFamily: '"Outfit", sans-serif',
                       fontSize: "16px",
@@ -2072,19 +1959,19 @@ export default function GroomingSchoolClient() {
                     color: "#fff",
                     margin: 0,
                   }}>
-                    {locations[0].phone}
+                    {SCHOOL_LOCATIONS[0].phone}
                   </p>
                 </div>
 
                 <div style={{ display: "flex", alignItems: "center", gap: "8px", color: "#fff" }}>
                   <i className="fa-solid fa-envelope" style={{ fontSize: "16px" }} />
-                  <a href={`mailto:${locations[0].email}`} style={{
+                  <a href={`mailto:${SCHOOL_LOCATIONS[0].email}`} style={{
                     fontFamily: '"Outfit", sans-serif',
                     fontSize: "16px",
                     color: "#fff",
                     textDecoration: "none",
                   }}>
-                    {locations[0].email}
+                    {SCHOOL_LOCATIONS[0].email}
                   </a>
                 </div>
               </div>
@@ -2110,8 +1997,8 @@ export default function GroomingSchoolClient() {
                   justifyContent: "center",
                 }}>
                   <Image
-                    src={locations[1].img}
-                    alt={locations[1].address}
+                    src={SCHOOL_LOCATIONS[1].img}
+                    alt={SCHOOL_LOCATIONS[1].address}
                     width={150}
                     height={150}
                     quality={85}
@@ -2135,12 +2022,12 @@ export default function GroomingSchoolClient() {
                       color: "#fff",
                       margin: 0,
                     }}>
-                      {locations[1].address}
+                      {SCHOOL_LOCATIONS[1].address}
                     </h3>
                   </div>
 
                   <div style={{ marginBottom: "12px" }}>
-                    {locations[1].hours.map((h) => (
+                    {SCHOOL_LOCATIONS[1].hours.map((h) => (
                       <p key={h} style={{
                         fontFamily: '"Outfit", sans-serif',
                         fontSize: "11px",
@@ -2172,19 +2059,19 @@ export default function GroomingSchoolClient() {
                       color: "#fff",
                       margin: 0,
                     }}>
-                      {locations[1].phone}
+                      {SCHOOL_LOCATIONS[1].phone}
                     </p>
                   </div>
 
                   <div style={{ display: "flex", alignItems: "center", gap: "6px", color: "#fff" }}>
                     <i className="fa-solid fa-envelope" style={{ fontSize: "12px" }} />
-                    <a href={`mailto:${locations[1].email}`} style={{
+                    <a href={`mailto:${SCHOOL_LOCATIONS[1].email}`} style={{
                       fontFamily: '"Outfit", sans-serif',
                       fontSize: "11px",
                       color: "#fff",
                       textDecoration: "none",
                     }}>
-                      {locations[1].email}
+                      {SCHOOL_LOCATIONS[1].email}
                     </a>
                   </div>
                 </div>
@@ -2208,8 +2095,8 @@ export default function GroomingSchoolClient() {
                   justifyContent: "center",
                 }}>
                   <Image
-                    src={locations[2].img}
-                    alt={locations[2].address}
+                    src={SCHOOL_LOCATIONS[2].img}
+                    alt={SCHOOL_LOCATIONS[2].address}
                     width={150}
                     height={150}
                     quality={85}
@@ -2233,12 +2120,12 @@ export default function GroomingSchoolClient() {
                       color: "#fff",
                       margin: 0,
                     }}>
-                      {locations[2].address}
+                      {SCHOOL_LOCATIONS[2].address}
                     </h3>
                   </div>
 
                   <div style={{ marginBottom: "12px" }}>
-                    {locations[2].hours.map((h) => (
+                    {SCHOOL_LOCATIONS[2].hours.map((h) => (
                       <p key={h} style={{
                         fontFamily: '"Outfit", sans-serif',
                         fontSize: "11px",
@@ -2270,19 +2157,19 @@ export default function GroomingSchoolClient() {
                       color: "#fff",
                       margin: 0,
                     }}>
-                      {locations[2].phone}
+                      {SCHOOL_LOCATIONS[2].phone}
                     </p>
                   </div>
 
                   <div style={{ display: "flex", alignItems: "center", gap: "6px", color: "#fff" }}>
                     <i className="fa-solid fa-envelope" style={{ fontSize: "12px" }} />
-                    <a href={`mailto:${locations[2].email}`} style={{
+                    <a href={`mailto:${SCHOOL_LOCATIONS[2].email}`} style={{
                       fontFamily: '"Outfit", sans-serif',
                       fontSize: "11px",
                       color: "#fff",
                       textDecoration: "none",
                     }}>
-                      {locations[2].email}
+                      {SCHOOL_LOCATIONS[2].email}
                     </a>
                   </div>
                 </div>
@@ -2406,7 +2293,7 @@ export default function GroomingSchoolClient() {
           <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "18px", color: "#FFF", textAlign: "center", marginBottom: "48px" }}>
             {t("school_blog_subtitle")}
           </p>
-          <BlogCarousel posts={groomingBlogPosts} />
+          <BlogCarousel posts={GROOMING_BLOG_POSTS} />
         </div>
       </section>
 

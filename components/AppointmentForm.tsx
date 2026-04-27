@@ -339,26 +339,6 @@ function PetSection({
           </div>
         </div>
         )}
-        {pet.boarding === "Daycare" && (
-          <div style={{ marginBottom: "12px" }}>
-            <label htmlFor={`${idPrefix}-daycare-option`} style={labelStyle}>
-              Service Options <span style={{ color: "#CC3366" }}>*</span>
-            </label>
-            <select
-              id={`${idPrefix}-daycare-option`}
-              value={pet.daycareOption}
-              onChange={(e) => onChange({ ...pet, daycareOption: e.target.value })}
-              style={inputStyle}
-            >
-              <option value="">Select a daycare option...</option>
-              {DAYCARE_OPTIONS.map((opt) => (
-                <option key={opt.label} value={`${opt.label} - $${opt.price}`}>
-                  {opt.label} - ${opt.price}
-                </option>
-              ))}
-            </select>
-          </div>
-        )}
         <div style={{ marginBottom: "12px" }}>
           <p style={{ ...labelStyle, fontWeight: 500, color: "#54595F", marginBottom: "8px" }}>
             {t("form_grooming_label")} <span style={{ color: "#CC3366" }}>{t("form_required_asterisk")}</span>
@@ -931,22 +911,16 @@ export default function AppointmentForm({
           </label>
         </div>
 
-        {/* Card Details - shown when any pet has Boarding or Daycare selected */}
-        {pets.some((p) => p.boarding === "Boarding" || p.boarding === "Daycare") && (() => {
+        {/* Card Details - shown when any pet has Boarding selected */}
+        {pets.some((p) => p.boarding === "Boarding") && (() => {
           const boardingTotal = pets.reduce((sum, p) => {
             if (p.boarding !== "Boarding" || !p.kennel) return sum;
             const priceMatch = p.kennel.match(/\$(\d+)/);
             return sum + (priceMatch ? parseInt(priceMatch[1], 10) : 0);
           }, 0);
-          const daycareTotal = pets.reduce((sum, p) => {
-            if (p.boarding !== "Daycare" || !p.daycareOption) return sum;
-            const priceMatch = p.daycareOption.match(/\$(\d+)/);
-            return sum + (priceMatch ? parseInt(priceMatch[1], 10) : 0);
-          }, 0);
-          const totalAmount = boardingTotal + daycareTotal;
+          const totalAmount = boardingTotal;
           const boardingPetCount = pets.filter((p) => p.boarding === "Boarding").length;
-          const daycarePetCount = pets.filter((p) => p.boarding === "Daycare").length;
-          const needsSelection = (boardingPetCount > 0 && pets.some((p) => p.boarding === "Boarding" && !p.kennel)) || (daycarePetCount > 0 && pets.some((p) => p.boarding === "Daycare" && !p.daycareOption));
+          const needsSelection = boardingPetCount > 0 && pets.some((p) => p.boarding === "Boarding" && !p.kennel);
           return (
           <div style={{ marginBottom: "40px", padding: "32px", border: "1px solid #E5E7EB", borderRadius: "12px", backgroundColor: "#FAFAFA" }}>
             <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "20px", color: "#1F2124", marginBottom: "8px" }}>
@@ -1008,34 +982,16 @@ export default function AppointmentForm({
               </div>
             </div>
             <div style={{ fontFamily: '"Outfit", sans-serif', fontSize: "14px", color: "#1F2124", padding: "16px", backgroundColor: "#fff", borderRadius: "8px", border: "1px solid #E5E7EB" }}>
-              {boardingPetCount > 0 && (
-                <div style={{ marginBottom: daycarePetCount > 0 ? "12px" : "0" }}>
-                  <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "8px", fontWeight: 600 }}>
-                    <span style={{ color: "#54595F" }}>Boarding ({boardingPetCount} pet{boardingPetCount > 1 ? "s" : ""}):</span>
-                    <span>${boardingTotal > 0 ? `${boardingTotal}.00` : "0.00"}</span>
-                  </div>
-                  {pets.map((p, i) => p.boarding === "Boarding" && p.kennel ? (
-                    <div key={`b-${i}`} style={{ display: "flex", justifyContent: "space-between", marginBottom: "4px", fontSize: "13px", color: "#6B7280", paddingLeft: "12px" }}>
-                      <span>{p.name || `Pet ${i + 1}`} - {p.kennel.split(" - ")[0]}</span>
-                      <span>{p.kennel.split(" - ")[1] || ""}</span>
-                    </div>
-                  ) : null)}
+              <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "8px", fontWeight: 600 }}>
+                <span style={{ color: "#54595F" }}>Boarding ({boardingPetCount} pet{boardingPetCount > 1 ? "s" : ""}):</span>
+                <span>${boardingTotal > 0 ? `${boardingTotal}.00` : "0.00"}</span>
+              </div>
+              {pets.map((p, i) => p.boarding === "Boarding" && p.kennel ? (
+                <div key={`b-${i}`} style={{ display: "flex", justifyContent: "space-between", marginBottom: "4px", fontSize: "13px", color: "#6B7280", paddingLeft: "12px" }}>
+                  <span>{p.name || `Pet ${i + 1}`} - {p.kennel.split(" - ")[0]}</span>
+                  <span>{p.kennel.split(" - ")[1] || ""}</span>
                 </div>
-              )}
-              {daycarePetCount > 0 && (
-                <div>
-                  <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "8px", fontWeight: 600 }}>
-                    <span style={{ color: "#54595F" }}>Daycare ({daycarePetCount} pet{daycarePetCount > 1 ? "s" : ""}):</span>
-                    <span>${daycareTotal > 0 ? `${daycareTotal}.00` : "0.00"}</span>
-                  </div>
-                  {pets.map((p, i) => p.boarding === "Daycare" && p.daycareOption ? (
-                    <div key={`d-${i}`} style={{ display: "flex", justifyContent: "space-between", marginBottom: "4px", fontSize: "13px", color: "#6B7280", paddingLeft: "12px" }}>
-                      <span>{p.name || `Pet ${i + 1}`} - {p.daycareOption.split(" - ")[0]}</span>
-                      <span>{p.daycareOption.split(" - ")[1] || ""}</span>
-                    </div>
-                  ) : null)}
-                </div>
-              )}
+              ) : null)}
               <div style={{ borderTop: "1px solid #E5E7EB", marginTop: "12px", paddingTop: "12px", display: "flex", justifyContent: "space-between", fontWeight: 700, fontSize: "16px" }}>
                 <span>Amount</span>
                 <span style={{ color: "#965B83" }}>${totalAmount > 0 ? totalAmount.toLocaleString("en-US", { minimumFractionDigits: 2 }) : "0.00"}</span>

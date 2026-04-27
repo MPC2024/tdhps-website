@@ -794,12 +794,12 @@ export default function HomepageContent() {
       ══════════════════════════════════════════════ */}
       <section style={{ ...sectionPadding, backgroundColor: "#ffffff" }}>
         <div style={{ maxWidth: "1520px", margin: "0 auto", padding: "0 40px" }}>
-          {/* Top row: heading + image side by side */}
+          {/* 3-column layout: heading | image | description */}
           <div
             className="section-7-grid"
             style={{
               display: "grid",
-              gridTemplateColumns: "1fr 1fr",
+              gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
               gap: "40px",
               alignItems: "center",
               marginBottom: "40px",
@@ -840,7 +840,7 @@ export default function HomepageContent() {
               </p>
             </div>
 
-            {/* Right: image */}
+            {/* Middle: image */}
             <div style={{ display: "flex", justifyContent: "center" }}>
               <Image
                 src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/dog-owner.png"
@@ -853,38 +853,38 @@ export default function HomepageContent() {
                 quality={80}
               />
             </div>
+
+            {/* Right: description */}
+            <div>
+              <p
+                style={{
+                  fontFamily: '"Outfit", Sans-serif',
+                  fontSize: "16px",
+                  color: "#54595F",
+                  lineHeight: 1.7,
+                }}
+              >
+                {t("client_spotlight_text" as any)}
+              </p>
+            </div>
           </div>
 
-          {/* Bottom row: description + Dustin's review */}
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "40px" }} className="section-7-grid">
-            <p
-              style={{
-                fontFamily: '"Outfit", Sans-serif',
-                fontSize: "16px",
-                color: "#54595F",
-                lineHeight: 1.7,
-              }}
-            >
-              {t("client_spotlight_text" as any)}
-            </p>
-            <p
-              style={{
-                fontFamily: '"Outfit", Sans-serif',
-                fontSize: "16px",
-                color: "#54595F",
-                lineHeight: 1.7,
-                fontStyle: "italic",
-              }}
-            >
-              {t("client_quote" as any)}
-            </p>
-          </div>
+          {/* Dustin's review - full width below */}
+          <p
+            style={{
+              fontFamily: '"Outfit", Sans-serif',
+              fontSize: "16px",
+              color: "#54595F",
+              lineHeight: 1.7,
+              fontStyle: "italic",
+              maxWidth: "800px",
+              margin: "0 auto",
+              textAlign: "center",
+            }}
+          >
+            {t("client_quote" as any)}
+          </p>
         </div>
-        <style>{`
-          @media (max-width: 768px) {
-            .section-7-grid { grid-template-columns: 1fr !important; }
-          }
-        `}</style>
       </section>
 
       {/* ══════════════════════════════════════════════

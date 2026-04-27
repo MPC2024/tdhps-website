@@ -254,7 +254,7 @@ export default function HomepageContent() {
           position: "relative",
         }}
       >
-        <div style={{ position: "absolute", inset: 0, backgroundColor: "rgba(255, 255, 255, 0.88)" }} />
+        <div style={{ position: "absolute", inset: 0, backgroundColor: "rgba(255, 255, 255, 0.6)" }} />
         <div
           style={{
             maxWidth: "1520px",
@@ -270,8 +270,8 @@ export default function HomepageContent() {
             <div
               key={svc.href}
               style={{
-                backgroundColor: "rgba(255, 255, 255, 0.85)",
-                backdropFilter: "blur(4px)",
+                backgroundColor: "rgba(255, 255, 255, 0.7)",
+                backdropFilter: "blur(6px)",
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",

@@ -755,11 +755,11 @@ export default function HomepageContent() {
           <Image
             src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/lost-pet.png"
             alt="Lost pet"
-            width={500}
-            height={500}
+            width={1000}
+            height={1000}
             style={{ width: "100%", height: "100%", display: "block", objectFit: "contain", objectPosition: "left bottom" }}
-            sizes="(max-width: 480px) 200px, (max-width: 768px) 250px, 500px"
-            quality={80}
+            sizes="(max-width: 480px) 300px, (max-width: 768px) 400px, 700px"
+            quality={95}
           />
         </div>
 

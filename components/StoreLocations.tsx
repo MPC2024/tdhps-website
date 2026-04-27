@@ -47,7 +47,7 @@ export default function StoreLocations() {
     ),
     memorial: (
       <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3464.6081190319214!2d-95.48328939999999!3d29.731108799999994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8640c3d0d3c8853d%3A0x7c6f412fd8196cef!2s5917%20Richmond%20Ave%2C%20Houston%2C%20TX%2077057%2C%20USA!5e0!3m2!1sen!2sph!4v1775807413457!5m2!1sen!2sph"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3463.5!2d-95.4685!3d29.7635!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2s6434%20Washington%20Ave%2C%20Houston%2C%20TX%2077007%2C%20USA!5e0!3m2!1sen!2sus!4v1777326000000!5m2!1sen!2sus"
         title="Google Maps - The Dog House Pet Salon Memorial Park Location"
         width="100%"
         height="300"

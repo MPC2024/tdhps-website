@@ -254,7 +254,7 @@ export default function HomepageContent() {
           position: "relative",
         }}
       >
-        <div style={{ position: "absolute", inset: 0, backgroundColor: "rgba(255, 255, 255, 0.6)" }} />
+        <div style={{ position: "absolute", inset: 0, backgroundColor: "rgba(255, 255, 255, 0.45)" }} />
         <div
           style={{
             maxWidth: "1520px",
@@ -270,7 +270,7 @@ export default function HomepageContent() {
             <div
               key={svc.href}
               style={{
-                backgroundColor: "rgba(255, 255, 255, 0.7)",
+                backgroundColor: "rgba(255, 255, 255, 0.55)",
                 backdropFilter: "blur(6px)",
                 display: "flex",
                 flexDirection: "column",
@@ -665,7 +665,7 @@ export default function HomepageContent() {
         </div>
 
         {/* Background image with grow animation on scroll */}
-        <div className="mpc-bg-image" style={{ position: "absolute", inset: 0, transition: "transform 0.8s ease-out", transformOrigin: "left center" }}>
+        <div style={{ position: "absolute", inset: 0 }}>
           <Image
             src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/vxcvxcv-1.jpg"
             alt="Family with dog"
@@ -695,10 +695,10 @@ export default function HomepageContent() {
           {/* Right-aligned: Text content in dog tag shape */}
           <div style={{ flex: 1, marginLeft: "auto", maxWidth: "500px", textAlign: "center", position: "relative" }}>
             {/* Dog tag hook/ring */}
-            <div style={{ position: "absolute", top: "-20px", right: "60px", zIndex: 2 }}>
-              <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                <circle cx="20" cy="20" r="14" stroke="rgba(150,91,131,0.4)" strokeWidth="4" fill="none" />
-                <circle cx="20" cy="20" r="6" stroke="rgba(150,91,131,0.3)" strokeWidth="2" fill="none" />
+            <div style={{ position: "absolute", top: "-30px", right: "80px", zIndex: 2 }}>
+              <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                <circle cx="30" cy="30" r="22" stroke="#965B83" strokeWidth="5" fill="none" opacity="0.5" />
+                <circle cx="30" cy="30" r="10" stroke="#965B83" strokeWidth="3" fill="none" opacity="0.35" />
               </svg>
             </div>
           <div style={{ backgroundColor: "rgba(255,255,255,0.92)", borderRadius: "50%", padding: "80px 50px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", aspectRatio: "1", boxShadow: "0 4px 30px rgba(0,0,0,0.08)", border: "3px solid rgba(150,91,131,0.15)" }}>
@@ -751,7 +751,7 @@ export default function HomepageContent() {
         </div>
 
         {/* Left: Lost pet image with grow-on-scroll animation */}
-        <div style={{ position: "absolute", bottom: 0, left: 0, top: "60px", zIndex: 1, pointerEvents: "none", width: "clamp(250px, 35vw, 500px)" }}>
+        <div className="mpc-foreground-img" style={{ position: "absolute", bottom: 0, left: 0, top: "60px", zIndex: 1, pointerEvents: "none", width: "clamp(250px, 35vw, 500px)", transition: "transform 0.8s ease-out, width 0.8s ease-out", transformOrigin: "left bottom" }}>
           <Image
             src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/lost-pet.png"
             alt="Lost pet"
@@ -776,11 +776,12 @@ export default function HomepageContent() {
             background-color: #7A4A68 !important;
             transform: translateY(-2px) !important;
           }
-          .mpc-bg-image {
+          .mpc-foreground-img {
             transform: scale(0.85);
           }
-          .mpc-reuniting-section.in-view .mpc-bg-image {
-            transform: scale(1.05);
+          .mpc-reuniting-section.in-view .mpc-foreground-img {
+            transform: scale(1.15);
+            width: clamp(350px, 45vw, 600px) !important;
           }
           @media (max-width: 768px) {
             .mpc-reuniting-section .mpc-lost-pet-img { width: 200px !important; }

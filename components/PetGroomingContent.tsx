@@ -563,17 +563,17 @@ export default function PetGroomingContent() {
           backgroundImage: "url(https://www.thedoghouseps.com/wp-content/uploads/2025/04/brown-cute-dog-scaled.jpg)",
           backgroundSize: "cover",
           backgroundPosition: "center",
-          minHeight: "700px",
+          minHeight: "clamp(400px, 60vh, 700px)",
           display: "flex",
           alignItems: "center",
-          padding: "160px 20px 120px",
+          padding: "clamp(100px, 15vh, 160px) 20px clamp(60px, 10vh, 120px)",
           overflow: "hidden",
         }}
       >
         {/* white overlay */}
         <div style={{ position: "absolute", inset: 0, backgroundColor: "#FFF", opacity: 0.6 }} />
-        <div style={{ maxWidth: "1520px", margin: "0 auto", position: "relative", zIndex: 2 }}>
-          <h1 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "60px", color: "#1F2124", marginBottom: "16px", lineHeight: 1.1 }}>
+        <div style={{ maxWidth: "1520px", width: "100%", margin: "130px auto 50px", padding: "0 20px", position: "relative", zIndex: 2 }}>
+          <h1 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(28px, 5vw, 60px)", color: "#1F2124", marginBottom: "16px", lineHeight: 1.1 }}>
             {t("grooming_pet_grooming")} <span style={{ color: "#965B83" }}>{t("grooming_houston")}</span>
           </h1>
           <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "clamp(16px,2vw,22px)", color: "#1F2124", marginBottom: "32px", maxWidth: "600px" }}>
@@ -581,11 +581,11 @@ export default function PetGroomingContent() {
           </p>
           <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
             <Link href="/appointment-request" className="btn-primary">{t("book_appointment")}</Link>
-            <a href="https://calculator.thedoghouseps.com/" target="_blank" rel="noopener noreferrer" style={{ backgroundColor: "#1fb6b0", borderColor: "#1fb6b0", border: "2px solid #1fb6b0", color: "#fff", padding: "15px 30px", borderRadius: "50px", fontFamily: '"Outfit", sans-serif', fontWeight: 600, fontSize: "18px", display: "inline-flex", alignItems: "center", textDecoration: "none", transition: "all 0.3s" }}>
+            <a href="https://calculator.thedoghouseps.com/" target="_blank" rel="noopener noreferrer" style={{ backgroundColor: "#1fb6b0", borderColor: "#1fb6b0", border: "2px solid #1fb6b0", color: "#fff", padding: "12px clamp(20px, 3vw, 30px)", borderRadius: "50px", fontFamily: '"Outfit", sans-serif', fontWeight: 600, fontSize: "clamp(14px, 1.5vw, 18px)", display: "inline-flex", alignItems: "center", textDecoration: "none", transition: "all 0.3s" }}>
               {t("grooming_price_estimate")}
             </a>
           </div>
-          <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "14px", color: "#1F2124", marginTop: "12px" }}>✅ {t("grooming_no_obligation")}</p>
+          <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "14px", color: "#1F2124", marginTop: "12px" }}>{t("grooming_no_obligation")}</p>
         </div>
         {/* Curved bottom border SVG */}
         <div style={{ position: "absolute", bottom: -1, left: 0, width: "100%", lineHeight: 0, zIndex: 2 }}>

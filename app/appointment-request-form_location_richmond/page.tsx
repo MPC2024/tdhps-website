@@ -30,7 +30,7 @@ export default function AppointmentRequestGalleriaPage() {
           minHeight: "300px",
           display: "flex",
           alignItems: "center",
-          padding: "160px 20px 120px",
+          padding: "clamp(100px, 15vh, 160px) 20px clamp(60px, 10vh, 120px)",
           overflow: "hidden",
         }}
       >
@@ -65,7 +65,7 @@ export default function AppointmentRequestGalleriaPage() {
           <h1
             style={{
               fontFamily: '"Bowlby One SC", sans-serif',
-              fontSize: "60px",
+              fontSize: "clamp(28px, 5vw, 60px)",
               color: "#ffffff",
               marginBottom: "0",
               lineHeight: 1.1,

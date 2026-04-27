@@ -669,10 +669,10 @@ export default function PetBathingContent() {
           backgroundImage: "url(https://www.thedoghouseps.com/wp-content/uploads/2025/04/dog-bathing.jpg)",
           backgroundSize: "cover",
           backgroundPosition: "center",
-          minHeight: "700px",
+          minHeight: "clamp(400px, 60vh, 700px)",
           display: "flex",
           alignItems: "center",
-          padding: "160px 20px 120px",
+          padding: "clamp(100px, 15vh, 160px) 20px clamp(60px, 10vh, 120px)",
         }}
       >
         {/* White overlay with 0.6 opacity */}
@@ -685,8 +685,8 @@ export default function PetBathingContent() {
           </svg>
         </div>
 
-        <div style={{ maxWidth: "1520px", margin: "0 auto", position: "relative", zIndex: 2 }}>
-          <h1 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "60px", color: "#1F2124", marginBottom: "16px", lineHeight: 1.1 }}>
+        <div style={{ maxWidth: "1520px", width: "100%", margin: "130px auto 50px", padding: "0 20px", position: "relative", zIndex: 2 }}>
+          <h1 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(28px, 5vw, 60px)", color: "#1F2124", marginBottom: "16px", lineHeight: 1.1 }}>
             {t("bathing_pet_bathing")} <span style={{ color: "#965B83" }}>{t("bathing_houston")}</span>
           </h1>
           <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "clamp(16px,2vw,22px)", color: "#1F2124", marginBottom: "32px", maxWidth: "600px" }}>
@@ -694,7 +694,7 @@ export default function PetBathingContent() {
           </p>
           <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
             <Link href="/appointment-request" className="btn-primary">{t("book_appointment")}</Link>
-            <a href="https://calculator.thedoghouseps.com/" target="_blank" rel="noopener noreferrer" style={{ backgroundColor: "#1fb6b0", color: "#ffffff", padding: "15px 30px", borderRadius: "50px", fontFamily: '"Outfit", sans-serif', fontWeight: 600, fontSize: "18px", display: "inline-flex", alignItems: "center", textDecoration: "none", transition: "opacity 0.3s ease" }}>
+            <a href="https://calculator.thedoghouseps.com/" target="_blank" rel="noopener noreferrer" style={{ backgroundColor: "#1fb6b0", color: "#ffffff", padding: "12px clamp(20px, 3vw, 30px)", borderRadius: "50px", fontFamily: '"Outfit", sans-serif', fontWeight: 600, fontSize: "18px", display: "inline-flex", alignItems: "center", textDecoration: "none", transition: "opacity 0.3s ease" }}>
               {t("bathing_get_price_estimate")}
             </a>
           </div>
@@ -751,7 +751,7 @@ export default function PetBathingContent() {
         {/* White overlay */}
         <div style={{ position: "absolute", inset: 0, backgroundColor: "rgba(255,255,255,0.2)" }} />
 
-        <div style={{ maxWidth: "1520px", margin: "0 auto", position: "relative", zIndex: 2, display: "flex", justifyContent: "flex-start" }}>
+        <div style={{ maxWidth: "1520px", width: "100%", margin: "0 auto", position: "relative", zIndex: 2, display: "flex", justifyContent: "flex-start" }}>
           <div
             style={{
               backgroundColor: "rgba(255,255,255,0.85)",
@@ -946,7 +946,7 @@ export default function PetBathingContent() {
                 display: "inline-block",
                 backgroundColor: "#965B83",
                 color: "#fff",
-                padding: "15px 30px",
+                padding: "12px clamp(20px, 3vw, 30px)",
                 borderRadius: "50px",
                 fontFamily: '"Outfit", sans-serif',
                 fontWeight: 600,
@@ -961,7 +961,7 @@ export default function PetBathingContent() {
       </section>
 
       {/* ── Pet Bathing Info Cards ── */}
-      <section style={{ position: "relative", backgroundColor: "#965B83", padding: "160px 20px 120px" }}>
+      <section style={{ position: "relative", backgroundColor: "#965B83", padding: "clamp(100px, 15vh, 160px) 20px clamp(60px, 10vh, 120px)" }}>
         <div style={{ maxWidth: "1520px", margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(400px, 1fr))", gap: "40px" }}>
           {/* Left Column — What Is Pet Bathing */}
           <div style={{ borderRadius: "16px", overflow: "hidden" }}>
@@ -1088,7 +1088,7 @@ export default function PetBathingContent() {
         position: "relative",
       }}>
         <div style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, backgroundColor: "#FFF", opacity: 0.7, zIndex: 1 }} />
-        <div style={{ maxWidth: "1520px", margin: "0 auto", position: "relative", zIndex: 2 }}>
+        <div style={{ maxWidth: "1520px", width: "100%", margin: "0 auto", position: "relative", zIndex: 2 }}>
           <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(26px,3vw,40px)", color: "#000", textAlign: "center", marginBottom: "50px" }}>
             {t("bathing_locations_heading")}
           </h2>
@@ -1219,7 +1219,7 @@ export default function PetBathingContent() {
             <path fill="#ffffff" d="M500,97C126.7,96.3,0.8,19.8,0,0v100l1000,0V1C1000,19.4,873.3,97.8,500,97z" />
           </svg>
         </div>
-        <div style={{ maxWidth: "1520px", margin: "0 auto", position: "relative", zIndex: 2 }}>
+        <div style={{ maxWidth: "1520px", width: "100%", margin: "0 auto", position: "relative", zIndex: 2 }}>
           <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "50px", color: "#FFF", textAlign: "center", marginBottom: "12px" }}>
             {t("bathing_discover_expert")}
           </h2>

@@ -41,15 +41,15 @@ export default function MemorialParkLocationPage() {
           backgroundImage: "url(https://www.thedoghouseps.com/wp-content/uploads/2025/04/Washington.jpeg)",
           backgroundSize: "cover",
           backgroundPosition: "center",
-          minHeight: "700px",
+          minHeight: "clamp(400px, 60vh, 700px)",
           display: "flex",
           alignItems: "center",
-          padding: "160px 20px 120px",
+          padding: "clamp(100px, 15vh, 160px) 20px clamp(60px, 10vh, 120px)",
           overflow: "hidden",
         }}
       >
         <div style={{ position: "absolute", inset: 0, backgroundColor: "#ffffff", opacity: 0.6 }} />
-        <div style={{ maxWidth: "1520px", margin: "0 auto", position: "relative", zIndex: 2 }}>
+        <div style={{ maxWidth: "1520px", margin: "130px auto 50px", padding: "0 20px", position: "relative", zIndex: 2 }}>
           <MemorialParkLocationContent />
         </div>
         <div style={{ position: "absolute", bottom: -1, left: 0, width: "100%", lineHeight: 0, zIndex: 2 }}>

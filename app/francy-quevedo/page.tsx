@@ -56,16 +56,16 @@ export default function FrancyQuevedoPage() {
           backgroundImage: "url(https://www.thedoghouseps.com/wp-content/uploads/2025/04/washing-pet-dog-home.jpg.webp)",
           backgroundSize: "cover",
           backgroundPosition: "center",
-          minHeight: "700px",
+          minHeight: "clamp(400px, 60vh, 700px)",
           display: "flex",
           alignItems: "center",
-          padding: "160px 20px 120px",
+          padding: "clamp(100px, 15vh, 160px) 20px clamp(60px, 10vh, 120px)",
           overflow: "hidden",
         }}
       >
         {/* White overlay */}
         <div style={{ position: "absolute", inset: 0, backgroundColor: "#FFF", opacity: 0.6 }} />
-        <div style={{ maxWidth: "1520px", margin: "0 auto", position: "relative", zIndex: 2 }}>
+        <div style={{ maxWidth: "1520px", margin: "130px auto 50px", padding: "0 20px", position: "relative", zIndex: 2 }}>
           <p
             style={{
               fontFamily: '"Bowlby One SC", sans-serif',
@@ -81,7 +81,7 @@ export default function FrancyQuevedoPage() {
           <h1
             style={{
               fontFamily: '"Bowlby One SC", sans-serif',
-              fontSize: "60px",
+              fontSize: "clamp(28px, 5vw, 60px)",
               color: "#1F2124",
               lineHeight: 1.1,
               marginBottom: "8px",
@@ -340,7 +340,7 @@ export default function FrancyQuevedoPage() {
         position: "relative",
       }}>
         <div style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, backgroundColor: "#FFF", opacity: 0.7, zIndex: 1 }} />
-        <div style={{ maxWidth: "1520px", margin: "0 auto", position: "relative", zIndex: 2 }}>
+        <div style={{ maxWidth: "1520px", width: "100%", margin: "0 auto", position: "relative", zIndex: 2 }}>
           <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(26px,3vw,40px)", color: "#000", textAlign: "center", marginBottom: "50px" }}>
             {t("you_can_find_us")}
           </h2>

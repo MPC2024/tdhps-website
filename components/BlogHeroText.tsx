@@ -15,7 +15,7 @@ export default function BlogHeroText({ postCount = 0 }: BlogHeroTextProps) {
       <h1
         style={{
           fontFamily: '"Bowlby One SC", sans-serif',
-          fontSize: "60px",
+          fontSize: "clamp(28px, 5vw, 60px)",
           color: "#000000",
           lineHeight: 1.1,
         }}

@@ -35,9 +35,27 @@ export default function DiscountsPage() {
   return (
     <div className={styles.container}>
       {/* Hero Section */}
-      <section className={styles.hero}>
-        <div className={styles.heroContent}>
+      <section
+        style={{
+          position: "relative",
+          backgroundImage: "url(https://www.thedoghouseps.com/wp-content/uploads/2025/03/1_image-17.png)",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          minHeight: "clamp(400px, 60vh, 700px)",
+          display: "flex",
+          alignItems: "center",
+          padding: "clamp(100px, 15vh, 160px) 20px clamp(60px, 10vh, 120px)",
+          overflow: "hidden",
+        }}
+      >
+        <div style={{ position: "absolute", inset: 0, backgroundColor: "#FFF", opacity: 0.6 }} />
+        <div style={{ maxWidth: "1520px", width: "100%", margin: "130px auto 50px", padding: "0 20px", position: "relative", zIndex: 2 }}>
           <DiscountsHeroText />
+        </div>
+        <div style={{ position: "absolute", bottom: -1, left: 0, width: "100%", lineHeight: 0, zIndex: 2 }}>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none" style={{ display: "block", width: "100%", height: "60px" }}>
+            <path fill="#ffffff" d="M500,97C126.7,96.3,0.8,19.8,0,0v100l1000,0V1C1000,19.4,873.3,97.8,500,97z" />
+          </svg>
         </div>
       </section>
 

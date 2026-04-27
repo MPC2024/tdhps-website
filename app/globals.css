@@ -6,7 +6,13 @@
    ============================================================ */
 
 @theme {
-  /* ── Brand Colors ── */
+  /* ════════════════════════════════════════════════════════════
+     LAYER 1: FOUNDATION (Raw Design Tokens)
+     Primitive values: colors, typographies, spacings
+     These never change, even with dark mode or themes.
+     ════════════════════════════════════════════════════════════ */
+
+  /* ── Brand Colors (Raw) ── */
   --color-primary:        #965B83;
   --color-primary-light:  #B07AA0;
   --color-primary-dark:   #7A4A6B;
@@ -20,13 +26,13 @@
   --color-gray-light:     #D4D7DC;
   --color-off-white:      #F8F8F8;
 
-  /* ── Typography ── */
+  /* ── Typography Stack (Raw) ── */
   --font-display:   "Bowlby One SC", sans-serif;
   --font-body:      "Outfit", sans-serif;
   --font-sans:      "Roboto", sans-serif;
   --font-serif:     "Roboto Slab", serif;
 
-  /* ── Font Sizes ── */
+  /* ── Font Sizes (Raw) ── */
   --font-size-xs:   13px;
   --font-size-sm:   15px;
   --font-size-base: 16px;
@@ -45,9 +51,60 @@
   --radius-btn:  50px;
   --radius-card: 12px;
 
-  /* ── Shadows ── */
+  /* ── Shadows (Elevation Hierarchy) ── */
+  /* Single light source: top-left directional light */
+  /* Layer 1: Ground/Subtle (used for cards at rest) */
   --shadow-card:  6px 6px 9px rgba(0,0,0,.2);
+  /* Layer 2: Floating (used for modals, hovered cards) */
   --shadow-deep:  12px 12px 50px rgba(0,0,0,.4);
+  /* Layer 3: Lifted/Interactive (hover state elevation) */
+  --shadow-hover: 4px 4px 12px rgba(0,0,0,.15);
+
+  /* ────────────────────────────────────────────────────────────
+     LAYER 2: SEMANTIC (Role-Based Variables)
+     These map Foundation tokens to semantic meaning.
+     Example: --color-button-primary uses --color-primary
+     Enables easy dark mode: override semantic vars without touching foundation
+     ──────────────────────────────────────────────────────────── */
+
+  /* ── Text Color System ── */
+  --color-text-primary:    #1F2124;    /* Primary text, body copy */
+  --color-text-secondary:  #54595F;    /* Secondary text, muted */
+  --color-text-tertiary:   #A0A3A8;    /* Tertiary text, captions */
+  --color-text-inverse:    #ffffff;    /* Text on dark backgrounds */
+
+  /* ── Background System ── */
+  --color-bg-primary:      #ffffff;    /* Page background */
+  --color-bg-secondary:    #F8F8F8;    /* Card/section background */
+  --color-bg-elevated:     #ffffff;    /* Modal/popover background */
+
+  /* ── Interactive Color System ── */
+  --color-button-primary-bg:     #965B83;    /* Primary CTA button */
+  --color-button-primary-hover:  #7A4A6B;    /* Primary button hover */
+  --color-button-secondary-border: #ffffff;  /* Secondary button outline */
+
+  /* ── Feedback System ── */
+  --color-error:    #DC3545;   /* Error states, validation */
+  --color-success:  #28A745;   /* Success states, confirmations */
+  --color-warning:  #FFC107;   /* Warning states */
+  --color-info:     #17A2B8;   /* Info states */
+
+  /* ── Border System ── */
+  --color-border-light:  #D4D7DC;  /* Subtle borders */
+  --color-border-medium: #A0A3A8;  /* Standard borders */
+
+  /* ── Shadow System (Semantic) ── */
+  --shadow-small:   var(--shadow-hover);  /* Subtle elevation */
+  --shadow-medium:  var(--shadow-card);   /* Standard card elevation */
+  --shadow-large:   var(--shadow-deep);   /* Deep/modal elevation */
+
+  /* ────────────────────────────────────────────────────────────
+     LAYER 3: COMPONENT (Component-Specific Variables)
+     These are scoped to specific UI components.
+     Example: .btn-primary uses --color-button-primary-bg
+     ──────────────────────────────────────────────────────────── */
+
+  /* (Component layer tokens are set in @layer components below) */
 }
 
 /* ── Base Styles ── */
@@ -59,6 +116,20 @@
   html {
     scroll-behavior: smooth;
     overflow-x: hidden;
+  }
+
+  /* ── Accessibility: Respect prefers-reduced-motion ── */
+  /* Training: Sarah Drasner - Animation principles require respecting user motion preferences */
+  /* If user has enabled "Reduce Motion" in OS settings, disable animations */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 
   body {
@@ -170,27 +241,40 @@
     padding-inline: 1.25rem;
   }
 
+  /* Training: Lea Verou (CSS Custom Properties) + Sarah Drasner (Animation)
+     Using semantic layer-2 variables and cubic-bezier easing for responsive feel */
+
   .btn-primary {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background-color: #965B83;
-    color: #ffffff;
-    font-family: "Outfit", sans-serif;
+    background-color: var(--color-button-primary-bg);
+    color: var(--color-text-inverse);
+    font-family: var(--font-body);
     font-size: 18px;
     font-weight: 600;
     padding: 15px 30px;
-    border-radius: 50px;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    border-radius: var(--radius-btn);
+    /* Easing: ease-out (decelerate) on enter, makes interaction feel responsive */
+    transition: background-color 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+                transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1),
+                box-shadow 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
     cursor: pointer;
     border: none;
     text-decoration: none;
     white-space: nowrap;
+    box-shadow: var(--shadow-small);
   }
 
   .btn-primary:hover {
-    background-color: #7A4A6B;
-    transform: translateY(-1px);
+    background-color: var(--color-button-primary-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-medium);
+  }
+
+  .btn-primary:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
   }
 
   .btn-secondary {
@@ -198,22 +282,28 @@
     align-items: center;
     justify-content: center;
     background-color: transparent;
-    color: #ffffff;
-    font-family: "Outfit", sans-serif;
+    color: var(--color-text-inverse);
+    font-family: var(--font-body);
     font-size: 18px;
     font-weight: 600;
     padding: 13px 28px;
-    border-radius: 50px;
-    border: 2px solid #ffffff;
-    transition: all 0.3s ease;
+    border-radius: var(--radius-btn);
+    border: 2px solid var(--color-button-secondary-border);
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
     cursor: pointer;
     text-decoration: none;
     white-space: nowrap;
   }
 
   .btn-secondary:hover {
-    background-color: #ffffff;
-    color: #965B83;
+    background-color: var(--color-text-inverse);
+    color: var(--color-button-primary-bg);
+    box-shadow: var(--shadow-medium);
+  }
+
+  .btn-secondary:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
   }
 }
 

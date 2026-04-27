@@ -236,7 +236,7 @@ function OurPromiseSection() {
     >
       {/* White overlay */}
       <div style={{ position: "absolute", inset: 0, backgroundColor: "rgba(255,255,255,0.2)" }} />
-      <div style={{ maxWidth: "1520px", margin: "0 auto", width: "100%", position: "relative", zIndex: 2 }}>
+      <div style={{ maxWidth: "1520px", margin: "130px auto 50px", width: "100%", padding: "0 20px", position: "relative", zIndex: 2 }}>
         <div style={{ backgroundColor: "rgba(255,255,255,0.85)", borderRadius: "16px", padding: "48px", width: "850px", maxWidth: "100%", boxShadow: "6px 6px 20px rgba(0,0,0,0.08)" }}>
           <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(26px,3vw,40px)", color: "#1F2124", marginBottom: "32px" }}>
             {t("school_promise_title")}
@@ -1639,10 +1639,10 @@ export default function GroomingSchoolClient() {
           backgroundSize: "cover",
           backgroundPosition: "center center",
           backgroundRepeat: "no-repeat",
-          minHeight: "700px",
+          minHeight: "clamp(400px, 60vh, 700px)",
           display: "flex",
           alignItems: "center",
-          padding: "160px 20px 120px",
+          padding: "clamp(100px, 15vh, 160px) 20px clamp(60px, 10vh, 120px)",
           overflow: "hidden",
         }}
       >
@@ -1655,14 +1655,14 @@ export default function GroomingSchoolClient() {
           </svg>
         </div>
         {/* Content — dark text since white overlay */}
-        <div style={{ maxWidth: "1520px", margin: "0 auto", position: "relative", zIndex: 3 }}>
-          <h1 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "60px", color: "#1F2124", marginBottom: "16px", lineHeight: 1.1 }}>
+        <div style={{ maxWidth: "1520px", margin: "0 auto", padding: "0 20px", position: "relative", zIndex: 3 }}>
+          <h1 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(28px, 5vw, 60px)", color: "#1F2124", marginBottom: "16px", lineHeight: 1.1 }}>
             {t("school_hero_title")} <span style={{ color: "#965B83" }}>{t("school_hero_highlight")}</span>
           </h1>
           <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "clamp(16px,2vw,22px)", color: "#1F2124", marginBottom: "32px", maxWidth: "600px" }}>
             {t("school_hero_subtitle")}
           </p>
-          <a href="#programs" style={{ backgroundColor: "#965B83", color: "#ffffff", padding: "15px 30px", borderRadius: "50px", fontFamily: '"Outfit", sans-serif', fontWeight: 700, fontSize: "18px", display: "inline-block", textDecoration: "none" }}>
+          <a href="#programs" style={{ backgroundColor: "#965B83", color: "#ffffff", padding: "12px clamp(20px, 3vw, 30px)", borderRadius: "50px", fontFamily: '"Outfit", sans-serif', fontWeight: 700, fontSize: "18px", display: "inline-block", textDecoration: "none" }}>
             {t("school_view_programs")}
           </a>
         </div>
@@ -1680,7 +1680,7 @@ export default function GroomingSchoolClient() {
               <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", marginBottom: "24px", lineHeight: 1.7 }}>
                 {t("school_professional_desc")}
               </p>
-              <a href="#programs" style={{ backgroundColor: "#965B83", color: "#ffffff", padding: "15px 30px", borderRadius: "50px", fontFamily: '"Outfit", sans-serif', fontWeight: 700, fontSize: "18px", display: "inline-block", textDecoration: "none" }}>
+              <a href="#programs" style={{ backgroundColor: "#965B83", color: "#ffffff", padding: "12px clamp(20px, 3vw, 30px)", borderRadius: "50px", fontFamily: '"Outfit", sans-serif', fontWeight: 700, fontSize: "18px", display: "inline-block", textDecoration: "none" }}>
                 {t("school_explore_programs")}
               </a>
             </div>
@@ -1850,7 +1850,7 @@ export default function GroomingSchoolClient() {
           zIndex: 1,
         }} />
 
-        <div style={{ maxWidth: "1520px", margin: "0 auto", position: "relative", zIndex: 2 }}>
+        <div style={{ maxWidth: "1520px", width: "100%", margin: "0 auto", position: "relative", zIndex: 2 }}>
           <h2 style={{
             fontFamily: '"Bowlby One SC", sans-serif',
             fontSize: "clamp(26px,3vw,40px)",
@@ -2265,7 +2265,7 @@ export default function GroomingSchoolClient() {
                 display: "inline-block",
                 backgroundColor: "#965B83",
                 color: "#fff",
-                padding: "15px 30px",
+                padding: "12px clamp(20px, 3vw, 30px)",
                 borderRadius: "50px",
                 fontFamily: '"Outfit", sans-serif',
                 fontWeight: 600,
@@ -2286,7 +2286,7 @@ export default function GroomingSchoolClient() {
             <path fill="#ffffff" d="M500,97C126.7,96.3,0.8,19.8,0,0v100l1000,0V1C1000,19.4,873.3,97.8,500,97z" />
           </svg>
         </div>
-        <div style={{ maxWidth: "1520px", margin: "0 auto", position: "relative", zIndex: 2 }}>
+        <div style={{ maxWidth: "1520px", width: "100%", margin: "0 auto", position: "relative", zIndex: 2 }}>
           <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "50px", color: "#FFF", textAlign: "center", marginBottom: "12px" }}>
             {t("school_blog_title")}
           </h2>

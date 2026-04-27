@@ -303,16 +303,16 @@ export default function PrivacyPolicyPage() {
           backgroundImage: "url(https://www.thedoghouseps.com/wp-content/uploads/2025/03/1_image-14.png)",
           backgroundSize: "cover",
           backgroundPosition: "center",
-          minHeight: "700px",
+          minHeight: "clamp(400px, 60vh, 700px)",
           display: "flex",
           alignItems: "center",
-          padding: "160px 20px 120px",
+          padding: "clamp(100px, 15vh, 160px) 20px clamp(60px, 10vh, 120px)",
           overflow: "hidden",
         }}
       >
         {/* White overlay */}
         <div style={{ position: "absolute", inset: 0, backgroundColor: "#FFF", opacity: 0.6 }} />
-        <div style={{ maxWidth: "1520px", margin: "0 auto", position: "relative", zIndex: 2 }}>
+        <div style={{ maxWidth: "1520px", margin: "130px auto 50px", padding: "0 20px", position: "relative", zIndex: 2 }}>
           <PrivacyPolicyHeroText />
         </div>
         {/* Curved bottom border */}

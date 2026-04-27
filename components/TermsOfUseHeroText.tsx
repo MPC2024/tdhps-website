@@ -9,7 +9,7 @@ export default function TermsOfUseHeroText() {
       <h1
         style={{
           fontFamily: '"Bowlby One SC", sans-serif',
-          fontSize: "60px",
+          fontSize: "clamp(28px, 5vw, 60px)",
           color: "#ffffff",
           marginBottom: "16px",
           lineHeight: 1.1,

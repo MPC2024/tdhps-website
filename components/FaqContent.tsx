@@ -194,10 +194,10 @@ export default function FaqContent() {
           backgroundSize: "cover",
           backgroundPosition: "center center",
           backgroundRepeat: "no-repeat",
-          minHeight: "700px",
+          minHeight: "clamp(400px, 60vh, 700px)",
           display: "flex",
           alignItems: "center",
-          padding: "160px 20px 120px",
+          padding: "clamp(100px, 15vh, 160px) 20px clamp(60px, 10vh, 120px)",
           overflow: "hidden",
         }}
       >
@@ -224,12 +224,12 @@ export default function FaqContent() {
           </svg>
         </div>
         <div
-          style={{ maxWidth: "1520px", margin: "0 auto", position: "relative", zIndex: 3 }}
+          style={{ maxWidth: "1520px", margin: "130px auto 50px", padding: "0 20px", position: "relative", zIndex: 3 }}
         >
           <h1
             style={{
               fontFamily: '"Bowlby One SC", sans-serif',
-              fontSize: "60px",
+              fontSize: "clamp(28px, 5vw, 60px)",
               color: "#1F2124",
               marginBottom: "16px",
               lineHeight: 1.1,

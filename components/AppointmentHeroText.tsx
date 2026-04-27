@@ -9,7 +9,7 @@ export default function AppointmentHeroText() {
       <h1
         style={{
           fontFamily: '"Bowlby One SC", sans-serif',
-          fontSize: "60px",
+          fontSize: "clamp(28px, 5vw, 60px)",
           color: "#1F2124",
           marginBottom: "12px",
           lineHeight: 1.1,

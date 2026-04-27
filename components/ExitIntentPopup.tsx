@@ -88,25 +88,37 @@ export default function ExitIntentPopup() {
       >
         {/* Modal Card */}
         <div style={{ backgroundColor: "#ffffff", borderRadius: "12px", boxShadow: "0 25px 50px rgba(0,0,0,0.25)", overflow: "hidden", position: "relative" }}>
-          {/* Close Button */}
+          {/* Close Button
+              Training: Steve Schoger (Refactoring UI) — Close button affordance
+              Dark color (#4B5563) provides better contrast than light gray (#9CA3AF)
+              Hover state (background) provides visual feedback
+          */}
           <button
             onClick={handleClose}
             aria-label="Close popup"
             style={{
               position: "absolute",
-              top: "12px",
-              right: "12px",
+              top: "16px",
+              right: "16px",
               width: "32px",
               height: "32px",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              background: "none",
+              background: "transparent",
               border: "none",
               cursor: "pointer",
               fontSize: "24px",
-              color: "#9CA3AF",
+              color: "#4B5563",
               zIndex: 10,
+              transition: "background-color 0.2s cubic-bezier(0.34, 1.56, 0.64, 1)",
+              borderRadius: "4px",
+            }}
+            onMouseEnter={(e) => {
+              (e.currentTarget as HTMLButtonElement).style.backgroundColor = "rgba(0,0,0,0.08)";
+            }}
+            onMouseLeave={(e) => {
+              (e.currentTarget as HTMLButtonElement).style.backgroundColor = "transparent";
             }}
           >
             &times;
@@ -122,6 +134,12 @@ export default function ExitIntentPopup() {
               Book your first grooming appointment today and get 10% off
             </p>
 
+            {/* Primary CTA Button
+                Training: Steve Schoger (Refactoring UI) + Sarah Drasner (Animation)
+                - Padding on 8px grid (16px instead of 14px)
+                - Easing: cubic-bezier for responsive feel
+                - Add shadow for elevation hierarchy
+            */}
             <Link
               href="/appointment-request"
               onClick={handleClose}
@@ -133,29 +151,55 @@ export default function ExitIntentPopup() {
                 fontFamily: '"Outfit", sans-serif',
                 fontWeight: 600,
                 fontSize: "16px",
-                padding: "14px 16px",
+                padding: "16px 24px",
                 borderRadius: "8px",
                 textAlign: "center",
                 textDecoration: "none",
-                marginBottom: "12px",
+                marginBottom: "16px",
+                transition: "background-color 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s cubic-bezier(0.34, 1.56, 0.64, 1)",
+                boxShadow: "0 4px 6px rgba(0,0,0,0.1)",
+              }}
+              onMouseEnter={(e) => {
+                const el = e.currentTarget as HTMLAnchorElement;
+                el.style.backgroundColor = "#7A4A6B";
+                el.style.boxShadow = "0 6px 12px rgba(0,0,0,0.15)";
+              }}
+              onMouseLeave={(e) => {
+                const el = e.currentTarget as HTMLAnchorElement;
+                el.style.backgroundColor = "#965B83";
+                el.style.boxShadow = "0 4px 6px rgba(0,0,0,0.1)";
               }}
             >
               Claim My 10% Off
             </Link>
 
+            {/* Secondary Button
+                Training: Steve Schoger — Secondary options need affordance
+                Added border for clarity (distinguishes from plain text)
+            */}
             <button
               onClick={handleClose}
               style={{
                 display: "block",
                 width: "100%",
                 textAlign: "center",
-                background: "none",
-                border: "none",
+                background: "transparent",
+                border: "1px solid #E5E7EB",
                 cursor: "pointer",
                 fontFamily: '"Outfit", sans-serif',
                 fontSize: "14px",
                 color: "#6B7280",
-                padding: "8px",
+                padding: "12px 16px",
+                borderRadius: "6px",
+                transition: "all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1)",
+              }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLButtonElement).style.borderColor = "#D1D5DB";
+                (e.currentTarget as HTMLButtonElement).style.backgroundColor = "#F9FAFB";
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLButtonElement).style.borderColor = "#E5E7EB";
+                (e.currentTarget as HTMLButtonElement).style.backgroundColor = "transparent";
               }}
             >
               No thanks, I&apos;ll pay full price
@@ -165,9 +209,33 @@ export default function ExitIntentPopup() {
       </div>
 
       <style>{`
+        /* Training: Sarah Drasner (Animation Principles)
+           Entrance animation: ease-out (decelerate) makes interaction feel responsive.
+           Animation includes fade + scale + subtle translateY for 3D drop-in effect.
+        */
         @keyframes exitPopupFadeIn {
-          from { opacity: 0; transform: translate(-50%, -50%) scale(0.95); }
-          to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+          from {
+            opacity: 0;
+            transform: translate(-50%, -45%) scale(0.95);
+          }
+          to {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+          }
+        }
+
+        /* Respect user's motion preferences (Accessibility)
+           If user has enabled "Reduce Motion" in OS settings, disable animations.
+        */
+        @media (prefers-reduced-motion: reduce) {
+          @keyframes exitPopupFadeIn {
+            from {
+              opacity: 0;
+            }
+            to {
+              opacity: 1;
+            }
+          }
         }
       `}</style>
     </>

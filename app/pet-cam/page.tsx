@@ -103,7 +103,7 @@ export default function PetCamPage() {
         }}
       >
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg, #7A4A6B 0%, #965B83 50%, #B07AA0 100%)" }} />
-        <div style={{ maxWidth: "1520px", margin: "0 auto", position: "relative", zIndex: 2 }}>
+        <div style={{ maxWidth: "1520px", margin: "130px auto 50px", padding: "0 20px", position: "relative", zIndex: 2 }}>
           <PetCamHeroText />
           <div style={{ marginTop: "32px" }}>
             <Link href="/appointment-request" style={{ backgroundColor: "#ffffff", color: "#965B83", padding: "15px 30px", borderRadius: "50px", fontFamily: '"Outfit", sans-serif', fontWeight: 700, fontSize: "18px", display: "inline-block", textDecoration: "none" }}>

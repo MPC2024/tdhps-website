@@ -107,7 +107,28 @@ export default function HomepageContent() {
       {/* ══════════════════════════════════════════════
           SECTION 2: About / Intro
       ══════════════════════════════════════════════ */}
-      <section style={{ ...sectionPadding, backgroundColor: "#ffffff", position: "relative" }}>
+      <section style={{ ...sectionPadding, backgroundColor: "#ffffff", position: "relative", overflow: "hidden" }}>
+        {/* Decorative pawprints top-right */}
+        <div style={{ position: "absolute", top: "20px", right: "40px", opacity: 0.12, pointerEvents: "none" }} className="hidden md:block">
+          <svg width="120" height="160" viewBox="0 0 120 160" fill="none">
+            {/* First pawprint - top right */}
+            <g transform="translate(50, 0) rotate(25)">
+              <ellipse cx="15" cy="8" rx="8" ry="10" fill="#965B83"/>
+              <ellipse cx="35" cy="4" rx="7" ry="9" fill="#965B83"/>
+              <ellipse cx="50" cy="14" rx="6" ry="8" fill="#965B83"/>
+              <ellipse cx="4" cy="18" rx="6" ry="8" fill="#965B83"/>
+              <ellipse cx="27" cy="30" rx="16" ry="13" fill="#965B83"/>
+            </g>
+            {/* Second pawprint - below left */}
+            <g transform="translate(0, 80) rotate(15)">
+              <ellipse cx="15" cy="8" rx="8" ry="10" fill="#965B83"/>
+              <ellipse cx="35" cy="4" rx="7" ry="9" fill="#965B83"/>
+              <ellipse cx="50" cy="14" rx="6" ry="8" fill="#965B83"/>
+              <ellipse cx="4" cy="18" rx="6" ry="8" fill="#965B83"/>
+              <ellipse cx="27" cy="30" rx="16" ry="13" fill="#965B83"/>
+            </g>
+          </svg>
+        </div>
         {/* Decorative image top-left (desktop only) */}
         <div
           style={{

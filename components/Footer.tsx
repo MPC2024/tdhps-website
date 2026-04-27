@@ -464,7 +464,7 @@ export default function Footer() {
             </div>
 
             {/* After Hours Phone */}
-            <div className="flex items-center gap-3 ml-7 mb-6">
+            <div className="flex items-center gap-3 mb-6" style={{ paddingLeft: "30px" }}
               <span style={textStyle}>After Hours: <a href="tel:+17139666350" className="transition-colors hover:opacity-80">(713) 966-6350</a></span>
             </div>
 
@@ -475,7 +475,7 @@ export default function Footer() {
                 <i className="fa-solid fa-location-dot" style={{ color: "#FFF", fontSize: "18px" }} />
                 <span style={textStyle}>5917 Richmond Ave</span>
               </div>
-              <div className="flex items-center gap-3 ml-7">
+              <div className="flex items-center gap-3">
                 <i className="fa-solid fa-envelope" style={{ color: "#FFF", fontSize: "18px" }} />
                 <a href="mailto:galleria@thedoghouseps.com" className="transition-colors hover:opacity-80" style={textStyle}>
                   galleria@thedoghouseps.com
@@ -490,7 +490,7 @@ export default function Footer() {
                 <i className="fa-solid fa-location-dot" style={{ color: "#FFF", fontSize: "18px" }} />
                 <span style={textStyle}>6434 Washington Ave</span>
               </div>
-              <div className="flex items-center gap-3 ml-7">
+              <div className="flex items-center gap-3">
                 <i className="fa-solid fa-envelope" style={{ color: "#FFF", fontSize: "18px" }} />
                 <a href="mailto:memorial@thedoghouseps.com" className="transition-colors hover:opacity-80" style={textStyle}>
                   memorial@thedoghouseps.com
@@ -505,7 +505,7 @@ export default function Footer() {
                 <i className="fa-solid fa-location-dot" style={{ color: "#FFF", fontSize: "18px" }} />
                 <span style={textStyle}>2810 Business Center Dr. #126</span>
               </div>
-              <div className="flex items-center gap-3 ml-7">
+              <div className="flex items-center gap-3">
                 <i className="fa-solid fa-envelope" style={{ color: "#FFF", fontSize: "18px" }} />
                 <a href="mailto:pearland@thedoghouseps.com" className="transition-colors hover:opacity-80" style={textStyle}>
                   pearland@thedoghouseps.com

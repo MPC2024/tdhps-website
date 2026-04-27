@@ -420,30 +420,26 @@ export default function HomepageContent() {
                   {t(step.titleKey as any)}
                 </h2>
                 <div style={{ fontFamily: '"Outfit", Sans-serif', fontSize: "15px", color: "#54595F", lineHeight: 1.7 }}>
-                  {i === 1 && expandedCard !== 1 ? (
-                    <>
-                      <p style={{ margin: 0 }}>
-                        {(t(step.descKey as any) as string).slice(0, 200)}...{" "}
-                        <button
-                          onClick={() => setExpandedCard(1)}
-                          style={{ background: "none", border: "none", color: "#965B83", fontWeight: 600, cursor: "pointer", fontFamily: '"Outfit", Sans-serif', fontSize: "15px", padding: 0 }}
-                        >
-                          read more
-                        </button>
-                      </p>
-                    </>
-                  ) : i === 1 && expandedCard === 1 ? (
-                    <>
-                      <p style={{ margin: 0 }}>
-                        {t(step.descKey as any)}{" "}
-                        <button
-                          onClick={() => setExpandedCard(null)}
-                          style={{ background: "none", border: "none", color: "#965B83", fontWeight: 600, cursor: "pointer", fontFamily: '"Outfit", Sans-serif', fontSize: "15px", padding: 0 }}
-                        >
-                          show less
-                        </button>
-                      </p>
-                    </>
+                  {(i === 1 || i === 2) && expandedCard !== i ? (
+                    <p style={{ margin: 0 }}>
+                      {(t(step.descKey as any) as string).slice(0, 200)}...{" "}
+                      <button
+                        onClick={() => setExpandedCard(i)}
+                        style={{ background: "none", border: "none", color: "#965B83", fontWeight: 600, cursor: "pointer", fontFamily: '"Outfit", Sans-serif', fontSize: "15px", padding: 0 }}
+                      >
+                        read more
+                      </button>
+                    </p>
+                  ) : (i === 1 || i === 2) && expandedCard === i ? (
+                    <p style={{ margin: 0 }}>
+                      {t(step.descKey as any)}{" "}
+                      <button
+                        onClick={() => setExpandedCard(null)}
+                        style={{ background: "none", border: "none", color: "#965B83", fontWeight: 600, cursor: "pointer", fontFamily: '"Outfit", Sans-serif', fontSize: "15px", padding: 0 }}
+                      >
+                        show less
+                      </button>
+                    </p>
                   ) : (
                     <p style={{ margin: 0 }}>{t(step.descKey as any)}</p>
                   )}

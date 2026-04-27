@@ -65,7 +65,7 @@ export const translations = {
     step2_title: "Upload Dog's Vaccination Records",
     step2_desc: "Our top priority is the health and safety of all pets in our care. To ensure this, we require all pet owners to provide up-to-date vaccination records for their dogs. You can provide these records in the most convenient way for you. Email them to us, upload them through our website, or bring them in person. Please ensure that the records include all necessary details, such as the vaccine product name, manufacturer, lot number, product expiration date, date of rabies vaccination, and the date the next vaccination is due.",
     step3_title: "Bring Your Dog to Safe Haven",
-    step3_desc: "Once the evaluation is complete and we have your pet's vaccination records, your furry friend is ready to join our playgroup! At The Dog House Pet Salon, we strive to create a safe, stimulating environment where your pet can socialize and make new friends.",
+    step3_desc: "Once the evaluation is complete and we have your pet's vaccination records, your furry friend is ready to join our playgroup! At The Dog House Pet Salon, we strive to create a safe, stimulating environment where your pet can socialize and make new friends. Our trained professionals are always on hand to supervise and ensure that every pet feels comfortable and has a great time.",
 
     // Homepage - Pricing & Features
     pricing_heading: "A Welcoming Community for Your Pup",
@@ -1376,7 +1376,7 @@ export const translations = {
     step2_title: "Carga los Registros de Vacunación del Perro",
     step2_desc: "Nuestra máxima prioridad es la salud y seguridad de todas las mascotas bajo nuestro cuidado. Para asegurar esto, requerimos que todos los dueños de mascotas proporcionen registros de vacunación actualizados para sus perros. Puedes proporcionar estos registros de la manera más conveniente para ti. Envíanoslos por correo electrónico, cárgalos a través de nuestro sitio web o tráelos en persona. Asegúrate de que los registros incluyan todos los detalles necesarios, como el nombre del producto de la vacuna, fabricante, número de lote, fecha de vencimiento del producto, fecha de vacunación antirrábica y la fecha en que vence la próxima vacunación.",
     step3_title: "Lleva a tu Perro a un Lugar Seguro",
-    step3_desc: "Una vez que la evaluación esté completa y tengamos los registros de vacunación de tu mascota, ¡tu amigo peludo está listo para unirse a nuestro grupo de juegos! En The Dog House Pet Salon, nos esforzamos por crear un ambiente seguro y estimulante donde tu mascota pueda socializar y hacer nuevos amigos.",
+    step3_desc: "Una vez que la evaluación esté completa y tengamos los registros de vacunación de tu mascota, ¡tu amigo peludo está listo para unirse a nuestro grupo de juegos! En The Dog House Pet Salon, nos esforzamos por crear un ambiente seguro y estimulante donde tu mascota pueda socializar y hacer nuevos amigos. Nuestros profesionales capacitados siempre están disponibles para supervisar y asegurar que cada mascota se sienta cómoda y la pase genial.",
 
     // Homepage - Pricing & Features
     pricing_heading: "Una Comunidad Acogedora para tu Cachorro",

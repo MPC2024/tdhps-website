@@ -113,7 +113,7 @@ export default function Header() {
           className="header-topbar hidden md:flex items-center justify-between py-2 text-sm"
           style={{
             backgroundColor: "transparent",
-            borderBottom: "1px solid #e5e1e8",
+            borderBottom: "none",
             padding: "8px 150px",
           }}
         >

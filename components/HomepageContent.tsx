@@ -345,14 +345,10 @@ export default function HomepageContent() {
       <section
         style={{
           position: "relative",
-          backgroundImage: "url(https://www.thedoghouseps.com/wp-content/uploads/2025/05/The-dog-house-pet-salon-hero-2.webp)",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
+          backgroundColor: "#965B83",
           padding: "160px 20px 120px",
-          overflow: "hidden",
         }}
       >
-        <div style={{ position: "absolute", inset: 0, backgroundColor: "rgba(150, 91, 131, 0.85)" }} />
         <div style={{ maxWidth: "1520px", margin: "0 auto", position: "relative", zIndex: 2 }}>
           <h2
             style={{

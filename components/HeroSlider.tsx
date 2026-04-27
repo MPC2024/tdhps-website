@@ -192,6 +192,26 @@ export default function HeroSlider() {
         </div>
       ))}
 
+      {/* Mouse scroll indicator */}
+      <div style={{ position: "absolute", bottom: "30px", left: "50%", transform: "translateX(-50%)", zIndex: 10, display: "flex", flexDirection: "column", alignItems: "center", animation: "scrollBounce 2s ease-in-out infinite" }}>
+        <svg width="28" height="42" viewBox="0 0 28 42" fill="none" stroke="#1F2124" strokeWidth="2">
+          <rect x="1" y="1" width="26" height="40" rx="13" />
+          <circle cx="14" cy="12" r="3" fill="#1F2124" stroke="none">
+            <animate attributeName="cy" values="12;20;12" dur="2s" repeatCount="indefinite" />
+          </circle>
+        </svg>
+        <svg width="20" height="14" viewBox="0 0 20 14" fill="none" stroke="#1F2124" strokeWidth="2" style={{ marginTop: "4px" }}>
+          <polyline points="2 2 10 10 18 2" />
+          <polyline points="2 6 10 14 18 6" opacity="0.5" />
+        </svg>
+      </div>
+      <style>{`
+        @keyframes scrollBounce {
+          0%, 100% { transform: translateX(-50%) translateY(0); }
+          50% { transform: translateX(-50%) translateY(8px); }
+        }
+      `}</style>
+
       {/* Curved bottom border removed — now in page.tsx */}
     </div>
   );

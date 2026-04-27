@@ -976,12 +976,17 @@ export default function HomepageContent() {
       ══════════════════════════════════════════════ */}
       <section
         style={{
-          backgroundColor: "#965B83",
+          position: "relative",
+          backgroundImage: "url(https://www.thedoghouseps.com/wp-content/uploads/2025/05/The-dog-house-pet-salon-hero-2.webp)",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
           padding: "80px 20px",
           textAlign: "center",
+          overflow: "hidden",
         }}
       >
-        <div style={{ maxWidth: "800px", margin: "0 auto" }}>
+        <div style={{ position: "absolute", inset: 0, backgroundColor: "rgba(150, 91, 131, 0.85)" }} />
+        <div style={{ maxWidth: "800px", margin: "0 auto", position: "relative", zIndex: 2 }}>
           <h2
             style={{
               fontFamily: '"Bowlby One SC", Sans-serif',

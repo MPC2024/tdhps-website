@@ -793,75 +793,76 @@ export default function HomepageContent() {
           SECTION 7: Client of the Month
       ══════════════════════════════════════════════ */}
       <section style={{ ...sectionPadding, backgroundColor: "#ffffff" }}>
-        <div
-          className="section-7-grid"
-          style={{
-            maxWidth: "1520px",
-            margin: "0 auto",
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
-            gap: "40px",
-            alignItems: "center",
-          }}
-        >
-          {/* Left: heading */}
-          <div>
-            <h2
-              style={{
-                fontFamily: '"Bowlby One SC", Sans-serif',
-                fontSize: "clamp(26px, 2.5vw, 36px)",
-                color: "#1F2124",
-                marginBottom: "12px",
-              }}
-            >
-              {t("client_of_the_month" as any)}
-            </h2>
-            <h3
-              style={{
-                fontFamily: '"Outfit", Sans-serif',
-                fontSize: "20px",
-                fontWeight: 600,
-                color: "#965B83",
-                marginBottom: "16px",
-              }}
-            >
-              {t("avery_dustin" as any)}
-            </h3>
+        <div style={{ maxWidth: "1520px", margin: "0 auto", padding: "0 40px" }}>
+          {/* Top row: heading + image side by side */}
+          <div
+            className="section-7-grid"
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr",
+              gap: "40px",
+              alignItems: "center",
+              marginBottom: "40px",
+            }}
+          >
+            {/* Left: heading */}
+            <div>
+              <h2
+                style={{
+                  fontFamily: '"Bowlby One SC", Sans-serif',
+                  fontSize: "clamp(26px, 2.5vw, 36px)",
+                  color: "#1F2124",
+                  marginBottom: "12px",
+                }}
+              >
+                {t("client_of_the_month" as any)}
+              </h2>
+              <h3
+                style={{
+                  fontFamily: '"Outfit", Sans-serif',
+                  fontSize: "20px",
+                  fontWeight: 600,
+                  color: "#965B83",
+                  marginBottom: "16px",
+                }}
+              >
+                {t("avery_dustin" as any)}
+              </h3>
+              <p
+                style={{
+                  fontFamily: '"Outfit", Sans-serif',
+                  fontSize: "16px",
+                  color: "#54595F",
+                  lineHeight: 1.7,
+                }}
+              >
+                {t("client_spotlight_intro" as any)}
+              </p>
+            </div>
+
+            {/* Right: image */}
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              <Image
+                src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/dog-owner.png"
+                alt="dog owner"
+                width={800}
+                height={778}
+                style={{ width: "100%", maxWidth: "380px", height: "auto" }}
+                loading="lazy"
+                sizes="(max-width: 480px) 85vw, (max-width: 768px) 90vw, (max-width: 1024px) 380px, 380px"
+                quality={80}
+              />
+            </div>
+          </div>
+
+          {/* Bottom row: description + Dustin's review */}
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "40px" }} className="section-7-grid">
             <p
               style={{
                 fontFamily: '"Outfit", Sans-serif',
                 fontSize: "16px",
                 color: "#54595F",
                 lineHeight: 1.7,
-              }}
-            >
-              {t("client_spotlight_intro" as any)}
-            </p>
-          </div>
-
-          {/* Middle: image */}
-          <div style={{ display: "flex", justifyContent: "center" }}>
-            <Image
-              src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/dog-owner.png"
-              alt="dog owner"
-              width={800}
-              height={778}
-              style={{ width: "100%", maxWidth: "380px", height: "auto" }}
-              loading="lazy"
-              sizes="(max-width: 480px) 85vw, (max-width: 768px) 90vw, (max-width: 1024px) 380px, 380px"
-              quality={80}
-            />
-          </div>
-
-          {/* Right: description + quote */}
-          <div>
-            <p
-              style={{
-                fontFamily: '"Outfit", Sans-serif',
-                fontSize: "16px",
-                color: "#54595F",
-                lineHeight: 1.7,
-                marginBottom: "20px",
               }}
             >
               {t("client_spotlight_text" as any)}
@@ -879,6 +880,11 @@ export default function HomepageContent() {
             </p>
           </div>
         </div>
+        <style>{`
+          @media (max-width: 768px) {
+            .section-7-grid { grid-template-columns: 1fr !important; }
+          }
+        `}</style>
       </section>
 
       {/* ══════════════════════════════════════════════

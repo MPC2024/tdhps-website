@@ -834,9 +834,21 @@ export default function HomepageContent() {
                   fontSize: "16px",
                   color: "#54595F",
                   lineHeight: 1.7,
+                  marginBottom: "24px",
                 }}
               >
                 {t("client_spotlight_intro" as any)}
+              </p>
+              <p
+                style={{
+                  fontFamily: '"Outfit", Sans-serif',
+                  fontSize: "15px",
+                  color: "#54595F",
+                  lineHeight: 1.7,
+                  fontStyle: "italic",
+                }}
+              >
+                {t("client_quote" as any)}
               </p>
             </div>
 
@@ -869,21 +881,6 @@ export default function HomepageContent() {
             </div>
           </div>
 
-          {/* Dustin's review - full width below */}
-          <p
-            style={{
-              fontFamily: '"Outfit", Sans-serif',
-              fontSize: "16px",
-              color: "#54595F",
-              lineHeight: 1.7,
-              fontStyle: "italic",
-              maxWidth: "800px",
-              margin: "0 auto",
-              textAlign: "center",
-            }}
-          >
-            {t("client_quote" as any)}
-          </p>
         </div>
       </section>
 

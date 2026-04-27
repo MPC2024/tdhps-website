@@ -22,8 +22,30 @@ export const metadata: Metadata = {
 };
 
 export default function HoustonPetBoardingPage() {
+  const serviceJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: "Pet Boarding",
+    description: "Safe and comfortable pet boarding services in Houston with cozy overnight stays, caring staff, and pet-friendly amenities",
+    provider: {
+      "@type": "Organization",
+      name: "The Dog House Pet Salon",
+      url: "https://www.thedoghouseps.com",
+    },
+    areaServed: [
+      { "@type": "City", name: "Houston" },
+      { "@type": "City", name: "Pearland" },
+    ],
+    serviceType: "Pet Boarding",
+    priceRange: "$$",
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
+      />
       <BreadcrumbJsonLd
         items={[
           { name: "Home", url: "https://www.thedoghouseps.com" },

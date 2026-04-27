@@ -22,8 +22,30 @@ export const metadata: Metadata = {
 };
 
 export default function PetBathingPage() {
+  const serviceJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: "Pet Bathing",
+    description: "Professional pet bathing services in Houston with gentle care, safe products, and expert grooming",
+    provider: {
+      "@type": "Organization",
+      name: "The Dog House Pet Salon",
+      url: "https://www.thedoghouseps.com",
+    },
+    areaServed: [
+      { "@type": "City", name: "Houston" },
+      { "@type": "City", name: "Pearland" },
+    ],
+    serviceType: "Pet Bathing",
+    priceRange: "$$",
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
+      />
       <BreadcrumbJsonLd
         items={[
           { name: "Home", url: "https://www.thedoghouseps.com" },

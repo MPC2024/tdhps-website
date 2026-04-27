@@ -22,8 +22,30 @@ export const metadata: Metadata = {
 };
 
 export default function PetGroomingPage() {
+  const serviceJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: "Pet Grooming",
+    description: "Professional pet grooming services in Houston including full grooming, bathing, nail filing, and teeth brushing",
+    provider: {
+      "@type": "Organization",
+      name: "The Dog House Pet Salon",
+      url: "https://www.thedoghouseps.com",
+    },
+    areaServed: [
+      { "@type": "City", name: "Houston" },
+      { "@type": "City", name: "Pearland" },
+    ],
+    serviceType: "Pet Grooming",
+    priceRange: "$$",
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
+      />
       <BreadcrumbJsonLd
         items={[
           { name: "Home", url: "https://www.thedoghouseps.com" },

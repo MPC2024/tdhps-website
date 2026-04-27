@@ -1,0 +1,108 @@
+{
+  "project": "/home/aiciv/tdhps-website",
+  "checks": {
+    "robots.txt": {
+      "status": "PASS",
+      "details": [
+        "Sitemap referenced: https://www.thedoghouseps.com/sitemap.xml",
+        "Allow rules configured",
+        "Disallow rules configured"
+      ],
+      "file_path": "/home/aiciv/tdhps-website/app/robots.ts"
+    },
+    "sitemap.xml": {
+      "status": "PASS",
+      "details": [
+        "Sitemap entries found: 25",
+        "Last modified dates configured",
+        "Priority values configured",
+        "Change frequency hints configured"
+      ],
+      "file_path": "/home/aiciv/tdhps-website/app/sitemap.ts"
+    },
+    "canonical_tags": {
+      "status": "WARN",
+      "pages_with_canonical": 26,
+      "pages_without_canonical": [
+        "our-staff/page.tsx",
+        "donna-williams/page.tsx",
+        "margarita-batres/page.tsx",
+        "keylin-paulina-orellana-delcid/page.tsx",
+        "contact-us/page.tsx",
+        "discounts/page.tsx",
+        "francy-quevedo/page.tsx"
+      ],
+      "details": [
+        "Canonical coverage: 78.8% (26/33)"
+      ]
+    },
+    "meta_tags": {
+      "status": "WARN",
+      "details": [
+        "Title metadata configured",
+        "Description metadata configured"
+      ],
+      "missing_from_pages": []
+    },
+    "structured_data": {
+      "status": "PASS",
+      "details": [
+        "Schema types found: BlogPosting, ImageObject, Organization"
+      ],
+      "schema_types_found": [
+        "Organization",
+        "ImageObject",
+        "BlogPosting"
+      ]
+    },
+    "social_meta": {
+      "status": "PASS",
+      "details": [
+        "Open Graph tags configured"
+      ]
+    }
+  },
+  "files_audited": [
+    "/home/aiciv/tdhps-website/app/robots.ts",
+    "/home/aiciv/tdhps-website/app/sitemap.ts",
+    "/home/aiciv/tdhps-website/app/page.tsx",
+    "/home/aiciv/tdhps-website/app/appointment-request-pearland/page.tsx",
+    "/home/aiciv/tdhps-website/app/blog/page.tsx",
+    "/home/aiciv/tdhps-website/app/thank-you-memorial-existing/page.tsx",
+    "/home/aiciv/tdhps-website/app/appointment-request/page.tsx",
+    "/home/aiciv/tdhps-website/app/houston-pet-boarding/page.tsx",
+    "/home/aiciv/tdhps-website/app/grooming-school/page.tsx",
+    "/home/aiciv/tdhps-website/app/privacy-policy/page.tsx",
+    "/home/aiciv/tdhps-website/app/our-staff/page.tsx",
+    "/home/aiciv/tdhps-website/app/thank-you-galleria-new/page.tsx",
+    "/home/aiciv/tdhps-website/app/donna-williams/page.tsx",
+    "/home/aiciv/tdhps-website/app/pearland-location/page.tsx",
+    "/home/aiciv/tdhps-website/app/thank-you-memorial-new/page.tsx",
+    "/home/aiciv/tdhps-website/app/thank-you-pearland-existing/page.tsx",
+    "/home/aiciv/tdhps-website/app/memorial-park-location/page.tsx",
+    "/home/aiciv/tdhps-website/app/margarita-batres/page.tsx",
+    "/home/aiciv/tdhps-website/app/cancellation-policy/page.tsx",
+    "/home/aiciv/tdhps-website/app/keylin-paulina-orellana-delcid/page.tsx",
+    "/home/aiciv/tdhps-website/app/pet-cam/page.tsx",
+    "/home/aiciv/tdhps-website/app/contact-us/page.tsx",
+    "/home/aiciv/tdhps-website/app/discounts/page.tsx",
+    "/home/aiciv/tdhps-website/app/thank-you-pearland-new/page.tsx",
+    "/home/aiciv/tdhps-website/app/dog-day-care/page.tsx",
+    "/home/aiciv/tdhps-website/app/faq/page.tsx",
+    "/home/aiciv/tdhps-website/app/francy-quevedo/page.tsx",
+    "/home/aiciv/tdhps-website/app/pet-grooming/page.tsx",
+    "/home/aiciv/tdhps-website/app/appointment-request-form_location_richmond/page.tsx",
+    "/home/aiciv/tdhps-website/app/galleria-uptown-park-location/page.tsx",
+    "/home/aiciv/tdhps-website/app/terms-of-use/page.tsx",
+    "/home/aiciv/tdhps-website/app/pet-bathing/page.tsx",
+    "/home/aiciv/tdhps-website/app/thank-you-galleria-existing/page.tsx",
+    "/home/aiciv/tdhps-website/app/appointment-request-memorial/page.tsx",
+    "/home/aiciv/tdhps-website/app/blog/[slug]/page.tsx",
+    "/home/aiciv/tdhps-website/app/layout.tsx"
+  ],
+  "issues": [],
+  "recommendations": [
+    "Canonical tags are inconsistent. Target 100% coverage on critical pages.",
+    "Missing critical meta tags: viewport"
+  ]
+}

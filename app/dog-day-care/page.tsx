@@ -22,8 +22,30 @@ export const metadata: Metadata = {
 };
 
 export default function DogDayCarePage() {
+  const serviceJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: "Dog Day Care",
+    description: "Safe and fun dog daycare services in Houston with professional supervision, play activities, and loving care",
+    provider: {
+      "@type": "Organization",
+      name: "The Dog House Pet Salon",
+      url: "https://www.thedoghouseps.com",
+    },
+    areaServed: [
+      { "@type": "City", name: "Houston" },
+      { "@type": "City", name: "Pearland" },
+    ],
+    serviceType: "Dog Day Care",
+    priceRange: "$$",
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
+      />
       <BreadcrumbJsonLd
         items={[
           { name: "Home", url: "https://www.thedoghouseps.com" },

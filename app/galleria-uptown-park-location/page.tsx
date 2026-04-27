@@ -28,8 +28,39 @@ export const metadata: Metadata = {
 };
 
 export default function GalleriaLocationPage() {
+  const localBusinessJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    name: "The Dog House Pet Salon - Galleria",
+    image: "https://www.thedoghouseps.com/wp-content/uploads/2025/05/The-dog-house-pet-salon-hero-1.webp",
+    description: "Professional pet grooming, boarding, and daycare services at The Dog House Pet Salon in Galleria Houston",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "5917 Richmond Ave",
+      addressLocality: "Houston",
+      addressRegion: "TX",
+      postalCode: "77057",
+      addressCountry: "US",
+    },
+    telephone: "(713) 820-6140",
+    email: "galleria@thedoghouseps.com",
+    url: "https://www.thedoghouseps.com/galleria-uptown-park-location/",
+    openingHoursSpecification: [
+      { dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], opens: "07:00", closes: "19:00" },
+      { dayOfWeek: "Saturday", opens: "08:00", closes: "18:00" },
+      { dayOfWeek: "Sunday", opens: "08:00", closes: "17:00" },
+    ],
+    priceRange: "$$",
+    areaServed: { "@type": "City", name: "Houston" },
+    serviceType: ["Pet Grooming", "Pet Boarding", "Dog Day Care"],
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
+      />
       <BreadcrumbJsonLd
         items={[
           { name: "Home", url: "https://www.thedoghouseps.com" },

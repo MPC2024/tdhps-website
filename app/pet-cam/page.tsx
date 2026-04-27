@@ -128,6 +128,70 @@ export default function PetCamPage() {
         </div>
       </section>
 
+      {/* -- Camera Connection Settings -- */}
+      <section style={{ backgroundColor: "#F8F8F8", padding: "80px 20px" }}>
+        <div style={{ maxWidth: "1520px", margin: "0 auto", padding: "0 20px" }}>
+          <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(24px, 4vw, 40px)", color: "#1F2124", textAlign: "center", marginBottom: "16px" }}>
+            Camera Connection <span style={{ color: "#965B83" }}>Settings</span>
+          </h2>
+          <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "18px", color: "#54595F", textAlign: "center", marginBottom: "48px", maxWidth: "600px", margin: "0 auto 48px" }}>
+            Use the settings below to connect to our live pet cameras at each location.
+          </p>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))", gap: "32px" }}>
+            {/* Galleria Location */}
+            <div style={{ backgroundColor: "#fff", borderRadius: "12px", overflow: "hidden", boxShadow: "0 2px 8px rgba(0,0,0,0.08)" }}>
+              <div style={{ backgroundColor: "#965B83", padding: "16px 24px" }}>
+                <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "18px", color: "#fff", margin: 0 }}>Galleria / Uptown Park</h3>
+              </div>
+              <table style={{ width: "100%", borderCollapse: "collapse" }}>
+                <tbody>
+                  {[
+                    ["Location", "5917 Richmond Ave"],
+                    ["Alias", "Dog Owners"],
+                    ["Register Mode", "IP/Domain"],
+                    ["IP Address", "96.73.83.249"],
+                    ["Port", "7000"],
+                    ["User Name", "client"],
+                    ["Password", "5917dhps"],
+                    ["Camera No", "(will automatically populate)"],
+                  ].map(([label, value]) => (
+                    <tr key={label} style={{ borderBottom: "1px solid #f0f0f0" }}>
+                      <td style={{ padding: "14px 24px", fontFamily: '"Outfit", sans-serif', fontSize: "14px", fontWeight: 600, color: "#1F2124", width: "40%" }}>{label}</td>
+                      <td style={{ padding: "14px 24px", fontFamily: '"Outfit", sans-serif', fontSize: "14px", color: "#54595F" }}>{value}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            {/* Memorial Park Location */}
+            <div style={{ backgroundColor: "#fff", borderRadius: "12px", overflow: "hidden", boxShadow: "0 2px 8px rgba(0,0,0,0.08)" }}>
+              <div style={{ backgroundColor: "#965B83", padding: "16px 24px" }}>
+                <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "18px", color: "#fff", margin: 0 }}>Memorial Park</h3>
+              </div>
+              <table style={{ width: "100%", borderCollapse: "collapse" }}>
+                <tbody>
+                  {[
+                    ["Location", "6434 Washington Ave"],
+                    ["Alias", "DHPS Washington"],
+                    ["Register Mode", "IP/Domain"],
+                    ["IP Address", "96.73.114.233"],
+                    ["Port", "8000"],
+                    ["User Name", "dogowners"],
+                    ["Password", "6434dhps@"],
+                    ["Camera No", "(will automatically populate)"],
+                  ].map(([label, value]) => (
+                    <tr key={label} style={{ borderBottom: "1px solid #f0f0f0" }}>
+                      <td style={{ padding: "14px 24px", fontFamily: '"Outfit", sans-serif', fontSize: "14px", fontWeight: 600, color: "#1F2124", width: "40%" }}>{label}</td>
+                      <td style={{ padding: "14px 24px", fontFamily: '"Outfit", sans-serif', fontSize: "14px", color: "#54595F" }}>{value}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* -- Camera Settings Tables (loaded from API, no hardcoded creds) -- */}
       <section style={{ backgroundColor: "#F8F8F8", padding: "80px 20px" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>

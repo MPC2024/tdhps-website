@@ -20,12 +20,21 @@ interface PetInfo {
   boarding: string;
   grooming: string;
   kennel: string;
+  daycareOption: string;
   additionalNailFile: boolean;
   additionalTeethBrush: boolean;
   appointmentDate: string;
   checkOutDate: string;
   notes: string;
 }
+
+const DAYCARE_OPTIONS = [
+  { label: "Daily Rate, Per Pet /Day", price: 20 },
+  { label: "10 Day Pass, 1 Day Pass /Pass", price: 180 },
+  { label: "20 Day Pass, 3 Day Pass /Pass", price: 340 },
+  { label: "30 Day Pass, 5 Day Pass /Pass", price: 340 },
+  { label: "100 Day Pass, 25 Day Pass /Pass", price: 1500 },
+];
 
 const defaultPet = (): PetInfo => ({
   name: "",
@@ -40,6 +49,7 @@ const defaultPet = (): PetInfo => ({
   boarding: "none",
   grooming: "",
   kennel: "",
+  daycareOption: "",
   additionalNailFile: false,
   additionalTeethBrush: false,
   appointmentDate: "",
@@ -323,11 +333,31 @@ function PetSection({
             {t("form_boarding_label")}
           </p>
           <div style={radioGroupStyle}>
-            <RadioOption name={`${idPrefix}-boarding`} value="none" checked={pet.boarding === "none"} onChange={() => onChange({ ...pet, boarding: "none", kennel: "", grooming: "" })} label={t("form_no_service")} />
-            <RadioOption name={`${idPrefix}-boarding`} value="Daycare" checked={pet.boarding === "Daycare"} onChange={() => onChange({ ...pet, boarding: "Daycare", kennel: "", checkOutDate: "", grooming: "none" })} label={t("form_daycare")} />
-            <RadioOption name={`${idPrefix}-boarding`} value="Boarding" checked={pet.boarding === "Boarding"} onChange={() => onChange({ ...pet, boarding: "Boarding", grooming: "none" })} label={t("form_boarding")} />
+            <RadioOption name={`${idPrefix}-boarding`} value="none" checked={pet.boarding === "none"} onChange={() => onChange({ ...pet, boarding: "none", kennel: "", daycareOption: "", grooming: "" })} label={t("form_no_service")} />
+            <RadioOption name={`${idPrefix}-boarding`} value="Daycare" checked={pet.boarding === "Daycare"} onChange={() => onChange({ ...pet, boarding: "Daycare", kennel: "", checkOutDate: "", daycareOption: "", grooming: "none" })} label={t("form_daycare")} />
+            <RadioOption name={`${idPrefix}-boarding`} value="Boarding" checked={pet.boarding === "Boarding"} onChange={() => onChange({ ...pet, boarding: "Boarding", daycareOption: "", grooming: "none" })} label={t("form_boarding")} />
           </div>
         </div>
+        )}
+        {pet.boarding === "Daycare" && (
+          <div style={{ marginBottom: "12px" }}>
+            <label htmlFor={`${idPrefix}-daycare-option`} style={labelStyle}>
+              Service Options <span style={{ color: "#CC3366" }}>*</span>
+            </label>
+            <select
+              id={`${idPrefix}-daycare-option`}
+              value={pet.daycareOption}
+              onChange={(e) => onChange({ ...pet, daycareOption: e.target.value })}
+              style={inputStyle}
+            >
+              <option value="">Select a daycare option...</option>
+              {DAYCARE_OPTIONS.map((opt) => (
+                <option key={opt.label} value={`${opt.label} - $${opt.price}`}>
+                  {opt.label} - ${opt.price}
+                </option>
+              ))}
+            </select>
+          </div>
         )}
         <div style={{ marginBottom: "12px" }}>
           <p style={{ ...labelStyle, fontWeight: 500, color: "#54595F", marginBottom: "8px" }}>
@@ -901,21 +931,29 @@ export default function AppointmentForm({
           </label>
         </div>
 
-        {/* Card Details - shown when any pet has Boarding selected */}
-        {pets.some((p) => p.boarding === "Boarding") && (() => {
+        {/* Card Details - shown when any pet has Boarding or Daycare selected */}
+        {pets.some((p) => p.boarding === "Boarding" || p.boarding === "Daycare") && (() => {
           const boardingTotal = pets.reduce((sum, p) => {
             if (p.boarding !== "Boarding" || !p.kennel) return sum;
             const priceMatch = p.kennel.match(/\$(\d+)/);
             return sum + (priceMatch ? parseInt(priceMatch[1], 10) : 0);
           }, 0);
+          const daycareTotal = pets.reduce((sum, p) => {
+            if (p.boarding !== "Daycare" || !p.daycareOption) return sum;
+            const priceMatch = p.daycareOption.match(/\$(\d+)/);
+            return sum + (priceMatch ? parseInt(priceMatch[1], 10) : 0);
+          }, 0);
+          const totalAmount = boardingTotal + daycareTotal;
           const boardingPetCount = pets.filter((p) => p.boarding === "Boarding").length;
+          const daycarePetCount = pets.filter((p) => p.boarding === "Daycare").length;
+          const needsSelection = (boardingPetCount > 0 && pets.some((p) => p.boarding === "Boarding" && !p.kennel)) || (daycarePetCount > 0 && pets.some((p) => p.boarding === "Daycare" && !p.daycareOption));
           return (
           <div style={{ marginBottom: "40px", padding: "32px", border: "1px solid #E5E7EB", borderRadius: "12px", backgroundColor: "#FAFAFA" }}>
             <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "20px", color: "#1F2124", marginBottom: "8px" }}>
               Card Details
             </h3>
             <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "14px", color: "#54595F", marginBottom: "24px" }}>
-              A boarding deposit is required to secure your reservation.
+              Payment is required to secure your reservation.
             </p>
             <div style={{ marginBottom: "16px" }}>
               <label htmlFor="card-number" style={labelStyle}>
@@ -970,22 +1008,40 @@ export default function AppointmentForm({
               </div>
             </div>
             <div style={{ fontFamily: '"Outfit", sans-serif', fontSize: "14px", color: "#1F2124", padding: "16px", backgroundColor: "#fff", borderRadius: "8px", border: "1px solid #E5E7EB" }}>
-              <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "8px" }}>
-                <span style={{ color: "#54595F" }}>Boarding pets:</span>
-                <span>{boardingPetCount}</span>
-              </div>
-              {pets.map((p, i) => p.boarding === "Boarding" && p.kennel ? (
-                <div key={i} style={{ display: "flex", justifyContent: "space-between", marginBottom: "4px", fontSize: "13px", color: "#6B7280" }}>
-                  <span>{p.name || `Pet ${i + 1}`} - {p.kennel.split(" - ")[0]}</span>
-                  <span>{p.kennel.split(" - ")[1] || ""}</span>
+              {boardingPetCount > 0 && (
+                <div style={{ marginBottom: daycarePetCount > 0 ? "12px" : "0" }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "8px", fontWeight: 600 }}>
+                    <span style={{ color: "#54595F" }}>Boarding ({boardingPetCount} pet{boardingPetCount > 1 ? "s" : ""}):</span>
+                    <span>${boardingTotal > 0 ? `${boardingTotal}.00` : "0.00"}</span>
+                  </div>
+                  {pets.map((p, i) => p.boarding === "Boarding" && p.kennel ? (
+                    <div key={`b-${i}`} style={{ display: "flex", justifyContent: "space-between", marginBottom: "4px", fontSize: "13px", color: "#6B7280", paddingLeft: "12px" }}>
+                      <span>{p.name || `Pet ${i + 1}`} - {p.kennel.split(" - ")[0]}</span>
+                      <span>{p.kennel.split(" - ")[1] || ""}</span>
+                    </div>
+                  ) : null)}
                 </div>
-              ) : null)}
+              )}
+              {daycarePetCount > 0 && (
+                <div>
+                  <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "8px", fontWeight: 600 }}>
+                    <span style={{ color: "#54595F" }}>Daycare ({daycarePetCount} pet{daycarePetCount > 1 ? "s" : ""}):</span>
+                    <span>${daycareTotal > 0 ? `${daycareTotal}.00` : "0.00"}</span>
+                  </div>
+                  {pets.map((p, i) => p.boarding === "Daycare" && p.daycareOption ? (
+                    <div key={`d-${i}`} style={{ display: "flex", justifyContent: "space-between", marginBottom: "4px", fontSize: "13px", color: "#6B7280", paddingLeft: "12px" }}>
+                      <span>{p.name || `Pet ${i + 1}`} - {p.daycareOption.split(" - ")[0]}</span>
+                      <span>{p.daycareOption.split(" - ")[1] || ""}</span>
+                    </div>
+                  ) : null)}
+                </div>
+              )}
               <div style={{ borderTop: "1px solid #E5E7EB", marginTop: "12px", paddingTop: "12px", display: "flex", justifyContent: "space-between", fontWeight: 700, fontSize: "16px" }}>
                 <span>Amount</span>
-                <span style={{ color: "#965B83" }}>${boardingTotal > 0 ? `${boardingTotal}.00` : "0.00"}</span>
+                <span style={{ color: "#965B83" }}>${totalAmount > 0 ? totalAmount.toLocaleString("en-US", { minimumFractionDigits: 2 }) : "0.00"}</span>
               </div>
-              {boardingTotal === 0 && boardingPetCount > 0 && (
-                <p style={{ fontSize: "12px", color: "#CC3366", marginTop: "8px" }}>Please select a kennel for each boarding pet to calculate the deposit amount.</p>
+              {needsSelection && (
+                <p style={{ fontSize: "12px", color: "#CC3366", marginTop: "8px" }}>Please select a service option for each pet to calculate the total amount.</p>
               )}
             </div>
           </div>

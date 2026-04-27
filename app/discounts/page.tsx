@@ -51,15 +51,15 @@ export default function DiscountsPage() {
         <div style={{ maxWidth: "1520px", width: "100%", margin: "130px auto 50px", padding: "0 20px", position: "relative", zIndex: 2 }}>
           <DiscountsHeroText />
         </div>
-        <div style={{ position: "absolute", bottom: -1, left: 0, width: "100%", lineHeight: 0, zIndex: 2 }}>
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none" style={{ display: "block", width: "100%", height: "60px" }}>
-            <path fill="#fff" d="M500,97C126.7,96.3,0.8,19.8,0,0v100l1000,0V1C1000,19.4,873.3,97.8,500,97z" />
+        <div style={{ position: "absolute", bottom: -2, left: 0, width: "100%", lineHeight: 0, zIndex: 2 }}>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none" style={{ display: "block", width: "100%", height: "80px" }}>
+            <path fill="#ffffff" d="M500,97C126.7,96.3,0.8,19.8,0,0v100l1000,0V1C1000,19.4,873.3,97.8,500,97z" />
           </svg>
         </div>
       </section>
 
       {/* New Customer Special Section */}
-      <section style={{ backgroundColor: "#fff", padding: "80px 20px 50px" }}>
+      <section style={{ backgroundColor: "#ffffff", padding: "60px 20px 50px" }}>
         <div style={{ maxWidth: "1520px", margin: "0 auto", padding: "0 20px" }}>
           <DiscountsOfferCard />
         </div>

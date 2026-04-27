@@ -9,12 +9,12 @@ export default function PetCamHeroText() {
       style={{
         fontFamily: '"Bowlby One SC", sans-serif',
         fontSize: "clamp(28px, 5vw, 60px)",
-        color: "#ffffff",
+        color: "#1F2124",
         marginBottom: "16px",
         lineHeight: 1.1,
       }}
     >
-      {t("cam_hero_text")} <span style={{ color: "#ffddee" }}>{t("cam_with_cameras")}</span>
+      {t("cam_hero_text")} <span style={{ color: "#965B83" }}>{t("cam_with_cameras")}</span>
     </h1>
   );
 }

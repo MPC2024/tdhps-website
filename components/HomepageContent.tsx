@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useLanguage } from "@/lib/LanguageContext";
@@ -103,6 +103,22 @@ const sectionPadding = { padding: "clamp(40px, 10vw, 80px) 20px" } as const;
 export default function HomepageContent() {
   const { t, language } = useLanguage();
   const [expandedCard, setExpandedCard] = useState<number | null>(null);
+  const mpcSectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const el = mpcSectionRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.classList.add("in-view");
+        }
+      },
+      { threshold: 0.3 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <>
@@ -637,6 +653,7 @@ export default function HomepageContent() {
           SECTION 6: MPC / Lost Pets (Reuniting Families)
       ══════════════════════════════════════════════ */}
       <section
+        ref={mpcSectionRef}
         className="mpc-reuniting-section"
         style={{
           position: "relative",
@@ -651,16 +668,18 @@ export default function HomepageContent() {
           </svg>
         </div>
 
-        {/* Background image */}
-        <Image
-          src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/vxcvxcv-1.jpg"
-          alt="Family with dog"
-          fill
-          style={{ objectFit: "cover", objectPosition: "center center" }}
-          priority={false}
-          quality={75}
-          sizes="100vw"
-        />
+        {/* Background image with grow animation on scroll */}
+        <div className="mpc-bg-image" style={{ position: "absolute", inset: 0, transition: "transform 0.8s ease-out", transformOrigin: "left center" }}>
+          <Image
+            src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/vxcvxcv-1.jpg"
+            alt="Family with dog"
+            fill
+            style={{ objectFit: "cover", objectPosition: "left center" }}
+            priority={false}
+            quality={75}
+            sizes="100vw"
+          />
+        </div>
 
         {/* Content area */}
         <div
@@ -677,8 +696,16 @@ export default function HomepageContent() {
             gap: "40px",
           }}
         >
-          {/* Right-aligned: Text content in white circle */}
-          <div style={{ flex: 1, marginLeft: "auto", maxWidth: "500px", textAlign: "center", backgroundColor: "rgba(255,255,255,0.92)", borderRadius: "50%", padding: "80px 50px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", aspectRatio: "1", boxShadow: "0 4px 30px rgba(0,0,0,0.08)" }}>
+          {/* Right-aligned: Text content in dog tag shape */}
+          <div style={{ flex: 1, marginLeft: "auto", maxWidth: "500px", textAlign: "center", position: "relative" }}>
+            {/* Dog tag hook/ring */}
+            <div style={{ position: "absolute", top: "-20px", right: "60px", zIndex: 2 }}>
+              <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                <circle cx="20" cy="20" r="14" stroke="rgba(150,91,131,0.4)" strokeWidth="4" fill="none" />
+                <circle cx="20" cy="20" r="6" stroke="rgba(150,91,131,0.3)" strokeWidth="2" fill="none" />
+              </svg>
+            </div>
+          <div style={{ backgroundColor: "rgba(255,255,255,0.92)", borderRadius: "50%", padding: "80px 50px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", aspectRatio: "1", boxShadow: "0 4px 30px rgba(0,0,0,0.08)", border: "3px solid rgba(150,91,131,0.15)" }}>
             <h2
               style={{
                 fontFamily: '"Bowlby One SC", Sans-serif',
@@ -724,9 +751,10 @@ export default function HomepageContent() {
               {t("protect_your_pet" as any)}
             </a>
           </div>
+          </div>
         </div>
 
-        {/* Left: Lost pet image positioned bottom-left, full height */}
+        {/* Left: Lost pet image with grow-on-scroll animation */}
         <div style={{ position: "absolute", bottom: 0, left: 0, top: "60px", zIndex: 1, pointerEvents: "none", width: "clamp(250px, 35vw, 500px)" }}>
           <Image
             src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/lost-pet.png"
@@ -751,6 +779,12 @@ export default function HomepageContent() {
           .mpc-cta-button:hover {
             background-color: #7A4A68 !important;
             transform: translateY(-2px) !important;
+          }
+          .mpc-bg-image {
+            transform: scale(0.85);
+          }
+          .mpc-reuniting-section.in-view .mpc-bg-image {
+            transform: scale(1.05);
           }
           @media (max-width: 768px) {
             .mpc-reuniting-section .mpc-lost-pet-img { width: 200px !important; }

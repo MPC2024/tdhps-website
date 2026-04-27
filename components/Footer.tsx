@@ -361,7 +361,7 @@ export default function Footer() {
       {/* ── COVID Message ── */}
       <div className="container-site py-8 text-center border-b" style={{ borderColor: "rgba(255,255,255,0.2)", position: "relative", zIndex: 2 }}>
         <p
-          className="max-w-2xl mx-auto"
+          className="max-w-5xl mx-auto"
           style={textStyle}
         >
           {t("pet_health_safety")}

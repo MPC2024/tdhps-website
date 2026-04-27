@@ -345,10 +345,14 @@ export default function HomepageContent() {
       <section
         style={{
           position: "relative",
-          backgroundColor: "#965B83",
+          backgroundImage: "url(https://www.thedoghouseps.com/wp-content/uploads/2025/05/The-dog-house-pet-salon-hero-2.webp)",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
           padding: "160px 20px 120px",
+          overflow: "hidden",
         }}
       >
+        <div style={{ position: "absolute", inset: 0, backgroundColor: "rgba(150, 91, 131, 0.85)" }} />
         <div style={{ maxWidth: "1520px", margin: "0 auto", position: "relative", zIndex: 2 }}>
           <h2
             style={{
@@ -697,8 +701,8 @@ export default function HomepageContent() {
             {/* Dog tag hook/ring */}
             <div style={{ position: "absolute", top: "-30px", right: "80px", zIndex: 2 }}>
               <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
-                <circle cx="30" cy="30" r="22" stroke="#965B83" strokeWidth="5" fill="none" opacity="0.5" />
-                <circle cx="30" cy="30" r="10" stroke="#965B83" strokeWidth="3" fill="none" opacity="0.35" />
+                <circle cx="30" cy="30" r="22" stroke="#ffffff" strokeWidth="5" fill="none" opacity="0.6" />
+                <circle cx="30" cy="30" r="10" stroke="#ffffff" strokeWidth="3" fill="none" opacity="0.4" />
               </svg>
             </div>
           <div style={{ backgroundColor: "rgba(255,255,255,0.92)", borderRadius: "50%", padding: "80px 50px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", aspectRatio: "1", boxShadow: "0 4px 30px rgba(0,0,0,0.08)", border: "3px solid rgba(150,91,131,0.15)" }}>
@@ -898,6 +902,7 @@ export default function HomepageContent() {
           style={{
             maxWidth: "1520px",
             margin: "0 auto",
+            padding: "0 40px",
             display: "grid",
             gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
             gap: "60px",

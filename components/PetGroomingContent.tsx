@@ -624,7 +624,7 @@ export default function PetGroomingContent() {
       </section>
 
       {/* ── Grooming Packages ── */}
-      <section style={{ position: "relative", backgroundColor: "#965B83", padding: "80px 20px 100px", overflow: "hidden" }}>
+      <section style={{ position: "relative", backgroundColor: "#965B83", padding: "80px 35px 100px", overflow: "hidden" }}>
         <div style={{ maxWidth: "1520px", margin: "0 auto", position: "relative", zIndex: 2 }}>
           {/* Header row */}
           <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "40px", gap: "20px" }}>

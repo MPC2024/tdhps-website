@@ -149,7 +149,7 @@ export default function CalculatorPage() {
     : formattedBreeds.slice(0, 10);
 
   return (
-    <div style={{ minHeight: '100vh', padding: '40px 20px', position: 'relative', backgroundImage: 'url(https://www.thedoghouseps.com/wp-content/uploads/2025/04/pet-camera.jpg)', backgroundSize: 'cover', backgroundPosition: 'center', backgroundAttachment: 'fixed' }}>
+    <div style={{ minHeight: '100vh', padding: '160px 20px 40px', position: 'relative', backgroundImage: 'url(https://www.thedoghouseps.com/wp-content/uploads/2025/04/pet-camera.jpg)', backgroundSize: 'cover', backgroundPosition: 'center', backgroundAttachment: 'fixed' }}>
       <div style={{ position: 'absolute', inset: 0, backgroundColor: 'rgba(248, 248, 248, 0.92)' }} />
       {/* Back Link */}
       <div style={{ maxWidth: '500px', margin: '0 auto 32px', position: 'relative', zIndex: 2 }}>

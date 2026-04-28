@@ -687,15 +687,19 @@ export default function DogDayCareContent() {
       <section style={{ backgroundColor: "#F8F8F8", padding: "80px 20px" }}>
         <div className="grid-responsive" style={{ maxWidth: "1520px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "60px", alignItems: "center", justifyItems: "center" }}>
           <div style={{ textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center", gap: "20px" }}>
-            <Image src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/image778.png" alt="Premium Amenities" width={200} height={200} loading="lazy" style={{ width: "150px", height: "auto" }} />
-            <Image src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/30.png" alt="$30 Credit - Groom Punch Card" width={400} height={400} loading="lazy" style={{ width: "300px", height: "auto" }} />
-            <Image src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/just4you.png" alt="Just For You" width={200} height={200} loading="lazy" style={{ width: "150px", height: "auto" }} />
+            <Image src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/image778.png" alt="Premium Amenities" width={200}
+              quality={90} height={200} loading="lazy" style={{ width: "150px", height: "auto" }} />
+            <Image src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/30.png" alt="$30 Credit - Groom Punch Card" width={400}
+              quality={90} height={400} loading="lazy" style={{ width: "300px", height: "auto" }} />
+            <Image src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/just4you.png" alt="Just For You" width={200}
+              quality={90} height={200} loading="lazy" style={{ width: "150px", height: "auto" }} />
             <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "18px", color: "#54595F", lineHeight: 1.6 }}>
               {t("daycare_loyalty_redeem")}
             </p>
           </div>
           <div style={{ textAlign: "center" }}>
-            <Image src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/loyalty-card.png" alt="Pawsitively Grateful Loyalty Card" width={500} height={350} loading="lazy" style={{ width: "100%", maxWidth: "450px", height: "auto" }} />
+            <Image src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/loyalty-card.png" alt="Pawsitively Grateful Loyalty Card" width={500}
+              quality={90} height={350} loading="lazy" style={{ width: "100%", maxWidth: "450px", height: "auto" }} />
           </div>
         </div>
       </section>

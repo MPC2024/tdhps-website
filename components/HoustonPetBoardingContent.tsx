@@ -907,7 +907,6 @@ export default function HoustonPetBoardingContent() {
               width={600}
               height={500}
               loading="lazy"
-              quality={90}
               style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
             />
             <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(255,255,255,0) 20%, #965b83 100%)" }} />

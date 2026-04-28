@@ -1546,7 +1546,8 @@ function ProgramsTabbed() {
                   textAlign: "left",
                 }}
               >
-                <Image src={prog.imgUrl} alt={language === "es" ? prog.titleEs : prog.title} width={40} height={40} style={{ width: "40px", height: "40px", flexShrink: 0 }} />
+                <Image src={prog.imgUrl} alt={language === "es" ? prog.titleEs : prog.title} width={40}
+              quality={90} height={40} style={{ width: "40px", height: "40px", flexShrink: 0 }} />
                 <div>
                   <div style={{ fontWeight: 600 }}>{language === "es" ? prog.titleEs : prog.title}</div>
                   <div style={{ fontSize: "12px", opacity: 0.8 }}>{language === "es" ? prog.hoursEs : prog.hours}</div>
@@ -1594,7 +1595,8 @@ function ProgramsTabbed() {
 
               {/* Middle Column — Icon */}
               <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
-                <Image src={active.imgUrl} alt={active.title} width={220} height={220} style={{ width: "220px", height: "220px", objectFit: "contain" }} />
+                <Image src={active.imgUrl} alt={active.title} width={220}
+              quality={90} height={220} style={{ width: "220px", height: "220px", objectFit: "contain" }} />
               </div>
 
               {/* Right Column — Bullets */}
@@ -1816,7 +1818,8 @@ export default function GroomingSchoolClient() {
           <div className="groomers-grid" style={{ gap: "30px" }}>
             {GROOMERS.map((g) => (
               <div key={g.name} style={{ backgroundColor: "#ffffff", borderRadius: "12px", overflow: "hidden", boxShadow: "6px 6px 9px rgba(0,0,0,.08)", textAlign: "center" }}>
-                <Image src={g.img} alt={g.name} width={500} height={500} style={{ width: "100%", height: "300px", objectFit: "cover" }} />
+                <Image src={g.img} alt={g.name} width={500}
+              quality={90} height={500} style={{ width: "100%", height: "300px", objectFit: "cover" }} />
                 <div style={{ padding: "30px 24px" }}>
                   <p style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "13px", color: "#965B83", letterSpacing: "1px", marginBottom: "4px" }}>{t(g.roleKey)}</p>
                   <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "22px", color: "#1F2124", marginBottom: "4px" }}>{g.name}</h3>

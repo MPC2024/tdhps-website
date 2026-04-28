@@ -719,6 +719,7 @@ export default function PetBathingContent() {
 
           {/* Counter Boxes */}
           <div style={{ display: "flex", justifyContent: "center", gap: "30px", marginBottom: "50px", flexWrap: "wrap" }}>
+            <CounterBox target={30} suffix="+" label={t("bathing_30_years_label")} />
             <CounterBox target={40000} suffix="+" label={t("bathing_satisfied_clients")} />
           </div>
 

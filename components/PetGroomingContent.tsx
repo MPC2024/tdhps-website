@@ -776,7 +776,7 @@ export default function PetGroomingContent() {
             <p style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "16px", color: "#54595F", letterSpacing: "2px", marginBottom: "8px", textTransform: "uppercase" }}>
               {t("grooming_special_discount")}
             </p>
-            <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(28px,4vw,54px)", color: "#1F2124", marginBottom: "16px", lineHeight: 1.2 }}>
+            <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(22px,3vw,36px)", color: "#1F2124", marginBottom: "16px", lineHeight: 1.2, whiteSpace: "nowrap" }}>
               {t("grooming_new_client")} <span style={{ color: "#965B83" }}>{t("grooming_get_10_off")}</span>
             </h2>
             <Link

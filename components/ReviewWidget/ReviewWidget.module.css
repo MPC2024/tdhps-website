@@ -86,11 +86,9 @@
 
 /* CTA Section */
 .ctaSection {
-  background-color: #ffffff;
-  border-radius: 12px;
+  background-color: transparent;
   padding: 40px 30px;
   text-align: center;
-  border: 1px solid #e5e7eb;
 }
 
 .ctaText {

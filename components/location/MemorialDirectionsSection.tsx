@@ -15,7 +15,7 @@ export default function MemorialDirectionsSection() {
           {t("loc_memorial_subtitle_nav")}
         </p>
         <a
-          href="https://maps.google.com/?q=5917+Richmond+Ave,+Houston,+TX+77057"
+          href="https://maps.google.com/?q=6434+Washington+Ave,+Houston,+TX+77007"
           target="_blank"
           rel="noopener noreferrer"
           style={{ display: "inline-block", backgroundColor: "#965B83", color: "#ffffff", fontFamily: '"Outfit", sans-serif', fontSize: "18px", fontWeight: 600, padding: "16px 40px", borderRadius: "50px", textDecoration: "none" }}

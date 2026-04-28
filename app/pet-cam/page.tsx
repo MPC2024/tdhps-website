@@ -108,10 +108,28 @@ export default function PetCamPage() {
         <div style={{ position: "absolute", inset: 0, backgroundColor: "#FFF", opacity: 0.6 }} />
         <div style={{ maxWidth: "1520px", width: "100%", margin: "130px auto 50px", padding: "0 20px", position: "relative", zIndex: 2 }}>
           <PetCamHeroText />
-          <div style={{ marginTop: "32px" }}>
+          <div style={{ marginTop: "32px", display: "flex", gap: "16px", flexWrap: "wrap" }}>
             <Link href="/appointment-request" className="btn-primary">
               Schedule An Appointment
             </Link>
+            <a
+              href="#pet-cam-setup"
+              style={{
+                backgroundColor: "transparent",
+                color: "#965B83",
+                border: "2px solid #965B83",
+                padding: "15px 30px",
+                borderRadius: "50px",
+                fontFamily: '"Outfit", sans-serif',
+                fontWeight: 600,
+                fontSize: "16px",
+                display: "inline-block",
+                textDecoration: "none",
+                transition: "all 0.3s",
+              }}
+            >
+              How to Set Up Pet Cam
+            </a>
           </div>
         </div>
         <div style={{ position: "absolute", bottom: -1, left: 0, width: "100%", lineHeight: 0, zIndex: 2 }}>
@@ -200,7 +218,7 @@ export default function PetCamPage() {
       </section>
 
       {/* -- How to Set Up -- */}
-      <section style={{ backgroundColor: "#ffffff", padding: "80px 20px" }}>
+      <section id="pet-cam-setup" style={{ backgroundColor: "#ffffff", padding: "80px 20px", scrollMarginTop: "100px" }}>
         <div style={{ maxWidth: "900px", margin: "0 auto" }}>
           <PetCamSetupText />
           <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "22px", color: "#1F2124", marginBottom: "30px" }}>

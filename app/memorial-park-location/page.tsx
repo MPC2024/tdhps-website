@@ -79,7 +79,7 @@ export default function MemorialParkLocationPage() {
           overflow: "hidden",
         }}
       >
-        <div style={{ position: "absolute", inset: 0, backgroundColor: "#ffffff", opacity: 0.3 }} />
+        <div style={{ position: "absolute", inset: 0, backgroundColor: "#ffffff", opacity: 0.1 }} />
         <div style={{ maxWidth: "1520px", margin: "130px auto 50px", padding: "0 20px", position: "relative", zIndex: 2 }}>
           <MemorialParkLocationContent />
         </div>

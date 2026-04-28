@@ -445,9 +445,8 @@ function VideoPlayer() {
       style={{
         position: "relative",
         width: "100%",
-        maxWidth: "900px",
-        margin: "0 auto 60px",
-        paddingBottom: "min(56.25%, 500px)",
+        marginBottom: "60px",
+        paddingBottom: "min(56.25%, 450px)",
         borderRadius: "12px",
         overflow: "hidden",
         boxShadow: "6px 6px 20px rgba(0,0,0,0.15)",

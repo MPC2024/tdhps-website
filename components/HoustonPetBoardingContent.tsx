@@ -876,7 +876,7 @@ export default function HoustonPetBoardingContent() {
 
       {/* ── What's Included in Pet Boarding? ── */}
       <section style={{ backgroundColor: "#fff", padding: "80px 20px" }}>
-        <div className="grid-responsive" style={{ maxWidth: "1520px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "60px", alignItems: "center" }}>
+        <div className="grid-responsive" style={{ maxWidth: "1520px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "60px", alignItems: "start" }}>
           {/* Left — Text */}
           <div>
             <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "50px", color: "#1F2124", lineHeight: 1.1, marginBottom: "24px" }}>
@@ -900,14 +900,15 @@ export default function HoustonPetBoardingContent() {
           </div>
 
           {/* Right — Image with gradient overlay */}
-          <div style={{ position: "relative", borderRadius: "16px", overflow: "hidden" }}>
+          <div style={{ position: "relative", borderRadius: "16px", overflow: "hidden", maxHeight: "500px" }}>
             <Image
               src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/cute-jack-russell-terrier-puppy-resting-yellow-dog-bed-adorable-puppy-jack-russell-terrier-home-looking-camera-2.jpg.webp"
               alt="Pet boarding in Houston"
               width={600}
               height={500}
               loading="lazy"
-              style={{ width: "100%", height: "auto", display: "block" }}
+              quality={90}
+              style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
             />
             <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(255,255,255,0) 20%, #965b83 100%)" }} />
             <div style={{ position: "absolute", bottom: "30px", left: "50%", transform: "translateX(-50%)", zIndex: 2 }}>

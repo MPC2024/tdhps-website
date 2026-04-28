@@ -325,14 +325,30 @@ function PricingCarousel({ items, t }: { items: typeof pricingExtras; t: (key: a
   const visible = getVisibleIndices();
 
   return (
-    <div style={{ marginBottom: "40px" }}>
+    <div style={{ marginBottom: "40px", position: "relative" }}>
+      {/* Left arrow */}
+      <button
+        onClick={goPrev}
+        style={{ position: "absolute", left: "10px", top: "50%", transform: "translateY(-50%)", zIndex: 5, background: "none", border: "2px solid rgba(150,91,131,0.3)", borderRadius: "50%", width: "44px", height: "44px", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", color: "#965B83", fontSize: "18px" }}
+        aria-label="Previous"
+      >
+        <i className="fa-solid fa-arrow-left" />
+      </button>
+      {/* Right arrow */}
+      <button
+        onClick={goNext}
+        style={{ position: "absolute", right: "10px", top: "50%", transform: "translateY(-50%)", zIndex: 5, background: "none", border: "2px solid rgba(150,91,131,0.3)", borderRadius: "50%", width: "44px", height: "44px", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", color: "#965B83", fontSize: "18px" }}
+        aria-label="Next"
+      >
+        <i className="fa-solid fa-arrow-right" />
+      </button>
       <div style={{
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
         gap: "24px",
         overflow: "hidden",
-        padding: "80px 20px 40px",
+        padding: "80px 60px 40px",
         transition: "transform 0.3s ease, opacity 0.3s ease",
         transform: sliding ? `translateX(${slideDirection === "left" ? "-30px" : "30px"})` : "translateX(0)",
         opacity: sliding ? 0.7 : 1,
@@ -402,37 +418,7 @@ function PricingCarousel({ items, t }: { items: typeof pricingExtras; t: (key: a
           );
         })}
       </div>
-      {/* Navigation arrows */}
-      <div style={{ display: "flex", justifyContent: "center", gap: "24px", marginTop: "8px" }}>
-        <button
-          onClick={goPrev}
-          style={{
-            background: "none",
-            border: "none",
-            cursor: "pointer",
-            fontSize: "24px",
-            color: "#965B83",
-            padding: "8px",
-          }}
-          aria-label="Previous"
-        >
-          <i className="fa-solid fa-arrow-left" />
-        </button>
-        <button
-          onClick={goNext}
-          style={{
-            background: "none",
-            border: "none",
-            cursor: "pointer",
-            fontSize: "24px",
-            color: "#965B83",
-            padding: "8px",
-          }}
-          aria-label="Next"
-        >
-          <i className="fa-solid fa-arrow-right" />
-        </button>
-      </div>
+      {/* Arrows moved to sides of carousel */}
     </div>
   );
 }
@@ -728,13 +714,12 @@ export default function PetGroomingContent() {
             {t("grooming_groomed_perfection")}
           </p>
           <PricingCarousel items={pricingExtras} t={t} />
-          <div style={{ backgroundColor: "#fff", borderRadius: "12px", padding: "30px", boxShadow: "0 1px 4px rgba(0,0,0,.08)", border: "1px solid #E0E0E0" }}>
-            <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#1F2124", lineHeight: 1.7, textAlign: "center", marginBottom: "16px" }}>
+          <div style={{ maxWidth: "700px", margin: "0 auto", padding: "20px 0" }}>
+            <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "13px", color: "#888", lineHeight: 1.6, textAlign: "center", marginBottom: "8px" }}>
               {t("grooming_pricing_vary")}
             </p>
-            <hr style={{ border: "none", borderTop: "1px solid #E0E0E0", margin: "16px 0" }} />
-            <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#1F2124", lineHeight: 1.7, textAlign: "center" }}>
-              {t("grooming_pricing_note")}
+            <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "12px", color: "#999", lineHeight: 1.6, textAlign: "center", fontStyle: "italic" }}>
+              *{t("grooming_pricing_note")}
             </p>
           </div>
         </div>
@@ -1293,10 +1278,12 @@ export default function PetGroomingContent() {
             <Image
               src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/image-17.jpg"
               alt="Donna Williams - Master Pet Groomer"
-              width={600}
-              height={500}
+              width={1200}
+              height={1000}
               loading="lazy"
+              quality={95}
               style={{ width: "100%", height: "auto", display: "block" }}
+              sizes="(max-width: 768px) 90vw, 600px"
             />
             {/* Gradient overlay */}
             <div style={{

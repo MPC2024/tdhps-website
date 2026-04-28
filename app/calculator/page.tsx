@@ -149,9 +149,10 @@ export default function CalculatorPage() {
     : formattedBreeds.slice(0, 10);
 
   return (
-    <div style={{ backgroundColor: '#f8f8f8', minHeight: '100vh', padding: '40px 20px' }}>
+    <div style={{ minHeight: '100vh', padding: '40px 20px', position: 'relative', backgroundImage: 'url(https://www.thedoghouseps.com/wp-content/uploads/2025/04/pet-camera.jpg)', backgroundSize: 'cover', backgroundPosition: 'center', backgroundAttachment: 'fixed' }}>
+      <div style={{ position: 'absolute', inset: 0, backgroundColor: 'rgba(248, 248, 248, 0.92)' }} />
       {/* Back Link */}
-      <div style={{ maxWidth: '500px', margin: '0 auto 32px' }}>
+      <div style={{ maxWidth: '500px', margin: '0 auto 32px', position: 'relative', zIndex: 2 }}>
         <a
           href="/"
           style={{
@@ -188,21 +189,10 @@ export default function CalculatorPage() {
           borderRadius: '16px',
           boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)',
           padding: '40px',
+          position: 'relative' as const,
+          zIndex: 2,
         }}
       >
-        {/* Logo */}
-        <div style={{ textAlign: 'center', marginBottom: '24px' }}>
-          <img
-            src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/image-8.png"
-            alt="The Dog House Pet Salon"
-            style={{
-              maxWidth: '120px',
-              height: 'auto',
-              display: 'inline-block',
-            }}
-          />
-        </div>
-
         {/* Title */}
         <h1
           style={{

@@ -277,17 +277,17 @@ export default function FrancyQuevedoPage() {
           >
             {[
               {
-                icon: <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="28" r="4" stroke="#965B83" strokeWidth="2.5"/><circle cx="28" cy="24" r="4" stroke="#965B83" strokeWidth="2.5"/><line x1="16" y1="28" x2="16" y2="10" stroke="#965B83" strokeWidth="2.5"/><line x1="32" y1="24" x2="32" y2="6" stroke="#965B83" strokeWidth="2.5"/><path d="M16 10l16-4" stroke="#965B83" strokeWidth="2.5"/></svg>,
+                icon: <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="#965B83" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>,
                 titleKey: "francy_calming_title" as const,
                 descKey: "francy_calming_desc" as const,
               },
               {
-                icon: <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="16" cy="14" r="6" stroke="#965B83" strokeWidth="2.5"/><circle cx="16" cy="12.5" r="1.5" fill="#965B83"/><path d="M12 20c-3 2-5 5-5 9h18c0-4-2-7-5-9" stroke="#965B83" strokeWidth="2" fill="#965B83" opacity=".2"/><circle cx="28" cy="10" r="4" stroke="#965B83" strokeWidth="1.5"/></svg>,
+                icon: <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="8" r="4" stroke="#965B83" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/><path d="M6 21v-2a6 6 0 0 1 12 0v2" stroke="#965B83" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>,
                 titleKey: "francy_poodle_title" as const,
                 descKey: "francy_poodle_desc" as const,
               },
               {
-                icon: <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 22l6-6 4 2 4-4 4 2 6-6" stroke="#965B83" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/><path d="M8 30h24v2H8z" fill="#965B83" opacity=".3" rx="1"/><circle cx="12" cy="16" r="2" fill="#965B83" opacity=".4"/><circle cx="28" cy="12" r="2" fill="#965B83" opacity=".4"/></svg>,
+                icon: <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9l6-6 6 6M3 11h18v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-8z" stroke="#965B83" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/><line x1="9" y1="15" x2="15" y2="15" stroke="#965B83" strokeWidth="1.5" strokeLinecap="round"/></svg>,
                 titleKey: "francy_loyal_title" as const,
                 descKey: "francy_loyal_desc" as const,
               },

@@ -288,17 +288,17 @@ export default function KeylinOrellanaPage() {
           >
             {[
               {
-                icon: <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6l3 9h9l-7 5 3 9-8-6-8 6 3-9-7-5h9z" fill="#965B83" opacity=".3" stroke="#965B83" strokeWidth="2" strokeLinejoin="round"/></svg>,
+                icon: <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><polygon points="12,2 15,10 23,10 17,15 19,23 12,18 5,23 7,15 1,10 9,10" stroke="#965B83" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>,
                 titleKey: "keylin_transform_title" as const,
                 descKey: "keylin_transform_desc" as const,
               },
               {
-                icon: <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="16" cy="14" r="6" stroke="#965B83" strokeWidth="2.5"/><circle cx="16" cy="12.5" r="1.5" fill="#965B83"/><path d="M12 20c-3 2-5 5-5 9h18c0-4-2-7-5-9" stroke="#965B83" strokeWidth="2" fill="#965B83" opacity=".2"/><path d="M26 10l4-3m0 0l4 2m-4-2v5" stroke="#965B83" strokeWidth="2" strokeLinecap="round"/></svg>,
+                icon: <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2v20m-9-9h18" stroke="#965B83" strokeWidth="1.5" strokeLinecap="round"/><circle cx="12" cy="12" r="10" stroke="#965B83" strokeWidth="1.5"/></svg>,
                 titleKey: "keylin_health_title" as const,
                 descKey: "keylin_health_desc" as const,
               },
               {
-                icon: <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 8c-3 0-6 2-6 6 0 3 2 5 4 7l2 2 2-2c2-2 4-4 4-7 0-4-3-6-6-6z" stroke="#965B83" strokeWidth="2.5" fill="#965B83" opacity=".2"/><line x1="14" y1="28" x2="26" y2="28" stroke="#965B83" strokeWidth="2.5" strokeLinecap="round"/><line x1="16" y1="32" x2="24" y2="32" stroke="#965B83" strokeWidth="2.5" strokeLinecap="round"/><line x1="20" y1="23" x2="20" y2="28" stroke="#965B83" strokeWidth="2"/></svg>,
+                icon: <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke="#965B83" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>,
                 titleKey: "keylin_resilient_title" as const,
                 descKey: "keylin_resilient_desc" as const,
               },

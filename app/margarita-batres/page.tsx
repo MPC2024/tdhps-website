@@ -277,17 +277,17 @@ export default function MargaritaBatresPage() {
           >
             {[
               {
-                icon: <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 30c-1.5 0-3-1-3-3 0-2.5 3-5 3-5s3 2.5 3 5c0 2-1.5 3-3 3z" fill="#965B83" opacity=".6"/><circle cx="12" cy="14" r="3" fill="#965B83" opacity=".5"/><circle cx="20" cy="10" r="3" fill="#965B83" opacity=".5"/><circle cx="28" cy="14" r="3" fill="#965B83" opacity=".5"/><circle cx="16" cy="22" r="3.5" fill="#965B83" opacity=".35"/><circle cx="24" cy="22" r="3.5" fill="#965B83" opacity=".35"/></svg>,
+                icon: <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke="#965B83" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>,
                 titleKey: "margarita_gentle_title" as const,
                 descKey: "margarita_gentle_desc" as const,
               },
               {
-                icon: <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="28" cy="10" r="4" stroke="#965B83" strokeWidth="2"/><line x1="24" y1="14" x2="32" y2="6" stroke="#965B83" strokeWidth="2.5" strokeLinecap="round"/><path d="M10 16c2-4 6-8 10-8" stroke="#965B83" strokeWidth="2" strokeLinecap="round"/><path d="M10 16l2 14h6l-2-14" stroke="#965B83" strokeWidth="2" strokeLinejoin="round"/></svg>,
+                icon: <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="4" cy="14" r="3" stroke="#965B83" strokeWidth="1.5"/><circle cx="14" cy="4" r="3" stroke="#965B83" strokeWidth="1.5"/><circle cx="20" cy="14" r="3" stroke="#965B83" strokeWidth="1.5"/><path d="M7 13L13 7" stroke="#965B83" strokeWidth="1.5" strokeLinecap="round"/><path d="M17 13L11 19" stroke="#965B83" strokeWidth="1.5" strokeLinecap="round"/></svg>,
                 titleKey: "margarita_styling_title" as const,
                 descKey: "margarita_styling_desc" as const,
               },
               {
-                icon: <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 34s-12-7-12-16c0-5 4-9 8-9 2.5 0 4 1.5 4 1.5s1.5-1.5 4-1.5c4 0 8 4 8 9 0 9-12 16-12 16z" fill="#965B83" opacity=".3" stroke="#965B83" strokeWidth="2.5"/></svg>,
+                icon: <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="#965B83" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>,
                 titleKey: "margarita_values_title" as const,
                 descKey: "margarita_values_desc" as const,
               },

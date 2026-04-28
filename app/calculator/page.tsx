@@ -2,8 +2,6 @@
 
 import { useState } from 'react';
 import type { Metadata } from 'next';
-import { i18n } from '@lingui/core';
-import { msg } from '@lingui/macro';
 
 // Pricing data extracted from source repo
 const BREEDS = [
@@ -151,362 +149,419 @@ export default function CalculatorPage() {
     : formattedBreeds.slice(0, 10);
 
   return (
-    <>
-      {/* Banner Section */}
-      <div
-        style={{
-          backgroundColor: '#fff',
-          position: 'relative',
-          paddingTop: '80px',
-          paddingBottom: '80px',
-          marginTop: '60px',
-        }}
-      >
-        <div
+    <div style={{ backgroundColor: '#f8f8f8', minHeight: '100vh', padding: '40px 20px' }}>
+      {/* Back Link */}
+      <div style={{ maxWidth: '500px', margin: '0 auto 32px' }}>
+        <a
+          href="/"
           style={{
-            maxWidth: '1520px',
-            margin: '0 auto',
-            padding: '0 20px',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '8px',
+            fontFamily: '"Outfit", sans-serif',
+            fontSize: '0.95rem',
+            color: '#965B83',
+            textDecoration: 'none',
+            fontWeight: 500,
+            transition: 'color 0.2s',
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.color = '#7D4969';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.color = '#965B83';
           }}
         >
-          <h1
-            style={{
-              fontFamily: '"Bowlby One SC", sans-serif',
-              fontSize: 'clamp(2.5rem, 6vw, 3.5rem)',
-              fontWeight: 400,
-              color: '#1F2124',
-              marginBottom: '20px',
-              letterSpacing: '0.5px',
-            }}
-          >
-            Grooming Price Calculator
-          </h1>
-          <p
-            style={{
-              fontFamily: '"Outfit", sans-serif',
-              fontSize: 'clamp(1rem, 2vw, 1.2rem)',
-              color: '#54595F',
-              lineHeight: '1.6',
-            }}
-          >
-            Get an instant, personalized grooming price estimate for your dog. Transparent pricing. No obligation.
-          </p>
-        </div>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ marginRight: '4px' }}>
+            <path d="M10 12L6 8L10 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+          Homepage
+        </a>
       </div>
 
-      {/* Calculator Section */}
-      <section style={{ backgroundColor: '#fff', padding: '80px 20px 50px' }}>
-        <div style={{ maxWidth: '1520px', margin: '0 auto', padding: '0 20px' }}>
-          <div style={{ maxWidth: '600px', margin: '0 auto' }}>
-            <form onSubmit={handleCalculate} style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-              {/* Breed Selection */}
-              <div>
-                <label
-                  style={{
-                    display: 'block',
-                    fontFamily: '"Outfit", sans-serif',
-                    fontSize: '1rem',
-                    fontWeight: 600,
-                    color: '#1F2124',
-                    marginBottom: '12px',
-                  }}
-                >
-                  Select Breed
-                </label>
-                <input
-                  type="text"
-                  list="breed-list"
-                  placeholder="Search or select a breed..."
-                  value={selectedBreed}
-                  onChange={(e) => setSelectedBreed(e.target.value)}
-                  style={{
-                    width: '100%',
-                    padding: '12px 16px',
-                    fontSize: '1rem',
-                    fontFamily: '"Outfit", sans-serif',
-                    border: '2px solid #E5E7EB',
-                    borderRadius: '8px',
-                    transition: 'border-color 0.2s',
-                  }}
-                  onFocus={(e) => {
-                    e.currentTarget.style.borderColor = '#965B83';
-                  }}
-                  onBlur={(e) => {
-                    e.currentTarget.style.borderColor = '#E5E7EB';
-                  }}
-                />
-                <datalist id="breed-list">
-                  {formattedBreeds.map((breed) => (
-                    <option key={breed.id} value={breed.name} />
-                  ))}
-                </datalist>
-              </div>
+      {/* Main Card Container */}
+      <div
+        style={{
+          maxWidth: '500px',
+          margin: '0 auto',
+          backgroundColor: '#fff',
+          borderRadius: '16px',
+          boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)',
+          padding: '40px',
+        }}
+      >
+        {/* Logo */}
+        <div style={{ textAlign: 'center', marginBottom: '24px' }}>
+          <img
+            src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/image-8.png"
+            alt="The Dog House Pet Salon"
+            style={{
+              maxWidth: '120px',
+              height: 'auto',
+              display: 'inline-block',
+            }}
+          />
+        </div>
 
-              {/* Weight Input */}
-              <div>
-                <label
-                  style={{
-                    display: 'block',
-                    fontFamily: '"Outfit", sans-serif',
-                    fontSize: '1rem',
-                    fontWeight: 600,
-                    color: '#1F2124',
-                    marginBottom: '12px',
-                  }}
-                >
-                  Weight (lbs)
-                </label>
-                <input
-                  type="number"
-                  placeholder="e.g. 25"
-                  step="0.1"
-                  value={weight}
-                  onChange={(e) => setWeight(e.target.value)}
-                  style={{
-                    width: '100%',
-                    padding: '12px 16px',
-                    fontSize: '1rem',
-                    fontFamily: '"Outfit", sans-serif',
-                    border: '2px solid #E5E7EB',
-                    borderRadius: '8px',
-                    transition: 'border-color 0.2s',
-                  }}
-                  onFocus={(e) => {
-                    e.currentTarget.style.borderColor = '#965B83';
-                  }}
-                  onBlur={(e) => {
-                    e.currentTarget.style.borderColor = '#E5E7EB';
-                  }}
-                />
-              </div>
+        {/* Title */}
+        <h1
+          style={{
+            fontFamily: '"Outfit", sans-serif',
+            fontSize: '24px',
+            fontWeight: 600,
+            color: '#965B83',
+            textAlign: 'center',
+            marginBottom: '32px',
+            margin: '0 0 32px 0',
+          }}
+        >
+          Grooming Price Calculator
+        </h1>
+        <form onSubmit={handleCalculate} style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+          {/* Breed Selection */}
+          <div>
+            <label
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+                fontFamily: '"Outfit", sans-serif',
+                fontSize: '16px',
+                fontWeight: 600,
+                color: '#1F2124',
+                marginBottom: '12px',
+              }}
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z" fill="currentColor" />
+              </svg>
+              Pet Breed
+            </label>
+            <input
+              type="text"
+              list="breed-list"
+              placeholder="Select a breed..."
+              value={selectedBreed}
+              onChange={(e) => setSelectedBreed(e.target.value)}
+              style={{
+                width: '100%',
+                padding: '14px 16px',
+                fontSize: '16px',
+                fontFamily: '"Outfit", sans-serif',
+                border: '1px solid #e0e0e0',
+                borderRadius: '12px',
+                transition: 'border-color 0.2s',
+                boxSizing: 'border-box',
+              }}
+              onFocus={(e) => {
+                e.currentTarget.style.borderColor = '#965B83';
+              }}
+              onBlur={(e) => {
+                e.currentTarget.style.borderColor = '#e0e0e0';
+              }}
+            />
+            <datalist id="breed-list">
+              {formattedBreeds.map((breed) => (
+                <option key={breed.id} value={breed.name} />
+              ))}
+            </datalist>
+          </div>
 
-              {/* Error Message */}
-              {error && (
-                <div
-                  style={{
-                    padding: '12px 16px',
-                    backgroundColor: '#FEE2E2',
-                    border: '1px solid #FECACA',
-                    borderRadius: '8px',
-                    color: '#DC2626',
-                    fontSize: '0.9rem',
-                    fontFamily: '"Outfit", sans-serif',
-                  }}
-                >
-                  {error}
-                </div>
-              )}
-
-              {/* Submit Button */}
-              <button
-                type="submit"
+          {/* Weight Input */}
+          <div>
+            <label
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+                fontFamily: '"Outfit", sans-serif',
+                fontSize: '16px',
+                fontWeight: 600,
+                color: '#1F2124',
+                marginBottom: '12px',
+              }}
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z" fill="currentColor" />
+              </svg>
+              Pet Weight
+            </label>
+            <div style={{ position: 'relative' }}>
+              <input
+                type="number"
+                placeholder="e.g. 25"
+                step="0.1"
+                value={weight}
+                onChange={(e) => setWeight(e.target.value)}
                 style={{
-                  padding: '14px 24px',
-                  backgroundColor: result ? '#E5E7EB' : '#965B83',
-                  color: result ? '#6B7280' : '#fff',
-                  border: 'none',
-                  borderRadius: '8px',
-                  fontSize: '1.1rem',
-                  fontWeight: 600,
+                  width: '100%',
+                  padding: '14px 16px 14px 16px',
+                  fontSize: '16px',
                   fontFamily: '"Outfit", sans-serif',
-                  cursor: result ? 'not-allowed' : 'pointer',
-                  transition: 'all 0.2s',
+                  border: '1px solid #e0e0e0',
+                  borderRadius: '12px',
+                  transition: 'border-color 0.2s',
+                  boxSizing: 'border-box',
+                  paddingRight: '50px',
                 }}
-                disabled={!!result}
-                onMouseEnter={(e) => {
-                  if (!result) {
-                    e.currentTarget.style.backgroundColor = '#7D4969';
-                    e.currentTarget.style.transform = 'translateY(-2px)';
-                  }
+                onFocus={(e) => {
+                  e.currentTarget.style.borderColor = '#965B83';
                 }}
-                onMouseLeave={(e) => {
-                  if (!result) {
-                    e.currentTarget.style.backgroundColor = '#965B83';
-                    e.currentTarget.style.transform = 'translateY(0)';
-                  }
+                onBlur={(e) => {
+                  e.currentTarget.style.borderColor = '#e0e0e0';
+                }}
+              />
+              <span
+                style={{
+                  position: 'absolute',
+                  right: '16px',
+                  top: '50%',
+                  transform: 'translateY(-50%)',
+                  fontFamily: '"Outfit", sans-serif',
+                  fontSize: '14px',
+                  color: '#9CA3AF',
+                  pointerEvents: 'none',
                 }}
               >
-                {result ? 'Pricing Calculated' : 'Calculate Price'}
-              </button>
+                lbs
+              </span>
+            </div>
+          </div>
 
-              {/* Reset Button */}
-              {result && (
-                <button
-                  type="button"
-                  onClick={handleReset}
+          {/* Error Message */}
+          {error && (
+            <div
+              style={{
+                padding: '12px 16px',
+                backgroundColor: '#FEE2E2',
+                border: '1px solid #FECACA',
+                borderRadius: '12px',
+                color: '#DC2626',
+                fontSize: '0.9rem',
+                fontFamily: '"Outfit", sans-serif',
+              }}
+            >
+              {error}
+            </div>
+          )}
+
+          {/* Submit Button */}
+          <button
+            type="submit"
+            style={{
+              padding: '16px 24px',
+              backgroundColor: result ? '#e0e0e0' : '#965B83',
+              color: result ? '#999' : '#fff',
+              border: 'none',
+              borderRadius: '50px',
+              fontSize: '16px',
+              fontWeight: 600,
+              fontFamily: '"Outfit", sans-serif',
+              cursor: result ? 'not-allowed' : 'pointer',
+              transition: 'all 0.2s',
+              width: '100%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '8px',
+            }}
+            disabled={!!result}
+            onMouseEnter={(e) => {
+              if (!result) {
+                e.currentTarget.style.backgroundColor = '#7D4969';
+              }
+            }}
+            onMouseLeave={(e) => {
+              if (!result) {
+                e.currentTarget.style.backgroundColor = '#965B83';
+              }
+            }}
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+              <path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z" fill="currentColor" />
+            </svg>
+            Calculate Price
+          </button>
+
+          {/* Reset Button */}
+          {result && (
+            <button
+              type="button"
+              onClick={handleReset}
+              style={{
+                padding: '12px 24px',
+                backgroundColor: '#F3F4F6',
+                color: '#6B7280',
+                border: '1px solid #E5E7EB',
+                borderRadius: '50px',
+                fontSize: '14px',
+                fontWeight: 600,
+                fontFamily: '"Outfit", sans-serif',
+                cursor: 'pointer',
+                transition: 'all 0.2s',
+                width: '100%',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = '#E5E7EB';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = '#F3F4F6';
+              }}
+            >
+              Clear Pricing
+            </button>
+          )}
+        </form>
+
+        {/* Results */}
+        {result && (
+          <div style={{ marginTop: '32px', paddingTop: '32px', borderTop: '1px solid #E5E7EB' }}>
+            <h2
+              style={{
+                fontFamily: '"Outfit", sans-serif',
+                fontSize: '18px',
+                fontWeight: 600,
+                color: '#1F2124',
+                marginBottom: '16px',
+                textAlign: 'center',
+              }}
+            >
+              Estimated Pricing
+            </h2>
+            <p
+              style={{
+                fontFamily: '"Outfit", sans-serif',
+                fontSize: '14px',
+                color: '#6B7280',
+                textAlign: 'center',
+                marginBottom: '24px',
+              }}
+            >
+              {result.tierName} ({weight} lbs)
+            </p>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+              {result.prices.map((service) => (
+                <div
+                  key={service.serviceName}
                   style={{
-                    padding: '12px 24px',
-                    backgroundColor: '#F3F4F6',
-                    color: '#6B7280',
-                    border: '2px solid #E5E7EB',
-                    borderRadius: '8px',
-                    fontSize: '1rem',
-                    fontWeight: 600,
-                    fontFamily: '"Outfit", sans-serif',
-                    cursor: 'pointer',
+                    padding: '18px 20px',
+                    backgroundColor: '#F9FAFB',
+                    border: '1px solid #E5E7EB',
+                    borderRadius: '12px',
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
                     transition: 'all 0.2s',
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = '#E5E7EB';
+                    e.currentTarget.style.backgroundColor = '#F3F4F6';
+                    e.currentTarget.style.borderColor = '#965B83';
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = '#F3F4F6';
+                    e.currentTarget.style.backgroundColor = '#F9FAFB';
+                    e.currentTarget.style.borderColor = '#E5E7EB';
                   }}
                 >
-                  Clear Pricing
-                </button>
-              )}
-            </form>
-
-            {/* Results */}
-            {result && (
-              <div style={{ marginTop: '40px', paddingTop: '40px', borderTop: '2px solid #E5E7EB' }}>
-                <h2
-                  style={{
-                    fontFamily: '"Bowlby One SC", sans-serif',
-                    fontSize: '1.8rem',
-                    fontWeight: 400,
-                    color: '#1F2124',
-                    marginBottom: '24px',
-                    textAlign: 'center',
-                  }}
-                >
-                  Estimated Pricing
-                </h2>
-                <p
-                  style={{
-                    fontFamily: '"Outfit", sans-serif',
-                    fontSize: '0.95rem',
-                    color: '#6B7280',
-                    textAlign: 'center',
-                    marginBottom: '24px',
-                  }}
-                >
-                  {result.tierName} ({weight} lbs)
-                </p>
-
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                  {result.prices.map((service) => (
-                    <div
-                      key={service.serviceName}
+                  <div>
+                    <h3
                       style={{
-                        padding: '20px 24px',
-                        backgroundColor: '#F9FAFB',
-                        border: '2px solid #E5E7EB',
-                        borderRadius: '8px',
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                        alignItems: 'center',
-                        transition: 'all 0.2s',
-                      }}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.backgroundColor = '#F3F4F6';
-                        e.currentTarget.style.borderColor = '#965B83';
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.backgroundColor = '#F9FAFB';
-                        e.currentTarget.style.borderColor = '#E5E7EB';
+                        fontFamily: '"Outfit", sans-serif',
+                        fontSize: '16px',
+                        fontWeight: 600,
+                        color: '#1F2124',
+                        marginBottom: '2px',
+                        margin: '0 0 2px 0',
                       }}
                     >
-                      <div>
-                        <h3
-                          style={{
-                            fontFamily: '"Outfit", sans-serif',
-                            fontSize: '1.1rem',
-                            fontWeight: 600,
-                            color: '#1F2124',
-                            marginBottom: '4px',
-                          }}
-                        >
-                          {service.serviceName}
-                        </h3>
-                        <p
-                          style={{
-                            fontFamily: '"Outfit", sans-serif',
-                            fontSize: '0.85rem',
-                            color: '#6B7280',
-                          }}
-                        >
-                          Professional grooming service
-                        </p>
-                      </div>
-                      <div style={{ textAlign: 'right' }}>
-                        <div
-                          style={{
-                            fontFamily: '"Bowlby One SC", sans-serif',
-                            fontSize: '1.8rem',
-                            fontWeight: 400,
-                            color: '#965B83',
-                            marginBottom: '4px',
-                          }}
-                        >
-                          ${service.price.toFixed(2)}
-                        </div>
-                        <div
-                          style={{
-                            fontFamily: '"Outfit", sans-serif',
-                            fontSize: '0.75rem',
-                            color: '#9CA3AF',
-                          }}
-                        >
-                          estimated
-                        </div>
-                      </div>
+                      {service.serviceName}
+                    </h3>
+                    <p
+                      style={{
+                        fontFamily: '"Outfit", sans-serif',
+                        fontSize: '13px',
+                        color: '#999',
+                        margin: 0,
+                      }}
+                    >
+                      Professional grooming
+                    </p>
+                  </div>
+                  <div style={{ textAlign: 'right' }}>
+                    <div
+                      style={{
+                        fontFamily: '"Outfit", sans-serif',
+                        fontSize: '18px',
+                        fontWeight: 700,
+                        color: '#965B83',
+                        marginBottom: '2px',
+                        margin: '0 0 2px 0',
+                      }}
+                    >
+                      ${service.price.toFixed(2)}
                     </div>
-                  ))}
+                    <div
+                      style={{
+                        fontFamily: '"Outfit", sans-serif',
+                        fontSize: '12px',
+                        color: '#BBB',
+                      }}
+                    >
+                      estimated
+                    </div>
+                  </div>
                 </div>
+              ))}
+            </div>
 
-                {/* Disclaimer */}
-                <p
-                  style={{
-                    fontFamily: '"Outfit", sans-serif',
-                    fontSize: '0.8rem',
-                    color: '#6B7280',
-                    textAlign: 'center',
-                    marginTop: '24px',
-                    fontStyle: 'italic',
-                  }}
-                >
-                  * Every pet is unique. All grooming prices provided are estimates only and are not guaranteed.
-                </p>
+            {/* Disclaimer */}
+            <p
+              style={{
+                fontFamily: '"Outfit", sans-serif',
+                fontSize: '12px',
+                color: '#999',
+                textAlign: 'center',
+                marginTop: '20px',
+                fontStyle: 'italic',
+                margin: '20px 0 0 0',
+              }}
+            >
+              * Every pet is unique. All grooming prices are estimates only.
+            </p>
 
-                {/* Book Now CTA */}
-                <div style={{ textAlign: 'center', marginTop: '32px' }}>
-                  <a
-                    href="https://www.thedoghouseps.com/appointment-request/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{
-                      display: 'inline-block',
-                      padding: '14px 32px',
-                      backgroundColor: '#965B83',
-                      color: '#fff',
-                      textDecoration: 'none',
-                      borderRadius: '8px',
-                      fontSize: '1.1rem',
-                      fontWeight: 600,
-                      fontFamily: '"Outfit", sans-serif',
-                      transition: 'all 0.2s',
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.backgroundColor = '#7D4969';
-                      e.currentTarget.style.transform = 'translateY(-2px)';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.backgroundColor = '#965B83';
-                      e.currentTarget.style.transform = 'translateY(0)';
-                    }}
-                  >
-                    Book Appointment Now
-                  </a>
-                </div>
-              </div>
-            )}
+            {/* Book Now CTA */}
+            <div style={{ marginTop: '24px' }}>
+              <a
+                href="https://www.thedoghouseps.com/appointment-request/"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: 'block',
+                  padding: '16px 24px',
+                  backgroundColor: '#965B83',
+                  color: '#fff',
+                  textDecoration: 'none',
+                  borderRadius: '50px',
+                  fontSize: '16px',
+                  fontWeight: 600,
+                  fontFamily: '"Outfit", sans-serif',
+                  transition: 'all 0.2s',
+                  textAlign: 'center',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = '#7D4969';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = '#965B83';
+                }}
+              >
+                Book Appointment Now
+              </a>
+            </div>
           </div>
-        </div>
-      </section>
+        )}
 
-      {/* Disclaimer Modal */}
+        {/* Disclaimer Modal */}
       {showDisclaimer && (
         <div
           style={{
@@ -526,7 +581,7 @@ export default function CalculatorPage() {
           <div
             style={{
               backgroundColor: '#fff',
-              borderRadius: '12px',
+              borderRadius: '16px',
               padding: '32px',
               maxWidth: '500px',
               width: '90%',
@@ -536,11 +591,12 @@ export default function CalculatorPage() {
           >
             <h2
               style={{
-                fontFamily: '"Bowlby One SC", sans-serif',
-                fontSize: '1.5rem',
-                fontWeight: 400,
+                fontFamily: '"Outfit", sans-serif',
+                fontSize: '18px',
+                fontWeight: 600,
                 color: '#1F2124',
                 marginBottom: '16px',
+                margin: '0 0 16px 0',
               }}
             >
               Important Notice
@@ -548,8 +604,8 @@ export default function CalculatorPage() {
             <p
               style={{
                 fontFamily: '"Outfit", sans-serif',
-                fontSize: '1rem',
-                color: '#54595F',
+                fontSize: '14px',
+                color: '#666',
                 lineHeight: '1.6',
                 marginBottom: '24px',
               }}
@@ -563,10 +619,10 @@ export default function CalculatorPage() {
                   flex: 1,
                   padding: '12px 24px',
                   backgroundColor: '#F3F4F6',
-                  color: '#6B7280',
+                  color: '#666',
                   border: 'none',
-                  borderRadius: '8px',
-                  fontSize: '1rem',
+                  borderRadius: '50px',
+                  fontSize: '14px',
                   fontWeight: 600,
                   fontFamily: '"Outfit", sans-serif',
                   cursor: 'pointer',
@@ -589,8 +645,8 @@ export default function CalculatorPage() {
                   backgroundColor: '#965B83',
                   color: '#fff',
                   border: 'none',
-                  borderRadius: '8px',
-                  fontSize: '1rem',
+                  borderRadius: '50px',
+                  fontSize: '14px',
                   fontWeight: 600,
                   fontFamily: '"Outfit", sans-serif',
                   cursor: 'pointer',
@@ -609,6 +665,7 @@ export default function CalculatorPage() {
           </div>
         </div>
       )}
-    </>
+      </div>
+    </div>
   );
 }

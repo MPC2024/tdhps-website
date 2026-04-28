@@ -610,7 +610,6 @@ export default function PetGroomingContent() {
 
           {/* Counter Boxes */}
           <div style={{ display: "flex", justifyContent: "center", gap: "30px", marginBottom: "50px", flexWrap: "wrap" }}>
-            <CounterBox target={30} suffix="+" label={t("grooming_years_label")} />
             <CounterBox target={40000} suffix="+" label={t("grooming_satisfied_clients_label")} />
           </div>
 

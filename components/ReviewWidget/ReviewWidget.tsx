@@ -14,7 +14,7 @@ export default async function ReviewWidget({
   locationName,
   googlePlaceId,
   yelpBusinessId,
-  maxReviews = 6,
+  maxReviews = 3,
 }: ReviewWidgetProps) {
   // Fetch reviews server-side
   const { reviews, averageRating, totalCount } = await getLocationReviews(
@@ -50,6 +50,22 @@ export default async function ReviewWidget({
             {displayedReviews.map((review) => (
               <ReviewCard key={review.id} review={review} />
             ))}
+          </div>
+          <div style={{ textAlign: "center", marginTop: "24px" }}>
+            <a
+              href={`https://search.google.com/local/reviews?placeid=${googlePlaceId}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                fontFamily: '"Outfit", sans-serif',
+                fontSize: "15px",
+                color: "#965B83",
+                fontWeight: 600,
+                textDecoration: "none",
+              }}
+            >
+              Read all {totalCount} reviews on Google →
+            </a>
           </div>
         ) : (
           <div className={styles.empty}>

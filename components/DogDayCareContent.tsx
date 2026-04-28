@@ -814,6 +814,83 @@ export default function DogDayCareContent() {
         </div>
       </section>
 
+      {/* ── Your Pet's Home Away From Home ── */}
+      <section style={{ backgroundColor: "#ffffff", padding: "80px 20px" }}>
+        <div style={{ maxWidth: "1520px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "60px", alignItems: "center" }}>
+          <div style={{ order: -1 }}>
+            <Image
+              src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/happy-dog.png"
+              alt="Your Pet's Home Away From Home"
+              width={600}
+              height={500}
+              loading="lazy"
+              style={{ width: "100%", height: "auto", borderRadius: "16px" }}
+            />
+          </div>
+          <div>
+            <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "50px", color: "#1F2124", lineHeight: 1.1, marginBottom: "24px" }}>
+              {t("daycare_home_away_title")}
+            </h2>
+            <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", lineHeight: 1.7 }}>
+              {t("daycare_home_away_text")}
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Watch Daycare TV ── */}
+      <section style={{ backgroundColor: "#965B831A", padding: "80px 20px" }}>
+        <div style={{ maxWidth: "1520px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "60px", alignItems: "center" }}>
+          <div>
+            <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "50px", color: "#1F2124", lineHeight: 1.1, marginBottom: "24px" }}>
+              {t("daycare_webcam_title")}
+            </h2>
+            <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", lineHeight: 1.7, marginBottom: "24px", whiteSpace: "pre-wrap" }}>
+              {t("daycare_webcam_text")}
+            </p>
+            <Link
+              href="/pet-cam"
+              style={{
+                display: "inline-block",
+                backgroundColor: "#965B83",
+                color: "#ffffff",
+                padding: "12px 32px",
+                borderRadius: "50px",
+                fontFamily: '"Outfit", sans-serif',
+                fontWeight: 600,
+                fontSize: "15px",
+                textDecoration: "none",
+                transition: "all 0.3s ease"
+              }}
+            >
+              View Pet Cam
+            </Link>
+          </div>
+          <div>
+            <Image
+              src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/dogs-in-pool.png"
+              alt="Watch Daycare TV"
+              width={600}
+              height={500}
+              loading="lazy"
+              style={{ width: "100%", height: "auto", borderRadius: "16px" }}
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* ── Trust Section ── */}
+      <section style={{ backgroundColor: "#ffffff", padding: "80px 20px" }}>
+        <div style={{ maxWidth: "1520px", margin: "0 auto", textAlign: "center" }}>
+          <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(32px,4vw,56px)", color: "#1F2124", marginBottom: "32px", lineHeight: 1.1 }}>
+            Built on Trust
+          </h2>
+          <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "18px", color: "#54595F", lineHeight: 1.8, maxWidth: "800px", marginInline: "auto" }}>
+            {t("daycare_trust_text")}
+          </p>
+        </div>
+      </section>
+
       {/* ── FAQ ── */}
       <section
         style={{

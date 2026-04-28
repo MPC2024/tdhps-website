@@ -515,6 +515,11 @@ export const translations = {
     daycare_modal_rabies: "Rabies",
     daycare_modal_influenza: "Influenza is NOT REQUIRED but RECOMMENDED",
     daycare_loyalty_redeem: "Redeem on Your 12th Bath, Groom, or Basic Service",
+    daycare_home_away_title: "Your Pet's Home Away From Home",
+    daycare_home_away_text: "When you choose The Dog House Pet Salon for dog daycare or dog boarding, you can rest assured that your furry friend is in good hands. Our facility is equipped with spacious play areas, comfortable resting spaces, and a team of passionate caregivers committed to providing a safe and enjoyable experience for every pet. Whether your dog needs a place to stay for the day or overnight, our best doggie daycare is designed to meet their every need.",
+    daycare_webcam_title: "Watch #THEDOGHOUSEPETSALON Daycare TV",
+    daycare_webcam_text: "Want to check in on your furry friends during the day? Leaving your loved ones is hard, we understand. That's why The Dog House Pet Salon is equipped with webcams, allowing you to receive real time updates on your loved ones whenever you desire.\n\nTransparency is key in any relationship, especially when caring for furry family members. That's exactly why our dog day care in Houston will always provide this incredible resource to get an inside look at our operations and monitor the luxurious conditions of your loved ones.",
+    daycare_trust_text: "Communities are built on trust. That's why The Dog House Pet Salon has been the best doggy daycare and pet boarding service in Houston for over a decade! When you're here, you're family.",
 
     // Grooming School Page
     school_grooming_school: "Grooming School",
@@ -1985,6 +1990,11 @@ export const translations = {
     daycare_modal_rabies: "Rabia",
     daycare_modal_influenza: "La Influenza NO es REQUERIDA pero es RECOMENDADA",
     daycare_loyalty_redeem: "Redime en tu 12ª Bath, Groom, o Servicio Básico",
+    daycare_home_away_title: "La Casa Lejos de Casa de tu Mascota",
+    daycare_home_away_text: "Cuando eliges The Dog House Pet Salon para guardería o hospedaje de perros, puedes estar seguro de que tu amigo peludo está en buenas manos. Nuestras instalaciones están equipadas con espaciosas áreas de juego, cómodos espacios de descanso, y un equipo de cuidadores apasionados dedicados a proporcionar una experiencia segura y agradable para cada mascota. Ya sea que tu perro necesite un lugar para quedarse durante el día o durante la noche, nuestra mejor guardería para perros está diseñada para satisfacer sus necesidades.",
+    daycare_webcam_title: "Mira #THEDOGHOUSEPETSALON Guardería TV",
+    daycare_webcam_text: "¿Quieres comprobar cómo están tus amigos peludos durante el día? Dejar a tus seres queridos es difícil, lo entendemos. Por eso The Dog House Pet Salon está equipado con cámaras web, lo que te permite recibir actualizaciones en tiempo real de tus seres queridos cuando lo desees.\n\nLa transparencia es clave en cualquier relación, especialmente cuando se cuida a miembros de la familia peluda. Por eso nuestra guardería para perros en Houston siempre proporcionará este increíble recurso para obtener una vista interna de nuestras operaciones y monitorear las lujosas condiciones de tus seres queridos.",
+    daycare_trust_text: "Las comunidades se construyen sobre la confianza. ¡Por eso The Dog House Pet Salon ha sido el mejor servicio de guardería para perros y hospedaje de mascotas en Houston durante más de una década! Cuando estés aquí, eres familia.",
 
     // Grooming School Page
     school_grooming_school: "Escuela de Peluquería",

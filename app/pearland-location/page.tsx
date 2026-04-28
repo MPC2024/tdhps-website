@@ -76,9 +76,6 @@ export default function PearlandLocationPage() {
       <section
         style={{
           position: "relative",
-          backgroundImage: "url(https://www.thedoghouseps.com/wp-content/uploads/2025/04/Peatland.jpeg)",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
           minHeight: "clamp(400px, 60vh, 700px)",
           display: "flex",
           alignItems: "center",
@@ -86,7 +83,16 @@ export default function PearlandLocationPage() {
           overflow: "hidden",
         }}
       >
-        <div style={{ position: "absolute", inset: 0, backgroundColor: "#ffffff", opacity: 0.1 }} />
+        <Image
+          src="https://www.thedoghouseps.com/wp-content/uploads/2025/04/Peatland.jpeg"
+          alt="The Dog House Pet Salon Pearland Location"
+          fill
+          style={{ objectFit: "cover", objectPosition: "center" }}
+          priority
+          quality={85}
+          sizes="100vw"
+        />
+        <div style={{ position: "absolute", inset: 0, backgroundColor: "#ffffff", opacity: 0.4 }} />
         <div style={{ maxWidth: "1520px", margin: "130px auto 50px", padding: "0 20px", position: "relative", zIndex: 2 }}>
           <PearlandLocationContent />
         </div>

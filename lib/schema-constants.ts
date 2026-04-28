@@ -51,7 +51,7 @@ export const SERVICES = [
 export const ORGANIZATION_CONTACT = {
   type: "ContactPoint",
   contactType: "Customer Service",
-  telephone: "(832) 930-4060",
+  telephone: "(713) 820-6140",
   areaServed: ["Houston, TX", "Pearland, TX"],
 };
 
@@ -78,7 +78,7 @@ export const FAQ_DATA = [
   {
     question: "How do I book an appointment?",
     answer:
-      "You can book an appointment online at www.thedoghouseps.com/appointment-request/ or call us at (832) 930-4060.",
+      "You can book an appointment online at www.thedoghouseps.com/appointment-request/ or call us at (713) 820-6140.",
   },
   {
     question: "Do you offer pet boarding?",

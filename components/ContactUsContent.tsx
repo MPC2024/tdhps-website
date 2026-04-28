@@ -13,7 +13,7 @@ const locations = [
       "Saturday: 8:00 AM – 6:00 PM",
       "Sunday: 8:00 AM – 9:00 AM, 4:00 PM – 5:00 PM",
     ],
-    phone: "(832) 930-4060",
+    phone: "(713) 820-6140",
     email: "galleria@thedoghouseps.com",
     option: "OPTION 1",
     appointmentLink: "/appointment-request-form_location_richmond",

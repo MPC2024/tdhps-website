@@ -57,7 +57,7 @@ export const LOCATIONS: Record<string, Location> = {
     yelpBusinessId: "",
     googleReviewUrl:
       "https://search.google.com/local/writereview?placeid=ChIJNWbI09DDQIYRxZJigeiMf5A",
-    phone: "(832) 930-4060",
+    phone: "(713) 820-6140",
     email: "galleria@thedoghouseps.com",
     website: "https://www.thedoghouseps.com",
     bookingUrl: "https://www.thedoghouseps.com/appointment-request/",
@@ -77,7 +77,7 @@ export const LOCATIONS: Record<string, Location> = {
     yelpBusinessId: "",
     googleReviewUrl:
       "https://search.google.com/local/writereview?placeid=ChIJe7kMPejHQIYR8ANum7UaLx8",
-    phone: "(832) 930-4060",
+    phone: "(713) 820-6140",
     email: "memorial@thedoghouseps.com",
     website: "https://www.thedoghouseps.com",
     bookingUrl: "https://www.thedoghouseps.com/appointment-request-memorial/",
@@ -97,7 +97,7 @@ export const LOCATIONS: Record<string, Location> = {
     yelpBusinessId: "",
     googleReviewUrl:
       "https://search.google.com/local/writereview?placeid=ChIJQ-nKpJuTQIYRqVwFi2Apg9U",
-    phone: "(832) 930-4060",
+    phone: "(713) 820-6140",
     email: "pearland@thedoghouseps.com",
     website: "https://www.thedoghouseps.com",
     bookingUrl: "https://www.thedoghouseps.com/appointment-request-pearland/",

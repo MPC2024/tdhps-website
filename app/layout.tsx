@@ -107,7 +107,7 @@ const organizationJsonLd = {
   name: "The Dog House Pet Salon",
   url: "https://www.thedoghouseps.com",
   logo: "https://www.thedoghouseps.com/wp-content/uploads/2025/05/The-dog-house-pet-salon-hero-1.webp",
-  telephone: "(832) 930-4060",
+  telephone: "(713) 820-6140",
   email: "galleria@thedoghouseps.com",
   description:
     "Houston's premier pet grooming, doggie daycare, and pet boarding service with 30+ years of experience. Three convenient locations.",

@@ -1071,8 +1071,8 @@ export default function PetBathingContent() {
               height={560}
               loading="lazy"
               quality={95}
-              style={{ width: "100%", maxWidth: "700px", height: "auto" }}
-              sizes="(max-width: 768px) 90vw, 700px"
+              style={{ width: "100%", height: "auto" }}
+              sizes="(max-width: 768px) 90vw, 100vw"
             />
           </div>
         </div>

@@ -1477,35 +1477,35 @@ export default function PetGroomingContent() {
             {[
               {
                 label: t("grooming_pet_care"),
-                svg: <svg width="48" height="48" viewBox="0 0 48 48" fill="#965B83" xmlns="http://www.w3.org/2000/svg"><ellipse cx="14" cy="10" rx="5" ry="6"/><ellipse cx="34" cy="10" rx="5" ry="6"/><ellipse cx="7" cy="24" rx="4" ry="5"/><ellipse cx="41" cy="24" rx="4" ry="5"/><path d="M24 44c-8 0-14-6-14-14 0-6 4-10 8-12a10 10 0 0 1 12 0c4 2 8 6 8 12 0 8-6 14-14 14z"/></svg>,
+                svg: <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#965B83" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>,
               },
               {
                 label: t("grooming_bathing"),
-                svg: <svg width="48" height="48" viewBox="0 0 48 48" fill="#965B83" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="24" width="32" height="16" rx="8"/><path d="M12 24V12a8 8 0 0 1 16 0" stroke="#965B83" strokeWidth="3" fill="none"/><circle cx="20" cy="8" r="3"/><ellipse cx="14" cy="6" rx="2" ry="2.5"/><ellipse cx="18" cy="3" rx="1.5" ry="2"/><rect x="14" y="40" width="4" height="4" rx="1"/><rect x="30" y="40" width="4" height="4" rx="1"/></svg>,
+                svg: <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#965B83" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M4 12h16"/><path d="M4 12a1 1 0 0 0-1 1v3a4 4 0 0 0 4 4h10a4 4 0 0 0 4-4v-3a1 1 0 0 0-1-1"/><path d="M6 12V5a2 2 0 0 1 2-2h1"/><path d="M14 6h.01"/><path d="M10 6h.01"/><path d="M12 6h.01"/></svg>,
               },
               {
                 label: t("grooming_shampoo"),
-                svg: <svg width="48" height="48" viewBox="0 0 48 48" fill="#965B83" xmlns="http://www.w3.org/2000/svg"><rect x="14" y="16" width="20" height="28" rx="4"/><rect x="18" y="8" width="12" height="8" rx="2"/><path d="M30 12h6v4a2 2 0 0 1-2 2h-4" fill="#965B83"/><circle cx="24" cy="30" r="4" fill="#faf7f9"/></svg>,
+                svg: <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#965B83" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M10 2v4"/><path d="M14 2v4"/><rect x="8" y="6" width="8" height="4" rx="1"/><path d="M8 10v10a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2V10"/><path d="M12 14v4"/><path d="M10 16h4"/></svg>,
               },
               {
                 label: t("grooming_brushing_category"),
-                svg: <svg width="48" height="48" viewBox="0 0 48 48" fill="#965B83" xmlns="http://www.w3.org/2000/svg"><rect x="12" y="4" width="24" height="14" rx="3"/><rect x="16" y="18" width="16" height="26" rx="2"/><rect x="19" y="22" width="3" height="6" rx="1"/><rect x="25" y="22" width="3" height="6" rx="1"/><rect x="19" y="30" width="3" height="6" rx="1"/><rect x="25" y="30" width="3" height="6" rx="1"/></svg>,
+                svg: <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#965B83" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="6" y="2" width="12" height="8" rx="2"/><path d="M9 10v12"/><path d="M12 10v12"/><path d="M15 10v12"/><path d="M6 6h12"/></svg>,
               },
               {
                 label: t("grooming_cutting"),
-                svg: <svg width="48" height="48" viewBox="0 0 48 48" fill="#965B83" xmlns="http://www.w3.org/2000/svg"><circle cx="14" cy="38" r="6" fill="none" stroke="#965B83" strokeWidth="3"/><circle cx="34" cy="38" r="6" fill="none" stroke="#965B83" strokeWidth="3"/><path d="M18 34L30 10M30 34L18 10" stroke="#965B83" strokeWidth="3" strokeLinecap="round"/></svg>,
+                svg: <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#965B83" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg>,
               },
               {
                 label: t("grooming_combing"),
-                svg: <svg width="48" height="48" viewBox="0 0 48 48" fill="#965B83" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="4" width="32" height="12" rx="3"/><rect x="12" y="16" width="3" height="28" rx="1"/><rect x="18" y="16" width="3" height="28" rx="1"/><rect x="24" y="16" width="3" height="28" rx="1"/><rect x="30" y="16" width="3" height="28" rx="1"/><rect x="36" y="16" width="3" height="20" rx="1"/></svg>,
+                svg: <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#965B83" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16v4H4z"/><path d="M7 8v14"/><path d="M10 8v14"/><path d="M13 8v14"/><path d="M16 8v14"/></svg>,
               },
               {
                 label: t("grooming_styling"),
-                svg: <svg width="48" height="48" viewBox="0 0 48 48" fill="#965B83" xmlns="http://www.w3.org/2000/svg"><rect x="16" y="16" width="16" height="28" rx="4"/><rect x="20" y="8" width="8" height="8" rx="2"/><path d="M28 12h4v4a2 2 0 0 1-2 2h-2"/><path d="M36 6l2-4M38 10l4-2M36 14l2 4" stroke="#965B83" strokeWidth="2" strokeLinecap="round"/><circle cx="24" cy="28" r="3" fill="#965b831a"/></svg>,
+                svg: <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#965B83" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M9.5 2A5.5 5.5 0 0 1 15 7.5V12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V7.5A5.5 5.5 0 0 1 9.5 2z"/><path d="M10 13v9"/><path d="M6 22h8"/><path d="M17 6l2-2"/><path d="M19 10h2"/><path d="M17 14l2 2"/></svg>,
               },
               {
                 label: t("grooming_handling"),
-                svg: <svg width="48" height="48" viewBox="0 0 48 48" fill="#965B83" xmlns="http://www.w3.org/2000/svg"><path d="M36 36H12v-4l4-8h16l4 8v4z"/><circle cx="18" cy="18" r="6"/><rect x="28" y="14" width="4" height="12" rx="2"/><circle cx="14" cy="38" r="2"/><circle cx="32" cy="38" r="2"/><path d="M8 20h4M36 20h4" stroke="#965B83" strokeWidth="2"/></svg>,
+                svg: <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#965B83" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 11V6a2 2 0 0 0-2-2a2 2 0 0 0-2 2"/><path d="M14 10V4a2 2 0 0 0-2-2a2 2 0 0 0-2 2v2"/><path d="M10 10.5V6a2 2 0 0 0-2-2a2 2 0 0 0-2 2v8"/><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 13"/></svg>,
               },
             ].map((item) => (
               <div key={item.label} style={{

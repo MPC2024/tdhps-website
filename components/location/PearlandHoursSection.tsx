@@ -32,18 +32,18 @@ export default function PearlandHoursSection() {
         </p>
         <div style={{ display: "flex", flexWrap: "wrap", gap: "20px", justifyContent: "center", marginBottom: "24px" }}>
           <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-            <span style={{ color: "#965B83", fontSize: "18px" }}>&#128197;</span>
-            <span style={{ fontFamily: '"Outfit", sans-serif', fontSize: "14px", color: "#1F2124", fontWeight: 500 }}>Monday-Friday, 7AM - 6PM</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#965B83" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span style={{ fontFamily: '"Outfit", sans-serif', fontSize: "17px", color: "#1F2124", fontWeight: 600 }}>Monday-Friday, 7AM - 6PM</span>
           </div>
           <span style={{ color: "#E8E8E8", fontSize: "20px" }}>|</span>
           <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-            <span style={{ color: "#965B83", fontSize: "18px" }}>&#128197;</span>
-            <span style={{ fontFamily: '"Outfit", sans-serif', fontSize: "14px", color: "#1F2124", fontWeight: 500 }}>Saturday, 8AM - 6PM</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#965B83" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span style={{ fontFamily: '"Outfit", sans-serif', fontSize: "17px", color: "#1F2124", fontWeight: 600 }}>Saturday, 8AM - 6PM</span>
           </div>
           <span style={{ color: "#E8E8E8", fontSize: "20px" }}>|</span>
           <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-            <span style={{ color: "#965B83", fontSize: "18px" }}>&#128197;</span>
-            <span style={{ fontFamily: '"Outfit", sans-serif', fontSize: "14px", color: "#1F2124", fontWeight: 500 }}>Sunday, Closed</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#965B83" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span style={{ fontFamily: '"Outfit", sans-serif', fontSize: "17px", color: "#1F2124", fontWeight: 600 }}>Sunday, Closed</span>
           </div>
         </div>
         <p

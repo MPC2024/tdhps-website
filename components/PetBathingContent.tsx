@@ -1066,10 +1066,12 @@ export default function PetBathingContent() {
             <Image
               src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/loyalty-card.png"
               alt="Pawsitively Grateful Loyalty Card"
-              width={500}
-              height={350}
+              width={800}
+              height={560}
               loading="lazy"
-              style={{ width: "100%", maxWidth: "450px", height: "auto" }}
+              quality={95}
+              style={{ width: "100%", maxWidth: "700px", height: "auto" }}
+              sizes="(max-width: 768px) 90vw, 700px"
             />
           </div>
         </div>

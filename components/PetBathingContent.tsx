@@ -155,7 +155,7 @@ function VideoPlayer() {
       style={{
         position: "relative",
         width: "100%",
-        paddingBottom: "56.25%",
+        paddingBottom: "min(56.25%, 450px)",
         marginBottom: "60px",
         borderRadius: "12px",
         overflow: "hidden",
@@ -249,14 +249,30 @@ function PricingCarousel({ items, language }: { items: typeof pricingExtras; lan
   const visible = getVisibleIndices();
 
   return (
-    <div style={{ marginBottom: "40px" }}>
+    <div style={{ marginBottom: "40px", position: "relative" }}>
+      {/* Left arrow */}
+      <button
+        onClick={goPrev}
+        style={{ position: "absolute", left: "20px", top: "50%", transform: "translateY(-50%)", zIndex: 5, background: "rgba(255,255,255,0.9)", border: "1px solid rgba(150,91,131,0.2)", borderRadius: "50%", width: "40px", height: "40px", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", color: "#965B83", fontSize: "16px", boxShadow: "0 2px 8px rgba(0,0,0,0.1)" }}
+        aria-label="Previous"
+      >
+        <i className="fa-solid fa-arrow-left" />
+      </button>
+      {/* Right arrow */}
+      <button
+        onClick={goNext}
+        style={{ position: "absolute", right: "20px", top: "50%", transform: "translateY(-50%)", zIndex: 5, background: "rgba(255,255,255,0.9)", border: "1px solid rgba(150,91,131,0.2)", borderRadius: "50%", width: "40px", height: "40px", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", color: "#965B83", fontSize: "16px", boxShadow: "0 2px 8px rgba(0,0,0,0.1)" }}
+        aria-label="Next"
+      >
+        <i className="fa-solid fa-arrow-right" />
+      </button>
       <div style={{
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
         gap: "24px",
         overflow: "hidden",
-        padding: "80px 20px 40px",
+        padding: "80px 50px 40px",
         transition: "transform 0.3s ease, opacity 0.3s ease",
         transform: sliding ? `translateX(${slideDirection === "left" ? "-30px" : "30px"})` : "translateX(0)",
         opacity: sliding ? 0.7 : 1,
@@ -325,23 +341,6 @@ function PricingCarousel({ items, language }: { items: typeof pricingExtras; lan
             </div>
           );
         })}
-      </div>
-      {/* Navigation arrows */}
-      <div style={{ display: "flex", justifyContent: "center", gap: "24px", marginTop: "8px" }}>
-        <button
-          onClick={goPrev}
-          style={{ background: "none", border: "none", cursor: "pointer", fontSize: "24px", color: "#965B83", padding: "8px" }}
-          aria-label="Previous"
-        >
-          <i className="fa-solid fa-arrow-left" />
-        </button>
-        <button
-          onClick={goNext}
-          style={{ background: "none", border: "none", cursor: "pointer", fontSize: "24px", color: "#965B83", padding: "8px" }}
-          aria-label="Next"
-        >
-          <i className="fa-solid fa-arrow-right" />
-        </button>
       </div>
     </div>
   );
@@ -745,7 +744,7 @@ export default function PetBathingContent() {
           backgroundImage: "url(https://www.thedoghouseps.com/wp-content/uploads/2025/04/doggie-washing.jpg)",
           backgroundSize: "cover",
           backgroundPosition: "center",
-          padding: "100px 20px",
+          padding: "100px 35px",
         }}
       >
         {/* White overlay */}
@@ -781,7 +780,7 @@ export default function PetBathingContent() {
       </section>
 
       {/* ── Pricing ── */}
-      <section style={{ backgroundColor: "#F8F8F8", padding: "80px 20px" }}>
+      <section style={{ backgroundColor: "#F8F8F8", padding: "80px 35px" }}>
         <div style={{ maxWidth: "1520px", margin: "0 auto" }}>
           <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "50px", color: "#1F2124", textAlign: "center", marginBottom: "8px", lineHeight: 1.2 }}>
             {t("bathing_services_pricing")}
@@ -790,13 +789,12 @@ export default function PetBathingContent() {
             {t("bathing_groomed_perfection")}
           </p>
           <PricingCarousel items={pricingExtras} language={language} />
-          <div style={{ backgroundColor: "#fff", borderRadius: "12px", padding: "30px", boxShadow: "0 1px 4px rgba(0,0,0,.08)", border: "1px solid #E0E0E0" }}>
-            <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#1F2124", lineHeight: 1.7, textAlign: "center", marginBottom: "16px" }}>
+          <div style={{ maxWidth: "900px", margin: "0 auto", padding: "20px 0" }}>
+            <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "13px", color: "#888", lineHeight: 1.6, textAlign: "center", marginBottom: "8px" }}>
               {t("bathing_pricing_vary")}
             </p>
-            <hr style={{ border: "none", borderTop: "1px solid #E0E0E0", margin: "16px 0" }} />
-            <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#1F2124", lineHeight: 1.7, textAlign: "center" }}>
-              <strong>*Please Note:</strong> {t("bathing_pricing_note")}
+            <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "12px", color: "#999", lineHeight: 1.6, textAlign: "center", fontStyle: "italic" }}>
+              *{t("bathing_pricing_note")}
             </p>
           </div>
         </div>
@@ -1184,9 +1182,10 @@ export default function PetBathingContent() {
             <Image
               src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/greyhound-dog-with-towel-after-bath.png.webp"
               alt="Pet bathing services Houston"
-              width={600}
-              height={500}
+              width={1200}
+              height={1000}
               loading="lazy"
+              quality={95}
               style={{ width: "100%", height: "auto", display: "block" }}
             />
             <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(255,255,255,0) 20%, #965b83 100%)" }} />

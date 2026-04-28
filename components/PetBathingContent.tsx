@@ -1111,6 +1111,9 @@ export default function PetBathingContent() {
                   <i className="fa-solid fa-phone" style={{ fontSize: "16px" }} />
                   <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#fff", margin: 0 }}>{locations[0].phone}</p>
                 </div>
+                <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "14px", color: "#fff", marginTop: "4px", marginBottom: "8px" }}>
+                  After Hours: <a href="tel:+17139666350" style={{ color: "#fff" }}>(713) 966-6350</a>
+                </p>
                 <div style={{ display: "flex", alignItems: "center", gap: "8px", color: "#fff" }}>
                   <i className="fa-solid fa-envelope" style={{ fontSize: "16px" }} />
                   <a href={`mailto:${locations[0].email}`} style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#fff", textDecoration: "none" }}>{locations[0].email}</a>
@@ -1138,6 +1141,9 @@ export default function PetBathingContent() {
                       <i className="fa-solid fa-phone" style={{ fontSize: "12px" }} />
                       <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "11px", color: "#fff", margin: 0 }}>{loc.phone}</p>
                     </div>
+                    <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "10px", color: "#fff", marginTop: "2px", marginBottom: "4px" }}>
+                      After Hours: <a href="tel:+17139666350" style={{ color: "#fff" }}>(713) 966-6350</a>
+                    </p>
                     <div style={{ display: "flex", alignItems: "center", gap: "6px", color: "#fff" }}>
                       <i className="fa-solid fa-envelope" style={{ fontSize: "12px" }} />
                       <a href={`mailto:${loc.email}`} style={{ fontFamily: '"Outfit", sans-serif', fontSize: "11px", color: "#fff", textDecoration: "none" }}>{loc.email}</a>

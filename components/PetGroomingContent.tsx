@@ -1029,6 +1029,9 @@ export default function PetGroomingContent() {
                     {locations[0].phone}
                   </p>
                 </div>
+                <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "14px", color: "#fff", marginTop: "4px", marginBottom: "8px" }}>
+                  After Hours: <a href="tel:+17139666350" style={{ color: "#fff" }}>(713) 966-6350</a>
+                </p>
 
                 <div style={{ display: "flex", alignItems: "center", gap: "8px", color: "#fff" }}>
                   <i className="fa-solid fa-envelope" style={{ fontSize: "16px" }} />
@@ -1131,6 +1134,10 @@ export default function PetGroomingContent() {
                     </p>
                   </div>
 
+                  <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "10px", color: "#fff", marginTop: "2px", marginBottom: "4px" }}>
+                    After Hours: <a href="tel:+17139666350" style={{ color: "#fff" }}>(713) 966-6350</a>
+                  </p>
+
                   <div style={{ display: "flex", alignItems: "center", gap: "6px", color: "#fff" }}>
                     <i className="fa-solid fa-envelope" style={{ fontSize: "12px" }} />
                     <a href={`mailto:${locations[1].email}`} style={{
@@ -1229,6 +1236,10 @@ export default function PetGroomingContent() {
                       {locations[2].phone}
                     </p>
                   </div>
+
+                  <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "10px", color: "#fff", marginTop: "2px", marginBottom: "4px" }}>
+                    After Hours: <a href="tel:+17139666350" style={{ color: "#fff" }}>(713) 966-6350</a>
+                  </p>
 
                   <div style={{ display: "flex", alignItems: "center", gap: "6px", color: "#fff" }}>
                     <i className="fa-solid fa-envelope" style={{ fontSize: "12px" }} />

@@ -85,7 +85,7 @@ export default function MemorialParkLocationPage() {
           quality={85}
           sizes="100vw"
         />
-        <div style={{ position: "absolute", inset: 0, backgroundColor: "#ffffff", opacity: 0.4 }} />
+        <div style={{ position: "absolute", inset: 0, backgroundColor: "#ffffff", opacity: 0.5 }} />
         <div style={{ maxWidth: "1520px", margin: "130px auto 50px", padding: "0 20px", position: "relative", zIndex: 2 }}>
           <MemorialParkLocationContent />
         </div>

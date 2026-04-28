@@ -82,7 +82,7 @@ export default function GalleriaLocationPage() {
           overflow: "hidden",
         }}
       >
-        <div style={{ position: "absolute", inset: 0, backgroundColor: "#ffffff", opacity: 0.6 }} />
+        <div style={{ position: "absolute", inset: 0, backgroundColor: "#ffffff", opacity: 0.3 }} />
         <div style={{ maxWidth: "1520px", margin: "130px auto 50px", padding: "0 20px", position: "relative", zIndex: 2 }}>
           <GalleriaLocationContent />
         </div>

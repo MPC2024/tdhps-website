@@ -52,17 +52,25 @@ export async function fetchGoogleReviews(placeId: string): Promise<Review[]> {
       return [];
     }
 
+    // Store overall rating from Google (not calculated from 5 reviews)
+    const overallRating = data.result.rating || 0;
+    const totalReviews = data.result.user_ratings_total || 0;
+
     // Transform Google reviews to our format
-    return data.result.reviews.slice(0, 5).map((review: any, index: number) => ({
+    const reviews = data.result.reviews.slice(0, 5).map((review: any, index: number) => ({
       id: `google-${placeId}-${index}`,
       rating: review.rating,
       text: review.text,
       author: review.author_name,
-      authorPhotoUrl: review.profile_photo_url,
+      authorPhotoUrl: review.profile_photo_url || "",
       reviewTime: review.time * 1000, // Convert Unix timestamp to ms
       source: "google" as const,
       url: data.result.url,
+      _overallRating: overallRating,
+      _totalReviews: totalReviews,
     }));
+
+    return reviews;
   } catch (error) {
     console.error("Failed to fetch Google reviews:", error);
     return [];
@@ -141,18 +149,17 @@ export async function getLocationReviews(
     (a, b) => b.reviewTime - a.reviewTime
   );
 
-  // Calculate average rating from ALL reviews (before filtering)
-  const totalRating = allReviews.reduce((sum, r) => sum + r.rating, 0);
-  const averageRating =
-    allReviews.length > 0 ? +(totalRating / allReviews.length).toFixed(1) : 0;
+  // Use Google's overall rating (not calculated from 5 returned reviews)
+  const googleOverall = googleReviews.length > 0 ? (googleReviews[0] as any)._overallRating || 0 : 0;
+  const googleTotal = googleReviews.length > 0 ? (googleReviews[0] as any)._totalReviews || 0 : 0;
 
-  // Filter: only show 4+ star reviews (Nathan's requirement)
+  // Filter: only show 4+ star reviews for display
   const filteredReviews = allReviews.filter((review) => review.rating >= 4);
 
   return {
     reviews: filteredReviews,
-    averageRating,
-    totalCount: allReviews.length, // Keep real count from all reviews
+    averageRating: googleOverall,
+    totalCount: googleTotal, // Use Google's total count, not just 5 returned
   };
 }
 

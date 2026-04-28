@@ -1817,15 +1817,40 @@ export default function GroomingSchoolClient() {
           </h2>
           <div className="groomers-grid" style={{ gap: "30px" }}>
             {GROOMERS.map((g) => (
-              <div key={g.name} style={{ backgroundColor: "#ffffff", borderRadius: "12px", overflow: "hidden", boxShadow: "6px 6px 9px rgba(0,0,0,.08)", textAlign: "center" }}>
-                <Image src={g.img} alt={g.name} width={500}
-              quality={90} height={500} style={{ width: "100%", height: "300px", objectFit: "cover" }} />
-                <div style={{ padding: "30px 24px" }}>
-                  <p style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "13px", color: "#965B83", letterSpacing: "1px", marginBottom: "4px" }}>{t(g.roleKey)}</p>
-                  <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "22px", color: "#1F2124", marginBottom: "4px" }}>{g.name}</h3>
-                  <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "15px", color: "#54595F", marginBottom: "20px" }}>{g.location}</p>
-                  <Link href={g.href} style={{ fontFamily: '"Outfit", sans-serif', fontSize: "14px", color: "#fff", fontWeight: 600, textDecoration: "none", backgroundColor: "#965B83", padding: "10px 20px", borderRadius: "50px", display: "inline-block" }}>{t("school_read_full_bio")}</Link>
+              <div key={g.name} style={{
+                backgroundColor: "rgba(255,255,255,0.8)",
+                borderRadius: "20px",
+                padding: "40px 24px",
+                textAlign: "center",
+                border: "1px solid rgba(150,91,131,0.15)",
+              }}>
+                {/* Circular photo */}
+                <div style={{
+                  width: "180px",
+                  height: "180px",
+                  borderRadius: "50%",
+                  overflow: "hidden",
+                  margin: "0 auto 20px",
+                  border: "4px solid #fff",
+                  boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
+                }}>
+                  <Image src={g.img} alt={g.name} width={200}
+                  height={200} loading="lazy" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                 </div>
+                <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "16px", color: "#1F2124", marginBottom: "4px" }}>{t(g.roleKey)}</h3>
+                <p style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "16px", color: "#1F2124", marginBottom: "8px" }}>{g.name}</p>
+                <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "14px", color: "#965B83", fontStyle: "italic", marginBottom: "16px" }}>{g.location}</p>
+                <Link href={g.href} style={{
+                  display: "inline-block",
+                  backgroundColor: "#965B83",
+                  color: "#fff",
+                  padding: "10px 24px",
+                  borderRadius: "50px",
+                  fontFamily: '"Outfit", sans-serif',
+                  fontWeight: 600,
+                  fontSize: "14px",
+                  textDecoration: "none",
+                }}>{t("school_read_full_bio")}</Link>
               </div>
             ))}
           </div>

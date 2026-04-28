@@ -228,57 +228,76 @@ const locations = [
               <div
                 key={g.name}
                 style={{
-                  backgroundColor: "#ffffff",
-                  borderRadius: "12px",
-                  overflow: "hidden",
-                  boxShadow: "6px 6px 9px rgba(0,0,0,.08)",
+                  backgroundColor: "rgba(255,255,255,0.8)",
+                  borderRadius: "20px",
+                  padding: "40px 24px",
                   textAlign: "center",
+                  border: "1px solid rgba(150,91,131,0.15)",
                 }}
               >
-                <Image
-                  src={g.img}
-                  alt={g.name}
-                  width={500}
-                  height={500}
-                  style={{ width: "100%", height: "300px", objectFit: "cover" }}
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                />
-                <div style={{ padding: "30px 24px" }}>
-                  <p
-                    style={{
-                      fontFamily: '"Bowlby One SC", sans-serif',
-                      fontSize: "13px",
-                      color: "#965B83",
-                      letterSpacing: "1px",
-                      marginBottom: "4px",
-                    }}
-                  >
-                    {t(g.titleKey)}
-                  </p>
-                  <h3
-                    style={{
-                      fontFamily: '"Bowlby One SC", sans-serif',
-                      fontSize: "22px",
-                      color: "#1F2124",
-                      marginBottom: "4px",
-                    }}
-                  >
-                    {g.name}
-                  </h3>
-                  <p
-                    style={{
-                      fontFamily: '"Outfit", sans-serif',
-                      fontSize: "15px",
-                      color: "#54595F",
-                      marginBottom: "20px",
-                    }}
-                  >
-                    {t(g.locationKey)}
-                  </p>
-                  <Link href={g.slug} className="btn-primary">
-                    {t("staff_read_full_bio")}
-                  </Link>
+                {/* Circular photo */}
+                <div style={{
+                  width: "180px",
+                  height: "180px",
+                  borderRadius: "50%",
+                  overflow: "hidden",
+                  margin: "0 auto 20px",
+                  border: "4px solid #fff",
+                  boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
+                }}>
+                  <Image
+                    src={g.img}
+                    alt={g.name}
+                    width={200}
+                    height={200}
+                    loading="lazy"
+                    style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                  />
                 </div>
+                <h3
+                  style={{
+                    fontFamily: '"Bowlby One SC", sans-serif',
+                    fontSize: "16px",
+                    color: "#1F2124",
+                    marginBottom: "4px",
+                  }}
+                >
+                  {t(g.titleKey)}
+                </h3>
+                <p
+                  style={{
+                    fontFamily: '"Bowlby One SC", sans-serif',
+                    fontSize: "16px",
+                    color: "#1F2124",
+                    marginBottom: "8px",
+                  }}
+                >
+                  {g.name}
+                </p>
+                <p
+                  style={{
+                    fontFamily: '"Outfit", sans-serif',
+                    fontSize: "14px",
+                    color: "#965B83",
+                    fontStyle: "italic",
+                    marginBottom: "16px",
+                  }}
+                >
+                  {t(g.locationKey)}
+                </p>
+                <Link href={g.slug} style={{
+                  display: "inline-block",
+                  backgroundColor: "#965B83",
+                  color: "#fff",
+                  padding: "10px 24px",
+                  borderRadius: "50px",
+                  fontFamily: '"Outfit", sans-serif',
+                  fontWeight: 600,
+                  fontSize: "14px",
+                  textDecoration: "none",
+                }}>
+                  {t("staff_read_full_bio")}
+                </Link>
               </div>
             ))}
           </div>

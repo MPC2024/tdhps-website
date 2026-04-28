@@ -200,15 +200,32 @@ export default function MemorialParkLocationPage() {
         </div>
       </section>
 
-      {/* Community Engagement */}
+      {/* Community Engagement + Instagram Feed */}
       <section style={{ backgroundColor: "#ffffff", padding: "60px 20px" }}>
         <div style={{ maxWidth: "1000px", margin: "0 auto", textAlign: "center" }}>
           <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(24px,3vw,40px)", color: "#1F2124", marginBottom: "20px" }}>
             Community Engagement and Events
           </h2>
-          <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", lineHeight: 1.7, maxWidth: "900px", margin: "0 auto" }}>
-            We believe in fostering a strong sense of community and regularly participate in local events and collaborate with nearby pet organizations. Stay connected with us through our social media channels for updates on events, promotions, and pet care tips.
+          <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", lineHeight: 1.7, maxWidth: "900px", margin: "0 auto 32px" }}>
+            We believe in fostering a strong sense of community and regularly participate in local events and collaborate with nearby pet organizations. Follow us on Instagram for the latest updates!
           </p>
+          <iframe
+            src="https://snapwidget.com/embed/1084981"
+            className="snapwidget-widget"
+            allowTransparency
+            frameBorder={0}
+            scrolling="no"
+            style={{ border: "none", overflow: "hidden", width: "100%", height: "320px" }}
+            title="The Dog House Pet Salon Instagram Feed"
+          />
+          <a
+            href="https://www.instagram.com/thedoghouseps/"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ display: "inline-block", marginTop: "20px", fontFamily: '"Outfit", sans-serif', fontSize: "15px", color: "#965B83", fontWeight: 600, textDecoration: "none" }}
+          >
+            Follow @thedoghouseps on Instagram →
+          </a>
         </div>
       </section>
 
@@ -282,7 +299,7 @@ export default function MemorialParkLocationPage() {
             locationName={LOCATIONS.memorialPark.name}
             googlePlaceId={LOCATIONS.memorialPark.googlePlaceId}
             yelpBusinessId={LOCATIONS.memorialPark.yelpBusinessId}
-            maxReviews={6}
+            maxReviews={3}
           />
         </div>
       </section>

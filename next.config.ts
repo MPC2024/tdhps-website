@@ -31,6 +31,16 @@ const nextConfig: NextConfig = {
         hostname: "thedoghouseps.com",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "upload.wikimedia.org",
+        pathname: "/wikipedia/commons/**",
+      },
+      {
+        protocol: "https",
+        hostname: "maps.googleapis.com",
+        pathname: "/maps/api/place/photo",
+      },
     ],
   },
 

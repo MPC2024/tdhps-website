@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useLanguage } from "@/lib/LanguageContext";
 import ReviewsCarousel from "@/components/ReviewsCarousel";
 import StoreLocations from "@/components/StoreLocations";
+import ClientPhotoCarousel from "@/components/ClientPhotoCarousel";
 
 /* ── Data ── */
 const services = [
@@ -247,14 +248,19 @@ export default function HomepageContent() {
       <section
         id="services"
         style={{
-          backgroundImage: "url(https://www.thedoghouseps.com/wp-content/uploads/2025/05/The-dog-house-pet-salon-hero-1.webp)",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
           padding: "80px 20px",
           position: "relative",
+          overflow: "hidden",
         }}
       >
-        <div style={{ position: "absolute", inset: 0, backgroundColor: "rgba(255, 255, 255, 0.45)" }} />
+        <Image
+          src="https://www.thedoghouseps.com/wp-content/uploads/2025/05/The-dog-house-pet-salon-hero-1.webp"
+          alt="Pet salon services"
+          fill
+          style={{ objectFit: "cover", objectPosition: "center", zIndex: 0 }}
+          sizes="100vw"
+        />
+        <div style={{ position: "absolute", inset: 0, backgroundColor: "rgba(255, 255, 255, 0.45)", zIndex: 1 }} />
         <div
           style={{
             maxWidth: "1520px",
@@ -503,7 +509,7 @@ export default function HomepageContent() {
                   marginBottom: "16px",
                 }}
               >
-                🐾 {t("ready_to_join" as any)}{" "}
+                {t("ready_to_join" as any)}{" "}
                 <span style={{ color: "#965B83" }}>{t("lets_get_started" as any)}</span>
               </h2>
               <Link
@@ -885,6 +891,11 @@ export default function HomepageContent() {
       </section>
 
       {/* ══════════════════════════════════════════════
+          SECTION 7b: Client Photo Carousel
+      ══════════════════════════════════════════════ */}
+      <ClientPhotoCarousel />
+
+      {/* ══════════════════════════════════════════════
           SECTION 8: Reviews Carousel
       ══════════════════════════════════════════════ */}
       <ReviewsCarousel />
@@ -951,7 +962,7 @@ export default function HomepageContent() {
             >
               {thingsSetUsApart.map((key) => (
                 <li key={key}>
-                  <span style={{ color: "#965B83", marginRight: "8px" }}>✔</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#965B83" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" style={{ display: "inline", verticalAlign: "middle", marginRight: "8px" }}><polyline points="20 6 9 17 4 12" /></svg>
                   {t(key as any)}
                 </li>
               ))}
@@ -977,15 +988,19 @@ export default function HomepageContent() {
       <section
         style={{
           position: "relative",
-          backgroundImage: "url(https://www.thedoghouseps.com/wp-content/uploads/2025/05/The-dog-house-pet-salon-hero-2.webp)",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
           padding: "80px 20px",
           textAlign: "center",
           overflow: "hidden",
         }}
       >
-        <div style={{ position: "absolute", inset: 0, backgroundColor: "rgba(150, 91, 131, 0.85)" }} />
+        <Image
+          src="https://www.thedoghouseps.com/wp-content/uploads/2025/05/The-dog-house-pet-salon-hero-2.webp"
+          alt="Get in touch CTA section"
+          fill
+          style={{ objectFit: "cover", objectPosition: "center", zIndex: 0 }}
+          sizes="100vw"
+        />
+        <div style={{ position: "absolute", inset: 0, backgroundColor: "rgba(150, 91, 131, 0.85)", zIndex: 1 }} />
         <div style={{ maxWidth: "800px", margin: "0 auto", position: "relative", zIndex: 2 }}>
           <h2
             style={{
@@ -1053,14 +1068,17 @@ export default function HomepageContent() {
       <section
         style={{
           position: "relative",
-          backgroundImage: "url(https://www.thedoghouseps.com/wp-content/uploads/2025/03/image67.jpg)",
-          backgroundPosition: "center center",
-          backgroundSize: "cover",
-          backgroundRepeat: "no-repeat",
           padding: "80px 20px 180px",
           overflow: "hidden",
         }}
       >
+        <Image
+          src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/image67.jpg"
+          alt="Blog section background"
+          fill
+          style={{ objectFit: "cover", objectPosition: "center", zIndex: 0 }}
+          sizes="100vw"
+        />
         {/* White Overlay */}
         <div
           style={{
@@ -1068,7 +1086,7 @@ export default function HomepageContent() {
             inset: 0,
             backgroundColor: "#ffffff",
             opacity: 0.9,
-            zIndex: 0,
+            zIndex: 1,
           }}
         />
         {/* Curved Bottom Border */}

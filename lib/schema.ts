@@ -169,7 +169,6 @@ export function generateServiceSchema(serviceName: string, areaServed: string[] 
       "@type": "City",
       name: area,
     })),
-    availableLanguage: ["en"],
   };
 }
 

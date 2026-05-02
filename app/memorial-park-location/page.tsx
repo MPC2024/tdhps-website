@@ -3,6 +3,8 @@ import Link from "next/link";
 import Image from "next/image";
 import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 import { ReviewWidget } from "@/components/ReviewWidget";
+import { InstagramFeed } from "@/components/InstagramFeed";
+import LocationBlogFeed from "@/components/LocationBlogFeed";
 import { LOCATIONS } from "@/lib/locations";
 import MemorialParkLocationContent from "@/components/location/MemorialParkLocationContent";
 import MemorialAboutSection from "@/components/location/MemorialAboutSection";
@@ -13,6 +15,7 @@ import MemorialHoursSection from "@/components/location/MemorialHoursSection";
 import MemorialFaqSection from "@/components/location/MemorialFaqSection";
 import MemorialBoardingFaqSection from "@/components/location/MemorialBoardingFaqSection";
 import MemorialDirectionsSection from "@/components/location/MemorialDirectionsSection";
+import LocationPhotoCarousel from "@/components/LocationPhotoCarousel";
 
 export const metadata: Metadata = {
   title: "Dog Grooming in Memorial Park Houston",
@@ -184,17 +187,32 @@ export default function MemorialParkLocationPage() {
             }
           `}} />
           <div className="memorial-attractions-grid">
-            <div style={{ backgroundColor: "rgba(255,255,255,0.2)", borderRadius: "16px", padding: "30px", backdropFilter: "blur(4px)" }}>
-              <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "20px", color: "#ffffff", marginBottom: "12px" }}>Memorial Park</h3>
-              <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "15px", color: "rgba(255,255,255,0.9)", lineHeight: 1.6 }}>One of the largest urban parks in the U.S., offering running trails, biking paths, a golf course, and picnic spots.</p>
+            <div style={{ backgroundColor: "rgba(255,255,255,0.2)", borderRadius: "16px", overflow: "hidden", backdropFilter: "blur(4px)" }}>
+              <div style={{ position: "relative", width: "100%", height: "180px" }}>
+                <Image src="https://upload.wikimedia.org/wikipedia/commons/0/08/MemorialParkHouston.JPG" alt="Memorial Park Houston" fill style={{ objectFit: "cover" }} sizes="(max-width: 768px) 100vw, 33vw" />
+              </div>
+              <div style={{ padding: "20px 24px 24px" }}>
+                <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "20px", color: "#ffffff", marginBottom: "12px" }}>Memorial Park</h3>
+                <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "15px", color: "rgba(255,255,255,0.9)", lineHeight: 1.6 }}>One of the largest urban parks in the U.S., offering running trails, biking paths, a golf course, and picnic spots.</p>
+              </div>
             </div>
-            <div style={{ backgroundColor: "rgba(255,255,255,0.2)", borderRadius: "16px", padding: "30px", backdropFilter: "blur(4px)" }}>
-              <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "20px", color: "#ffffff", marginBottom: "12px" }}>Memorial City Mall</h3>
-              <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "15px", color: "rgba(255,255,255,0.9)", lineHeight: 1.6 }}>A large shopping mall with retail stores, restaurants, and entertainment including an ice skating rink.</p>
+            <div style={{ backgroundColor: "rgba(255,255,255,0.2)", borderRadius: "16px", overflow: "hidden", backdropFilter: "blur(4px)" }}>
+              <div style={{ position: "relative", width: "100%", height: "180px" }}>
+                <Image src="https://upload.wikimedia.org/wikipedia/commons/7/71/Memorial_City_Mall_%2811066%29.jpg" alt="Memorial City Mall Houston" fill style={{ objectFit: "cover" }} sizes="(max-width: 768px) 100vw, 33vw" />
+              </div>
+              <div style={{ padding: "20px 24px 24px" }}>
+                <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "20px", color: "#ffffff", marginBottom: "12px" }}>Memorial City Mall</h3>
+                <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "15px", color: "rgba(255,255,255,0.9)", lineHeight: 1.6 }}>A large shopping mall with retail stores, restaurants, and entertainment including an ice skating rink.</p>
+              </div>
             </div>
-            <div style={{ backgroundColor: "rgba(255,255,255,0.2)", borderRadius: "16px", padding: "30px", backdropFilter: "blur(4px)" }}>
-              <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "20px", color: "#ffffff", marginBottom: "12px" }}>Houston Arboretum &amp; Nature Center</h3>
-              <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "15px", color: "rgba(255,255,255,0.9)", lineHeight: 1.6 }}>A 155-acre nature sanctuary featuring walking trails, wildlife viewing, and educational exhibits. A peaceful green escape within the Memorial Park system.</p>
+            <div style={{ backgroundColor: "rgba(255,255,255,0.2)", borderRadius: "16px", overflow: "hidden", backdropFilter: "blur(4px)" }}>
+              <div style={{ position: "relative", width: "100%", height: "180px" }}>
+                <Image src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Houston_Arboretum_and_Nature_Center_-_panoramio_-_Idawriter.jpg" alt="Houston Arboretum and Nature Center" fill style={{ objectFit: "cover" }} sizes="(max-width: 768px) 100vw, 33vw" />
+              </div>
+              <div style={{ padding: "20px 24px 24px" }}>
+                <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "20px", color: "#ffffff", marginBottom: "12px" }}>Houston Arboretum &amp; Nature Center</h3>
+                <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "15px", color: "rgba(255,255,255,0.9)", lineHeight: 1.6 }}>A 155-acre nature sanctuary featuring walking trails, wildlife viewing, and educational exhibits. A peaceful green escape within the Memorial Park system.</p>
+              </div>
             </div>
           </div>
         </div>
@@ -202,43 +220,50 @@ export default function MemorialParkLocationPage() {
 
       {/* Community Engagement + Instagram Feed */}
       <section style={{ backgroundColor: "#ffffff", padding: "60px 20px" }}>
-        <div style={{ maxWidth: "1000px", margin: "0 auto", textAlign: "center" }}>
-          <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(24px,3vw,40px)", color: "#1F2124", marginBottom: "20px" }}>
-            Community Engagement and Events
-          </h2>
-          <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", lineHeight: 1.7, maxWidth: "900px", margin: "0 auto 32px" }}>
-            We believe in fostering a strong sense of community and regularly participate in local events and collaborate with nearby pet organizations. Follow us on Instagram for the latest updates!
-          </p>
-          <iframe
-            src="https://snapwidget.com/embed/1084981"
-            className="snapwidget-widget"
-            allowTransparency
-            frameBorder={0}
-            scrolling="no"
-            style={{ border: "none", overflow: "hidden", width: "100%", height: "320px" }}
-            title="The Dog House Pet Salon Instagram Feed"
-          />
-          <a
-            href="https://www.instagram.com/thedoghouseps/"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ display: "inline-block", marginTop: "20px", fontFamily: '"Outfit", sans-serif', fontSize: "15px", color: "#965B83", fontWeight: 600, textDecoration: "none" }}
-          >
-            Follow @thedoghouseps on Instagram →
-          </a>
+        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: "48px" }}>
+            <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(24px,3vw,40px)", color: "#1F2124", marginBottom: "20px" }}>
+              Community Engagement and Events
+            </h2>
+            <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", lineHeight: 1.7, maxWidth: "900px", margin: "0 auto" }}>
+              We believe in fostering a strong sense of community and regularly participate in local events and collaborate with nearby pet organizations. Follow us on Instagram for the latest updates!
+            </p>
+          </div>
+          <InstagramFeed maxPosts={3} />
+          <div style={{ textAlign: "center", marginTop: "32px" }}>
+            <a
+              href="https://www.instagram.com/thedoghouseps/"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ display: "inline-block", fontFamily: '"Outfit", sans-serif', fontSize: "15px", color: "#965B83", fontWeight: 600, textDecoration: "none", borderBottom: "2px solid #965B83", paddingBottom: "4px" }}
+            >
+              Follow @thedoghouseps on Instagram
+            </a>
+          </div>
         </div>
       </section>
+
+      <LocationPhotoCarousel
+        placeId="ChIJe7kMPejHQIYR8ANum7UaLx8"
+        locationName="Memorial Park"
+      />
+
+      <LocationBlogFeed location="memorial" locationName="Memorial Park / Heights" />
 
       {/* Contact Information and Appointment Scheduling */}
       <section style={{
         position: "relative",
-        backgroundImage: "url(https://www.thedoghouseps.com/wp-content/uploads/2025/03/image22.jpg)",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
         padding: "80px 20px",
         overflow: "hidden",
       }}>
-        <div style={{ position: "absolute", inset: 0, backgroundColor: "#FFF", opacity: 0.85 }} />
+        <Image
+          src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/image22.jpg"
+          alt="Memorial Park location contact section"
+          fill
+          style={{ objectFit: "cover", objectPosition: "center", zIndex: 0 }}
+          sizes="100vw"
+        />
+        <div style={{ position: "absolute", inset: 0, backgroundColor: "#FFF", opacity: 0.85, zIndex: 1 }} />
         <div style={{ maxWidth: "1200px", margin: "0 auto", position: "relative", zIndex: 1, textAlign: "center" }}>
           <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(24px,3vw,40px)", color: "#1F2124", marginBottom: "16px" }}>
             Contact Information and Appointment Scheduling

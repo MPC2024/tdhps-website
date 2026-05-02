@@ -15,6 +15,7 @@ export interface BlogPost {
   tags: string[];
   author: string;
   content?: string;
+  location?: string;
 }
 
 export function getAllPosts(): BlogPost[] {
@@ -34,6 +35,7 @@ export function getAllPosts(): BlogPost[] {
         categories: data.categories ?? [],
         tags: data.tags ?? [],
         author: data.author ?? "The Dog House Pet Salon",
+        location: data.location || undefined,
       } as BlogPost;
     })
     .sort(
@@ -57,6 +59,7 @@ export function getPostBySlug(
     categories: data.categories ?? [],
     tags: data.tags ?? [],
     author: data.author ?? "The Dog House Pet Salon",
+    location: data.location || undefined,
     content,
   };
 }
@@ -66,4 +69,18 @@ export function getPostSlugs(): string[] {
     .readdirSync(BLOG_DIR)
     .filter((f) => f.endsWith(".mdx"))
     .map((f) => f.replace(".mdx", ""));
+}
+
+export function getPostsByLocation(location: string, limit: number = 5): BlogPost[] {
+  const allPosts = getAllPosts();
+
+  // Filter by location: either match the location or be tagged as "all"
+  const filteredPosts = allPosts.filter(
+    (post) => post.location === location || post.location === "all"
+  );
+
+  // If no location-tagged posts exist, fall back to all recent posts
+  const postsToShow = filteredPosts.length > 0 ? filteredPosts : allPosts;
+
+  return postsToShow.slice(0, limit);
 }

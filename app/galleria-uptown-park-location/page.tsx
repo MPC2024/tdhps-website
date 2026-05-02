@@ -3,6 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 import { ReviewWidget } from "@/components/ReviewWidget";
+import { InstagramFeed } from "@/components/InstagramFeed";
+import LocationBlogFeed from "@/components/LocationBlogFeed";
 import { LOCATIONS } from "@/lib/locations";
 import GalleriaLocationContent from "@/components/location/GalleriaLocationContent";
 import GalleriaAboutSection from "@/components/location/GalleriaAboutSection";
@@ -13,6 +15,7 @@ import GalleriaHoursSection from "@/components/location/GalleriaHoursSection";
 import GalleriaFaqSection from "@/components/location/GalleriaFaqSection";
 import GalleriaBoardingFaqSection from "@/components/location/GalleriaBoardingFaqSection";
 import GalleriaDirectionsSection from "@/components/location/GalleriaDirectionsSection";
+import LocationPhotoCarousel from "@/components/LocationPhotoCarousel";
 
 export const metadata: Metadata = {
   title: "Pet Grooming Salon Galleria Houston",
@@ -71,10 +74,6 @@ export default function GalleriaLocationPage() {
       <section
         style={{
           position: "relative",
-          backgroundImage:
-            "url(/images/galleria-location.jpg)",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
           minHeight: "clamp(400px, 60vh, 700px)",
           display: "flex",
           alignItems: "center",
@@ -82,7 +81,14 @@ export default function GalleriaLocationPage() {
           overflow: "hidden",
         }}
       >
-        <div style={{ position: "absolute", inset: 0, backgroundColor: "#ffffff", opacity: 0.3 }} />
+        <Image
+          src="/images/galleria-location.jpg"
+          alt="Galleria location hero banner"
+          fill
+          style={{ objectFit: "cover", objectPosition: "center", zIndex: 0 }}
+          sizes="100vw"
+        />
+        <div style={{ position: "absolute", inset: 0, backgroundColor: "#ffffff", opacity: 0.5, zIndex: 1 }} />
         <div style={{ maxWidth: "1520px", margin: "130px auto 50px", padding: "0 20px", position: "relative", zIndex: 2 }}>
           <GalleriaLocationContent />
         </div>
@@ -182,13 +188,23 @@ export default function GalleriaLocationPage() {
             }
           `}} />
           <div className="galleria-attractions-grid">
-            <div style={{ backgroundColor: "rgba(255,255,255,0.2)", borderRadius: "16px", padding: "30px", backdropFilter: "blur(4px)" }}>
-              <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "20px", color: "#ffffff", marginBottom: "12px" }}>Danny Jackson Family Dog Park</h3>
-              <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "15px", color: "rgba(255,255,255,0.9)", lineHeight: 1.6 }}>Located just south of the Galleria area along Westpark Drive, this 2.76-acre park features separate sections for large and small dogs, swimming ponds, shaded seating, and water fountains.</p>
+            <div style={{ backgroundColor: "rgba(255,255,255,0.2)", borderRadius: "16px", overflow: "hidden", backdropFilter: "blur(4px)" }}>
+              <div style={{ position: "relative", width: "100%", height: "200px" }}>
+                <Image src="https://upload.wikimedia.org/wikipedia/commons/d/d4/Joggers_along_the_Seymour_Lieberman_Exer-Trail_at_Memorial_Park_in_Houston.NRCS_photo_by_Beverly_Moseley._%2825116673655%29.jpg" alt="Danny Jackson Family Dog Park area near Galleria Houston" fill style={{ objectFit: "cover" }} sizes="(max-width: 768px) 100vw, 50vw" />
+              </div>
+              <div style={{ padding: "24px 30px 30px" }}>
+                <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "20px", color: "#ffffff", marginBottom: "12px" }}>Danny Jackson Family Dog Park</h3>
+                <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "15px", color: "rgba(255,255,255,0.9)", lineHeight: 1.6 }}>Located just south of the Galleria area along Westpark Drive, this 2.76-acre park features separate sections for large and small dogs, swimming ponds, shaded seating, and water fountains.</p>
+              </div>
             </div>
-            <div style={{ backgroundColor: "rgba(255,255,255,0.2)", borderRadius: "16px", padding: "30px", backdropFilter: "blur(4px)" }}>
-              <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "20px", color: "#ffffff", marginBottom: "12px" }}>Memorial Park</h3>
-              <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "15px", color: "rgba(255,255,255,0.9)", lineHeight: 1.6 }}>Approximately 3 miles north of the Galleria area, Memorial Park offers extensive trails suitable for leashed dogs, providing a great environment for exercise and leisure.</p>
+            <div style={{ backgroundColor: "rgba(255,255,255,0.2)", borderRadius: "16px", overflow: "hidden", backdropFilter: "blur(4px)" }}>
+              <div style={{ position: "relative", width: "100%", height: "200px" }}>
+                <Image src="https://upload.wikimedia.org/wikipedia/commons/0/08/MemorialParkHouston.JPG" alt="Memorial Park Houston" fill style={{ objectFit: "cover" }} sizes="(max-width: 768px) 100vw, 50vw" />
+              </div>
+              <div style={{ padding: "24px 30px 30px" }}>
+                <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "20px", color: "#ffffff", marginBottom: "12px" }}>Memorial Park</h3>
+                <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "15px", color: "rgba(255,255,255,0.9)", lineHeight: 1.6 }}>Approximately 3 miles north of the Galleria area, Memorial Park offers extensive trails suitable for leashed dogs, providing a great environment for exercise and leisure.</p>
+              </div>
             </div>
           </div>
         </div>
@@ -196,43 +212,50 @@ export default function GalleriaLocationPage() {
 
       {/* Community Engagement + Instagram Feed */}
       <section style={{ backgroundColor: "#ffffff", padding: "60px 20px" }}>
-        <div style={{ maxWidth: "1000px", margin: "0 auto", textAlign: "center" }}>
-          <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(24px,3vw,40px)", color: "#1F2124", marginBottom: "20px" }}>
-            Community Engagement and Events
-          </h2>
-          <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", lineHeight: 1.7, maxWidth: "900px", margin: "0 auto 32px" }}>
-            We believe in fostering a strong sense of community and regularly participate in local events and collaborate with nearby pet organizations. Follow us on Instagram for the latest updates!
-          </p>
-          <iframe
-            src="https://snapwidget.com/embed/1084981"
-            className="snapwidget-widget"
-            allowTransparency
-            frameBorder={0}
-            scrolling="no"
-            style={{ border: "none", overflow: "hidden", width: "100%", height: "320px" }}
-            title="The Dog House Pet Salon Instagram Feed"
-          />
-          <a
-            href="https://www.instagram.com/thedoghouseps/"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ display: "inline-block", marginTop: "20px", fontFamily: '"Outfit", sans-serif', fontSize: "15px", color: "#965B83", fontWeight: 600, textDecoration: "none" }}
-          >
-            Follow @thedoghouseps on Instagram →
-          </a>
+        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: "48px" }}>
+            <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(24px,3vw,40px)", color: "#1F2124", marginBottom: "20px" }}>
+              Community Engagement and Events
+            </h2>
+            <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", lineHeight: 1.7, maxWidth: "900px", margin: "0 auto" }}>
+              We believe in fostering a strong sense of community and regularly participate in local events and collaborate with nearby pet organizations. Follow us on Instagram for the latest updates!
+            </p>
+          </div>
+          <InstagramFeed maxPosts={3} />
+          <div style={{ textAlign: "center", marginTop: "32px" }}>
+            <a
+              href="https://www.instagram.com/thedoghouseps/"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ display: "inline-block", fontFamily: '"Outfit", sans-serif', fontSize: "15px", color: "#965B83", fontWeight: 600, textDecoration: "none", borderBottom: "2px solid #965B83", paddingBottom: "4px" }}
+            >
+              Follow @thedoghouseps on Instagram
+            </a>
+          </div>
         </div>
       </section>
+
+      <LocationPhotoCarousel
+        placeId="ChIJNWbI09DDQIYRxZJigeiMf5A"
+        locationName="Galleria"
+      />
+
+      <LocationBlogFeed location="galleria" locationName="Galleria" />
 
       {/* Contact Information and Appointment Scheduling */}
       <section style={{
         position: "relative",
-        backgroundImage: "url(https://www.thedoghouseps.com/wp-content/uploads/2025/03/image22.jpg)",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
         padding: "80px 20px",
         overflow: "hidden",
       }}>
-        <div style={{ position: "absolute", inset: 0, backgroundColor: "#FFF", opacity: 0.85 }} />
+        <Image
+          src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/image22.jpg"
+          alt="Galleria location contact section"
+          fill
+          style={{ objectFit: "cover", objectPosition: "center", zIndex: 0 }}
+          sizes="100vw"
+        />
+        <div style={{ position: "absolute", inset: 0, backgroundColor: "#FFF", opacity: 0.85, zIndex: 1 }} />
         <div style={{ maxWidth: "1200px", margin: "0 auto", position: "relative", zIndex: 1, textAlign: "center" }}>
           <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(24px,3vw,40px)", color: "#1F2124", marginBottom: "16px" }}>
             Contact Information and Appointment Scheduling

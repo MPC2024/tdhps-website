@@ -3,6 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 import { ReviewWidget } from "@/components/ReviewWidget";
+import { InstagramFeed } from "@/components/InstagramFeed";
+import LocationBlogFeed from "@/components/LocationBlogFeed";
 import { LOCATIONS } from "@/lib/locations";
 import PearlandLocationContent from "@/components/location/PearlandLocationContent";
 import PearlandAboutSection from "@/components/location/PearlandAboutSection";
@@ -14,6 +16,7 @@ import PearlandFaqSection from "@/components/location/PearlandFaqSection";
 import PearlandBoardingFaqSection from "@/components/location/PearlandBoardingFaqSection";
 import PearlandAttractionsSection from "@/components/location/PearlandAttractionsSection";
 import PearlandDirectionsSection from "@/components/location/PearlandDirectionsSection";
+import LocationPhotoCarousel from "@/components/LocationPhotoCarousel";
 
 export const metadata: Metadata = {
   title: "Pet Grooming Salon Pearland",
@@ -192,21 +195,31 @@ export default function PearlandLocationPage() {
             }
           `}} />
           <div className="pearland-parks-grid">
-            <div style={{ backgroundColor: "rgba(255,255,255,0.2)", borderRadius: "16px", padding: "30px", backdropFilter: "blur(4px)" }}>
-              <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "20px", color: "#ffffff", marginBottom: "12px" }}>
-                Independence Dog Park
-              </h3>
-              <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "15px", color: "rgba(255,255,255,0.9)", lineHeight: 1.6 }}>
-                Located at 3449 Pearland Parkway, this park features separate sections for large and small dogs, providing ample space for off-leash play.
-              </p>
+            <div style={{ backgroundColor: "rgba(255,255,255,0.2)", borderRadius: "16px", overflow: "hidden", backdropFilter: "blur(4px)" }}>
+              <div style={{ position: "relative", width: "100%", height: "200px" }}>
+                <Image src="https://upload.wikimedia.org/wikipedia/commons/b/b5/Houston_Arboretum_Memorial_Park.jpg" alt="Independence Dog Park Pearland green space" fill style={{ objectFit: "cover" }} sizes="(max-width: 640px) 100vw, 50vw" />
+              </div>
+              <div style={{ padding: "24px 30px 30px" }}>
+                <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "20px", color: "#ffffff", marginBottom: "12px" }}>
+                  Independence Dog Park
+                </h3>
+                <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "15px", color: "rgba(255,255,255,0.9)", lineHeight: 1.6 }}>
+                  Located at 3449 Pearland Parkway, this park features separate sections for large and small dogs, providing ample space for off-leash play.
+                </p>
+              </div>
             </div>
-            <div style={{ backgroundColor: "rgba(255,255,255,0.2)", borderRadius: "16px", padding: "30px", backdropFilter: "blur(4px)" }}>
-              <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "20px", color: "#ffffff", marginBottom: "12px" }}>
-                Southdown Dog Park
-              </h3>
-              <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "15px", color: "rgba(255,255,255,0.9)", lineHeight: 1.6 }}>
-                Situated at 2150 Country Place Parkway, Southdown Dog Park offers fenced areas with agility equipment, allowing dogs to exercise and socialize safely.
-              </p>
+            <div style={{ backgroundColor: "rgba(255,255,255,0.2)", borderRadius: "16px", overflow: "hidden", backdropFilter: "blur(4px)" }}>
+              <div style={{ position: "relative", width: "100%", height: "200px" }}>
+                <Image src="https://upload.wikimedia.org/wikipedia/commons/1/13/Houston_Memorial_Park_-_panoramio_%281%29.jpg" alt="Southdown Dog Park Pearland green space" fill style={{ objectFit: "cover" }} sizes="(max-width: 640px) 100vw, 50vw" />
+              </div>
+              <div style={{ padding: "24px 30px 30px" }}>
+                <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "20px", color: "#ffffff", marginBottom: "12px" }}>
+                  Southdown Dog Park
+                </h3>
+                <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "15px", color: "rgba(255,255,255,0.9)", lineHeight: 1.6 }}>
+                  Situated at 2150 Country Place Parkway, Southdown Dog Park offers fenced areas with agility equipment, allowing dogs to exercise and socialize safely.
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -214,43 +227,50 @@ export default function PearlandLocationPage() {
 
       {/* Community Engagement + Instagram Feed */}
       <section style={{ backgroundColor: "#ffffff", padding: "60px 20px" }}>
-        <div style={{ maxWidth: "1000px", margin: "0 auto", textAlign: "center" }}>
-          <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(24px,3vw,40px)", color: "#1F2124", marginBottom: "20px" }}>
-            Community Engagement and Events
-          </h2>
-          <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", lineHeight: 1.7, maxWidth: "900px", margin: "0 auto 32px" }}>
-            We believe in fostering a strong sense of community and regularly participate in local events and collaborate with nearby pet organizations. Follow us on Instagram for the latest updates!
-          </p>
-          <iframe
-            src="https://snapwidget.com/embed/1084981"
-            className="snapwidget-widget"
-            allowTransparency
-            frameBorder={0}
-            scrolling="no"
-            style={{ border: "none", overflow: "hidden", width: "100%", height: "320px" }}
-            title="The Dog House Pet Salon Instagram Feed"
-          />
-          <a
-            href="https://www.instagram.com/thedoghouseps/"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ display: "inline-block", marginTop: "20px", fontFamily: '"Outfit", sans-serif', fontSize: "15px", color: "#965B83", fontWeight: 600, textDecoration: "none" }}
-          >
-            Follow @thedoghouseps on Instagram →
-          </a>
+        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: "48px" }}>
+            <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(24px,3vw,40px)", color: "#1F2124", marginBottom: "20px" }}>
+              Community Engagement and Events
+            </h2>
+            <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", lineHeight: 1.7, maxWidth: "900px", margin: "0 auto" }}>
+              We believe in fostering a strong sense of community and regularly participate in local events and collaborate with nearby pet organizations. Follow us on Instagram for the latest updates!
+            </p>
+          </div>
+          <InstagramFeed maxPosts={3} />
+          <div style={{ textAlign: "center", marginTop: "32px" }}>
+            <a
+              href="https://www.instagram.com/thedoghouseps/"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ display: "inline-block", fontFamily: '"Outfit", sans-serif', fontSize: "15px", color: "#965B83", fontWeight: 600, textDecoration: "none", borderBottom: "2px solid #965B83", paddingBottom: "4px" }}
+            >
+              Follow @thedoghouseps on Instagram
+            </a>
+          </div>
         </div>
       </section>
+
+      <LocationPhotoCarousel
+        placeId="ChIJQ-nKpJuTQIYRqVwFi2Apg9U"
+        locationName="Pearland"
+      />
+
+      <LocationBlogFeed location="pearland" locationName="Pearland / Katy" />
 
       {/* Contact Information and Appointment Scheduling */}
       <section style={{
         position: "relative",
-        backgroundImage: "url(https://www.thedoghouseps.com/wp-content/uploads/2025/03/image22.jpg)",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
         padding: "80px 20px",
         overflow: "hidden",
       }}>
-        <div style={{ position: "absolute", inset: 0, backgroundColor: "#FFF", opacity: 0.85 }} />
+        <Image
+          src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/image22.jpg"
+          alt="Pearland location contact section"
+          fill
+          style={{ objectFit: "cover", objectPosition: "center", zIndex: 0 }}
+          sizes="100vw"
+        />
+        <div style={{ position: "absolute", inset: 0, backgroundColor: "#FFF", opacity: 0.85, zIndex: 1 }} />
         <div style={{ maxWidth: "1200px", margin: "0 auto", position: "relative", zIndex: 1, textAlign: "center" }}>
           <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(24px,3vw,40px)", color: "#1F2124", marginBottom: "16px" }}>
             Contact Information and Appointment Scheduling

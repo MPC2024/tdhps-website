@@ -21,9 +21,21 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://www.thedoghouseps.com/" },
 };
 
+const speakableSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: "The Dog House Pet Salon - Houston Pet Grooming, Boarding & Day Care",
+  speakable: {
+    "@type": "SpeakableSpecification",
+    cssSelector: ["h1", ".hero-description"],
+  },
+  url: "https://www.thedoghouseps.com/",
+};
+
 export default function HomePage() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(speakableSchema) }} />
       {/* ══════════════════════════════════════════════
           SECTION 1: Hero Slider
       ══════════════════════════════════════════════ */}

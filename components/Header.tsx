@@ -44,8 +44,11 @@ const getNavStructure = (t: (key: any) => string): NavItem[] => [
   {
     label: t("resources"),
     items: [
+      { label: "About Us", href: "/about" },
       { label: t("adopt_a_pet"), href: "https://dlpr.org/adopt-a-pet/", external: true },
       { label: t("blogs"), href: "/blog" },
+      { label: "Discounts", href: "/discounts" },
+      { label: "Events", href: "/resources/calendar-events" },
       { label: t("contact_us"), href: "/contact-us" },
       { label: t("donate"), href: "https://dlpr.org/donate/", external: true },
       { label: t("faq"), href: "/faq" },
@@ -89,6 +92,15 @@ export default function Header() {
   useEffect(() => {
     const index = getStaticSearchIndex();
     setAllSearchResults(index);
+    // Also fetch blog posts for search
+    fetch("/api/search")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.results) {
+          setAllSearchResults((prev) => [...prev, ...data.results]);
+        }
+      })
+      .catch(() => {});
   }, []);
 
   useEffect(() => {
@@ -328,6 +340,23 @@ export default function Header() {
                   )}
                 </div>
               ))}
+              {/* Book Appointment in sticky nav */}
+              {isSticky && (
+                <Link
+                  href="/appointment-request"
+                  className="ml-2 rounded-full text-white transition-colors hover:opacity-90"
+                  style={{
+                    backgroundColor: "#965B83",
+                    fontSize: "13px",
+                    fontFamily: "Outfit, sans-serif",
+                    fontWeight: 600,
+                    padding: "10px 20px",
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  Book An Appointment
+                </Link>
+              )}
             </nav>
 
             {/* Mobile hamburger button */}

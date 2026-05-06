@@ -5,6 +5,8 @@ import Link from "next/link";
 import { useLanguage } from "@/lib/LanguageContext";
 import StoreLocations from "@/components/StoreLocations";
 
+const HERO_IMAGE_URL = "https://www.thedoghouseps.com/wp-content/uploads/2025/05/Dog-and-Cat.jpg";
+
 const locations = [
   {
     img: "https://www.thedoghouseps.com/wp-content/uploads/2025/03/5917-richmond-ave.png",
@@ -49,9 +51,6 @@ export default function ContactUsPage() {
       <section
         style={{
           position: "relative",
-          backgroundImage: "url(https://www.thedoghouseps.com/wp-content/uploads/2025/05/Dog-and-Cat.jpg)",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
           minHeight: "clamp(400px, 60vh, 700px)",
           display: "flex",
           alignItems: "center",
@@ -59,8 +58,22 @@ export default function ContactUsPage() {
           overflow: "hidden",
         }}
       >
+        {/* Background Image using Next.js Image fill (more reliable than CSS backgroundImage) */}
+        <Image
+          src={HERO_IMAGE_URL}
+          alt="Contact Us - Get in touch with The Dog House Pet Salon"
+          fill
+          sizes="100vw"
+          priority
+          quality={85}
+          style={{
+            objectFit: "cover",
+            objectPosition: "center",
+            zIndex: 0,
+          }}
+        />
         {/* white overlay */}
-        <div style={{ position: "absolute", inset: 0, backgroundColor: "#FFF", opacity: 0.6 }} />
+        <div style={{ position: "absolute", inset: 0, backgroundColor: "#FFF", opacity: 0.6, zIndex: 1 }} />
         <div style={{ maxWidth: "1520px", margin: "130px auto 50px", padding: "0 20px", position: "relative", zIndex: 2 }}>
           <h1 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(28px, 5vw, 60px)", color: "#1F2124", marginBottom: "16px", lineHeight: 1.1 }}>
             <span>{t("contact_us")}</span>
@@ -120,13 +133,18 @@ export default function ContactUsPage() {
 
       {/* ── Locations (pet-grooming style) ── */}
       <section style={{
-        backgroundImage: "url('https://www.thedoghouseps.com/wp-content/uploads/2025/03/image67.jpg')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
         backgroundColor: "#F8F8F8",
         padding: "80px 20px",
         position: "relative",
+        overflow: "hidden",
       }}>
+        <Image
+          src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/image67.jpg"
+          alt="Contact locations"
+          fill
+          style={{ objectFit: "cover", objectPosition: "center", zIndex: 0 }}
+          sizes="100vw"
+        />
         {/* White overlay */}
         <div style={{
           position: "absolute",
@@ -561,12 +579,17 @@ export default function ContactUsPage() {
 
       {/* ── Vaccination Requirements ── */}
       <section style={{
-        backgroundImage: "url('https://www.thedoghouseps.com/wp-content/uploads/2025/03/image-22.png')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
         padding: "80px 20px",
         position: "relative",
+        overflow: "hidden",
       }}>
+        <Image
+          src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/image-22.png"
+          alt="Vaccination requirements section"
+          fill
+          style={{ objectFit: "cover", objectPosition: "center", zIndex: 0 }}
+          sizes="100vw"
+        />
         {/* White overlay */}
         <div style={{
           position: "absolute",

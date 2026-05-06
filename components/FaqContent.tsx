@@ -1,8 +1,11 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useLanguage } from "@/lib/LanguageContext";
 import StoreLocations from "@/components/StoreLocations";
+
+const HERO_IMAGE_URL = "https://www.thedoghouseps.com/wp-content/uploads/2025/05/Dog-with-belt.jpg";
 
 const groomingFaqKeys = [
   {
@@ -190,10 +193,6 @@ export default function FaqContent() {
       <section
         style={{
           position: "relative",
-          backgroundImage: "url(https://www.thedoghouseps.com/wp-content/uploads/2025/05/Dog-with-belt.jpg)",
-          backgroundSize: "cover",
-          backgroundPosition: "center center",
-          backgroundRepeat: "no-repeat",
           minHeight: "clamp(400px, 60vh, 700px)",
           display: "flex",
           alignItems: "center",
@@ -201,10 +200,24 @@ export default function FaqContent() {
           overflow: "hidden",
         }}
       >
+        {/* Background Image using Next.js Image fill (more reliable than CSS backgroundImage) */}
+        <Image
+          src={HERO_IMAGE_URL}
+          alt="Frequently Asked Questions - Dog grooming and pet care FAQs"
+          fill
+          sizes="100vw"
+          priority
+          quality={85}
+          style={{
+            objectFit: "cover",
+            objectPosition: "center",
+            zIndex: 0,
+          }}
+        />
         {/* White overlay */}
         <div
           aria-hidden="true"
-          style={{ position: "absolute", inset: 0, backgroundColor: "#ffffff", opacity: 0.6, zIndex: 0 }}
+          style={{ position: "absolute", inset: 0, backgroundColor: "#ffffff", opacity: 0.6, zIndex: 1 }}
         />
         {/* Curved SVG bottom */}
         <div

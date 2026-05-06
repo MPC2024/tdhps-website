@@ -6,6 +6,7 @@ import { useState, useEffect, useRef } from "react";
 import { useLanguage } from "@/lib/LanguageContext";
 import BlogCarousel, { type BlogPost } from "@/components/BlogCarousel";
 import StoreLocations from "@/components/StoreLocations";
+import { ConfettiSplash, ConfettiRain } from "@/components/ConfettiSplash";
 
 const bathingBlogPosts: BlogPost[] = [
   { title: "The Benefits of Routine Dog Grooming in Houston's Climate", img: "https://www.thedoghouseps.com/wp-content/uploads/2026/03/Shihtzu_Grooming_Pearland.jpg", href: "https://www.thedoghouseps.com/the-benefits-of-routine-dog-grooming-in-houstons-climate/" },
@@ -665,20 +666,25 @@ export default function PetBathingContent() {
       <section
         style={{
           position: "relative",
-          backgroundImage: "url(https://www.thedoghouseps.com/wp-content/uploads/2025/04/dog-bathing.jpg)",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
           minHeight: "clamp(400px, 60vh, 700px)",
           display: "flex",
           alignItems: "center",
           padding: "clamp(100px, 15vh, 160px) 20px clamp(60px, 10vh, 120px)",
+          overflow: "hidden",
         }}
       >
+        <Image
+          src="https://www.thedoghouseps.com/wp-content/uploads/2025/04/dog-bathing.jpg"
+          alt="Professional dog bathing service"
+          fill
+          style={{ objectFit: "cover", objectPosition: "center", zIndex: 0 }}
+          sizes="100vw"
+        />
         {/* White overlay with 0.6 opacity */}
-        <div style={{ position: "absolute", inset: 0, backgroundColor: "rgba(255,255,255,0.6)" }} />
+        <div style={{ position: "absolute", inset: 0, backgroundColor: "rgba(255,255,255,0.6)", zIndex: 1 }} />
 
         {/* Curved bottom border */}
-        <div style={{ position: "absolute", bottom: -1, left: 0, width: "100%", lineHeight: 0, zIndex: 1 }}>
+        <div style={{ position: "absolute", bottom: -1, left: 0, width: "100%", lineHeight: 0, zIndex: 2 }}>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none" style={{ display: "block", width: "100%", height: "60px" }}>
             <path fill="#ffffff" d="M500,97C126.7,96.3,0.8,19.8,0,0v100l1000,0V1C1000,19.4,873.3,97.8,500,97z" />
           </svg>
@@ -717,10 +723,13 @@ export default function PetBathingContent() {
           {/* YouTube Video Player with Poster */}
           <VideoPlayer />
 
-          {/* Counter Boxes */}
-          <div style={{ display: "flex", justifyContent: "center", gap: "30px", marginBottom: "50px", flexWrap: "wrap" }}>
-            <CounterBox target={30} suffix="+" label={t("bathing_30_years_label")} />
-            <CounterBox target={40000} suffix="+" label={t("bathing_satisfied_clients")} />
+          {/* Counter Boxes with Confetti */}
+          <div style={{ position: "relative", overflow: "hidden", padding: "40px 0", marginBottom: "10px" }}>
+            <ConfettiRain />
+            <div style={{ display: "flex", justifyContent: "center", gap: "30px", flexWrap: "wrap", position: "relative", zIndex: 2 }}>
+              <CounterBox target={30} suffix="+" label={t("bathing_30_years_label")} />
+              <CounterBox target={40000} suffix="+" label={t("bathing_satisfied_clients")} />
+            </div>
           </div>
 
           {/* Success Text */}
@@ -741,14 +750,19 @@ export default function PetBathingContent() {
       <section
         style={{
           position: "relative",
-          backgroundImage: "url(https://www.thedoghouseps.com/wp-content/uploads/2025/04/doggie-washing.jpg)",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
           padding: "100px 35px",
+          overflow: "hidden",
         }}
       >
+        <Image
+          src="https://www.thedoghouseps.com/wp-content/uploads/2025/04/doggie-washing.jpg"
+          alt="Professional dog washing service"
+          fill
+          style={{ objectFit: "cover", objectPosition: "center", zIndex: 0 }}
+          sizes="100vw"
+        />
         {/* White overlay */}
-        <div style={{ position: "absolute", inset: 0, backgroundColor: "rgba(255,255,255,0.2)" }} />
+        <div style={{ position: "absolute", inset: 0, backgroundColor: "rgba(255,255,255,0.2)", zIndex: 1 }} />
 
         <div style={{ maxWidth: "1520px", width: "100%", margin: "0 auto", position: "relative", zIndex: 2, display: "flex", justifyContent: "flex-start" }}>
           <div
@@ -773,14 +787,15 @@ export default function PetBathingContent() {
               <li>{t("bathing_item3")}</li>
               <li>{t("bathing_item4")}</li>
               <li>{t("bathing_item5")}</li>
-              <li>✔ Pet bathing</li>
+              <li>Pet bathing</li>
             </ul>
           </div>
         </div>
       </section>
 
       {/* ── Pricing ── */}
-      <section style={{ backgroundColor: "#F8F8F8", padding: "80px 35px" }}>
+      <section style={{ backgroundColor: "#F8F8F8", padding: "80px 35px", position: "relative", overflow: "hidden" }}>
+        <ConfettiSplash />
         <div style={{ maxWidth: "1520px", margin: "0 auto" }}>
           <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "50px", color: "#1F2124", textAlign: "center", marginBottom: "8px", lineHeight: 1.2 }}>
             {t("bathing_services_pricing")}
@@ -1009,7 +1024,7 @@ export default function PetBathingContent() {
         </div>
 
         {/* Curved bottom border */}
-        <div style={{ position: "absolute", bottom: -1, left: 0, width: "100%", lineHeight: 0, zIndex: 1 }}>
+        <div style={{ position: "absolute", bottom: -1, left: 0, width: "100%", lineHeight: 0, zIndex: 2 }}>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none" style={{ display: "block", width: "100%", height: "60px" }}>
             <path fill="#ffffff" d="M500,97C126.7,96.3,0.8,19.8,0,0v100l1000,0V1C1000,19.4,873.3,97.8,500,97z" />
           </svg>
@@ -1080,13 +1095,18 @@ export default function PetBathingContent() {
 
       {/* ── Locations (Grooming page style) ── */}
       <section style={{
-        backgroundImage: "url('https://www.thedoghouseps.com/wp-content/uploads/2025/03/image67.jpg')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
         backgroundColor: "#F8F8F8",
         padding: "80px 20px",
         position: "relative",
+        overflow: "hidden",
       }}>
+        <Image
+          src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/image67.jpg"
+          alt="Pet bathing locations"
+          fill
+          style={{ objectFit: "cover", objectPosition: "center", zIndex: 0 }}
+          sizes="100vw"
+        />
         <div style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, backgroundColor: "#FFF", opacity: 0.7, zIndex: 1 }} />
         <div style={{ maxWidth: "1520px", width: "100%", margin: "0 auto", position: "relative", zIndex: 2 }}>
           <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(26px,3vw,40px)", color: "#000", textAlign: "center", marginBottom: "50px" }}>
@@ -1221,7 +1241,7 @@ export default function PetBathingContent() {
 
       {/* ── Blog Preview ── */}
       <section style={{ position: "relative", backgroundColor: "#965B83", padding: "80px 20px 160px", overflow: "hidden" }}>
-        <div style={{ position: "absolute", bottom: -1, left: 0, width: "100%", lineHeight: 0, zIndex: 1 }}>
+        <div style={{ position: "absolute", bottom: -1, left: 0, width: "100%", lineHeight: 0, zIndex: 2 }}>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none" style={{ display: "block", width: "100%", height: "60px" }}>
             <path fill="#ffffff" d="M500,97C126.7,96.3,0.8,19.8,0,0v100l1000,0V1C1000,19.4,873.3,97.8,500,97z" />
           </svg>

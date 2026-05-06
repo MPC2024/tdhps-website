@@ -1,12 +1,11 @@
 import { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
 import DiscountsHeroText from "@/components/DiscountsHeroText";
-import DiscountsOfferCard from "@/components/DiscountsOfferCard";
 import DiscountsRedeemText from "@/components/DiscountsRedeemText";
 import DiscountsCTAClient from "@/components/DiscountsCTAClient";
 import DiscountsLocationText from "@/components/DiscountsLocationText";
 import DiscountsLocationLinksClient from "@/components/DiscountsLocationLinksClient";
+import DiscountCardsClient from "@/components/DiscountCardsClient";
 
 const HERO_IMAGE_URL = "https://www.thedoghouseps.com/wp-content/uploads/2025/03/1_image-17.png";
 
@@ -83,94 +82,7 @@ export default function DiscountsPage() {
             </p>
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "24px" }}>
-            {/* Offer 1: New Groom Clients */}
-            <div style={{ backgroundColor: "#fff", borderRadius: "12px", padding: "32px", boxShadow: "0 2px 12px rgba(0,0,0,0.06)", borderTop: "4px solid #965B83", transition: "transform 0.3s ease, box-shadow 0.3s ease" }} onMouseEnter={(e) => { e.currentTarget.style.transform = "translateY(-4px)"; e.currentTarget.style.boxShadow = "0 8px 20px rgba(0,0,0,0.12)"; }} onMouseLeave={(e) => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "0 2px 12px rgba(0,0,0,0.06)"; }}>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "16px", gap: "12px" }}>
-                <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "18px", color: "#1F2124", margin: "0", flex: "1" }}>New Groom Clients</h3>
-                <div style={{ backgroundColor: "#965B83", color: "white", padding: "8px 16px", borderRadius: "50px", fontSize: "0.9rem", fontWeight: "700", whiteSpace: "nowrap" }}>25% OFF</div>
-              </div>
-              <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "15px", color: "#54595F", lineHeight: 1.6, margin: "0 0 12px 0" }}>First groom includes complimentary nail file and teeth brush</p>
-              <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "14px", color: "#999", margin: "0" }}>OR 10% off basic groom</p>
-            </div>
-
-            {/* Offer 2: Loyalty Punch Card */}
-            <div style={{ backgroundColor: "#fff", borderRadius: "12px", padding: "32px", boxShadow: "0 2px 12px rgba(0,0,0,0.06)", borderTop: "4px solid #965B83", transition: "transform 0.3s ease, box-shadow 0.3s ease" }} onMouseEnter={(e) => { e.currentTarget.style.transform = "translateY(-4px)"; e.currentTarget.style.boxShadow = "0 8px 20px rgba(0,0,0,0.12)"; }} onMouseLeave={(e) => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "0 2px 12px rgba(0,0,0,0.06)"; }}>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "16px", gap: "12px" }}>
-                <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "18px", color: "#1F2124", margin: "0", flex: "1" }}>Loyalty Punch Card</h3>
-                <div style={{ backgroundColor: "#965B83", color: "white", padding: "8px 16px", borderRadius: "50px", fontSize: "0.9rem", fontWeight: "700", whiteSpace: "nowrap" }}>$30 CREDIT</div>
-              </div>
-              <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "15px", color: "#54595F", lineHeight: 1.6, margin: "0 0 12px 0" }}>Earn a $30 credit on your 12th grooming service</p>
-              <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "14px", color: "#999", margin: "0" }}>One punch per grooming visit</p>
-            </div>
-
-            {/* Offer 3: Referrals */}
-            <div style={{ backgroundColor: "#fff", borderRadius: "12px", padding: "32px", boxShadow: "0 2px 12px rgba(0,0,0,0.06)", borderTop: "4px solid #965B83", transition: "transform 0.3s ease, box-shadow 0.3s ease" }} onMouseEnter={(e) => { e.currentTarget.style.transform = "translateY(-4px)"; e.currentTarget.style.boxShadow = "0 8px 20px rgba(0,0,0,0.12)"; }} onMouseLeave={(e) => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "0 2px 12px rgba(0,0,0,0.06)"; }}>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "16px", gap: "12px" }}>
-                <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "18px", color: "#1F2124", margin: "0", flex: "1" }}>Referral Rewards</h3>
-                <div style={{ backgroundColor: "#965B83", color: "white", padding: "8px 16px", borderRadius: "50px", fontSize: "0.9rem", fontWeight: "700", whiteSpace: "nowrap" }}>15% OFF</div>
-              </div>
-              <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "15px", color: "#54595F", lineHeight: 1.6, margin: "0" }}>Get 15% off your next service when you refer a friend who books</p>
-            </div>
-
-            {/* Offer 4: Boarding Daycare */}
-            <div style={{ backgroundColor: "#fff", borderRadius: "12px", padding: "32px", boxShadow: "0 2px 12px rgba(0,0,0,0.06)", borderTop: "4px solid #965B83", transition: "transform 0.3s ease, box-shadow 0.3s ease" }} onMouseEnter={(e) => { e.currentTarget.style.transform = "translateY(-4px)"; e.currentTarget.style.boxShadow = "0 8px 20px rgba(0,0,0,0.12)"; }} onMouseLeave={(e) => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "0 2px 12px rgba(0,0,0,0.06)"; }}>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "16px", gap: "12px" }}>
-                <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "18px", color: "#1F2124", margin: "0", flex: "1" }}>Boarding Clients</h3>
-                <div style={{ backgroundColor: "#965B83", color: "white", padding: "8px 16px", borderRadius: "50px", fontSize: "0.9rem", fontWeight: "700", whiteSpace: "nowrap" }}>FREE</div>
-              </div>
-              <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "15px", color: "#54595F", lineHeight: 1.6, margin: "0" }}>Complimentary daycare included with all boarding stays</p>
-            </div>
-
-            {/* Offer 5: First Responders */}
-            <div style={{ backgroundColor: "#fff", borderRadius: "12px", padding: "32px", boxShadow: "0 2px 12px rgba(0,0,0,0.06)", borderTop: "4px solid #965B83", transition: "transform 0.3s ease, box-shadow 0.3s ease" }} onMouseEnter={(e) => { e.currentTarget.style.transform = "translateY(-4px)"; e.currentTarget.style.boxShadow = "0 8px 20px rgba(0,0,0,0.12)"; }} onMouseLeave={(e) => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "0 2px 12px rgba(0,0,0,0.06)"; }}>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "16px", gap: "12px" }}>
-                <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "18px", color: "#1F2124", margin: "0", flex: "1" }}>First Responders</h3>
-                <div style={{ backgroundColor: "#965B83", color: "white", padding: "8px 16px", borderRadius: "50px", fontSize: "0.9rem", fontWeight: "700", whiteSpace: "nowrap" }}>10% OFF</div>
-              </div>
-              <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "15px", color: "#54595F", lineHeight: 1.6, margin: "0 0 12px 0" }}>10% off all services</p>
-              <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "14px", color: "#999", margin: "0" }}>Valid ID required: Police, Fire, EMS, Military</p>
-            </div>
-
-            {/* Offer 6: Friends & Family */}
-            <div style={{ backgroundColor: "#fff", borderRadius: "12px", padding: "32px", boxShadow: "0 2px 12px rgba(0,0,0,0.06)", borderTop: "4px solid #965B83", transition: "transform 0.3s ease, box-shadow 0.3s ease" }} onMouseEnter={(e) => { e.currentTarget.style.transform = "translateY(-4px)"; e.currentTarget.style.boxShadow = "0 8px 20px rgba(0,0,0,0.12)"; }} onMouseLeave={(e) => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "0 2px 12px rgba(0,0,0,0.06)"; }}>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "16px", gap: "12px" }}>
-                <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "18px", color: "#1F2124", margin: "0", flex: "1" }}>Friends & Family</h3>
-                <div style={{ backgroundColor: "#965B83", color: "white", padding: "8px 16px", borderRadius: "50px", fontSize: "0.9rem", fontWeight: "700", whiteSpace: "nowrap" }}>10% OFF</div>
-              </div>
-              <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "15px", color: "#54595F", lineHeight: 1.6, margin: "0" }}>10% discount for team member friends and family</p>
-            </div>
-
-            {/* Offer 7: PawOps Rescue/Shelters */}
-            <div style={{ backgroundColor: "#fff", borderRadius: "12px", padding: "32px", boxShadow: "0 2px 12px rgba(0,0,0,0.06)", borderTop: "4px solid #965B83", transition: "transform 0.3s ease, box-shadow 0.3s ease" }} onMouseEnter={(e) => { e.currentTarget.style.transform = "translateY(-4px)"; e.currentTarget.style.boxShadow = "0 8px 20px rgba(0,0,0,0.12)"; }} onMouseLeave={(e) => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "0 2px 12px rgba(0,0,0,0.06)"; }}>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "16px", gap: "12px" }}>
-                <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "18px", color: "#1F2124", margin: "0", flex: "1" }}>PawOps Rescues</h3>
-                <div style={{ backgroundColor: "#965B83", color: "white", padding: "8px 16px", borderRadius: "50px", fontSize: "0.9rem", fontWeight: "700", whiteSpace: "nowrap" }}>25% OFF</div>
-              </div>
-              <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "15px", color: "#54595F", lineHeight: 1.6, margin: "0 0 12px 0" }}>25% off grooming for foster dogs</p>
-              <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "14px", color: "#999", margin: "0" }}>Email jeff@thedoghouseps.com to arrange</p>
-            </div>
-
-            {/* Offer 8: Recently Adopted */}
-            <div style={{ backgroundColor: "#fff", borderRadius: "12px", padding: "32px", boxShadow: "0 2px 12px rgba(0,0,0,0.06)", borderTop: "4px solid #965B83", transition: "transform 0.3s ease, box-shadow 0.3s ease" }} onMouseEnter={(e) => { e.currentTarget.style.transform = "translateY(-4px)"; e.currentTarget.style.boxShadow = "0 8px 20px rgba(0,0,0,0.12)"; }} onMouseLeave={(e) => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "0 2px 12px rgba(0,0,0,0.06)"; }}>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "16px", gap: "12px" }}>
-                <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "18px", color: "#1F2124", margin: "0", flex: "1" }}>Recently Adopted</h3>
-                <div style={{ backgroundColor: "#965B83", color: "white", padding: "8px 16px", borderRadius: "50px", fontSize: "0.9rem", fontWeight: "700", whiteSpace: "nowrap" }}>15% OFF</div>
-              </div>
-              <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "15px", color: "#54595F", lineHeight: 1.6, margin: "0 0 12px 0" }}>15% off all services for 1 year from adoption date</p>
-              <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "14px", color: "#999", margin: "0" }}>Show adoption contract</p>
-            </div>
-
-            {/* Offer 9: Birthday Groom */}
-            <div style={{ backgroundColor: "#fff", borderRadius: "12px", padding: "32px", boxShadow: "0 2px 12px rgba(0,0,0,0.06)", borderTop: "4px solid #965B83", transition: "transform 0.3s ease, box-shadow 0.3s ease" }} onMouseEnter={(e) => { e.currentTarget.style.transform = "translateY(-4px)"; e.currentTarget.style.boxShadow = "0 8px 20px rgba(0,0,0,0.12)"; }} onMouseLeave={(e) => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "0 2px 12px rgba(0,0,0,0.06)"; }}>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "16px", gap: "12px" }}>
-                <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "18px", color: "#1F2124", margin: "0", flex: "1" }}>Birthday Groom</h3>
-                <div style={{ backgroundColor: "#965B83", color: "white", padding: "8px 16px", borderRadius: "50px", fontSize: "0.9rem", fontWeight: "700", whiteSpace: "nowrap" }}>50% OFF</div>
-              </div>
-              <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "15px", color: "#54595F", lineHeight: 1.6, margin: "0 0 12px 0" }}>50% off birthday grooming</p>
-              <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "14px", color: "#999", margin: "0" }}>Requires 15+ visits, 6+ grooms, review within 30 days, proof of birthday</p>
-            </div>
-          </div>
+          <DiscountCardsClient />
 
           {/* Important Notes */}
           <div style={{ marginTop: "50px", backgroundColor: "#F8F8F8", borderRadius: "12px", padding: "32px", borderLeft: "4px solid #965B83" }}>

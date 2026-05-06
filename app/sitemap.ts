@@ -94,6 +94,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
 
+    /* About Page */
+    {
+      url: `${BASE_URL}/about`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+
     /* Staff / Bio Pages */
     {
       url: `${BASE_URL}/our-staff`,

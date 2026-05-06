@@ -248,8 +248,6 @@ export default function MemorialParkLocationPage() {
         locationName="Memorial Park"
       />
 
-      <LocationBlogFeed location="memorial" locationName="Memorial Park / Heights" />
-
       {/* Contact Information and Appointment Scheduling */}
       <section style={{
         position: "relative",
@@ -334,6 +332,9 @@ export default function MemorialParkLocationPage() {
       </section>
 
       <MemorialDirectionsSection />
+
+      <LocationBlogFeed location="memorial" locationName="Memorial Park / Heights" />
+
     </>
   );
 }

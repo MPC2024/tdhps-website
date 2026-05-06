@@ -2,44 +2,260 @@
 
 import { useState } from 'react';
 import type { Metadata } from 'next';
+import Image from 'next/image';
 
 // Pricing data extracted from source repo
 const BREEDS = [
-  { id: 1, name: 'Labrador Retriever', species: 'dog' },
-  { id: 2, name: 'French Bulldog', species: 'dog' },
-  { id: 3, name: 'German Shepherd', species: 'dog' },
-  { id: 4, name: 'Golden Retriever', species: 'dog' },
-  { id: 5, name: 'Bulldog', species: 'dog' },
-  { id: 6, name: 'Poodle', species: 'dog' },
-  { id: 7, name: 'Beagle', species: 'dog' },
-  { id: 8, name: 'Rottweiler', species: 'dog' },
-  { id: 9, name: 'German Shorthaired Pointer', species: 'dog' },
-  { id: 10, name: 'Dachshund', species: 'dog' },
-  { id: 11, name: 'Pembroke Welsh Corgi', species: 'dog' },
-  { id: 12, name: 'Australian Shepherd', species: 'dog' },
-  { id: 13, name: 'Yorkshire Terrier', species: 'dog' },
-  { id: 14, name: 'Boxer', species: 'dog' },
-  { id: 15, name: 'Cavalier King Charles Spaniel', species: 'dog' },
-  { id: 16, name: 'Doberman Pinscher', species: 'dog' },
-  { id: 17, name: 'Great Dane', species: 'dog' },
-  { id: 18, name: 'Miniature Schnauzer', species: 'dog' },
-  { id: 19, name: 'Siberian Husky', species: 'dog' },
-  { id: 20, name: 'Bernese Mountain Dog', species: 'dog' },
-  { id: 21, name: 'Chihuahua', species: 'dog' },
-  { id: 22, name: 'Shih Tzu', species: 'dog' },
-  { id: 23, name: 'Pug', species: 'dog' },
-  { id: 24, name: 'Pomeranian', species: 'dog' },
-  { id: 25, name: 'Border Collie', species: 'dog' },
-  { id: 26, name: 'Maine Coon', species: 'cat' },
-  { id: 27, name: 'Ragdoll', species: 'cat' },
-  { id: 28, name: 'Persian', species: 'cat' },
-  { id: 29, name: 'Siamese', species: 'cat' },
-  { id: 30, name: 'Bengal', species: 'cat' },
-  { id: 31, name: 'Sphynx', species: 'cat' },
-  { id: 32, name: 'British Shorthair', species: 'cat' },
-  { id: 33, name: 'Abyssinian', species: 'cat' },
-  { id: 34, name: 'Scottish Fold', species: 'cat' },
-  { id: 35, name: 'Domestic Shorthair', species: 'cat' },
+  { id: 1, name: 'Affenpinscher', species: 'dog' },
+  { id: 2, name: 'Afghan Hound', species: 'dog' },
+  { id: 3, name: 'Airedale Terrier', species: 'dog' },
+  { id: 4, name: 'Akita', species: 'dog' },
+  { id: 5, name: 'Alaskan Malamute', species: 'dog' },
+  { id: 6, name: 'American English Coonhound', species: 'dog' },
+  { id: 7, name: 'American Eskimo Dog', species: 'dog' },
+  { id: 8, name: 'American Foxhound', species: 'dog' },
+  { id: 9, name: 'American Hairless Terrier', species: 'dog' },
+  { id: 10, name: 'American Staffordshire Terrier', species: 'dog' },
+  { id: 11, name: 'American Water Spaniel', species: 'dog' },
+  { id: 12, name: 'Anatolian Shepherd Dog', species: 'dog' },
+  { id: 13, name: 'Australian Cattle Dog', species: 'dog' },
+  { id: 14, name: 'Australian Shepherd', species: 'dog' },
+  { id: 15, name: 'Australian Terrier', species: 'dog' },
+  { id: 16, name: 'Azawakh', species: 'dog' },
+  { id: 17, name: 'Barbet', species: 'dog' },
+  { id: 18, name: 'Basenji', species: 'dog' },
+  { id: 19, name: 'Basset Hound', species: 'dog' },
+  { id: 20, name: 'Beagle', species: 'dog' },
+  { id: 21, name: 'Bearded Collie', species: 'dog' },
+  { id: 22, name: 'Beauceron', species: 'dog' },
+  { id: 23, name: 'Bedlington Terrier', species: 'dog' },
+  { id: 24, name: 'Belgian Laekenois', species: 'dog' },
+  { id: 25, name: 'Belgian Malinois', species: 'dog' },
+  { id: 26, name: 'Belgian Sheepdog', species: 'dog' },
+  { id: 27, name: 'Belgian Tervuren', species: 'dog' },
+  { id: 28, name: 'Bergamasco Sheepdog', species: 'dog' },
+  { id: 29, name: 'Berger Picard', species: 'dog' },
+  { id: 30, name: 'Bernese Mountain Dog', species: 'dog' },
+  { id: 31, name: 'Bichon Frise', species: 'dog' },
+  { id: 32, name: 'Biewer Terrier', species: 'dog' },
+  { id: 33, name: 'Black Russian Terrier', species: 'dog' },
+  { id: 34, name: 'Black and Tan Coonhound', species: 'dog' },
+  { id: 35, name: 'Bloodhound', species: 'dog' },
+  { id: 36, name: 'Bluetick Coonhound', species: 'dog' },
+  { id: 37, name: 'Boerboel', species: 'dog' },
+  { id: 38, name: 'Border Collie', species: 'dog' },
+  { id: 39, name: 'Border Terrier', species: 'dog' },
+  { id: 40, name: 'Borzoi', species: 'dog' },
+  { id: 41, name: 'Boston Terrier', species: 'dog' },
+  { id: 42, name: 'Bouvier des Flandres', species: 'dog' },
+  { id: 43, name: 'Boxer', species: 'dog' },
+  { id: 44, name: 'Boykin Spaniel', species: 'dog' },
+  { id: 45, name: 'Bracco Italiano', species: 'dog' },
+  { id: 46, name: 'Briard', species: 'dog' },
+  { id: 47, name: 'Brittany', species: 'dog' },
+  { id: 48, name: 'Brussels Griffon', species: 'dog' },
+  { id: 49, name: 'Bull Terrier', species: 'dog' },
+  { id: 50, name: 'Bulldog', species: 'dog' },
+  { id: 51, name: 'Bullmastiff', species: 'dog' },
+  { id: 52, name: 'Cairn Terrier', species: 'dog' },
+  { id: 53, name: 'Canaan Dog', species: 'dog' },
+  { id: 54, name: 'Cane Corso', species: 'dog' },
+  { id: 55, name: 'Cardigan Welsh Corgi', species: 'dog' },
+  { id: 56, name: 'Cavalier King Charles Spaniel', species: 'dog' },
+  { id: 57, name: 'Cesky Terrier', species: 'dog' },
+  { id: 58, name: 'Chesapeake Bay Retriever', species: 'dog' },
+  { id: 59, name: 'Chihuahua', species: 'dog' },
+  { id: 60, name: 'Chinese Crested', species: 'dog' },
+  { id: 61, name: 'Chinese Shar-Pei', species: 'dog' },
+  { id: 62, name: 'Chinook', species: 'dog' },
+  { id: 63, name: 'Chow Chow', species: 'dog' },
+  { id: 64, name: 'Cirneco dell\'Etna', species: 'dog' },
+  { id: 65, name: 'Clumber Spaniel', species: 'dog' },
+  { id: 66, name: 'Cocker Spaniel', species: 'dog' },
+  { id: 67, name: 'Collie', species: 'dog' },
+  { id: 68, name: 'Coton de Tulear', species: 'dog' },
+  { id: 69, name: 'Curly-Coated Retriever', species: 'dog' },
+  { id: 70, name: 'Dachshund', species: 'dog' },
+  { id: 71, name: 'Dalmatian', species: 'dog' },
+  { id: 72, name: 'Dandie Dinmont Terrier', species: 'dog' },
+  { id: 73, name: 'Doberman Pinscher', species: 'dog' },
+  { id: 74, name: 'Dogo Argentino', species: 'dog' },
+  { id: 75, name: 'Dogue de Bordeaux', species: 'dog' },
+  { id: 76, name: 'English Cocker Spaniel', species: 'dog' },
+  { id: 77, name: 'English Foxhound', species: 'dog' },
+  { id: 78, name: 'English Setter', species: 'dog' },
+  { id: 79, name: 'English Springer Spaniel', species: 'dog' },
+  { id: 80, name: 'English Toy Spaniel', species: 'dog' },
+  { id: 81, name: 'Entlebucher Mountain Dog', species: 'dog' },
+  { id: 82, name: 'Field Spaniel', species: 'dog' },
+  { id: 83, name: 'Finnish Lapphund', species: 'dog' },
+  { id: 84, name: 'Finnish Spitz', species: 'dog' },
+  { id: 85, name: 'Flat-Coated Retriever', species: 'dog' },
+  { id: 86, name: 'French Bulldog', species: 'dog' },
+  { id: 87, name: 'German Pinscher', species: 'dog' },
+  { id: 88, name: 'German Shepherd Dog', species: 'dog' },
+  { id: 89, name: 'German Shorthaired Pointer', species: 'dog' },
+  { id: 90, name: 'German Wirehaired Pointer', species: 'dog' },
+  { id: 91, name: 'Giant Schnauzer', species: 'dog' },
+  { id: 92, name: 'Glen of Imaal Terrier', species: 'dog' },
+  { id: 93, name: 'Golden Retriever', species: 'dog' },
+  { id: 94, name: 'Gordon Setter', species: 'dog' },
+  { id: 95, name: 'Grand Basset Griffon Vendeen', species: 'dog' },
+  { id: 96, name: 'Great Dane', species: 'dog' },
+  { id: 97, name: 'Great Pyrenees', species: 'dog' },
+  { id: 98, name: 'Greater Swiss Mountain Dog', species: 'dog' },
+  { id: 99, name: 'Greyhound', species: 'dog' },
+  { id: 100, name: 'Harrier', species: 'dog' },
+  { id: 101, name: 'Havanese', species: 'dog' },
+  { id: 102, name: 'Ibizan Hound', species: 'dog' },
+  { id: 103, name: 'Icelandic Sheepdog', species: 'dog' },
+  { id: 104, name: 'Irish Red and White Setter', species: 'dog' },
+  { id: 105, name: 'Irish Setter', species: 'dog' },
+  { id: 106, name: 'Irish Terrier', species: 'dog' },
+  { id: 107, name: 'Irish Water Spaniel', species: 'dog' },
+  { id: 108, name: 'Irish Wolfhound', species: 'dog' },
+  { id: 109, name: 'Italian Greyhound', species: 'dog' },
+  { id: 110, name: 'Japanese Chin', species: 'dog' },
+  { id: 111, name: 'Keeshond', species: 'dog' },
+  { id: 112, name: 'Kerry Blue Terrier', species: 'dog' },
+  { id: 113, name: 'Komondor', species: 'dog' },
+  { id: 114, name: 'Kuvasz', species: 'dog' },
+  { id: 115, name: 'Labrador Retriever', species: 'dog' },
+  { id: 116, name: 'Lagotto Romagnolo', species: 'dog' },
+  { id: 117, name: 'Lakeland Terrier', species: 'dog' },
+  { id: 118, name: 'Leonberger', species: 'dog' },
+  { id: 119, name: 'Lhasa Apso', species: 'dog' },
+  { id: 120, name: 'Lowchen', species: 'dog' },
+  { id: 121, name: 'Maltese', species: 'dog' },
+  { id: 122, name: 'Manchester Terrier', species: 'dog' },
+  { id: 123, name: 'Manchester Terrier (Toy)', species: 'dog' },
+  { id: 124, name: 'Mastiff', species: 'dog' },
+  { id: 125, name: 'Miniature American Shepherd', species: 'dog' },
+  { id: 126, name: 'Miniature Bull Terrier', species: 'dog' },
+  { id: 127, name: 'Miniature Pinscher', species: 'dog' },
+  { id: 128, name: 'Miniature Schnauzer', species: 'dog' },
+  { id: 129, name: 'Mixed Breed', species: 'dog' },
+  { id: 130, name: 'Mudi', species: 'dog' },
+  { id: 131, name: 'Neapolitan Mastiff', species: 'dog' },
+  { id: 132, name: 'Nederlandse Kooikerhondje', species: 'dog' },
+  { id: 133, name: 'Newfoundland', species: 'dog' },
+  { id: 134, name: 'Norfolk Terrier', species: 'dog' },
+  { id: 135, name: 'Norwegian Buhund', species: 'dog' },
+  { id: 136, name: 'Norwegian Elkhound', species: 'dog' },
+  { id: 137, name: 'Norwegian Lundehund', species: 'dog' },
+  { id: 138, name: 'Norwich Terrier', species: 'dog' },
+  { id: 139, name: 'Nova Scotia Duck Tolling Retriever', species: 'dog' },
+  { id: 140, name: 'Old English Sheepdog', species: 'dog' },
+  { id: 141, name: 'Otterhound', species: 'dog' },
+  { id: 142, name: 'Papillon', species: 'dog' },
+  { id: 143, name: 'Parson Russell Terrier', species: 'dog' },
+  { id: 144, name: 'Pekingese', species: 'dog' },
+  { id: 145, name: 'Pembroke Welsh Corgi', species: 'dog' },
+  { id: 146, name: 'Petit Basset Griffon Vendeen', species: 'dog' },
+  { id: 147, name: 'Pharaoh Hound', species: 'dog' },
+  { id: 148, name: 'Plott Hound', species: 'dog' },
+  { id: 149, name: 'Pointer', species: 'dog' },
+  { id: 150, name: 'Polish Lowland Sheepdog', species: 'dog' },
+  { id: 151, name: 'Pomeranian', species: 'dog' },
+  { id: 152, name: 'Poodle (Miniature)', species: 'dog' },
+  { id: 153, name: 'Poodle (Standard)', species: 'dog' },
+  { id: 154, name: 'Poodle (Toy)', species: 'dog' },
+  { id: 155, name: 'Portuguese Podengo Pequeno', species: 'dog' },
+  { id: 156, name: 'Portuguese Water Dog', species: 'dog' },
+  { id: 157, name: 'Pug', species: 'dog' },
+  { id: 158, name: 'Puli', species: 'dog' },
+  { id: 159, name: 'Pumi', species: 'dog' },
+  { id: 160, name: 'Pyrenean Shepherd', species: 'dog' },
+  { id: 161, name: 'Rat Terrier', species: 'dog' },
+  { id: 162, name: 'Redbone Coonhound', species: 'dog' },
+  { id: 163, name: 'Rhodesian Ridgeback', species: 'dog' },
+  { id: 164, name: 'Rottweiler', species: 'dog' },
+  { id: 165, name: 'Russell Terrier', species: 'dog' },
+  { id: 166, name: 'Russian Toy', species: 'dog' },
+  { id: 167, name: 'Saint Bernard', species: 'dog' },
+  { id: 168, name: 'Saluki', species: 'dog' },
+  { id: 169, name: 'Samoyed', species: 'dog' },
+  { id: 170, name: 'Schipperke', species: 'dog' },
+  { id: 171, name: 'Scottish Deerhound', species: 'dog' },
+  { id: 172, name: 'Scottish Terrier', species: 'dog' },
+  { id: 173, name: 'Sealyham Terrier', species: 'dog' },
+  { id: 174, name: 'Shetland Sheepdog', species: 'dog' },
+  { id: 175, name: 'Shiba Inu', species: 'dog' },
+  { id: 176, name: 'Shih Tzu', species: 'dog' },
+  { id: 177, name: 'Siberian Husky', species: 'dog' },
+  { id: 178, name: 'Silky Terrier', species: 'dog' },
+  { id: 179, name: 'Skye Terrier', species: 'dog' },
+  { id: 180, name: 'Sloughi', species: 'dog' },
+  { id: 181, name: 'Smooth Fox Terrier', species: 'dog' },
+  { id: 182, name: 'Soft Coated Wheaten Terrier', species: 'dog' },
+  { id: 183, name: 'Spanish Water Dog', species: 'dog' },
+  { id: 184, name: 'Spinone Italiano', species: 'dog' },
+  { id: 185, name: 'Staffordshire Bull Terrier', species: 'dog' },
+  { id: 186, name: 'Standard Schnauzer', species: 'dog' },
+  { id: 187, name: 'Sussex Spaniel', species: 'dog' },
+  { id: 188, name: 'Swedish Vallhund', species: 'dog' },
+  { id: 189, name: 'Tibetan Mastiff', species: 'dog' },
+  { id: 190, name: 'Tibetan Spaniel', species: 'dog' },
+  { id: 191, name: 'Tibetan Terrier', species: 'dog' },
+  { id: 192, name: 'Toy Fox Terrier', species: 'dog' },
+  { id: 193, name: 'Treeing Walker Coonhound', species: 'dog' },
+  { id: 194, name: 'Vizsla', species: 'dog' },
+  { id: 195, name: 'Weimaraner', species: 'dog' },
+  { id: 196, name: 'Welsh Springer Spaniel', species: 'dog' },
+  { id: 197, name: 'Welsh Terrier', species: 'dog' },
+  { id: 198, name: 'West Highland White Terrier', species: 'dog' },
+  { id: 199, name: 'Whippet', species: 'dog' },
+  { id: 200, name: 'Wire Fox Terrier', species: 'dog' },
+  { id: 201, name: 'Wirehaired Pointing Griffon', species: 'dog' },
+  { id: 202, name: 'Wirehaired Vizsla', species: 'dog' },
+  { id: 203, name: 'Xoloitzcuintli', species: 'dog' },
+  { id: 204, name: 'Yorkshire Terrier', species: 'dog' },
+  { id: 205, name: 'Abyssinian', species: 'cat' },
+  { id: 206, name: 'American Bobtail', species: 'cat' },
+  { id: 207, name: 'American Curl', species: 'cat' },
+  { id: 208, name: 'American Shorthair', species: 'cat' },
+  { id: 209, name: 'American Wirehair', species: 'cat' },
+  { id: 210, name: 'Balinese', species: 'cat' },
+  { id: 211, name: 'Bengal', species: 'cat' },
+  { id: 212, name: 'Birman', species: 'cat' },
+  { id: 213, name: 'Bombay', species: 'cat' },
+  { id: 214, name: 'British Shorthair', species: 'cat' },
+  { id: 215, name: 'Burmese', species: 'cat' },
+  { id: 216, name: 'Burmilla', species: 'cat' },
+  { id: 217, name: 'Chartreux', species: 'cat' },
+  { id: 218, name: 'Cornish Rex', species: 'cat' },
+  { id: 219, name: 'Devon Rex', species: 'cat' },
+  { id: 220, name: 'Domestic Longhair', species: 'cat' },
+  { id: 221, name: 'Domestic Shorthair', species: 'cat' },
+  { id: 222, name: 'Egyptian Mau', species: 'cat' },
+  { id: 223, name: 'European Burmese', species: 'cat' },
+  { id: 224, name: 'Exotic Shorthair', species: 'cat' },
+  { id: 225, name: 'Havana Brown', species: 'cat' },
+  { id: 226, name: 'Japanese Bobtail', species: 'cat' },
+  { id: 227, name: 'Khao Manee', species: 'cat' },
+  { id: 228, name: 'Korat', species: 'cat' },
+  { id: 229, name: 'LaPerm', species: 'cat' },
+  { id: 230, name: 'Lykoi', species: 'cat' },
+  { id: 231, name: 'Maine Coon', species: 'cat' },
+  { id: 232, name: 'Manx', species: 'cat' },
+  { id: 233, name: 'Norwegian Forest Cat', species: 'cat' },
+  { id: 234, name: 'Ocicat', species: 'cat' },
+  { id: 235, name: 'Oriental', species: 'cat' },
+  { id: 236, name: 'Persian', species: 'cat' },
+  { id: 237, name: 'Ragamuffin', species: 'cat' },
+  { id: 238, name: 'Ragdoll', species: 'cat' },
+  { id: 239, name: 'Russian Blue', species: 'cat' },
+  { id: 240, name: 'Scottish Fold', species: 'cat' },
+  { id: 241, name: 'Selkirk Rex', species: 'cat' },
+  { id: 242, name: 'Siamese', species: 'cat' },
+  { id: 243, name: 'Siberian', species: 'cat' },
+  { id: 244, name: 'Singapura', species: 'cat' },
+  { id: 245, name: 'Somali', species: 'cat' },
+  { id: 246, name: 'Sphynx', species: 'cat' },
+  { id: 247, name: 'Tonkinese', species: 'cat' },
+  { id: 248, name: 'Toybob', species: 'cat' },
+  { id: 249, name: 'Turkish Angora', species: 'cat' },
+  { id: 250, name: 'Turkish Van', species: 'cat' },
 ];
 
 const PRICING_TIERS = [
@@ -149,42 +365,75 @@ export default function CalculatorPage() {
     : formattedBreeds.slice(0, 10);
 
   return (
-    <div style={{ minHeight: '100vh', padding: '160px 20px 40px', position: 'relative', backgroundImage: 'url(https://www.thedoghouseps.com/wp-content/uploads/2025/04/pet-camera.jpg)', backgroundSize: 'cover', backgroundPosition: 'center', backgroundAttachment: 'fixed' }}>
-      <div style={{ position: 'absolute', inset: 0, backgroundColor: 'rgba(248, 248, 248, 0.92)' }} />
-      {/* Back Link */}
-      <div style={{ maxWidth: '500px', margin: '0 auto 32px', position: 'relative', zIndex: 2 }}>
-        <a
-          href="/"
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '8px',
-            fontFamily: '"Outfit", sans-serif',
-            fontSize: '0.95rem',
-            color: '#965B83',
-            textDecoration: 'none',
-            fontWeight: 500,
-            transition: 'color 0.2s',
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.color = '#7D4969';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.color = '#965B83';
-          }}
-        >
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ marginRight: '4px' }}>
-            <path d="M10 12L6 8L10 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-          Homepage
-        </a>
-      </div>
+    <div style={{ minHeight: '100vh', padding: '160px 20px 120px', position: 'relative', overflow: 'hidden' }}>
+      <Image
+        src="https://www.thedoghouseps.com/wp-content/uploads/2025/04/pet-camera.jpg"
+        alt="Calculator background"
+        fill
+        style={{ objectFit: 'cover', objectPosition: 'center', zIndex: 0 }}
+        sizes="100vw"
+      />
+      <div style={{ position: 'absolute', inset: 0, backgroundColor: 'rgba(248, 248, 248, 0.92)', zIndex: 1 }} />
+
+      <style dangerouslySetInnerHTML={{ __html: `
+        .calc-layout {
+          display: grid;
+          grid-template-columns: 1fr 500px;
+          gap: 48px;
+          max-width: 960px;
+          margin: 0 auto;
+          align-items: start;
+        }
+        @media (max-width: 900px) {
+          .calc-layout {
+            grid-template-columns: 1fr;
+            max-width: 500px;
+            gap: 32px;
+          }
+          .calc-instructions { order: -1; }
+        }
+      `}} />
+
+      <div className="calc-layout">
+        {/* Instructions Panel */}
+        <div className="calc-instructions" style={{ position: 'relative', zIndex: 2 }}>
+          <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: 'clamp(24px, 3vw, 32px)', color: '#965B83', marginBottom: '16px', lineHeight: 1.2 }}>
+            Get a Price Estimate
+          </h2>
+          <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: '16px', color: '#54595F', lineHeight: 1.7, marginBottom: '28px' }}>
+            Wondering what grooming will cost for your pet? Use our calculator to get an instant estimate. Just two simple steps:
+          </p>
+
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', marginBottom: '32px' }}>
+            <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
+              <div style={{ minWidth: '36px', height: '36px', borderRadius: '50%', backgroundColor: '#965B83', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: '"Outfit", sans-serif', fontWeight: 700, fontSize: '16px' }}>1</div>
+              <div>
+                <h3 style={{ fontFamily: '"Outfit", sans-serif', fontSize: '16px', fontWeight: 700, color: '#1F2124', marginBottom: '4px' }}>Select your pet&apos;s breed</h3>
+                <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: '14px', color: '#6B7280', lineHeight: 1.5, margin: 0 }}>Choose from 200+ dog breeds and 45+ cat breeds in our list.</p>
+              </div>
+            </div>
+            <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
+              <div style={{ minWidth: '36px', height: '36px', borderRadius: '50%', backgroundColor: '#965B83', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: '"Outfit", sans-serif', fontWeight: 700, fontSize: '16px' }}>2</div>
+              <div>
+                <h3 style={{ fontFamily: '"Outfit", sans-serif', fontSize: '16px', fontWeight: 700, color: '#1F2124', marginBottom: '4px' }}>Enter their weight</h3>
+                <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: '14px', color: '#6B7280', lineHeight: 1.5, margin: 0 }}>Type in your pet&apos;s weight in pounds. This helps us determine the right pricing tier.</p>
+              </div>
+            </div>
+          </div>
+
+          <div style={{ backgroundColor: 'rgba(150, 91, 131, 0.08)', borderRadius: '12px', padding: '20px', borderLeft: '4px solid #965B83' }}>
+            <h4 style={{ fontFamily: '"Outfit", sans-serif', fontSize: '14px', fontWeight: 700, color: '#965B83', marginBottom: '8px' }}>What&apos;s included?</h4>
+            <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: '13px', color: '#54595F', lineHeight: 1.6, margin: 0 }}>
+              You&apos;ll see estimates for three service levels: <strong>Bath</strong>, <strong>Basic Groom</strong> (bath + trim), and <strong>Complete Groom</strong> (full styling). Final pricing is confirmed after an in-person assessment.
+            </p>
+          </div>
+        </div>
 
       {/* Main Card Container */}
       <div
         style={{
           maxWidth: '500px',
-          margin: '0 auto',
+          width: '100%',
           backgroundColor: '#fff',
           borderRadius: '16px',
           boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)',
@@ -655,6 +904,7 @@ export default function CalculatorPage() {
           </div>
         </div>
       )}
+      </div>
       </div>
     </div>
   );

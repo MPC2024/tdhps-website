@@ -73,7 +73,7 @@ export default function GalleriaLocationContent() {
         </a>
       </div>
       <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "14px", color: "#1F2124", marginTop: "12px", display: "flex", alignItems: "center", gap: "6px" }}>
-        <span style={{ color: "#1fb6b0", fontSize: "16px" }}>&#9989;</span> {t("location_galleria_price_microcopy")}
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1fb6b0" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg> {t("location_galleria_price_microcopy")}
       </p>
     </>
   );

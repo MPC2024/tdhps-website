@@ -47,11 +47,11 @@ const locations = [
 ];
 
 const whyUsKeys = [
-  { labelKey: "contact_comprehensive_care", descKey: "contact_comprehensive_desc" },
-  { labelKey: "contact_experienced_staff", descKey: "contact_experienced_desc" },
-  { labelKey: "contact_competitive_pricing", descKey: "contact_competitive_desc" },
-  { labelKey: "contact_safety_standards", descKey: "contact_safety_desc" },
-  { labelKey: "contact_convenient_locations", descKey: "contact_convenient_desc" },
+  { labelKey: "contact_comprehensive_care", descKey: "contact_comprehensive_desc", icon: <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#965B83" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" /></svg> },
+  { labelKey: "contact_experienced_staff", descKey: "contact_experienced_desc", icon: <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#965B83" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /></svg> },
+  { labelKey: "contact_competitive_pricing", descKey: "contact_competitive_desc", icon: <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#965B83" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="1" x2="12" y2="23" /><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" /></svg> },
+  { labelKey: "contact_safety_standards", descKey: "contact_safety_desc", icon: <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#965B83" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></svg> },
+  { labelKey: "contact_convenient_locations", descKey: "contact_convenient_desc", icon: <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#965B83" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" /><circle cx="12" cy="10" r="3" /></svg> },
 ];
 
 export default function ContactUsContent() {
@@ -63,11 +63,6 @@ export default function ContactUsContent() {
       <section
         style={{
           position: "relative",
-          backgroundImage:
-            "url(https://www.thedoghouseps.com/wp-content/uploads/2025/05/Dog-and-Cat.jpg)",
-          backgroundSize: "cover",
-          backgroundPosition: "center center",
-          backgroundRepeat: "no-repeat",
           minHeight: "clamp(400px, 60vh, 700px)",
           display: "flex",
           alignItems: "center",
@@ -75,6 +70,13 @@ export default function ContactUsContent() {
           overflow: "hidden",
         }}
       >
+        <Image
+          src="https://www.thedoghouseps.com/wp-content/uploads/2025/05/Dog-and-Cat.jpg"
+          alt="Contact us hero banner"
+          fill
+          style={{ objectFit: "cover", objectPosition: "center", zIndex: 0 }}
+          sizes="100vw"
+        />
         {/* White overlay */}
         <div
           aria-hidden="true"
@@ -83,7 +85,7 @@ export default function ContactUsContent() {
             inset: 0,
             backgroundColor: "#ffffff",
             opacity: 0.6,
-            zIndex: 0,
+            zIndex: 1,
           }}
         />
         {/* Curved SVG bottom */}
@@ -291,15 +293,19 @@ export default function ContactUsContent() {
       {/* ── Locations (pet-grooming style) ── */}
       <section
         style={{
-          backgroundImage:
-            "url('https://www.thedoghouseps.com/wp-content/uploads/2025/03/image67.jpg')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
           backgroundColor: "#F8F8F8",
           padding: "80px 20px 130px",
           position: "relative",
+          overflow: "hidden",
         }}
       >
+        <Image
+          src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/image67.jpg"
+          alt="Contact locations background"
+          fill
+          style={{ objectFit: "cover", objectPosition: "center", zIndex: 0 }}
+          sizes="100vw"
+        />
         {/* White overlay */}
         <div
           style={{
@@ -671,6 +677,9 @@ export default function ContactUsContent() {
                   textAlign: "center",
                 }}
               >
+                <div style={{ marginBottom: "16px" }}>
+                  {item.icon}
+                </div>
                 <h3
                   style={{
                     fontFamily: '"Bowlby One SC", sans-serif',

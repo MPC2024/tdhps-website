@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import nodemailer from "nodemailer";
+import { sendEmails } from "@/lib/email";
 import { isRateLimited, getClientIp } from "@/lib/rate-limit";
 
 /**
@@ -73,6 +73,15 @@ interface AppointmentPayload {
   ecEmail: string;
   ecPhone: string;
   hearAbout: string;
+  discount?: string;
+  adoptionDate?: string;
+  referralInfo?: {
+    firstName: string;
+    lastName: string;
+    petName: string;
+    email?: string;
+    phone?: string;
+  };
   pets: PetPayload[];
 }
 
@@ -264,6 +273,16 @@ export async function POST(request: NextRequest) {
       ``,
       `Customer Type: ${body.customerType === "new" ? "New Customer" : "Existing Customer"}`,
       `Location: ${locationName}`,
+      ...(body.discount ? [`Discount: ${body.discount}`] : []),
+      ...(body.adoptionDate ? [`Adoption Date: ${body.adoptionDate} (valid for 12 months)`] : []),
+      ...(body.referralInfo ? [
+        ``,
+        `--- Referral Info (Who Did You Refer?) ---`,
+        `Name: ${body.referralInfo.firstName} ${body.referralInfo.lastName}`,
+        `Pet: ${body.referralInfo.petName}`,
+        ...(body.referralInfo.email ? [`Email: ${body.referralInfo.email}`] : []),
+        ...(body.referralInfo.phone ? [`Phone: ${body.referralInfo.phone}`] : []),
+      ] : []),
       ``,
       `--- Pet Owner ---`,
       `Name: ${ownerName}`,
@@ -282,61 +301,60 @@ export async function POST(request: NextRequest) {
       formatPets(body.pets),
     ].join("\n");
 
-    const smtpHost = process.env.SMTP_HOST;
-    const smtpPort = process.env.SMTP_PORT;
-    const smtpUser = process.env.SMTP_USER;
-    const smtpPass = process.env.SMTP_PASS;
-    const smtpFrom = process.env.SMTP_FROM || "noreply@thedoghouseps.com";
+    // Training: Fire-and-forget email sending - WHY async without await?
+    // SendGrid sending is fire-and-forget: we send the emails asynchronously
+    // but don't wait for SendGrid's response. This keeps the form response fast.
+    // If SendGrid fails, we log it but don't block the user's request.
+    //
+    // Confirmation email: TO the customer
+    // Notification email: TO the salon location
+    const confirmationEmailText = [
+      `Thank you for your appointment request at The Dog House Pet Salon!`,
+      ``,
+      `We have received your request and will confirm your appointment shortly.`,
+      ``,
+      `Details:`,
+      `Location: ${locationName}`,
+      `Customer: ${ownerName}`,
+      `Email: ${body.email}`,
+      `Phone: ${body.cellPhone}`,
+      ``,
+      `Pets:`,
+      ...body.pets.map((pet) => `- ${pet.name} (${pet.species})`),
+      ``,
+      `If you have any questions, please don't hesitate to contact us.`,
+      ``,
+      `Best regards,`,
+      `The Dog House Pet Salon`,
+    ].join("\n");
 
-    // Training: Guard clause for SMTP configuration - WHY guard here?
-    // If SMTP config is missing, sendMail() would throw an error. This pattern
-    // lets us handle misconfiguration gracefully with fallback logging.
-    if (smtpHost && smtpUser && smtpPass) {
-      try {
-        const transporter = nodemailer.createTransport({
-          host: smtpHost,
-          port: Number(smtpPort) || 587,
-          secure: Number(smtpPort) === 465,
-          auth: {
-            user: smtpUser,
-            pass: smtpPass,
-          },
-        });
-
-        // Training: Timeout for email sending - WHY add explicit timeout?
-        // External services can hang. Without a timeout, the request might
-        // hold resources indefinitely. 30 seconds is generous for email.
-        await Promise.race([
-          transporter.sendMail({
-            from: smtpFrom,
-            to: recipientEmail,
-            subject,
-            text: textBody,
-          }),
-          new Promise((_, reject) =>
-            setTimeout(() => reject(new Error("Email sending timeout after 30s")), 30000)
-          ),
-        ]);
-
-        console.log(`[appointment] Email sent to ${recipientEmail} for ${ownerName}`);
-      } catch (emailError) {
-        // Training: Catch specific email errors - WHY not just rethrow?
-        // Different email failures have different causes (invalid credentials,
-        // network timeout, recipient rejected). Logging the specific error helps
-        // operators debug SMTP issues. We rethrow because this is a critical failure.
-        console.error(`[appointment] Email sending failed to ${recipientEmail}:`, emailError);
-        throw emailError;
-      }
-    } else {
-      // Training: Fallback logging for misconfiguration - WHY log instead of error?
-      // SMTP being missing is not a request error—it's a configuration issue on
-      // the server side. We log it as a warning so data isn't lost, but return
-      // success to the client (they aren't at fault).
-      console.warn("[appointment] SMTP not configured. Logging submission to console:");
-      console.log("TO:", recipientEmail);
-      console.log("SUBJECT:", subject);
-      console.log("BODY:\n", textBody);
-    }
+    // Fire-and-forget: send both emails asynchronously (don't wait, don't block response)
+    sendEmails([
+      {
+        to: body.email,
+        subject: `Appointment Request Confirmation - ${locationName}`,
+        text: confirmationEmailText,
+      },
+      {
+        to: recipientEmail,
+        subject,
+        text: textBody,
+      },
+      {
+        to: "jeff@thedoghouseps.com",
+        subject,
+        text: textBody,
+      },
+      {
+        to: "fred@thedoghouseps.com",
+        subject,
+        text: textBody,
+      },
+    ]).catch((error) => {
+      // This shouldn't happen because sendEmails doesn't throw,
+      // but we catch defensively just in case
+      console.error("[appointment] Unexpected error in email sending:", error);
+    });
 
     return NextResponse.json({ success: true });
   } catch (error) {

@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useLanguage } from "@/lib/LanguageContext";
 
 type CustomerType = "new" | "existing" | "";
@@ -68,6 +68,26 @@ const LOCATION_LABELS: Record<LocationKey, string> = {
   memorial: "6434 Washington Ave, Houston, TX 77007",
   pearland: "2810 Business Center Dr #126, Pearland, TX 77584",
   "": "",
+};
+
+// Discount codes and their eligibility
+const DISCOUNT_OPTIONS = {
+  new: [
+    { code: "new-groom-25", label: "New Groom Clients — 25% Off" },
+  ],
+  existing: [
+    { code: "loyalty-punch", label: "Loyalty Punch Card — $30 Credit" },
+    { code: "friends-family-10", label: "Friends & Family — 10% Off" },
+    { code: "birthday-50", label: "Birthday Groom — 50% Off" },
+  ],
+  both: [
+    { code: "none", label: "None" },
+    { code: "referral-15", label: "Referral Rewards — 15% Off" },
+    { code: "boarding-free", label: "Boarding Clients — Free Daycare" },
+    { code: "first-responder-10", label: "First Responders — 10% Off" },
+    { code: "rescue-25", label: "PawOps Rescues — 25% Off" },
+    { code: "adopted-15", label: "Recently Adopted — 15% Off" },
+  ],
 };
 
 interface AppointmentFormProps {
@@ -163,6 +183,7 @@ interface PetSectionProps {
   onChange: (updated: PetInfo) => void;
   t: any;
   currentLocation: LocationKey;
+  existingCustomer?: boolean;
 }
 
 function PetSection({
@@ -171,8 +192,9 @@ function PetSection({
   onChange,
   t,
   currentLocation,
+  existingCustomer = false,
 }: PetSectionProps) {
-  const label = index === 0 ? t("form_pet_details") : `Pet #${index + 1} Details`;
+  const label = existingCustomer ? "Service Request" : (index === 0 ? t("form_pet_details") : `Pet #${index + 1} Details`);
   const idPrefix = `pet${index}`;
 
   return (
@@ -187,6 +209,7 @@ function PetSection({
     >
       <h3 style={sectionHeadingStyle}>{label}</h3>
 
+      {!existingCustomer && (<>
       <div style={fieldRow}>
         <div>
           <label htmlFor={`${idPrefix}-name`} style={labelStyle}>
@@ -321,6 +344,7 @@ function PetSection({
           />
         </div>
       </div>
+      </>)}
 
       {/* Services */}
       <div style={{ marginBottom: "16px" }}>
@@ -441,6 +465,7 @@ export default function AppointmentForm({
   lockLocation = false,
 }: AppointmentFormProps) {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const { t } = useLanguage();
   const [customerType, setCustomerType] = useState<CustomerType>("");
   const [locationValue, setLocationValue] = useState<string>(
@@ -448,6 +473,13 @@ export default function AppointmentForm({
   );
   const [additionalPets, setAdditionalPets] = useState(0);
   const [pets, setPets] = useState<PetInfo[]>([defaultPet()]);
+  const [selectedDiscount, setSelectedDiscount] = useState("none");
+  const [referralFirstName, setReferralFirstName] = useState("");
+  const [referralLastName, setReferralLastName] = useState("");
+  const [referralPetName, setReferralPetName] = useState("");
+  const [referralEmail, setReferralEmail] = useState("");
+  const [referralPhone, setReferralPhone] = useState("");
+  const [adoptionDate, setAdoptionDate] = useState("");
 
   // Parent info
   const [firstName, setFirstName] = useState("");
@@ -474,6 +506,27 @@ export default function AppointmentForm({
 
   const totalPets = 1 + additionalPets;
 
+  // Handle URL search params for discount and customer type
+  useEffect(() => {
+    const discountParam = searchParams.get("discount");
+    const typeParam = searchParams.get("type") as CustomerType | null;
+
+    if (typeParam && (typeParam === "new" || typeParam === "existing")) {
+      setCustomerType(typeParam);
+    }
+
+    if (discountParam) {
+      setSelectedDiscount(discountParam);
+    }
+  }, [searchParams]);
+
+  // Auto-select boarding-free discount if service type includes boarding
+  useEffect(() => {
+    if (pets[0]?.boarding && pets[0].boarding !== "none" && !searchParams.get("discount")) {
+      setSelectedDiscount("boarding-free");
+    }
+  }, [pets[0]?.boarding, searchParams]);
+
   const handlePetChange = (index: number, updated: PetInfo) => {
     setPets((prev) => {
       const next = [...prev];
@@ -491,36 +544,60 @@ export default function AppointmentForm({
     });
   };
 
+  const isExisting = customerType === "existing";
+
   const validate = (): string[] => {
     const errs: string[] = [];
     if (!customerType) errs.push("Please select Customer type (New or Existing).");
     if (!locationValue) errs.push("Please select a Location.");
-    pets.slice(0, totalPets).forEach((pet, i) => {
-      const label = i === 0 ? "Pet" : `Pet #${i + 1}`;
-      if (!pet.name) errs.push(`${label}: Pet Name is required.`);
-      if (!pet.species) errs.push(`${label}: Species is required.`);
-      if (!pet.breed) errs.push(`${label}: Breed is required.`);
-      if (!pet.sex) errs.push(`${label}: Sex is required.`);
-      if (!pet.color) errs.push(`${label}: Color is required.`);
-      if (!pet.weight) errs.push(`${label}: Weight is required.`);
-      if (!pet.dob) errs.push(`${label}: Date of Birth is required.`);
-      if (!pet.vetClinic) errs.push(`${label}: Veterinary Clinic is required.`);
-      if (!pet.vetPhone) errs.push(`${label}: Veterinary Clinic Phone Number is required.`);
-      if (!pet.grooming) errs.push(`${label}: Grooming service is required.`);
-      if (!pet.appointmentDate) errs.push(`${label}: Appointment Date is required.`);
-    });
-    if (!firstName) errs.push("First Name is required.");
-    if (!lastName) errs.push("Last Name is required.");
-    if (!street) errs.push("Street Address is required.");
-    if (!city) errs.push("City is required.");
-    if (!state) errs.push("State is required.");
-    if (!zip) errs.push("ZIP Code is required.");
-    if (!email) errs.push("Email Address is required.");
-    if (!cellPhone) errs.push("Cell Phone is required.");
-    if (!ecName) errs.push("Emergency Contact Name is required.");
-    if (!ecEmail) errs.push("Emergency Contact Email is required.");
-    if (!ecPhone) errs.push("Emergency Contact Cell Phone is required.");
-    if (!hearAbout) errs.push("Please tell us how you heard about us.");
+    if (selectedDiscount === "referral-15") {
+      if (!referralFirstName) errs.push("Referral's First Name is required.");
+      if (!referralLastName) errs.push("Referral's Last Name is required.");
+      if (!referralPetName) errs.push("Referral's Pet Name is required.");
+    }
+    if (selectedDiscount === "adopted-15" && !adoptionDate) {
+      errs.push("Adoption Date is required for this discount.");
+    }
+
+    if (isExisting) {
+      // Existing customers: only need contact info + service selection
+      if (!firstName) errs.push("First Name is required.");
+      if (!lastName) errs.push("Last Name is required.");
+      if (!email) errs.push("Email Address is required.");
+      if (!cellPhone) errs.push("Cell Phone is required.");
+      pets.slice(0, 1).forEach((pet) => {
+        if (!pet.grooming) errs.push("Grooming service is required.");
+        if (!pet.appointmentDate) errs.push("Appointment Date is required.");
+      });
+    } else {
+      // New customers: full validation
+      pets.slice(0, totalPets).forEach((pet, i) => {
+        const label = i === 0 ? "Pet" : `Pet #${i + 1}`;
+        if (!pet.name) errs.push(`${label}: Pet Name is required.`);
+        if (!pet.species) errs.push(`${label}: Species is required.`);
+        if (!pet.breed) errs.push(`${label}: Breed is required.`);
+        if (!pet.sex) errs.push(`${label}: Sex is required.`);
+        if (!pet.color) errs.push(`${label}: Color is required.`);
+        if (!pet.weight) errs.push(`${label}: Weight is required.`);
+        if (!pet.dob) errs.push(`${label}: Date of Birth is required.`);
+        if (!pet.vetClinic) errs.push(`${label}: Veterinary Clinic is required.`);
+        if (!pet.vetPhone) errs.push(`${label}: Veterinary Clinic Phone Number is required.`);
+        if (!pet.grooming) errs.push(`${label}: Grooming service is required.`);
+        if (!pet.appointmentDate) errs.push(`${label}: Appointment Date is required.`);
+      });
+      if (!firstName) errs.push("First Name is required.");
+      if (!lastName) errs.push("Last Name is required.");
+      if (!street) errs.push("Street Address is required.");
+      if (!city) errs.push("City is required.");
+      if (!state) errs.push("State is required.");
+      if (!zip) errs.push("ZIP Code is required.");
+      if (!email) errs.push("Email Address is required.");
+      if (!cellPhone) errs.push("Cell Phone is required.");
+      if (!ecName) errs.push("Emergency Contact Name is required.");
+      if (!ecEmail) errs.push("Emergency Contact Email is required.");
+      if (!ecPhone) errs.push("Emergency Contact Cell Phone is required.");
+      if (!hearAbout) errs.push("Please tell us how you heard about us.");
+    }
     return errs;
   };
 
@@ -560,6 +637,17 @@ export default function AppointmentForm({
           hearAbout,
           smsOptIn,
           emailOptIn,
+          discount: selectedDiscount !== "none" ? selectedDiscount : undefined,
+          ...(selectedDiscount === "adopted-15" && adoptionDate ? { adoptionDate } : {}),
+          ...(selectedDiscount === "referral-15" ? {
+            referralInfo: {
+              firstName: referralFirstName,
+              lastName: referralLastName,
+              petName: referralPetName,
+              email: referralEmail || undefined,
+              phone: referralPhone || undefined,
+            },
+          } : {}),
           pets: pets.slice(0, totalPets),
         }),
       });
@@ -678,6 +766,109 @@ export default function AppointmentForm({
             </div>
           </div>
 
+          {/* Discount Selection */}
+          {customerType && (
+            <div style={{ marginBottom: "20px" }}>
+              <label htmlFor="discount" style={labelStyle}>
+                Available Discount
+              </label>
+              <select
+                id="discount"
+                value={selectedDiscount}
+                onChange={(e) => setSelectedDiscount(e.target.value)}
+                style={inputStyle}
+              >
+                {customerType === "new" ? (
+                  <>
+                    <option value="none">None</option>
+                    {DISCOUNT_OPTIONS.new.map((opt) => (
+                      <option key={opt.code} value={opt.code}>
+                        {opt.label}
+                      </option>
+                    ))}
+                    {DISCOUNT_OPTIONS.both
+                      .filter((opt) => opt.code !== "none")
+                      .map((opt) => (
+                        <option key={opt.code} value={opt.code}>
+                          {opt.label}
+                        </option>
+                      ))}
+                  </>
+                ) : customerType === "existing" ? (
+                  <>
+                    <option value="none">None</option>
+                    {DISCOUNT_OPTIONS.existing.map((opt) => (
+                      <option key={opt.code} value={opt.code}>
+                        {opt.label}
+                      </option>
+                    ))}
+                    {DISCOUNT_OPTIONS.both
+                      .filter((opt) => opt.code !== "none")
+                      .map((opt) => (
+                        <option key={opt.code} value={opt.code}>
+                          {opt.label}
+                        </option>
+                      ))}
+                  </>
+                ) : (
+                  <option value="none">Select customer type first</option>
+                )}
+              </select>
+            </div>
+          )}
+
+          {/* Adoption Date - shown when Recently Adopted discount selected */}
+          {selectedDiscount === "adopted-15" && (
+            <div style={{ marginBottom: "20px", padding: "20px", backgroundColor: "#F9F5F7", borderRadius: "8px", border: "1px solid #E8D5E0" }}>
+              <p style={{ ...labelStyle, fontSize: "16px", marginBottom: "8px", color: "#965B83" }}>
+                Adoption Details
+              </p>
+              <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "13px", color: "#888", marginBottom: "16px" }}>
+                This discount is valid for 12 months from the adoption date. Please bring your adoption contract to your appointment.
+              </p>
+              <div>
+                <label style={labelStyle}>Adoption Date <span style={{ color: "#CC3366" }}>*</span></label>
+                <input type="date" value={adoptionDate} onChange={(e) => setAdoptionDate(e.target.value)} style={inputStyle} required />
+              </div>
+            </div>
+          )}
+
+          {/* Referral Info Fields - shown when referral discount selected */}
+          {selectedDiscount === "referral-15" && (
+            <div style={{ marginBottom: "20px", padding: "20px", backgroundColor: "#F9F5F7", borderRadius: "8px", border: "1px solid #E8D5E0" }}>
+              <p style={{ ...labelStyle, fontSize: "16px", marginBottom: "16px", color: "#965B83" }}>
+                Who Did You Refer?
+              </p>
+              <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "13px", color: "#888", marginBottom: "16px" }}>
+                Provide the details of the person you referred so our team can verify their visit.
+              </p>
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px" }}>
+                <div>
+                  <label style={labelStyle}>First Name <span style={{ color: "#CC3366" }}>*</span></label>
+                  <input type="text" value={referralFirstName} onChange={(e) => setReferralFirstName(e.target.value)} style={inputStyle} placeholder="Referral's first name" required />
+                </div>
+                <div>
+                  <label style={labelStyle}>Last Name <span style={{ color: "#CC3366" }}>*</span></label>
+                  <input type="text" value={referralLastName} onChange={(e) => setReferralLastName(e.target.value)} style={inputStyle} placeholder="Referral's last name" required />
+                </div>
+              </div>
+              <div style={{ marginTop: "12px" }}>
+                <label style={labelStyle}>Pet&apos;s Name <span style={{ color: "#CC3366" }}>*</span></label>
+                <input type="text" value={referralPetName} onChange={(e) => setReferralPetName(e.target.value)} style={inputStyle} placeholder="Referral's pet name" required />
+              </div>
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px", marginTop: "12px" }}>
+                <div>
+                  <label style={labelStyle}>Email</label>
+                  <input type="email" value={referralEmail} onChange={(e) => setReferralEmail(e.target.value)} style={inputStyle} placeholder="Optional" />
+                </div>
+                <div>
+                  <label style={labelStyle}>Phone</label>
+                  <input type="tel" value={referralPhone} onChange={(e) => setReferralPhone(e.target.value)} style={inputStyle} placeholder="Optional" />
+                </div>
+              </div>
+            </div>
+          )}
+
           <div>
             <label htmlFor="location" style={labelStyle}>
               {t("form_location_label")} <span style={{ color: "#CC3366" }}>{t("form_required_asterisk")}</span>
@@ -715,45 +906,88 @@ export default function AppointmentForm({
           </div>
         </div>
 
-        {/* ── Pet Sections ── */}
-        {pets.slice(0, totalPets).map((pet, i) => (
-          <PetSection
-            key={i}
-            index={i}
-            pet={pet}
-            onChange={(updated) => handlePetChange(i, updated)}
-            t={t}
-            currentLocation={(LOCATION_VALUES[locationValue] || defaultLocation) as LocationKey}
-          />
-        ))}
+        {/* ── Existing Customer: Contact Info + Service (same PetSection style) ── */}
+        {isExisting && (
+          <>
+            <div style={{ background: "#fff", border: "1px solid #E8E0E8", borderRadius: "10px", padding: "24px", marginBottom: "24px" }}>
+              <h3 style={sectionHeadingStyle}>Your Information</h3>
+              <div style={fieldRow}>
+                <div>
+                  <label htmlFor="firstName" style={labelStyle}>First Name <span style={{ color: "#CC3366" }}>*</span></label>
+                  <input id="firstName" required type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} style={inputStyle} />
+                </div>
+                <div>
+                  <label htmlFor="lastName" style={labelStyle}>Last Name <span style={{ color: "#CC3366" }}>*</span></label>
+                  <input id="lastName" required type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} style={inputStyle} />
+                </div>
+              </div>
+              <div style={fieldRow}>
+                <div>
+                  <label htmlFor="email" style={labelStyle}>Email <span style={{ color: "#CC3366" }}>*</span></label>
+                  <input id="email" required type="email" value={email} onChange={(e) => setEmail(e.target.value)} style={inputStyle} />
+                </div>
+                <div>
+                  <label htmlFor="cellPhone" style={labelStyle}>Phone <span style={{ color: "#CC3366" }}>*</span></label>
+                  <input id="cellPhone" required type="tel" value={cellPhone} onChange={(e) => setCellPhone(e.target.value)} style={inputStyle} />
+                </div>
+              </div>
+            </div>
 
-        {/* Additional Pets selector */}
-        <div
-          style={{
-            background: "#fff",
-            border: "1px solid #E8E0E8",
-            borderRadius: "10px",
-            padding: "20px 24px",
-            marginBottom: "24px",
-          }}
-        >
-          <label htmlFor="additionalPets" style={labelStyle}>
-            {t("form_additional_pets_label")}
-          </label>
-          <select
-            id="additionalPets"
-            value={additionalPets}
-            onChange={(e) => handleAdditionalPetsChange(Number(e.target.value))}
-            style={{ ...inputStyle, maxWidth: "240px" }}
-          >
-            <option value={0}>{t("form_no_additional_pets")}</option>
-            <option value={1}>1</option>
-            <option value={2}>2</option>
-            <option value={3}>3</option>
-          </select>
-        </div>
+            <PetSection
+              index={0}
+              pet={pets[0]}
+              onChange={(updated) => handlePetChange(0, updated)}
+              t={t}
+              currentLocation={(LOCATION_VALUES[locationValue] || defaultLocation) as LocationKey}
+              existingCustomer
+            />
+          </>
+        )}
 
-        {/* ── Parent Profile ── */}
+        {/* ── New Customer: Full Pet Sections ── */}
+        {!isExisting && (
+          <>
+            {pets.slice(0, totalPets).map((pet, i) => (
+              <PetSection
+                key={i}
+                index={i}
+                pet={pet}
+                onChange={(updated) => handlePetChange(i, updated)}
+                t={t}
+                currentLocation={(LOCATION_VALUES[locationValue] || defaultLocation) as LocationKey}
+              />
+            ))}
+
+            {/* Additional Pets selector */}
+            <div
+              style={{
+                background: "#fff",
+                border: "1px solid #E8E0E8",
+                borderRadius: "10px",
+                padding: "20px 24px",
+                marginBottom: "24px",
+              }}
+            >
+              <label htmlFor="additionalPets" style={labelStyle}>
+                {t("form_additional_pets_label")}
+              </label>
+              <select
+                id="additionalPets"
+                value={additionalPets}
+                onChange={(e) => handleAdditionalPetsChange(Number(e.target.value))}
+                style={{ ...inputStyle, maxWidth: "240px" }}
+              >
+                <option value={0}>{t("form_no_additional_pets")}</option>
+                <option value={1}>1</option>
+                <option value={2}>2</option>
+                <option value={3}>3</option>
+              </select>
+            </div>
+          </>
+        )}
+
+        {/* ── Parent Profile (New Customers Only) ── */}
+        {!isExisting && (
         <div
           style={{
             background: "#fff",
@@ -884,6 +1118,7 @@ export default function AppointmentForm({
             </select>
           </div>
         </div>
+        )}
 
         {/* SMS & Email Opt-In */}
         <div style={{ backgroundColor: "#F9FAFB", borderRadius: "8px", padding: "20px 24px", marginBottom: "24px", border: "1px solid #E5E7EB" }}>

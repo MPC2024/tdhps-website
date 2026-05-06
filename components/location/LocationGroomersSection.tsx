@@ -46,13 +46,17 @@ export default function LocationGroomersSection({ exclude }: Props) {
   return (
     <section style={{
       position: "relative",
-      backgroundImage: "url(https://www.thedoghouseps.com/wp-content/uploads/2025/03/image53-scaled.jpg)",
-      backgroundSize: "cover",
-      backgroundPosition: "center",
       padding: "80px 20px",
       overflow: "hidden",
     }}>
-      <div style={{ position: "absolute", inset: 0, backgroundColor: "#FFF", opacity: 0.85, zIndex: 0 }} />
+      <Image
+        src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/image53-scaled.jpg"
+        alt="Location groomers section"
+        fill
+        style={{ objectFit: "cover", objectPosition: "center", zIndex: 0 }}
+        sizes="100vw"
+      />
+      <div style={{ position: "absolute", inset: 0, backgroundColor: "#FFF", opacity: 0.85, zIndex: 1 }} />
 
       <div style={{ maxWidth: "1520px", margin: "0 auto", position: "relative", zIndex: 2 }}>
         <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(28px,4vw,50px)", color: "#1F2124", textAlign: "center", marginBottom: "50px" }}>

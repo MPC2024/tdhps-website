@@ -90,7 +90,8 @@ export default async function ReviewWidget({
               rel="noopener noreferrer"
               className={styles.ctaButton}
             >
-              ⭐ Leave a Review on Google
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="#965B83" stroke="none" style={{ display: "inline", verticalAlign: "middle", marginRight: "6px" }}><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
+              Leave a Review on Google
             </a>
             {yelpBusinessId && (
               <a
@@ -99,7 +100,8 @@ export default async function ReviewWidget({
                 rel="noopener noreferrer"
                 className={styles.ctaButtonSecondary}
               >
-                ✓ Leave a Review on Yelp
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none" style={{ display: "inline", verticalAlign: "middle", marginRight: "6px" }}><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
+                Leave a Review on Yelp
               </a>
             )}
           </div>

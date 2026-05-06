@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import CancellationPolicyHeroText from "@/components/CancellationPolicyHeroText";
 import CancellationPolicySections from "@/components/CancellationPolicySections";
@@ -24,9 +25,6 @@ export default function CancellationPolicyPage() {
       <section
         style={{
           position: "relative",
-          backgroundImage: "url(https://www.thedoghouseps.com/wp-content/uploads/2025/03/dogDaycare-300x300.jpg)",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
           minHeight: "clamp(400px, 60vh, 700px)",
           display: "flex",
           alignItems: "center",
@@ -34,8 +32,15 @@ export default function CancellationPolicyPage() {
           overflow: "hidden",
         }}
       >
+        <Image
+          src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/dogDaycare-300x300.jpg"
+          alt="Cancellation policy page hero"
+          fill
+          style={{ objectFit: "cover", objectPosition: "center", zIndex: 0 }}
+          sizes="100vw"
+        />
         {/* White overlay */}
-        <div style={{ position: "absolute", inset: 0, backgroundColor: "#FFF", opacity: 0.6 }} />
+        <div style={{ position: "absolute", inset: 0, backgroundColor: "#FFF", opacity: 0.6, zIndex: 1 }} />
         <div style={{ maxWidth: "1520px", margin: "130px auto 50px", padding: "0 20px", position: "relative", zIndex: 2 }}>
           <CancellationPolicyHeroText />
         </div>

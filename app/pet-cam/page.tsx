@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import PetCamSettings from "./PetCamSettings";
 import PetCamHeroText from "@/components/PetCamHeroText";
@@ -7,6 +8,8 @@ import PetCamSetupText from "@/components/PetCamSetupText";
 import PetCamBenefitsText from "@/components/PetCamBenefitsText";
 import PetCamTroubleshootText from "@/components/PetCamTroubleshootText";
 import PetCamCTAText from "@/components/PetCamCTAText";
+
+const HERO_IMAGE_URL = "https://www.thedoghouseps.com/wp-content/uploads/2025/04/pet-camera.jpg";
 
 export const metadata: Metadata = {
   title: "Dog Daycare with Cameras for Peace of Mind | The Dog House",
@@ -95,9 +98,6 @@ export default function PetCamPage() {
       <section
         style={{
           position: "relative",
-          backgroundImage: "url(https://www.thedoghouseps.com/wp-content/uploads/2025/04/pet-camera.jpg)",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
           minHeight: "clamp(400px, 60vh, 700px)",
           display: "flex",
           alignItems: "center",
@@ -105,7 +105,21 @@ export default function PetCamPage() {
           overflow: "hidden",
         }}
       >
-        <div style={{ position: "absolute", inset: 0, backgroundColor: "#FFF", opacity: 0.6 }} />
+        {/* Background Image using Next.js Image fill (more reliable than CSS backgroundImage) */}
+        <Image
+          src={HERO_IMAGE_URL}
+          alt="Pet Cam - Live monitoring of your dog with daycare cameras"
+          fill
+          sizes="100vw"
+          priority
+          quality={85}
+          style={{
+            objectFit: "cover",
+            objectPosition: "center",
+            zIndex: 0,
+          }}
+        />
+        <div style={{ position: "absolute", inset: 0, backgroundColor: "#FFF", opacity: 0.6, zIndex: 1 }} />
         <div style={{ maxWidth: "1520px", width: "100%", margin: "130px auto 50px", padding: "0 20px", position: "relative", zIndex: 2 }}>
           <PetCamHeroText />
           <div style={{ marginTop: "32px", display: "flex", gap: "16px", flexWrap: "wrap" }}>
@@ -267,7 +281,7 @@ export default function PetCamPage() {
             {troubleshootingTips.map((tip) => (
               <div key={tip.title} style={{ display: "flex", gap: "16px", alignItems: "flex-start", backgroundColor: "#F8F8F8", borderRadius: "12px", padding: "24px" }}>
                 <div style={{ flexShrink: 0, width: "32px", height: "32px", borderRadius: "50%", backgroundColor: "#965B83", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                  <span style={{ color: "#fff", fontSize: "16px" }}>&#10003;</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
                 </div>
                 <div>
                   <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "18px", color: "#1F2124", marginBottom: "8px" }}>{tip.title}</h3>

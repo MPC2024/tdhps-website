@@ -7,6 +7,7 @@ import { useLanguage } from "@/lib/LanguageContext";
 import type { TranslationKey } from "@/lib/translations";
 import BlogCarousel, { type BlogPost } from "@/components/BlogCarousel";
 import StoreLocations from "@/components/StoreLocations";
+import { ConfettiSplash, ConfettiRain } from "@/components/ConfettiSplash";
 
 const daycareBlogPosts: BlogPost[] = [
   { title: "The Benefits of Routine Dog Grooming in Houston's Climate", img: "https://www.thedoghouseps.com/wp-content/uploads/2026/03/Shihtzu_Grooming_Pearland.jpg", href: "https://www.thedoghouseps.com/the-benefits-of-routine-dog-grooming-in-houstons-climate/" },
@@ -457,22 +458,27 @@ export default function DogDayCareContent() {
       <section
         style={{
           position: "relative",
-          backgroundImage: "url(https://www.thedoghouseps.com/wp-content/uploads/2025/05/Dogs-Playing.jpg)",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
           minHeight: "clamp(400px, 60vh, 700px)",
           display: "flex",
           alignItems: "center",
           padding: "clamp(100px, 15vh, 160px) 20px clamp(60px, 10vh, 120px)",
+          overflow: "hidden",
         }}
       >
-        <div style={{ position: "absolute", inset: 0, backgroundColor: "rgba(255,255,255,0.6)" }} />
-        <div style={{ position: "absolute", bottom: -1, left: 0, width: "100%", lineHeight: 0, zIndex: 1 }}>
+        <Image
+          src="https://www.thedoghouseps.com/wp-content/uploads/2025/05/Dogs-Playing.jpg"
+          alt="Dogs playing in daycare"
+          fill
+          style={{ objectFit: "cover", objectPosition: "center", zIndex: 0 }}
+          sizes="100vw"
+        />
+        <div style={{ position: "absolute", inset: 0, backgroundColor: "rgba(255,255,255,0.6)", zIndex: 1 }} />
+        <div style={{ position: "absolute", bottom: -1, left: 0, width: "100%", lineHeight: 0, zIndex: 2 }}>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none" style={{ display: "block", width: "100%", height: "60px" }}>
             <path fill="#ffffff" d="M500,97C126.7,96.3,0.8,19.8,0,0v100l1000,0V1C1000,19.4,873.3,97.8,500,97z" />
           </svg>
         </div>
-        <div style={{ maxWidth: "1520px", width: "100%", margin: "130px auto 50px", padding: "0 20px", position: "relative", zIndex: 2 }}>
+        <div style={{ maxWidth: "1520px", width: "100%", margin: "130px auto 50px", padding: "0 20px", position: "relative", zIndex: 3 }}>
           <h1 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(28px, 5vw, 60px)", color: "#1F2124", marginBottom: "16px", lineHeight: 1.1 }}>
             {t("daycare_hero_title")} <span style={{ color: "#965B83" }}>{t("daycare_dog_day_care")}</span>
           </h1>
@@ -490,16 +496,19 @@ export default function DogDayCareContent() {
         <div style={{ maxWidth: "1520px", margin: "0 auto" }}>
 
           {/* Video Player */}
-          <div style={{ marginBottom: "50px", borderRadius: "16px", overflow: "hidden", boxShadow: "0 8px 32px rgba(0,0,0,0.12)" }}>
-            <video controls playsInline poster="https://www.thedoghouseps.com/wp-content/uploads/2025/03/video-post.png" style={{ width: "100%", display: "block", maxHeight: "600px", objectFit: "cover" }}>
+          <div style={{ marginBottom: "50px", borderRadius: "16px", overflow: "hidden", boxShadow: "0 8px 32px rgba(0,0,0,0.12)", maxWidth: "900px", margin: "0 auto 50px" }}>
+            <video controls playsInline preload="none" poster="https://www.thedoghouseps.com/wp-content/uploads/2025/03/video-post.png" style={{ width: "100%", display: "block" }}>
               <source src="/videos/donna-dog-daycare.mp4" type="video/mp4" />
             </video>
           </div>
 
-          {/* Counter */}
-          <div style={{ display: "flex", gap: "30px", justifyContent: "center", marginBottom: "50px", flexWrap: "wrap" }}>
-            <CounterBox target={30} suffix="+" label={t("daycare_years")} />
-            <CounterBox target={40000} suffix="+" label={t("daycare_satisfied_clients")} />
+          {/* Counter with Confetti */}
+          <div style={{ position: "relative", overflow: "hidden", padding: "40px 0", marginBottom: "10px" }}>
+            <ConfettiRain />
+            <div style={{ display: "flex", gap: "30px", justifyContent: "center", flexWrap: "wrap", position: "relative", zIndex: 2 }}>
+              <CounterBox target={30} suffix="+" label={t("daycare_years")} />
+              <CounterBox target={40000} suffix="+" label={t("daycare_satisfied_clients")} />
+            </div>
           </div>
 
           {/* Content below counter */}
@@ -519,16 +528,21 @@ export default function DogDayCareContent() {
       <section
         style={{
           position: "relative",
-          backgroundImage: "url(https://www.thedoghouseps.com/wp-content/uploads/2025/03/sportive-dog-performing-lure-coursing-competition.webp)",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
           padding: "80px 20px",
           minHeight: "400px",
           display: "flex",
           alignItems: "center",
+          overflow: "hidden",
         }}
       >
-        <div style={{ position: "absolute", inset: 0, backgroundColor: "rgba(255,255,255,0.2)" }} />
+        <Image
+          src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/sportive-dog-performing-lure-coursing-competition.webp"
+          alt="Dogs playing in daycare activity"
+          fill
+          style={{ objectFit: "cover", objectPosition: "center", zIndex: 0 }}
+          sizes="100vw"
+        />
+        <div style={{ position: "absolute", inset: 0, backgroundColor: "rgba(255,255,255,0.2)", zIndex: 1 }} />
         <div style={{ maxWidth: "1520px", margin: "0 auto", width: "100%", position: "relative", zIndex: 2 }}>
           <div style={{ backgroundColor: "rgba(255,255,255,0.85)", borderRadius: "12px", padding: "40px", width: "850px", maxWidth: "100%", boxShadow: "6px 6px 20px rgba(0,0,0,0.1)", display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
             <Image
@@ -559,7 +573,8 @@ export default function DogDayCareContent() {
       </section>
 
       {/* ── Daycare Packages Carousel ── */}
-      <section style={{ backgroundColor: "#ffffff", padding: "80px 20px" }}>
+      <section style={{ backgroundColor: "#ffffff", padding: "80px 20px", position: "relative", overflow: "hidden" }}>
+        <ConfettiSplash />
         <div style={{ maxWidth: "1520px", margin: "0 auto" }}>
           <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(28px,3vw,42px)", color: "#1F2124", textAlign: "center", marginBottom: "12px" }}>
             {t("daycare_services_title")}
@@ -706,13 +721,18 @@ export default function DogDayCareContent() {
 
       {/* ── Locations ── */}
       <section style={{
-        backgroundImage: "url('https://www.thedoghouseps.com/wp-content/uploads/2025/03/image67.jpg')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
         backgroundColor: "#F8F8F8",
         padding: "80px 20px",
         position: "relative",
+        overflow: "hidden",
       }}>
+        <Image
+          src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/image67.jpg"
+          alt="Dog daycare locations"
+          fill
+          style={{ objectFit: "cover", objectPosition: "center", zIndex: 0 }}
+          sizes="100vw"
+        />
         <div style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, backgroundColor: "#FFF", opacity: 0.7, zIndex: 1 }} />
         <div style={{ maxWidth: "1520px", width: "100%", margin: "0 auto", position: "relative", zIndex: 2 }}>
           <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(26px,3vw,40px)", color: "#000", textAlign: "center", marginBottom: "50px" }}>
@@ -899,16 +919,21 @@ export default function DogDayCareContent() {
       <section
         style={{
           position: "relative",
-          backgroundImage: "url(https://www.thedoghouseps.com/wp-content/uploads/2025/03/dog-bg.png)",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
           padding: "80px 20px",
           minHeight: "500px",
           display: "flex",
           alignItems: "center",
+          overflow: "hidden",
         }}
       >
-        <div style={{ position: "absolute", inset: 0, backgroundColor: "rgba(255,255,255,0.2)" }} />
+        <Image
+          src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/dog-bg.png"
+          alt="Dog daycare FAQ section"
+          fill
+          style={{ objectFit: "cover", objectPosition: "center", zIndex: 0 }}
+          sizes="100vw"
+        />
+        <div style={{ position: "absolute", inset: 0, backgroundColor: "rgba(255,255,255,0.2)", zIndex: 1 }} />
         <div style={{ maxWidth: "1520px", margin: "0 auto", width: "100%", position: "relative", zIndex: 2 }}>
           <div style={{ backgroundColor: "rgba(255,255,255,0.85)", borderRadius: "16px", padding: "48px", width: "850px", maxWidth: "100%", boxShadow: "6px 6px 20px rgba(0,0,0,0.08)" }}>
             <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(26px,3vw,40px)", color: "#1F2124", marginBottom: "32px" }}>

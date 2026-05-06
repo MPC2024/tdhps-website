@@ -53,9 +53,6 @@ export default function KeylinOrellanaPage() {
       <section
         style={{
           position: "relative",
-          backgroundImage: "url(https://www.thedoghouseps.com/wp-content/uploads/2025/04/pet-grooming-houston-dog-house.jpg)",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
           minHeight: "clamp(400px, 60vh, 700px)",
           display: "flex",
           alignItems: "center",
@@ -63,8 +60,15 @@ export default function KeylinOrellanaPage() {
           overflow: "hidden",
         }}
       >
+        <Image
+          src="https://www.thedoghouseps.com/wp-content/uploads/2025/04/pet-grooming-houston-dog-house.jpg"
+          alt="Keylin Paulina Orellana Delcid hero banner"
+          fill
+          style={{ objectFit: "cover", objectPosition: "center", zIndex: 0 }}
+          sizes="100vw"
+        />
         {/* White overlay */}
-        <div style={{ position: "absolute", inset: 0, backgroundColor: "#FFF", opacity: 0.6 }} />
+        <div style={{ position: "absolute", inset: 0, backgroundColor: "#FFF", opacity: 0.6, zIndex: 1 }} />
         <div style={{ maxWidth: "1520px", margin: "130px auto 50px", padding: "0 20px", position: "relative", zIndex: 2 }}>
           <p
             style={{
@@ -343,13 +347,18 @@ export default function KeylinOrellanaPage() {
 
       {/* ── Locations ── */}
       <section style={{
-        backgroundImage: "url('https://www.thedoghouseps.com/wp-content/uploads/2025/03/image67.jpg')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
         backgroundColor: "#F8F8F8",
         padding: "80px 20px 130px",
         position: "relative",
+        overflow: "hidden",
       }}>
+        <Image
+          src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/image67.jpg"
+          alt="Staff locations"
+          fill
+          style={{ objectFit: "cover", objectPosition: "center", zIndex: 0 }}
+          sizes="100vw"
+        />
         <div style={{
           position: "absolute",
           top: 0, left: 0, right: 0, bottom: 0,

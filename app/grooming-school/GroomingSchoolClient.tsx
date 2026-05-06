@@ -225,17 +225,22 @@ function OurPromiseSection() {
     <section
       style={{
         position: "relative",
-        backgroundImage: "url(https://www.thedoghouseps.com/wp-content/uploads/2025/04/washing-pet-dog-home.jpg.webp)",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
         padding: "80px 20px",
         minHeight: "500px",
         display: "flex",
         alignItems: "center",
+        overflow: "hidden",
       }}
     >
+      <Image
+        src="https://www.thedoghouseps.com/wp-content/uploads/2025/04/washing-pet-dog-home.jpg.webp"
+        alt="Grooming school section"
+        fill
+        style={{ objectFit: "cover", objectPosition: "center", zIndex: 0 }}
+        sizes="100vw"
+      />
       {/* White overlay */}
-      <div style={{ position: "absolute", inset: 0, backgroundColor: "rgba(255,255,255,0.2)" }} />
+      <div style={{ position: "absolute", inset: 0, backgroundColor: "rgba(255,255,255,0.2)", zIndex: 1 }} />
       <div style={{ maxWidth: "1520px", margin: "130px auto 50px", width: "100%", padding: "0 20px", position: "relative", zIndex: 2 }}>
         <div style={{ backgroundColor: "rgba(255,255,255,0.85)", borderRadius: "16px", padding: "48px", width: "850px", maxWidth: "100%", boxShadow: "6px 6px 20px rgba(0,0,0,0.08)" }}>
           <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(26px,3vw,40px)", color: "#1F2124", marginBottom: "32px" }}>
@@ -273,6 +278,7 @@ const programsData = [
     hours: "160 class hours",
     hoursEs: "160 horas de clase",
     imgUrl: "https://www.thedoghouseps.com/wp-content/uploads/2025/04/pet-shampoo.svg",
+    photo: "https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?w=600&q=85&fit=crop",
     price: "$3,800",
     duration: "4 week course / 160 class hours",
     durationEs: "Curso de 4 semanas / 160 horas de clase",
@@ -308,6 +314,7 @@ const programsData = [
     hours: "320 class hours",
     hoursEs: "320 horas de clase",
     imgUrl: "https://www.thedoghouseps.com/wp-content/uploads/2025/04/pet-brush.svg",
+    photo: "https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=600&q=85&fit=crop",
     price: "$5,600",
     duration: "8 week course / 320 class hours",
     durationEs: "Curso de 8 semanas / 320 horas de clase",
@@ -347,6 +354,7 @@ const programsData = [
     hours: "480 class hours",
     hoursEs: "480 horas de clase",
     imgUrl: "https://www.thedoghouseps.com/wp-content/uploads/2025/04/cut.svg",
+    photo: "https://images.unsplash.com/photo-1625794084867-8ddd239946b1?w=600&q=85&fit=crop",
     price: "$8,500",
     duration: "12 week program / 480 class hours",
     durationEs: "Programa de 12 semanas / 480 horas de clase",
@@ -396,6 +404,7 @@ const programsData = [
     hours: "960 class hours",
     hoursEs: "960 horas de clase",
     imgUrl: "https://www.thedoghouseps.com/wp-content/uploads/2025/04/scissors.svg",
+    photo: "https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=600&q=85&fit=crop",
     price: "$25,000",
     duration: "24 week course / 960 Class Hours",
     durationEs: "Curso de 24 semanas / 960 horas de clase",
@@ -1557,8 +1566,8 @@ function ProgramsTabbed() {
           </div>
 
           {/* Tab Content */}
-          <div className="programs-tab-content" style={{ backgroundColor: "#ffffff", padding: "40px", borderRadius: "12px", alignItems: "center" }}>
-            <div className="programs-tab-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "40px", alignItems: "center" }}>
+          <div className="programs-tab-content" style={{ backgroundColor: "#ffffff", padding: "30px", borderRadius: "12px", alignItems: "center", maxWidth: "960px", margin: "0 auto" }}>
+            <div className="programs-tab-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "20px", alignItems: "center" }}>
               {/* Left Column */}
               <div>
                 <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "22px", color: "#1F2124", marginBottom: "16px" }}>
@@ -1593,24 +1602,45 @@ function ProgramsTabbed() {
                 </button>
               </div>
 
-              {/* Middle Column — Icon */}
+              {/* Middle Column — Photo */}
               <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
-                <Image src={active.imgUrl} alt={active.title} width={220}
-              quality={90} height={220} style={{ width: "220px", height: "220px", objectFit: "contain" }} />
+                <div style={{ width: "100%", maxWidth: "260px", aspectRatio: "3/4", position: "relative", borderRadius: "16px", overflow: "hidden", boxShadow: "0 4px 16px rgba(0,0,0,0.1)" }}>
+                  <Image src={active.photo} alt={active.title} fill style={{ objectFit: "cover" }} sizes="260px" quality={90} />
+                </div>
               </div>
 
               {/* Right Column — Bullets */}
               <div>
-                <ul style={{ fontFamily: '"Outfit", sans-serif', fontSize: "14px", color: "#54595F", lineHeight: 1.8, listStyle: "disc", paddingLeft: "20px", marginBottom: "24px" }}>
-                  {(language === "es" ? active.bulletsEs : active.bullets).map((bullet) => (
-                    <li key={bullet} style={{ marginBottom: "8px" }}>
-                      {bullet}
-                    </li>
-                  ))}
-                </ul>
-                <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "12px", color: "#54595F", fontStyle: "italic", borderTop: "1px solid #e0e0e0", paddingTop: "45px" }}>
-                  {language === "es" ? active.footnoteEs : active.footnote}
-                </p>
+                {(() => {
+                  const bullets = language === "es" ? active.bulletsEs : active.bullets;
+                  return (
+                    <>
+                      <ul style={{
+                        fontFamily: '"Outfit", sans-serif',
+                        fontSize: "14px",
+                        color: "#54595F",
+                        lineHeight: 1.6,
+                        listStyle: "disc",
+                        paddingLeft: "20px",
+                        marginBottom: "24px",
+                        columns: bullets.length > 10 ? 2 : 1,
+                        columnGap: "24px",
+                      }}>
+                        {bullets.map((bullet) => (
+                          <li key={bullet} style={{
+                            marginBottom: "4px",
+                            breakInside: "avoid",
+                          }}>
+                            {bullet}
+                          </li>
+                        ))}
+                      </ul>
+                      <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "12px", color: "#54595F", fontStyle: "italic", borderTop: "1px solid #e0e0e0", paddingTop: "45px" }}>
+                        {language === "es" ? active.footnoteEs : active.footnote}
+                      </p>
+                    </>
+                  );
+                })()}
               </div>
             </div>
           </div>
@@ -1637,19 +1667,22 @@ export default function GroomingSchoolClient() {
       <section
         style={{
           position: "relative",
-          backgroundImage: "url(https://www.thedoghouseps.com/wp-content/uploads/2025/05/Woman-trimming-dog.jpg)",
-          backgroundSize: "cover",
-          backgroundPosition: "center center",
-          backgroundRepeat: "no-repeat",
           minHeight: "clamp(400px, 60vh, 700px)",
           display: "flex",
           alignItems: "center",
-          padding: "clamp(100px, 15vh, 160px) 20px clamp(60px, 10vh, 120px)",
+          padding: "220px 20px clamp(60px, 10vh, 120px)",
           overflow: "hidden",
         }}
       >
+        <Image
+          src="https://www.thedoghouseps.com/wp-content/uploads/2025/05/Woman-trimming-dog.jpg"
+          alt="Grooming school hero banner"
+          fill
+          style={{ objectFit: "cover", objectPosition: "center", zIndex: 0 }}
+          sizes="100vw"
+        />
         {/* White overlay */}
-        <div aria-hidden="true" style={{ position: "absolute", inset: 0, backgroundColor: "#ffffff", opacity: 0.6, zIndex: 0 }} />
+        <div aria-hidden="true" style={{ position: "absolute", inset: 0, backgroundColor: "#ffffff", opacity: 0.6, zIndex: 1 }} />
         {/* Curved SVG bottom */}
         <div aria-hidden="true" style={{ position: "absolute", bottom: -1, left: 0, width: "100%", lineHeight: 0, zIndex: 2 }}>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none" style={{ display: "block", width: "100%", height: "60px" }}>
@@ -1859,13 +1892,18 @@ export default function GroomingSchoolClient() {
 
       {/* ── Locations ── */}
       <section style={{
-        backgroundImage: "url('https://www.thedoghouseps.com/wp-content/uploads/2025/03/image67.jpg')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
         backgroundColor: "#F8F8F8",
         padding: "80px 20px",
         position: "relative",
+        overflow: "hidden",
       }}>
+        <Image
+          src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/image67.jpg"
+          alt="Grooming school locations"
+          fill
+          style={{ objectFit: "cover", objectPosition: "center", zIndex: 0 }}
+          sizes="100vw"
+        />
         {/* White overlay */}
         <div style={{
           position: "absolute",

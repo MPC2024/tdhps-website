@@ -255,8 +255,6 @@ export default function PearlandLocationPage() {
         locationName="Pearland"
       />
 
-      <LocationBlogFeed location="pearland" locationName="Pearland / Katy" />
-
       {/* Contact Information and Appointment Scheduling */}
       <section style={{
         position: "relative",
@@ -345,6 +343,9 @@ export default function PearlandLocationPage() {
       </section>
 
       <PearlandDirectionsSection />
+
+      <LocationBlogFeed location="pearland" locationName="Pearland / Katy" />
+
     </>
   );
 }

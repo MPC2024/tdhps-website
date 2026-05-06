@@ -31,14 +31,18 @@ export default function PearlandServicesSection() {
   return (
     <section
       style={{
-        backgroundImage: "url(https://www.thedoghouseps.com/wp-content/uploads/2025/03/image22.jpg)",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundAttachment: "fixed",
         padding: "100px 20px",
         position: "relative",
+        overflow: "hidden",
       }}
     >
+      <Image
+        src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/image22.jpg"
+        alt="Pearland services section"
+        fill
+        style={{ objectFit: "cover", objectPosition: "center", zIndex: 0 }}
+        sizes="100vw"
+      />
       {/* White overlay */}
       <div
         style={{
@@ -49,6 +53,7 @@ export default function PearlandServicesSection() {
           bottom: 0,
           backgroundColor: "#FFFFFF",
           opacity: 0.85,
+          zIndex: 1,
         }}
       />
 

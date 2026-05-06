@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import nodemailer from "nodemailer";
+import { sendEmails } from "@/lib/email";
 import { isRateLimited, getClientIp } from "@/lib/rate-limit";
 
 /**
@@ -231,61 +231,57 @@ export async function POST(request: NextRequest) {
       `How they heard about us: ${body.howHeard || "(Not specified)"}`,
     ].join("\n");
 
-    const smtpHost = process.env.SMTP_HOST;
-    const smtpPort = process.env.SMTP_PORT;
-    const smtpUser = process.env.SMTP_USER;
-    const smtpPass = process.env.SMTP_PASS;
-    const smtpFrom = process.env.SMTP_FROM || "noreply@thedoghouseps.com";
+    // Training: Fire-and-forget email sending - WHY async without await?
+    // SendGrid sending is fire-and-forget: we send the emails asynchronously
+    // but don't wait for SendGrid's response. This keeps the form response fast.
+    // If SendGrid fails, we log it but don't block the user's request.
+    //
+    // Confirmation email: TO the applicant
+    // Application email: TO the grooming school staff
+    const confirmationEmailText = [
+      `Thank you for your interest in The Dog House Pet Salon Grooming School!`,
+      ``,
+      `We have received your application for the ${body.program} program.`,
+      ``,
+      `Application Details:`,
+      `Program: ${body.program}`,
+      `Format: ${body.format}`,
+      `Name: ${body.fullName}`,
+      `Email: ${body.email}`,
+      ``,
+      `We will review your application and contact you within 2-3 business days.`,
+      ``,
+      `Best regards,`,
+      `The Dog House Pet Salon Grooming School`,
+    ].join("\n");
 
-    // Training: Guard clause for SMTP configuration - WHY guard here?
-    // If SMTP config is missing, sendMail() would throw an error. This pattern
-    // lets us handle misconfiguration gracefully with fallback logging.
-    if (smtpHost && smtpUser && smtpPass) {
-      try {
-        const transporter = nodemailer.createTransport({
-          host: smtpHost,
-          port: Number(smtpPort) || 587,
-          secure: Number(smtpPort) === 465,
-          auth: {
-            user: smtpUser,
-            pass: smtpPass,
-          },
-        });
-
-        // Training: Timeout for email sending - WHY add explicit timeout?
-        // External services can hang. Without a timeout, the request might
-        // hold resources indefinitely. 30 seconds is generous for email.
-        await Promise.race([
-          transporter.sendMail({
-            from: smtpFrom,
-            to: RECIPIENT_EMAIL,
-            subject,
-            text: textBody,
-          }),
-          new Promise((_, reject) =>
-            setTimeout(() => reject(new Error("Email sending timeout after 30s")), 30000)
-          ),
-        ]);
-
-        console.log(`[grooming-school] Email sent to ${RECIPIENT_EMAIL} for ${body.fullName}`);
-      } catch (emailError) {
-        // Training: Catch specific email errors - WHY not just rethrow?
-        // Different email failures have different causes (invalid credentials,
-        // network timeout, recipient rejected). Logging the specific error helps
-        // operators debug SMTP issues. We rethrow because this is a critical failure.
-        console.error(`[grooming-school] Email sending failed to ${RECIPIENT_EMAIL}:`, emailError);
-        throw emailError;
-      }
-    } else {
-      // Training: Fallback logging for misconfiguration - WHY log instead of error?
-      // SMTP being missing is not a request error—it's a configuration issue on
-      // the server side. We log it as a warning so data isn't lost, but return
-      // success to the client (they aren't at fault).
-      console.warn("[grooming-school] SMTP not configured. Logging submission to console:");
-      console.log("TO:", RECIPIENT_EMAIL);
-      console.log("SUBJECT:", subject);
-      console.log("BODY:\n", textBody);
-    }
+    // Fire-and-forget: send both emails asynchronously (don't wait, don't block response)
+    sendEmails([
+      {
+        to: body.email,
+        subject: `Application Received - ${body.program} Program`,
+        text: confirmationEmailText,
+      },
+      {
+        to: RECIPIENT_EMAIL,
+        subject,
+        text: textBody,
+      },
+      {
+        to: "jeff@thedoghouseps.com",
+        subject,
+        text: textBody,
+      },
+      {
+        to: "fred@thedoghouseps.com",
+        subject,
+        text: textBody,
+      },
+    ]).catch((error) => {
+      // This shouldn't happen because sendEmails doesn't throw,
+      // but we catch defensively just in case
+      console.error("[grooming-school] Unexpected error in email sending:", error);
+    });
 
     return NextResponse.json({ success: true });
   } catch (error) {

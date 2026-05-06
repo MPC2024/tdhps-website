@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useLanguage } from "@/lib/LanguageContext";
 
@@ -14,13 +15,16 @@ export default function NotFound() {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        backgroundImage:
-          "url(https://www.thedoghouseps.com/wp-content/uploads/2025/04/brown-cute-dog-scaled.jpg)",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
+        overflow: "hidden",
       }}
     >
+      <Image
+        src="https://www.thedoghouseps.com/wp-content/uploads/2025/04/brown-cute-dog-scaled.jpg"
+        alt="Not found page background"
+        fill
+        style={{ objectFit: "cover", objectPosition: "center", zIndex: 0 }}
+        sizes="100vw"
+      />
       {/* White overlay */}
       <div
         aria-hidden="true"
@@ -29,7 +33,7 @@ export default function NotFound() {
           inset: 0,
           backgroundColor: "#ffffff",
           opacity: 0.4,
-          zIndex: 0,
+          zIndex: 1,
         }}
       />
 
@@ -37,7 +41,7 @@ export default function NotFound() {
       <div
         style={{
           position: "relative",
-          zIndex: 1,
+          zIndex: 2,
           textAlign: "center",
           padding: "40px 20px",
           maxWidth: "600px",

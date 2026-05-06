@@ -240,8 +240,6 @@ export default function GalleriaLocationPage() {
         locationName="Galleria"
       />
 
-      <LocationBlogFeed location="galleria" locationName="Galleria" />
-
       {/* Contact Information and Appointment Scheduling */}
       <section style={{
         position: "relative",
@@ -333,6 +331,8 @@ export default function GalleriaLocationPage() {
       </section>
 
       <GalleriaDirectionsSection />
+
+      <LocationBlogFeed location="galleria" locationName="Galleria" />
 
     </>
   );

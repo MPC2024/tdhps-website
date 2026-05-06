@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { getAllPosts } from "@/lib/blog";
 import BlogGrid from "./BlogGrid";
 import BlogCTAButton from "@/components/BlogCTAButton";
 import BlogHeroText from "@/components/BlogHeroText";
 import BlogCTAText from "@/components/BlogCTAText";
+
+const HERO_IMAGE_URL = "https://www.thedoghouseps.com/wp-content/uploads/2025/03/image67.jpg";
 
 export const metadata: Metadata = {
   title: "Dog Grooming Tips & Pet Care Advice | Dog House Pet Salon Blog",
@@ -28,10 +31,6 @@ export default function BlogPage() {
       <section
         style={{
           position: "relative",
-          backgroundImage: "url(https://www.thedoghouseps.com/wp-content/uploads/2025/03/image67.jpg)",
-          backgroundPosition: "center center",
-          backgroundSize: "cover",
-          backgroundRepeat: "no-repeat",
           minHeight: "clamp(400px, 60vh, 700px)",
           display: "flex",
           alignItems: "center",
@@ -39,6 +38,20 @@ export default function BlogPage() {
           overflow: "hidden",
         }}
       >
+        {/* Background Image using Next.js Image fill (more reliable than CSS backgroundImage) */}
+        <Image
+          src={HERO_IMAGE_URL}
+          alt="Dog Grooming Blog - Tips and pet care advice"
+          fill
+          sizes="100vw"
+          priority
+          quality={85}
+          style={{
+            objectFit: "cover",
+            objectPosition: "center",
+            zIndex: 0,
+          }}
+        />
         <div
           aria-hidden="true"
           style={{
@@ -46,7 +59,7 @@ export default function BlogPage() {
             inset: 0,
             backgroundColor: "#ffffff",
             opacity: 0.6,
-            zIndex: 0,
+            zIndex: 1,
           }}
         />
         <div
@@ -77,7 +90,7 @@ export default function BlogPage() {
             maxWidth: "1520px",
             margin: "0 auto",
             position: "relative",
-            zIndex: 2,
+            zIndex: 3,
           }}
         >
           <BlogHeroText postCount={posts.length} />

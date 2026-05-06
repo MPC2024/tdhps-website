@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import PrivacyPolicyHeroText from "@/components/PrivacyPolicyHeroText";
+
+const HERO_IMAGE_URL = "https://www.thedoghouseps.com/wp-content/uploads/2025/03/1_image-14.png";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
@@ -300,9 +303,6 @@ export default function PrivacyPolicyPage() {
       <section
         style={{
           position: "relative",
-          backgroundImage: "url(https://www.thedoghouseps.com/wp-content/uploads/2025/03/1_image-14.png)",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
           minHeight: "clamp(400px, 60vh, 700px)",
           display: "flex",
           alignItems: "center",
@@ -310,8 +310,22 @@ export default function PrivacyPolicyPage() {
           overflow: "hidden",
         }}
       >
+        {/* Background Image using Next.js Image fill (more reliable than CSS backgroundImage) */}
+        <Image
+          src={HERO_IMAGE_URL}
+          alt="Privacy Policy - How we protect your data"
+          fill
+          sizes="100vw"
+          priority
+          quality={85}
+          style={{
+            objectFit: "cover",
+            objectPosition: "center",
+            zIndex: 0,
+          }}
+        />
         {/* White overlay */}
-        <div style={{ position: "absolute", inset: 0, backgroundColor: "#FFF", opacity: 0.6 }} />
+        <div style={{ position: "absolute", inset: 0, backgroundColor: "#FFF", opacity: 0.6, zIndex: 1 }} />
         <div style={{ maxWidth: "1520px", margin: "130px auto 50px", padding: "0 20px", position: "relative", zIndex: 2 }}>
           <PrivacyPolicyHeroText />
         </div>

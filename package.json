@@ -14,6 +14,7 @@
     "@lingui/macro": "^5.9.5",
     "@lingui/react": "^5.9.5",
     "@lingui/swc-plugin": "^5.11.0",
+    "@sendgrid/mail": "^8.1.6",
     "gray-matter": "^4.0.3",
     "next": "16.2.0",
     "next-mdx-remote": "^6.0.0",

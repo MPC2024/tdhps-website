@@ -560,6 +560,14 @@
   }
 }
 
+.discount-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.discount-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12) !important;
+}
+
 @media (max-width: 480px) {
   body {
     font-size: 14px;

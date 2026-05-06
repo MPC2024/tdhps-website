@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import AppointmentForm from "@/components/AppointmentForm";
+import AppointmentFormWrapper from "@/components/AppointmentFormWrapper";
 
 export const metadata: Metadata = {
   title: "Appointment Request Galleria",
@@ -80,8 +80,8 @@ export default function AppointmentRequestGalleriaPage() {
       </section>
 
       {/* ── Form ── */}
-      <section style={{ backgroundColor: "#F8F8F8", paddingBottom: "60px" }}>
-        <AppointmentForm defaultLocation="galleria" lockLocation />
+      <section style={{ backgroundColor: "#F8F8F8", paddingBottom: "60px" }} id="booking">
+        <AppointmentFormWrapper defaultLocation="galleria" lockLocation />
       </section>
     </>
   );

@@ -310,16 +310,12 @@ export default function Footer() {
   return (
     <footer style={{ position: "relative", color: "#FFF" }}>
       {/* ── Background Image ── */}
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          backgroundImage: "url(https://www.thedoghouseps.com/wp-content/uploads/2025/03/image.jpg)",
-          backgroundPosition: "center",
-          backgroundSize: "cover",
-          backgroundRepeat: "no-repeat",
-          zIndex: 0,
-        }}
+      <Image
+        src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/image.jpg"
+        alt="Footer background"
+        fill
+        style={{ objectFit: "cover", objectPosition: "center", zIndex: 0 }}
+        sizes="100vw"
       />
       {/* ── Color Overlay ── */}
       <div

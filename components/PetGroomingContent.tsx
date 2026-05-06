@@ -6,6 +6,7 @@ import { useState, useEffect, useRef } from "react";
 import { useLanguage } from "@/lib/LanguageContext";
 import BlogCarousel, { type BlogPost } from "@/components/BlogCarousel";
 import StoreLocations from "@/components/StoreLocations";
+import { ConfettiSplash, ConfettiRain } from "@/components/ConfettiSplash";
 
 const groomingBlogPosts: BlogPost[] = [
   { title: "The Benefits of Routine Dog Grooming in Houston's Climate", img: "https://www.thedoghouseps.com/wp-content/uploads/2026/03/Shihtzu_Grooming_Pearland.jpg", href: "https://www.thedoghouseps.com/the-benefits-of-routine-dog-grooming-in-houstons-climate/" },
@@ -546,9 +547,6 @@ export default function PetGroomingContent() {
       <section
         style={{
           position: "relative",
-          backgroundImage: "url(https://www.thedoghouseps.com/wp-content/uploads/2025/04/brown-cute-dog-scaled.jpg)",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
           minHeight: "clamp(400px, 60vh, 700px)",
           display: "flex",
           alignItems: "center",
@@ -556,8 +554,15 @@ export default function PetGroomingContent() {
           overflow: "hidden",
         }}
       >
+        <Image
+          src="https://www.thedoghouseps.com/wp-content/uploads/2025/04/brown-cute-dog-scaled.jpg"
+          alt="Professional dog grooming service"
+          fill
+          style={{ objectFit: "cover", objectPosition: "center", zIndex: 0 }}
+          sizes="100vw"
+        />
         {/* white overlay */}
-        <div style={{ position: "absolute", inset: 0, backgroundColor: "#FFF", opacity: 0.6 }} />
+        <div style={{ position: "absolute", inset: 0, backgroundColor: "#FFF", opacity: 0.6, zIndex: 1 }} />
         <div style={{ maxWidth: "1520px", width: "100%", margin: "130px auto 50px", padding: "0 20px", position: "relative", zIndex: 2 }}>
           <h1 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "clamp(28px, 5vw, 60px)", color: "#1F2124", marginBottom: "16px", lineHeight: 1.1 }}>
             {t("grooming_pet_grooming")} <span style={{ color: "#965B83" }}>{t("grooming_houston")}</span>
@@ -594,10 +599,13 @@ export default function PetGroomingContent() {
           {/* YouTube Video Player with Poster */}
           <VideoPlayer />
 
-          {/* Counter Boxes */}
-          <div style={{ display: "flex", justifyContent: "center", gap: "30px", marginBottom: "50px", flexWrap: "wrap" }}>
-            <CounterBox target={30} suffix="+" label={t("grooming_years_label")} />
-            <CounterBox target={40000} suffix="+" label={t("grooming_satisfied_clients_label")} />
+          {/* Counter Boxes with Confetti */}
+          <div style={{ position: "relative", overflow: "hidden", padding: "40px 0", marginBottom: "10px" }}>
+            <ConfettiRain />
+            <div style={{ display: "flex", justifyContent: "center", gap: "30px", flexWrap: "wrap", position: "relative", zIndex: 2 }}>
+              <CounterBox target={30} suffix="+" label={t("grooming_years_label")} />
+              <CounterBox target={40000} suffix="+" label={t("grooming_satisfied_clients_label")} />
+            </div>
           </div>
 
           {/* Success Text */}
@@ -706,7 +714,8 @@ export default function PetGroomingContent() {
       </section>
 
       {/* ── Pricing ── */}
-      <section style={{ backgroundColor: "#F8F8F8", padding: "80px 20px" }}>
+      <section style={{ backgroundColor: "#F8F8F8", padding: "80px 20px", position: "relative", overflow: "hidden" }}>
+        <ConfettiSplash />
         <div style={{ maxWidth: "1520px", margin: "0 auto" }}>
           <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "50px", color: "#1F2124", textAlign: "center", marginBottom: "8px", lineHeight: 1.2, maxWidth: "800px", margin: "0 auto 8px" }}>
             {t("grooming_professional_pricing_title")}
@@ -755,14 +764,18 @@ export default function PetGroomingContent() {
       {/* ── New Client Discount ── */}
       <section style={{
         position: "relative",
-        backgroundImage: "url(https://www.thedoghouseps.com/wp-content/uploads/2025/03/image74-scaled.jpg)",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
         padding: "80px 20px",
         overflow: "hidden",
       }}>
+        <Image
+          src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/image74-scaled.jpg"
+          alt="New client discount offer"
+          fill
+          style={{ objectFit: "cover", objectPosition: "center", zIndex: 0 }}
+          sizes="100vw"
+        />
         {/* Overlay */}
-        <div style={{ position: "absolute", inset: 0, backgroundColor: "#f9f9f9", opacity: 0.2, zIndex: 0 }} />
+        <div style={{ position: "absolute", inset: 0, backgroundColor: "#f9f9f9", opacity: 0.2, zIndex: 1 }} />
 
         <div style={{ maxWidth: "1520px", margin: "0 auto", position: "relative", zIndex: 2 }}>
           {/* Card aligned left */}
@@ -906,13 +919,18 @@ export default function PetGroomingContent() {
 
       {/* ── Locations ── */}
       <section style={{
-        backgroundImage: "url('https://www.thedoghouseps.com/wp-content/uploads/2025/03/image67.jpg')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
         backgroundColor: "#F8F8F8",
         padding: "80px 20px",
         position: "relative",
+        overflow: "hidden",
       }}>
+        <Image
+          src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/image67.jpg"
+          alt="Dog grooming locations"
+          fill
+          style={{ objectFit: "cover", objectPosition: "center", zIndex: 0 }}
+          sizes="100vw"
+        />
         {/* White overlay */}
         <div style={{
           position: "absolute",
@@ -1329,14 +1347,18 @@ export default function PetGroomingContent() {
       {/* ── Our Pet Groomers ── */}
       <section style={{
         position: "relative",
-        backgroundImage: "url(https://www.thedoghouseps.com/wp-content/uploads/2025/03/image53-scaled.jpg)",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
         padding: "80px 20px",
         overflow: "hidden",
       }}>
+        <Image
+          src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/image53-scaled.jpg"
+          alt="Pet grooming team"
+          fill
+          style={{ objectFit: "cover", objectPosition: "center", zIndex: 0 }}
+          sizes="100vw"
+        />
         {/* White overlay */}
-        <div style={{ position: "absolute", inset: 0, backgroundColor: "#FFF", opacity: 0.85, zIndex: 0 }} />
+        <div style={{ position: "absolute", inset: 0, backgroundColor: "#FFF", opacity: 0.85, zIndex: 1 }} />
 
         <div style={{ maxWidth: "1520px", margin: "0 auto", position: "relative", zIndex: 2 }}>
           <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "50px", color: "#1F2124", textAlign: "center", marginBottom: "50px" }}>

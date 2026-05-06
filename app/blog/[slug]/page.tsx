@@ -110,37 +110,11 @@ export default async function BlogPostPage({
       <section
         style={{
           position: "relative",
-          ...(post.featuredImage
-            ? {
-                backgroundImage: `url(${post.featuredImage})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center center",
-                backgroundRepeat: "no-repeat",
-              }
-            : {
-                background: "linear-gradient(135deg, #965B83 0%, #1F2124 100%)",
-              }),
-          minHeight: "700px",
-          display: "flex",
-          alignItems: "center",
-          padding: "160px 20px 120px",
+          background: "linear-gradient(135deg, #965B83 0%, #1F2124 100%)",
+          padding: "160px 20px 80px",
           overflow: "hidden",
         }}
       >
-        {/* White overlay (only when featured image is present) */}
-        {post.featuredImage && (
-          <div
-            aria-hidden="true"
-            style={{
-              position: "absolute",
-              inset: 0,
-              backgroundColor: "#ffffff",
-              opacity: 0.6,
-              zIndex: 0,
-            }}
-          />
-        )}
-
         <div
           aria-hidden="true"
           style={{
@@ -190,10 +164,8 @@ export default async function BlogPostPage({
                     fontFamily: '"Outfit", sans-serif',
                     fontSize: "12px",
                     fontWeight: 600,
-                    color: post.featuredImage ? "#965B83" : "#ffffff",
-                    backgroundColor: post.featuredImage
-                      ? "rgba(150,91,131,0.12)"
-                      : "rgba(224,89,138,0.6)",
+                    color: "#ffffff",
+                    backgroundColor: "rgba(224,89,138,0.6)",
                     padding: "4px 14px",
                     borderRadius: "16px",
                     textTransform: "uppercase",
@@ -210,7 +182,7 @@ export default async function BlogPostPage({
             style={{
               fontFamily: '"Bowlby One SC", sans-serif',
               fontSize: "clamp(28px,4vw,52px)",
-              color: post.featuredImage ? "#1F2124" : "#ffffff",
+              color: "#ffffff",
               lineHeight: 1.15,
               marginBottom: "16px",
             }}
@@ -222,7 +194,7 @@ export default async function BlogPostPage({
             style={{
               fontFamily: '"Outfit", sans-serif',
               fontSize: "15px",
-              color: post.featuredImage ? "rgba(0,0,0,0.55)" : "rgba(255,255,255,0.7)",
+              color: "rgba(255,255,255,0.7)",
               display: "flex",
               alignItems: "center",
               gap: "16px",
@@ -235,6 +207,24 @@ export default async function BlogPostPage({
           </div>
         </div>
       </section>
+
+      {/* Featured Image */}
+      {post.featuredImage && (
+        <section style={{ backgroundColor: "#ffffff", padding: "0 20px" }}>
+          <div style={{ maxWidth: "900px", margin: "-40px auto 0", position: "relative", zIndex: 5 }}>
+            <div style={{ position: "relative", width: "100%", aspectRatio: "16/9", borderRadius: "16px", overflow: "hidden", boxShadow: "0 8px 32px rgba(0,0,0,0.12)" }}>
+              <Image
+                src={post.featuredImage}
+                alt={post.title}
+                fill
+                style={{ objectFit: "cover" }}
+                sizes="(max-width: 768px) 100vw, 900px"
+                priority
+              />
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Content */}
       <section style={{ backgroundColor: "#ffffff", padding: "60px 20px" }}>

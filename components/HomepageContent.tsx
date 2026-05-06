@@ -205,7 +205,7 @@ export default function HomepageContent() {
 
           {/* Right: text */}
           <div>
-            <h1
+            <h2
               style={{
                 fontFamily: '"Bowlby One SC", Sans-serif',
                 fontSize: "clamp(24px, 2.5vw, 36px)",
@@ -216,7 +216,7 @@ export default function HomepageContent() {
             >
               {t("dog_grooming_daycare_boarding" as any)}{" "}
               <span style={{ color: "#965B83" }}>The Dog House Pet Salon</span>
-            </h1>
+            </h2>
             <p
               style={{
                 fontFamily: '"Outfit", Sans-serif',

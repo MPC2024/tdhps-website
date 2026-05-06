@@ -11,7 +11,7 @@ export default function LocationBlogFeed({
   location,
   locationName,
 }: LocationBlogFeedProps) {
-  const posts = getPostsByLocation(location, 4);
+  const posts = getPostsByLocation(location, 3);
 
   if (posts.length === 0) {
     return null;

@@ -56,7 +56,7 @@ export default function PearlandLocationPage() {
     email: "pearland@thedoghouseps.com",
     url: "https://www.thedoghouseps.com/pearland-location/",
     openingHoursSpecification: [
-      { dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], opens: "07:00", closes: "19:00" },
+      { dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], opens: "07:00", closes: "18:00" },
       { dayOfWeek: "Saturday", opens: "08:00", closes: "18:00" },
     ],
     priceRange: "$$",

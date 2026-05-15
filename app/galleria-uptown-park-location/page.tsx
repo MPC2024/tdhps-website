@@ -88,7 +88,7 @@ export default function GalleriaLocationPage() {
           style={{ objectFit: "cover", objectPosition: "center", zIndex: 0 }}
           sizes="100vw"
         />
-        <div style={{ position: "absolute", inset: 0, backgroundColor: "#ffffff", opacity: 0.5, zIndex: 1 }} />
+        <div style={{ position: "absolute", inset: 0, backgroundColor: "#ffffff", opacity: 0.75, zIndex: 1 }} />
         <div style={{ maxWidth: "1520px", margin: "130px auto 50px", padding: "0 20px", position: "relative", zIndex: 2 }}>
           <GalleriaLocationContent />
         </div>

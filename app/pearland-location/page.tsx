@@ -41,7 +41,7 @@ export default function PearlandLocationPage() {
     "@type": "LocalBusiness",
     name: "The Dog House Pet Salon - Pearland",
     image: "https://www.thedoghouseps.com/wp-content/uploads/2025/05/The-dog-house-pet-salon-hero-1.webp",
-    description: "Professional pet grooming, boarding, and daycare services at The Dog House Pet Salon in Pearland",
+    description: "Professional pet grooming and bathing services at The Dog House Pet Salon in Pearland",
     address: {
       "@type": "PostalAddress",
       streetAddress: "2810 Business Center Dr #126",
@@ -59,7 +59,7 @@ export default function PearlandLocationPage() {
     ],
     priceRange: "$$",
     areaServed: { "@type": "City", name: "Pearland" },
-    serviceType: ["Pet Grooming", "Pet Boarding", "Dog Day Care"],
+    serviceType: ["Pet Grooming", "Pet Bathing"],
   };
 
   return (

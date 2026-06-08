@@ -4,24 +4,13 @@ import Link from "next/link";
 import Image from "next/image";
 import { useLanguage } from "@/lib/LanguageContext";
 
+// Pearland location offers grooming & bathing only (no boarding or daycare on-site).
 const services = [
   {
     title: "loc_grooming_bathing_title",
     desc: "loc_grooming_bathing_desc",
     img: "https://www.thedoghouseps.com/wp-content/uploads/2025/03/pet-grooming.jpg",
     link: "/pet-grooming",
-  },
-  {
-    title: "loc_boarding_title",
-    desc: "loc_boarding_desc",
-    img: "https://www.thedoghouseps.com/wp-content/uploads/2025/03/pet-boarding.jpg",
-    link: "/houston-pet-boarding",
-  },
-  {
-    title: "loc_daycare_title",
-    desc: "loc_daycare_desc",
-    img: "https://www.thedoghouseps.com/wp-content/uploads/2025/03/dogie-daycare.jpg",
-    link: "/houston-pet-dog-daycare",
   },
 ];
 
@@ -90,20 +79,18 @@ export default function PearlandServicesSection() {
         {/* Cards grid */}
         <style dangerouslySetInnerHTML={{ __html: `
           .services-cards-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
             gap: 40px;
             margin: 0 auto;
           }
-          @media (max-width: 1024px) {
-            .services-cards-grid {
-              grid-template-columns: repeat(2, 1fr);
-              gap: 30px;
-            }
+          .services-cards-grid > div {
+            flex: 0 1 380px;
+            max-width: 420px;
           }
           @media (max-width: 640px) {
             .services-cards-grid {
-              grid-template-columns: 1fr;
               gap: 30px;
             }
           }

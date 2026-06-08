@@ -7,7 +7,7 @@
 //
 // To run: npm install -D vitest @vitejs/plugin-react && npx vitest run
 
-import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
+import { describe, it, expect, beforeEach, vi } from "vitest";
 import { NextRequest } from "next/server";
 
 // -----------------------------------------------------------------------

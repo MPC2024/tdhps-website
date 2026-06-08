@@ -6,7 +6,7 @@
 //
 // To run: npm install -D vitest @vitejs/plugin-react && npx vitest run
 
-import { describe, it, expect, vi, beforeEach } from "vitest";
+import { describe, it, expect } from "vitest";
 
 // -----------------------------------------------------------------------
 // Test Suite 1: /api/pet-cam retirement

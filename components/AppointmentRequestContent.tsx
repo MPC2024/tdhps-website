@@ -35,7 +35,7 @@ export default function AppointmentRequestContent() {
           lineHeight: 1.7,
         }}
       >
-        At The Dog House Pet Salon, we specialize in providing top-notch grooming, boarding, and daycare services. With locations in Houston&apos;s{" "}
+        At The Dog House Pet Salon, we specialize in providing top-notch grooming, boarding, and daycare services. With locations in Houston's{" "}
         <Link href="/galleria-uptown-park-location" style={{ color: "#965B83", fontWeight: 600, textDecoration: "none" }}>
           Galleria
         </Link>{" "}and{" "}

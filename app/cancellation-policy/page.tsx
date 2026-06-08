@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
 import CancellationPolicyHeroText from "@/components/CancellationPolicyHeroText";
 import CancellationPolicySections from "@/components/CancellationPolicySections";
 import CancellationPolicyCTA from "@/components/CancellationPolicyCTA";

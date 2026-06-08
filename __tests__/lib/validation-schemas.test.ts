@@ -5,7 +5,6 @@
 // Principle: memories/knowledge/principles/auth-route-protection.md
 
 import { AppointmentPayloadSchema, GroomingSchoolPayloadSchema } from "@/lib/validation-schemas";
-import { ZodError } from "zod";
 
 describe("Validation Schemas", () => {
   describe("AppointmentPayloadSchema", () => {

@@ -10,8 +10,6 @@ import { Providers } from "@/components/Providers";
 import { generateAIOptimizationSchema, SOCIAL_PROFILES } from "@/lib/schema";
 import { LOCATIONS } from "@/lib/locations";
 
-const gaId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
-
 /* ── Google Fonts ── */
 const roboto = Roboto({
   weight: ["400", "500", "600", "700"],

@@ -56,13 +56,6 @@ const reviews = [
   },
 ];
 
-const loyaltyPerks = [
-  { img: "https://www.thedoghouseps.com/wp-content/uploads/2025/03/image778.png", label: "Premium Amenities" },
-  { img: "https://www.thedoghouseps.com/wp-content/uploads/2025/03/30.png", label: "30 Day Guarantee" },
-  { img: "https://www.thedoghouseps.com/wp-content/uploads/2025/03/just4you.png", label: "Just For You" },
-  { img: "https://www.thedoghouseps.com/wp-content/uploads/2025/03/loyalty-card.png", label: "Loyalty Card" },
-];
-
 const locations = [
   {
     img: "https://www.thedoghouseps.com/wp-content/uploads/2025/03/5917-richmond-ave.png",

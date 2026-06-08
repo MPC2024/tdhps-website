@@ -326,7 +326,7 @@ export default async function BlogPostPage({
               marginBottom: "32px",
             }}
           >
-            Houston&apos;s premier pet grooming, daycare, and boarding service.
+            Houston's premier pet grooming, daycare, and boarding service.
           </p>
           <BlogCTAButton />
         </div>

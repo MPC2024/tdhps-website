@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
 import { getAllPosts } from "@/lib/blog";
 import BlogGrid from "./BlogGrid";
 import BlogCTAButton from "@/components/BlogCTAButton";

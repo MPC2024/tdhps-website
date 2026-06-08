@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import ThankYouText from "./ThankYouText";
-import ThankYouOfferText from "./ThankYouOfferText";
 import ThankYouCTAText from "./ThankYouCTAText";
 import ThankYouActionCards from "./ThankYouActionCards";
 import ThankYouOfferSection from "./ThankYouOfferSection";
@@ -13,14 +12,6 @@ export interface ThankYouConfig {
   reviewLink: string;
   directionsLink: string;
 }
-
-const SOCIAL_LINKS = [
-  { label: "Facebook", url: "https://www.facebook.com/thedoghousepetsalon" },
-  { label: "X / Twitter", url: "https://twitter.com/TheDogHousePS" },
-  { label: "Instagram", url: "https://www.instagram.com/thedoghouseps/" },
-  { label: "LinkedIn", url: "https://www.linkedin.com/company/the-dog-house-pet-salon/" },
-  { label: "YouTube", url: "https://www.youtube.com/@thedoghousepetsalonhouston" },
-];
 
 const heroSvgPath = "M500,97C126.7,96.3,0.8,19.8,0,0v100l1000,0V1C1000,19.4,873.3,97.8,500,97z";
 
@@ -35,14 +26,6 @@ export default function ThankYouPage({ config }: { config: ThankYouConfig }) {
   const dogImgSrc = isNew
     ? "https://www.thedoghouseps.com/wp-content/uploads/2025/04/new-cus-dog-1024x713-1.webp"
     : "https://www.thedoghouseps.com/wp-content/uploads/2025/04/happy-Puppy-Welsh-Corgi-14-Weeks-old-dog-winking-panting-and-sitting-isolated-on-white-e1743968313952.webp";
-
-  const thankYouTitle = isNew
-    ? `Thank You for Choosing ${location}!`
-    : `Thank You for Coming Back to ${location}!`;
-
-  const subMessage = isNew
-    ? `${location} for your pet's grooming needs!`
-    : "We're so happy to see you back for another grooming session.";
 
   return (
     <>

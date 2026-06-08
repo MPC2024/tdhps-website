@@ -53,13 +53,6 @@ const pricingExtras = [
   { img: "https://www.thedoghouseps.com/wp-content/uploads/2025/03/dog-de-tick.jpg", label: "De-Tick", labelEs: "Desparasitación", price: "$20 / Hour", priceEs: "$20 / Hora" },
 ];
 
-const loyaltyPerks = [
-  { img: "https://www.thedoghouseps.com/wp-content/uploads/2025/03/image778.png", label: "Premium Shampoos" },
-  { img: "https://www.thedoghouseps.com/wp-content/uploads/2025/03/30.png", label: "30 Day Guarantee" },
-  { img: "https://www.thedoghouseps.com/wp-content/uploads/2025/03/just4you.png", label: "Just For You" },
-  { img: "https://www.thedoghouseps.com/wp-content/uploads/2025/03/loyalty-card.png", label: "Loyalty Card" },
-];
-
 const locations = [
   {
     img: "https://www.thedoghouseps.com/wp-content/uploads/2025/03/5917-richmond-ave.png",
@@ -781,13 +774,21 @@ export default function PetBathingContent() {
               <Link href="/appointment-request" className="btn-primary">{t("bathing_book_now")}</Link>
             </div>
             <h3 style={{ fontFamily: '"Outfit", sans-serif', fontSize: "20px", color: "#965B83", fontWeight: 600, marginBottom: "16px" }}>{t("bathing_includes")}</h3>
-            <ul style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", lineHeight: 2.2, listStyle: "none", padding: 0, margin: 0 }}>
-              <li>{t("bathing_item1")}</li>
-              <li>{t("bathing_item2")}</li>
-              <li>{t("bathing_item3")}</li>
-              <li>{t("bathing_item4")}</li>
-              <li>{t("bathing_item5")}</li>
-              <li>Pet bathing</li>
+            <ul style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", lineHeight: 2.4, listStyle: "none", padding: 0, margin: 0 }}>
+              {[t("bathing_item1"), t("bathing_item2"), t("bathing_item3"), t("bathing_item4"), t("bathing_item5"), "Pet bathing"].map((item, i) => (
+                <li key={i} style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="#965B83" style={{ flexShrink: 0 }}>
+                    <path d="M12 22c1.1 0 2-.9 2-2h-4a2 2 0 0 0 2 2zm0-18C9.5 4 7.5 5.5 7.5 8c0 1.5-.5 3-1.5 4h12c-1-1-1.5-2.5-1.5-4 0-2.5-2-4-4.5-4z"/>
+                    <circle cx="7" cy="4.5" r="2.5"/>
+                    <circle cx="17" cy="4.5" r="2.5"/>
+                    <circle cx="12" cy="2.5" r="2"/>
+                    <ellipse cx="9" cy="14" rx="1.5" ry="2.5"/>
+                    <ellipse cx="15" cy="14" rx="1.5" ry="2.5"/>
+                    <ellipse cx="12" cy="15" rx="2" ry="3"/>
+                  </svg>
+                  {item}
+                </li>
+              ))}
             </ul>
           </div>
         </div>

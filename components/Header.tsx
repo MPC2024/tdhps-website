@@ -68,8 +68,6 @@ const getNavStructure = (t: (key: any) => string): NavItem[] => [
   },
 ];
 
-const navStructure = getNavStructure((key) => key);
-
 export default function Header() {
   const { language, setLanguage, t } = useLanguage();
   const [isSticky, setIsSticky] = useState(false);

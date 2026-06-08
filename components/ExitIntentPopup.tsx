@@ -5,7 +5,6 @@ import Link from "next/link";
 
 export default function ExitIntentPopup() {
   const [showPopup, setShowPopup] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     // Check if already shown in this session
@@ -18,7 +17,6 @@ export default function ExitIntentPopup() {
     const mobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
       navigator.userAgent
     );
-    setIsMobile(mobile);
 
     if (mobile) {
       // Mobile fallback: show after 30 seconds of inactivity
@@ -127,7 +125,7 @@ export default function ExitIntentPopup() {
           {/* Content */}
           <div style={{ padding: "48px 32px 32px" }}>
             <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "22px", color: "#1F2124", marginBottom: "12px", textAlign: "center" }}>
-              Wait! Don&apos;t leave without your special offer
+              Wait! Don't leave without your special offer
             </h2>
 
             <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", textAlign: "center", marginBottom: "28px" }}>
@@ -202,7 +200,7 @@ export default function ExitIntentPopup() {
                 (e.currentTarget as HTMLButtonElement).style.backgroundColor = "transparent";
               }}
             >
-              No thanks, I&apos;ll pay full price
+              No thanks, I'll pay full price
             </button>
           </div>
         </div>

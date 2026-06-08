@@ -1,5 +1,7 @@
 "use client";
 
+import { useState } from "react";
+
 /**
  * ConfettiSplash — decorative paint splatter/confetti dots for section corners.
  * Used on service/pricing sections to add visual interest to white backgrounds.
@@ -133,15 +135,17 @@ export function ConfettiSplash() {
  * Renders colored dots that fall from top to bottom with varied speeds and delays.
  */
 export function ConfettiRain() {
-  const particles = Array.from({ length: 30 }, (_, i) => ({
-    id: i,
-    left: `${Math.random() * 100}%`,
-    size: 4 + Math.random() * 8,
-    delay: Math.random() * 3,
-    duration: 2 + Math.random() * 3,
-    color: ["#965B83", "#c084a0", "#d4a5c0", "#1fb6b0", "#54595F"][Math.floor(Math.random() * 5)],
-    opacity: 0.3 + Math.random() * 0.5,
-  }));
+  const [particles] = useState(() =>
+    Array.from({ length: 30 }, (_, i) => ({
+      id: i,
+      left: `${Math.random() * 100}%`,
+      size: 4 + Math.random() * 8,
+      delay: Math.random() * 3,
+      duration: 2 + Math.random() * 3,
+      color: ["#965B83", "#c084a0", "#d4a5c0", "#1fb6b0", "#54595F"][Math.floor(Math.random() * 5)],
+      opacity: 0.3 + Math.random() * 0.5,
+    }))
+  );
 
   return (
     <>

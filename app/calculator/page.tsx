@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import type { Metadata } from 'next';
 import Image from 'next/image';
 
 // Pricing data extracted from source repo
@@ -360,12 +359,8 @@ export default function CalculatorPage() {
     setError('');
   };
 
-  const filteredBreeds = selectedBreed
-    ? formattedBreeds
-    : formattedBreeds.slice(0, 10);
-
   return (
-    <div style={{ minHeight: '100vh', padding: '160px 20px 120px', position: 'relative', overflow: 'hidden' }}>
+    <div style={{ minHeight: '100vh', padding: '240px 20px 120px', position: 'relative', overflow: 'hidden' }}>
       <Image
         src="https://www.thedoghouseps.com/wp-content/uploads/2025/04/pet-camera.jpg"
         alt="Calculator background"
@@ -408,7 +403,7 @@ export default function CalculatorPage() {
             <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
               <div style={{ minWidth: '36px', height: '36px', borderRadius: '50%', backgroundColor: '#965B83', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: '"Outfit", sans-serif', fontWeight: 700, fontSize: '16px' }}>1</div>
               <div>
-                <h3 style={{ fontFamily: '"Outfit", sans-serif', fontSize: '16px', fontWeight: 700, color: '#1F2124', marginBottom: '4px' }}>Select your pet&apos;s breed</h3>
+                <h3 style={{ fontFamily: '"Outfit", sans-serif', fontSize: '16px', fontWeight: 700, color: '#1F2124', marginBottom: '4px' }}>Select your pet's breed</h3>
                 <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: '14px', color: '#6B7280', lineHeight: 1.5, margin: 0 }}>Choose from 200+ dog breeds and 45+ cat breeds in our list.</p>
               </div>
             </div>
@@ -416,15 +411,15 @@ export default function CalculatorPage() {
               <div style={{ minWidth: '36px', height: '36px', borderRadius: '50%', backgroundColor: '#965B83', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: '"Outfit", sans-serif', fontWeight: 700, fontSize: '16px' }}>2</div>
               <div>
                 <h3 style={{ fontFamily: '"Outfit", sans-serif', fontSize: '16px', fontWeight: 700, color: '#1F2124', marginBottom: '4px' }}>Enter their weight</h3>
-                <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: '14px', color: '#6B7280', lineHeight: 1.5, margin: 0 }}>Type in your pet&apos;s weight in pounds. This helps us determine the right pricing tier.</p>
+                <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: '14px', color: '#6B7280', lineHeight: 1.5, margin: 0 }}>Type in your pet's weight in pounds. This helps us determine the right pricing tier.</p>
               </div>
             </div>
           </div>
 
           <div style={{ backgroundColor: 'rgba(150, 91, 131, 0.08)', borderRadius: '12px', padding: '20px', borderLeft: '4px solid #965B83' }}>
-            <h4 style={{ fontFamily: '"Outfit", sans-serif', fontSize: '14px', fontWeight: 700, color: '#965B83', marginBottom: '8px' }}>What&apos;s included?</h4>
+            <h4 style={{ fontFamily: '"Outfit", sans-serif', fontSize: '14px', fontWeight: 700, color: '#965B83', marginBottom: '8px' }}>What's included?</h4>
             <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: '13px', color: '#54595F', lineHeight: 1.6, margin: 0 }}>
-              You&apos;ll see estimates for three service levels: <strong>Bath</strong>, <strong>Basic Groom</strong> (bath + trim), and <strong>Complete Groom</strong> (full styling). Final pricing is confirmed after an in-person assessment.
+              You'll see estimates for three service levels: <strong>Bath</strong>, <strong>Basic Groom</strong> (bath + trim), and <strong>Complete Groom</strong> (full styling). Final pricing is confirmed after an in-person assessment.
             </p>
           </div>
         </div>

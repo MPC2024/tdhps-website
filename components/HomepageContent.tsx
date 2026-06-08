@@ -54,12 +54,6 @@ const registrationSteps = [
   },
 ];
 
-const amenities = [
-  { titleKey: "quality_assurance", descKey: "quality_assurance_desc" },
-  { titleKey: "large_play_area", descKey: "large_play_area_desc" },
-  { titleKey: "trained_staff", descKey: "trained_staff_desc" },
-];
-
 const thingsSetUsApart = [
   "highest_standards",
   "variety_of_services",
@@ -554,7 +548,7 @@ export default function HomepageContent() {
           <div>
             <Image
               src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/image-8.png"
-              alt="Donna&apos;s Love Pet Rescue"
+              alt="Donna's Love Pet Rescue"
               width={64}
               height={77}
               style={{ width: "64px", height: "auto", marginBottom: "20px" }}

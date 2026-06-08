@@ -17,7 +17,6 @@
 
 import { LOCATIONS, Location } from "./locations";
 import { SOCIAL_PROFILES, SERVICES, ORGANIZATION_CONTACT, FAQ_DATA } from "./schema-constants";
-import { formatTime24To12 } from "./time-utils";
 
 /**
  * Generate Organization schema (parent brand)

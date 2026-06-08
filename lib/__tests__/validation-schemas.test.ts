@@ -20,7 +20,6 @@ import {
   AppointmentPayloadSchema,
   GroomingSchoolPayloadSchema,
   type PetPayload,
-  type AppointmentPayload,
   type GroomingSchoolPayload,
 } from "../validation-schemas";
 

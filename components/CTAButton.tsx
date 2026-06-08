@@ -49,12 +49,6 @@ export default function CTAButton({
     whiteSpace: 'nowrap',
   };
 
-  // Responsive styles for mobile (<768px)
-  const responsiveContainerStyle: React.CSSProperties = {
-    width: '100%',
-    maxWidth: '100%',
-  };
-
   let variantStyles: React.CSSProperties;
 
   switch (variant) {

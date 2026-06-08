@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import HeroSlider from "@/components/HeroSlider";
+import TrustSignalBar from "@/components/TrustSignalBar";
 import HomepageContent from "@/components/HomepageContent";
 
 export const metadata: Metadata = {
@@ -47,6 +48,9 @@ export default function HomePage() {
           </svg>
         </div>
       </div>
+
+      {/* Trust Signal Bar - below hero */}
+      <TrustSignalBar />
 
       {/* ══════════════════════════════════════════════
           SECTION 2-10: All Content (Translated)

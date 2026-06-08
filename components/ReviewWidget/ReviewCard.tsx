@@ -14,7 +14,6 @@ import { useReviewExpansion } from "./useReviewExpansion";
 import ReviewHeader from "./ReviewHeader";
 import ReviewText from "./ReviewText";
 import ReviewFooter from "./ReviewFooter";
-import type { Review as ReviewType } from "@/lib/reviews";
 
 interface ReviewCardProps {
   review: Review;

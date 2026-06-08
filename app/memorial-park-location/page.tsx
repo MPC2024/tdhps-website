@@ -111,7 +111,7 @@ export default function MemorialParkLocationPage() {
               Additional Services
             </h2>
             <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "rgba(255,255,255,0.9)", lineHeight: 1.7, marginBottom: "28px" }}>
-              To maintain your pet&apos;s overall health, we offer nail filing and teeth brushing services.
+              To maintain your pet's overall health, we offer nail filing and teeth brushing services.
             </p>
             <Link href="/appointment-request?location=memorial" style={{ display: "inline-block", backgroundColor: "#ffffff", color: "#965B83", padding: "12px 28px", borderRadius: "50px", fontFamily: '"Outfit", sans-serif', fontWeight: 600, fontSize: "15px", textDecoration: "none" }}>
               Book Now
@@ -143,7 +143,7 @@ export default function MemorialParkLocationPage() {
             Why Choose Us in the Memorial Park Neighborhood
           </h2>
           <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", lineHeight: 1.7, maxWidth: "900px", margin: "0 auto" }}>
-            Our salon&apos;s prime location offers unparalleled convenience for pet owners residing in nearby communities. Being in the vibrant Memorial area means you&apos;re close to Houston&apos;s premier outdoor spaces, making it easy to drop off your pet for care while you enjoy the local attractions.
+            Our salon's prime location offers unparalleled convenience for pet owners residing in nearby communities. Being in the vibrant Memorial area means you're close to Houston's premier outdoor spaces, making it easy to drop off your pet for care while you enjoy the local attractions.
           </p>
         </div>
       </section>
@@ -267,7 +267,7 @@ export default function MemorialParkLocationPage() {
             Contact Information and Appointment Scheduling
           </h2>
           <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", lineHeight: 1.6, marginBottom: "40px", maxWidth: "800px", margin: "0 auto 40px" }}>
-            We look forward to welcoming you and your pet to The Dog House Pet Salon&apos;s Memorial Park location. For appointments or inquiries
+            We look forward to welcoming you and your pet to The Dog House Pet Salon's Memorial Park location. For appointments or inquiries
           </p>
           <style dangerouslySetInnerHTML={{ __html: `
             .contact-cards-grid {

@@ -11,7 +11,6 @@ interface ReviewWidgetProps {
 }
 
 export default async function ReviewWidget({
-  locationName,
   googlePlaceId,
   yelpBusinessId,
   maxReviews = 3,

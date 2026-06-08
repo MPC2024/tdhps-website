@@ -28,14 +28,6 @@ interface PetInfo {
   notes: string;
 }
 
-const DAYCARE_OPTIONS = [
-  { label: "Daily Rate, Per Pet /Day", price: 20 },
-  { label: "10 Day Pass, 1 Day Pass /Pass", price: 180 },
-  { label: "20 Day Pass, 3 Day Pass /Pass", price: 340 },
-  { label: "30 Day Pass, 5 Day Pass /Pass", price: 340 },
-  { label: "100 Day Pass, 25 Day Pass /Pass", price: 1500 },
-];
-
 const defaultPet = (): PetInfo => ({
   name: "",
   species: "",
@@ -433,12 +425,12 @@ function PetSection({
               style={inputStyle}
             >
               <option value="">Select a kennel...</option>
-              <option value="Standard Suite (3x3) - $40">Standard Suite (3&apos;x3&apos;) - $40/Night</option>
-              <option value="Standard + Suite (5x3) - $50">Standard + Suite (5&apos;x3&apos;) - $50/Night</option>
-              <option value="The Hideaway (5x5) - $55">The Hideaway (5&apos;x5&apos;) - $55/Night</option>
-              <option value="The Post Oak (6x6) - $55" disabled={currentLocation !== "galleria"}>The Post Oak (6&apos;x6&apos;) - $55/Night {currentLocation !== "galleria" ? "(Galleria Only)" : ""}</option>
-              <option value="The Richmond / The Westheimer (7x7) - $55" disabled={currentLocation !== "galleria"}>The Richmond / The Westheimer (7&apos;x7&apos;) - $55/Night {currentLocation !== "galleria" ? "(Galleria Only)" : ""}</option>
-              <option value="Penthouse Suite (15x12) - $65">Penthouse Suite (15&apos;x12&apos;) - $65/Night</option>
+              <option value="Standard Suite (3x3) - $40">Standard Suite (3'x3') - $40/Night</option>
+              <option value="Standard + Suite (5x3) - $50">Standard + Suite (5'x3') - $50/Night</option>
+              <option value="The Hideaway (5x5) - $55">The Hideaway (5'x5') - $55/Night</option>
+              <option value="The Post Oak (6x6) - $55" disabled={currentLocation !== "galleria"}>The Post Oak (6'x6') - $55/Night {currentLocation !== "galleria" ? "(Galleria Only)" : ""}</option>
+              <option value="The Richmond / The Westheimer (7x7) - $55" disabled={currentLocation !== "galleria"}>The Richmond / The Westheimer (7'x7') - $55/Night {currentLocation !== "galleria" ? "(Galleria Only)" : ""}</option>
+              <option value="Penthouse Suite (15x12) - $65">Penthouse Suite (15'x12') - $65/Night</option>
             </select>
           </div>
         )}
@@ -525,7 +517,7 @@ export default function AppointmentForm({
     if (pets[0]?.boarding && pets[0].boarding !== "none" && !searchParams.get("discount")) {
       setSelectedDiscount("boarding-free");
     }
-  }, [pets[0]?.boarding, searchParams]);
+  }, [pets, searchParams]);
 
   const handlePetChange = (index: number, updated: PetInfo) => {
     setPets((prev) => {
@@ -853,7 +845,7 @@ export default function AppointmentForm({
                 </div>
               </div>
               <div style={{ marginTop: "12px" }}>
-                <label style={labelStyle}>Pet&apos;s Name <span style={{ color: "#CC3366" }}>*</span></label>
+                <label style={labelStyle}>Pet's Name <span style={{ color: "#CC3366" }}>*</span></label>
                 <input type="text" value={referralPetName} onChange={(e) => setReferralPetName(e.target.value)} style={inputStyle} placeholder="Referral's pet name" required />
               </div>
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px", marginTop: "12px" }}>

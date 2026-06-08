@@ -41,7 +41,6 @@ describe('CTAButton Component', () => {
       );
 
       const button = screen.getByTestId('cta-button-primary');
-      const styles = window.getComputedStyle(button);
 
       // Verify primary variant visual hierarchy
       expect(button).toHaveStyle('background-color: rgb(107, 69, 98)'); // #6B4562

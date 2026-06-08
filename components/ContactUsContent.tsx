@@ -157,7 +157,7 @@ export default function ContactUsContent() {
               marginBottom: "16px",
             }}
           >
-            With over 30+ years of experience, we are Houston&apos;s premier{" "}
+            With over 30+ years of experience, we are Houston's premier{" "}
             <Link
               href="/pet-grooming/"
               style={{ color: "#E0598A", textDecoration: "none", fontWeight: 600 }}
@@ -196,7 +196,7 @@ export default function ContactUsContent() {
               team
             </Link>{" "}
             is here to offer your pets the love and care they deserve. Have
-            questions or need assistance? Contact us, We&apos;re just a call or
+            questions or need assistance? Contact us, We're just a call or
             email away!
           </p>
         </div>

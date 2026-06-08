@@ -2,206 +2,16 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState, FormEvent } from "react";
+import { useState } from "react";
 import { useLanguage } from "@/lib/LanguageContext";
 import BlogCarousel from "@/components/BlogCarousel";
 import StoreLocations from "@/components/StoreLocations";
 // Training: Single Responsibility — Import constants and styles from dedicated modules
 // WHY: Moving data and styles to separate files reduces cognitive load. The component
 // can now focus on rendering and state management without 100+ lines of static data.
-import { GROOMERS, SCHOOL_LOCATIONS, PROGRAM_ICONS, HOW_REFERRAL_OPTIONS, GROOMING_BLOG_POSTS } from "./constants";
-import { FORM_STYLES, SUCCESS_MESSAGE_STYLES, SECTION_STYLES, ACCORDION_ITEM_STYLES, getFormInputStyle } from "./styles";
+import { GROOMERS, SCHOOL_LOCATIONS, GROOMING_BLOG_POSTS } from "./constants";
 
-const requiredStar = <span style={FORM_STYLES.requiredStar}>*</span>;
-
-function SuccessMessage() {
-  const { t } = useLanguage();
-  return (
-    <div style={SUCCESS_MESSAGE_STYLES.container}>
-      <h3 style={SUCCESS_MESSAGE_STYLES.heading}>{t("school_success_title")}</h3>
-      <p style={SUCCESS_MESSAGE_STYLES.text}>{t("school_success_message")}</p>
-    </div>
-  );
-}
-
-function BathingProgramForm() {
-  const { t } = useLanguage();
-  const [submitted, setSubmitted] = useState(false);
-  const [submitting, setSubmitting] = useState(false);
-  const [error, setError] = useState("");
-  if (submitted) return <SuccessMessage />;
-
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setSubmitting(true);
-    setError("");
-
-    const form = e.currentTarget;
-    const formData = new FormData(form);
-
-    try {
-      const res = await fetch("/api/grooming-school", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          program: "Bathing Program",
-          fullName: formData.get("fullName") as string,
-          email: formData.get("email") as string,
-          phone: formData.get("phone") as string,
-          format: formData.get("bathingFormat") as string,
-          motivation: formData.get("motivation") as string,
-          animalComfort: Number(formData.get("animalComfort")),
-          priorExperience: formData.get("priorExperience") as string,
-          allergies: formData.get("allergies") as string,
-          programGoals: formData.get("programGoals") as string,
-          techniquesInterest: formData.get("techniquesInterest") as string,
-          careerGoals: formData.get("careerGoals") as string,
-          howHeard: formData.get("howHeard") as string,
-        }),
-      });
-
-      if (!res.ok) throw new Error("Server error. Please try again.");
-      const data = await res.json();
-      if (!data.success) throw new Error(data.error || "Submission failed.");
-
-      setSubmitted(true);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "Something went wrong. Please try again.");
-      setSubmitting(false);
-    }
-  };
-
-  return (
-    <form onSubmit={handleSubmit} style={FORM_STYLES.container}>
-      {error && <div style={FORM_STYLES.errorBox}>{error}</div>}
-      <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "14px", color: "#54595F", marginBottom: "24px" }}><em>&quot;*&quot; {t("school_form_required_fields")}</em></p>
-      <div style={FORM_STYLES.field}><label style={FORM_STYLES.label}>{t("school_form_full_name")}: {requiredStar}</label><input name="fullName" type="text" required style={FORM_STYLES.input} /></div>
-      <div style={FORM_STYLES.field}><label style={FORM_STYLES.label}>{t("school_form_email")} {requiredStar}</label><input name="email" type="email" required style={FORM_STYLES.input} /></div>
-      <div style={FORM_STYLES.field}><label style={FORM_STYLES.label}>{t("school_form_phone")} {requiredStar}</label><input name="phone" type="tel" required style={FORM_STYLES.input} /></div>
-      <div style={FORM_STYLES.field}>
-        <label style={FORM_STYLES.label}>{t("school_form_program_format")} {requiredStar}</label>
-        <div style={{ display: "flex", gap: "24px" }}>
-          {[t("school_form_online"), t("school_form_in_person")].map((opt) => (
-            <label key={opt} style={FORM_STYLES.radioLabel}>
-              <input type="radio" name="bathingFormat" value={opt} required style={{ accentColor: "#965B83" }} /> {opt}
-            </label>
-          ))}
-        </div>
-      </div>
-      <div style={FORM_STYLES.field}><label style={FORM_STYLES.label}>{t("school_form_motivation_bather")} {requiredStar}</label><textarea name="motivation" required rows={3} style={{ ...FORM_STYLES.input, resize: "vertical" }} /></div>
-      <div style={FORM_STYLES.field}>
-        <label style={FORM_STYLES.label}>{t("school_form_animal_comfort")} {requiredStar}</label>
-        <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "13px", color: "#69727D", marginBottom: "8px" }}>{t("school_form_not_at_all")}</p>
-        <input name="animalComfort" type="number" min={0} max={5} required style={{ ...FORM_STYLES.input, width: "120px" }} />
-      </div>
-      <div style={FORM_STYLES.field}><label style={FORM_STYLES.label}>{t("school_form_experience")} {requiredStar}</label><textarea name="priorExperience" required rows={3} style={{ ...FORM_STYLES.input, resize: "vertical" }} /></div>
-      <div style={FORM_STYLES.field}><label style={FORM_STYLES.label}>{t("school_form_allergies")} {requiredStar}</label><textarea name="allergies" required rows={3} style={{ ...FORM_STYLES.input, resize: "vertical" }} /></div>
-      <div style={FORM_STYLES.field}><label style={FORM_STYLES.label}>{t("school_form_program_goals")} {requiredStar}</label><textarea name="programGoals" required rows={3} style={{ ...FORM_STYLES.input, resize: "vertical" }} /></div>
-      <div style={FORM_STYLES.field}><label style={FORM_STYLES.label}>{t("school_form_techniques")} {requiredStar}</label><textarea name="techniquesInterest" required rows={3} style={{ ...FORM_STYLES.input, resize: "vertical" }} /></div>
-      <div style={FORM_STYLES.field}><label style={FORM_STYLES.label}>{t("school_form_career_goals")} {requiredStar}</label><textarea name="careerGoals" required rows={3} style={{ ...FORM_STYLES.input, resize: "vertical" }} /></div>
-      <div style={FORM_STYLES.field}>
-        <label style={FORM_STYLES.label}>{t("school_form_heard_about")} {requiredStar}</label>
-        <select name="howHeard" required style={{ ...FORM_STYLES.input, cursor: "pointer" }}>
-          <option value="">{t("school_form_select_all")}</option>
-          {HOW_REFERRAL_OPTIONS.map((opt) => <option key={opt.key} value={t(opt.key)}>{t(opt.key)}</option>)}
-        </select>
-      </div>
-      <button type="submit" disabled={submitting} style={getFormInputStyle(submitting)}>
-        {submitting ? t("school_form_submitting") : t("school_form_submit")}
-      </button>
-    </form>
-  );
-}
-
-function BasicGroomingForm() {
-  const { t } = useLanguage();
-  const [submitted, setSubmitted] = useState(false);
-  const [submitting, setSubmitting] = useState(false);
-  const [error, setError] = useState("");
-  if (submitted) return <SuccessMessage />;
-
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setSubmitting(true);
-    setError("");
-
-    const form = e.currentTarget;
-    const formData = new FormData(form);
-
-    try {
-      const res = await fetch("/api/grooming-school", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          program: "Basic Grooming",
-          fullName: formData.get("fullName") as string,
-          email: formData.get("email") as string,
-          phone: formData.get("phone") as string,
-          format: formData.get("basicFormat") as string,
-          motivation: formData.get("motivation") as string,
-          animalComfort: Number(formData.get("animalComfort")),
-          priorExperience: formData.get("priorExperience") as string,
-          techniquesInterest: formData.get("techniquesInterest") as string,
-          careerGoals: formData.get("careerGoals") as string,
-          programGoals: formData.get("programGoals") as string,
-          allergies: formData.get("allergies") as string,
-          howHeard: formData.get("howHeard") as string,
-        }),
-      });
-
-      if (!res.ok) throw new Error("Server error. Please try again.");
-      const data = await res.json();
-      if (!data.success) throw new Error(data.error || "Submission failed.");
-
-      setSubmitted(true);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "Something went wrong. Please try again.");
-      setSubmitting(false);
-    }
-  };
-
-  return (
-    <form onSubmit={handleSubmit} style={FORM_STYLES.container}>
-      {error && <div style={FORM_STYLES.errorBox}>{error}</div>}
-      <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "14px", color: "#54595F", marginBottom: "24px" }}><em>&quot;*&quot; {t("school_form_required_fields")}</em></p>
-      <div style={FORM_STYLES.field}><label style={FORM_STYLES.label}>{t("school_form_full_name")}: {requiredStar}</label><input name="fullName" type="text" required style={FORM_STYLES.input} /></div>
-      <div style={FORM_STYLES.field}><label style={FORM_STYLES.label}>{t("school_form_email")} {requiredStar}</label><input name="email" type="email" required style={FORM_STYLES.input} /></div>
-      <div style={FORM_STYLES.field}><label style={FORM_STYLES.label}>{t("school_form_phone")} {requiredStar}</label><input name="phone" type="tel" required style={FORM_STYLES.input} /></div>
-      <div style={FORM_STYLES.field}>
-        <label style={FORM_STYLES.label}>{t("school_form_program_format")} {requiredStar}</label>
-        <div style={{ display: "flex", gap: "24px" }}>
-          {[t("school_form_online"), t("school_form_in_person")].map((opt) => (
-            <label key={opt} style={FORM_STYLES.radioLabel}>
-              <input type="radio" name="basicFormat" value={opt} required style={{ accentColor: "#965B83" }} /> {opt}
-            </label>
-          ))}
-        </div>
-      </div>
-      <div style={FORM_STYLES.field}><label style={FORM_STYLES.label}>{t("school_form_motivation")}{t("school_form_motivation_bather")} {requiredStar}</label><textarea name="motivation" required rows={3} style={{ ...FORM_STYLES.input, resize: "vertical" }} /></div>
-      <div style={FORM_STYLES.field}>
-        <label style={FORM_STYLES.label}>{t("school_form_animal_comfort")} {requiredStar}</label>
-        <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "13px", color: "#69727D", marginBottom: "8px" }}>{t("school_form_comfort_extreme")}</p>
-        <input name="animalComfort" type="number" min={0} max={5} required style={{ ...FORM_STYLES.input, width: "120px" }} />
-      </div>
-      <div style={FORM_STYLES.field}><label style={FORM_STYLES.label}>{t("school_form_experience_prior")} {requiredStar}</label><textarea name="priorExperience" required rows={3} style={{ ...FORM_STYLES.input, resize: "vertical" }} /></div>
-      <div style={FORM_STYLES.field}><label style={FORM_STYLES.label}>{t("school_form_techniques_eager")} {requiredStar}</label><textarea name="techniquesInterest" required rows={3} style={{ ...FORM_STYLES.input, resize: "vertical" }} /></div>
-      <div style={FORM_STYLES.field}><label style={FORM_STYLES.label}>{t("school_form_career_goals")} {requiredStar}</label><textarea name="careerGoals" required rows={3} style={{ ...FORM_STYLES.input, resize: "vertical" }} /></div>
-      <div style={FORM_STYLES.field}><label style={FORM_STYLES.label}>{t("school_form_program_goals_basic")} {requiredStar}</label><textarea name="programGoals" required rows={3} style={{ ...FORM_STYLES.input, resize: "vertical" }} /></div>
-      <div style={FORM_STYLES.field}><label style={FORM_STYLES.label}>{t("school_form_allergies_affect")} {requiredStar}</label><textarea name="allergies" required rows={3} style={{ ...FORM_STYLES.input, resize: "vertical" }} /></div>
-      <div style={FORM_STYLES.field}>
-        <label style={FORM_STYLES.label}>{t("school_form_heard_about")} {requiredStar}</label>
-        <select name="howHeard" required style={{ ...FORM_STYLES.input, cursor: "pointer" }}>
-          <option value="">{t("school_form_select_all")}</option>
-          {HOW_REFERRAL_OPTIONS.map((opt) => <option key={opt.key} value={t(opt.key)}>{t(opt.key)}</option>)}
-        </select>
-      </div>
-      <button type="submit" disabled={submitting} style={getFormInputStyle(submitting)}>
-        {submitting ? t("school_form_submitting") : t("school_form_submit")}
-      </button>
-    </form>
-  );
-}
-
+// Dead code - BathingProgramForm and BasicGroomingForm removed (unused)
 function OurPromiseSection() {
   const { t } = useLanguage();
   const [openPromise, setOpenPromise] = useState<number | null>(null);
@@ -1604,8 +1414,8 @@ function ProgramsTabbed() {
 
               {/* Middle Column — Photo */}
               <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
-                <div style={{ width: "100%", maxWidth: "260px", aspectRatio: "3/4", position: "relative", borderRadius: "16px", overflow: "hidden", boxShadow: "0 4px 16px rgba(0,0,0,0.1)" }}>
-                  <Image src={active.photo} alt={active.title} fill style={{ objectFit: "cover" }} sizes="260px" quality={90} />
+                <div style={{ width: "100%", aspectRatio: "3/4", position: "relative", borderRadius: "16px", overflow: "hidden", boxShadow: "0 4px 16px rgba(0,0,0,0.1)" }}>
+                  <Image src={active.photo} alt={active.title} fill style={{ objectFit: "cover" }} sizes="(max-width: 768px) 80vw, 300px" quality={90} />
                 </div>
               </div>
 

@@ -291,7 +291,7 @@ export default function PetCamPage() {
             ))}
           </div>
           <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "16px", color: "#54595F", lineHeight: 1.7, marginTop: "30px", textAlign: "center" }}>
-            By following these steps, you&apos;ll be able to check in on your pet throughout the day, enjoying the added connection and peace of mind that our pet cam provides.
+            By following these steps, you'll be able to check in on your pet throughout the day, enjoying the added connection and peace of mind that our pet cam provides.
           </p>
         </div>
       </section>

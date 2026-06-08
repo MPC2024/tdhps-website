@@ -8,38 +8,20 @@ import { useLanguage } from "@/lib/LanguageContext";
 interface Slide {
   imgSrc: string;
   imgAlt: string;
-  subheading: string;
-  heading: (t: any) => React.ReactNode;
-  textKey: string;
 }
 
 const slides: Slide[] = [
   {
     imgSrc: "https://www.thedoghouseps.com/wp-content/uploads/2025/05/The-dog-house-pet-salon-hero-1.webp",
     imgAlt: "The dog house pet salon hero",
-    subheading: "THE DOG HOUSE Pet Salon",
-    heading: (t) => <>
-      {t("we_take_care")} <span style={{ color: "#965B83" }}>{t("your_pets")}</span>
-    </>,
-    textKey: "hero_slide1_text",
   },
   {
     imgSrc: "https://www.thedoghouseps.com/wp-content/uploads/2025/05/The-dog-house-pet-salon-hero-2.webp",
     imgAlt: "The dog house pet salon hero",
-    subheading: "THE DOG HOUSE Pet Salon",
-    heading: (t) => <>
-      {t("treat_your")} <span style={{ color: "#965B83" }}>{t("pet_spa")}</span> {t("day")}
-    </>,
-    textKey: "hero_slide2_text",
   },
   {
     imgSrc: "https://www.thedoghouseps.com/wp-content/uploads/2025/05/The-dog-house-pet-salon-hero-3.webp",
     imgAlt: "The dog house pet salon hero",
-    subheading: "THE DOG HOUSE Pet Salon",
-    heading: (t) => <>
-      {t("experience")} <span style={{ color: "#965B83" }}>{t("joy_care")}</span>
-    </>,
-    textKey: "hero_slide3_text",
   },
 ];
 
@@ -138,7 +120,7 @@ export default function HeroSlider() {
                   color: "#6B4562",
                 }}
               >
-                {slide.subheading}
+                {t("the_dog_house")}
               </p>
               <h1
                 style={{
@@ -149,7 +131,7 @@ export default function HeroSlider() {
                   lineHeight: 1.2,
                 }}
               >
-                {slide.heading(t)}
+                {t("hero_main_heading")}
               </h1>
               <p
                 style={{
@@ -159,7 +141,7 @@ export default function HeroSlider() {
                   fontFamily: '"Outfit", Sans-serif',
                 }}
               >
-                {t(slide.textKey as any)}
+                {t("hero_main_subline")}
               </p>
               <Link
                 href="/appointment-request"

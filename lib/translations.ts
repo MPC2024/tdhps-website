@@ -31,16 +31,8 @@ export const translations = {
     close: "Close",
 
     // Hero Slider
-    we_take_care: "We take care of",
-    your_pets: "your pets",
-    treat_your: "Treat Your",
-    pet_spa: "pet to a spa",
-    day: "day",
-    experience: "Experience",
-    joy_care: "Joy and care",
-    hero_slide1_text: "Whether it's a bubbly bath, a stylish trim, or just a little pampering, your pet deserves the best. Book today and let us treat your furry friend like family.",
-    hero_slide2_text: "Pampering pets with love, care, and style — book your pet's spa day today!",
-    hero_slide3_text: "A pet's wagging tail or soft purr brings instant joy—pure, simple, and unconditional.",
+    hero_main_heading: "Dog Grooming, Boarding & Daycare in Houston, TX",
+    hero_main_subline: "Professional pet grooming, boarding, daycare, and bathing services across Houston, Galleria, Memorial Park, and Pearland.",
     the_dog_house: "THE DOG HOUSE Pet Salon",
 
     // Homepage - About Section
@@ -1347,16 +1339,8 @@ export const translations = {
     close: "Cerrar",
 
     // Hero Slider
-    we_take_care: "Cuidamos de",
-    your_pets: "tus mascotas",
-    treat_your: "Dale a tu",
-    pet_spa: "mascota un día de spa",
-    day: "",
-    experience: "Experimenta",
-    joy_care: "Alegría y cuidado",
-    hero_slide1_text: "Ya sea un baño burbujeante, un corte elegante o simplemente un poco de consentimiento, tu mascota se merece lo mejor. Reserva hoy y deja que cuidemos a tu amigo peludo como familia.",
-    hero_slide2_text: "Consentimos a las mascotas con amor, cuidado y estilo — ¡reserva el día de spa de tu mascota hoy!",
-    hero_slide3_text: "La cola meneante de una mascota o el ronroneo suave trae alegría instantánea—pura, simple e incondicional.",
+    hero_main_heading: "Peluquería, Hospedaje y Guardería Canina en Houston, TX",
+    hero_main_subline: "Servicios profesionales de peluquería, hospedaje, guardería y baño para mascotas en Houston, Galleria, Memorial Park y Pearland.",
     the_dog_house: "THE DOG HOUSE Pet Salon",
 
     // Homepage - About Section

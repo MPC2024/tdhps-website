@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import HeroSlider from "@/components/HeroSlider";
 import TrustSignalBar from "@/components/TrustSignalBar";
 import HomepageContent from "@/components/HomepageContent";
+import FeaturedVideo from "@/components/FeaturedVideo";
 
 export const metadata: Metadata = {
   title: "Dog House Pet Salon Houston TX | Grooming & Spa Services",
@@ -56,6 +57,36 @@ export default function HomePage() {
           SECTION 2-10: All Content (Translated)
       ══════════════════════════════════════════════ */}
       <HomepageContent />
+
+      {/* ══════════════════════════════════════════════
+          FEATURED VIDEO 1: Grooming Tutorial
+      ══════════════════════════════════════════════ */}
+      <FeaturedVideo
+        title="Professional Grooming Tips from the Experts"
+        description="Watch our certified groomers share insider tips on how to keep your pet looking beautiful between salon visits. Learn proper brushing techniques, nail care, and coat maintenance for your dog's specific breed."
+        youtubeUrl=""
+        thumbnailUrl="https://www.thedoghouseps.com/wp-content/uploads/2025/04/grooming-tutorial-placeholder.jpg"
+      />
+
+      {/* ══════════════════════════════════════════════
+          FEATURED VIDEO 2: Pet Daycare Benefits
+      ══════════════════════════════════════════════ */}
+      <FeaturedVideo
+        title="Why Pet Daycare Is Good for Your Dog"
+        description="Discover how dog daycare provides essential socialization, exercise, and mental stimulation. Our pet care specialists explain the behavioral and health benefits of regular daycare, especially for working pet parents."
+        youtubeUrl=""
+        thumbnailUrl="https://www.thedoghouseps.com/wp-content/uploads/2025/04/daycare-benefits-placeholder.jpg"
+      />
+
+      {/* ══════════════════════════════════════════════
+          FEATURED VIDEO 3: Facility Tour
+      ══════════════════════════════════════════════ */}
+      <FeaturedVideo
+        title="Take a Virtual Tour of Our Facilities"
+        description="Step inside The Dog House Pet Salon and see our state-of-the-art grooming bays, comfortable boarding suites, and spacious daycare play areas. Meet our team and learn what makes us Houston's trusted pet care destination."
+        youtubeUrl=""
+        thumbnailUrl="https://www.thedoghouseps.com/wp-content/uploads/2025/04/facility-tour-placeholder.jpg"
+      />
     </>
   );
 }

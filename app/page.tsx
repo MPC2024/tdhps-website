@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import HeroSlider from "@/components/HeroSlider";
 import HomepageContent from "@/components/HomepageContent";
+import VideoShowcase from "@/components/VideoShowcase";
 
 export const metadata: Metadata = {
   title: "Dog House Pet Salon Houston TX | Grooming & Spa Services",
@@ -52,6 +53,15 @@ export default function HomePage() {
           SECTION 2-10: All Content (Translated)
       ══════════════════════════════════════════════ */}
       <HomepageContent />
+
+      {/* ══════════════════════════════════════════════
+          VIDEO SHOWCASE: See Our Pet Care in Action
+      ══════════════════════════════════════════════ */}
+      <VideoShowcase
+        videoMp4="/videos/tdhps-fred-tiktok.mp4"
+        videoWebm="/videos/tdhps-fred-tiktok.webm"
+        posterUrl="/videos/tdhps-fred-tiktok-poster.jpg"
+      />
     </>
   );
 }

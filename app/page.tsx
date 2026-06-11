@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import HeroSlider from "@/components/HeroSlider";
-import TrustSignalBar from "@/components/TrustSignalBar";
 import VideoShowcase from "@/components/VideoShowcase";
 import HomepageContent from "@/components/HomepageContent";
 
@@ -51,12 +50,7 @@ export default function HomePage() {
       </div>
 
       {/* ══════════════════════════════════════════════
-          SECTION 2: Trust Signal Bar
-      ══════════════════════════════════════════════ */}
-      <TrustSignalBar />
-
-      {/* ══════════════════════════════════════════════
-          SECTION 3: Video Showcase (See Our Pet Care in Action)
+          SECTION 2: Video Showcase (See Our Pet Care in Action)
       ══════════════════════════════════════════════ */}
       <VideoShowcase
         videoMp4="/videos/tdhps-fred-tiktok.mp4"
@@ -65,7 +59,7 @@ export default function HomePage() {
       />
 
       {/* ══════════════════════════════════════════════
-          SECTION 4-N: All Content (Translated)
+          SECTION 3-N: All Content (Translated)
       ══════════════════════════════════════════════ */}
       <HomepageContent />
     </>

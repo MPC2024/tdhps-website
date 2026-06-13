@@ -1,8 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import type { Metadata } from 'next';
-import Image from 'next/image';
 
 // Pricing data extracted from source repo
 const BREEDS = [
@@ -365,15 +363,26 @@ export default function CalculatorPage() {
     : formattedBreeds.slice(0, 10);
 
   return (
-    <div style={{ minHeight: '100vh', padding: '160px 20px 120px', position: 'relative', overflow: 'hidden' }}>
-      <Image
-        src="https://www.thedoghouseps.com/wp-content/uploads/2025/04/pet-camera.jpg"
-        alt="Calculator background"
-        fill
-        style={{ objectFit: 'cover', objectPosition: 'center', zIndex: 0 }}
-        sizes="100vw"
-      />
-      <div style={{ position: 'absolute', inset: 0, backgroundColor: 'rgba(248, 248, 248, 0.92)', zIndex: 1 }} />
+    <div style={{ minHeight: '100vh', padding: 'clamp(80px, 10vw, 140px) 20px 120px', position: 'relative', overflow: 'hidden', backgroundColor: '#ffffff' }}>
+      {/* Subtle paw-print pattern background */}
+      <svg style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0, pointerEvents: 'none' }} preserveAspectRatio="none">
+        <defs>
+          <pattern id="pawPattern" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
+            {/* Large center pad */}
+            <circle cx="100" cy="140" r="20" fill="#965B83" opacity="0.05" />
+            {/* Top left toe */}
+            <circle cx="60" cy="60" r="12" fill="#965B83" opacity="0.05" />
+            {/* Top center-left toe */}
+            <circle cx="85" cy="35" r="12" fill="#965B83" opacity="0.05" />
+            {/* Top center-right toe */}
+            <circle cx="115" cy="35" r="12" fill="#965B83" opacity="0.05" />
+            {/* Top right toe */}
+            <circle cx="140" cy="60" r="12" fill="#965B83" opacity="0.05" />
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#pawPattern)" />
+      </svg>
+      <div style={{ position: 'absolute', inset: 0, backgroundColor: '#ffffff', zIndex: 1 }} />
 
       <style dangerouslySetInnerHTML={{ __html: `
         .calc-layout {

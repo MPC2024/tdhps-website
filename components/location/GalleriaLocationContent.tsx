@@ -1,9 +1,11 @@
 "use client";
 
+import { useState } from "react";
 import { useLanguage } from "@/lib/LanguageContext";
 
 export default function GalleriaLocationContent() {
   const { t } = useLanguage();
+  const [galleria_calc_hovered, setGalleria_calc_hovered] = useState(false);
 
   return (
     <>
@@ -55,9 +57,11 @@ export default function GalleriaLocationContent() {
           href="/calculator"
           target="_blank"
           rel="noopener noreferrer"
+          onMouseOver={() => setGalleria_calc_hovered(true)}
+          onMouseOut={() => setGalleria_calc_hovered(false)}
           style={{
-            backgroundColor: "#1fb6b0",
-            color: "#fff",
+            backgroundColor: galleria_calc_hovered ? "#965B83" : "#ffffff",
+            color: galleria_calc_hovered ? "#fff" : "#965B83",
             padding: "15px 30px",
             borderRadius: "50px",
             fontFamily: '"Outfit", sans-serif',
@@ -66,14 +70,16 @@ export default function GalleriaLocationContent() {
             display: "inline-flex",
             alignItems: "center",
             textDecoration: "none",
-            border: "2px solid #1fb6b0",
+            border: "2px solid #965B83",
+            cursor: "pointer",
+            transition: "all 0.3s ease",
           }}
         >
           {t("location_galleria_price_estimate")}
         </a>
       </div>
       <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "14px", color: "#1F2124", marginTop: "12px", display: "flex", alignItems: "center", gap: "6px" }}>
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1fb6b0" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg> {t("location_galleria_price_microcopy")}
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#965B83" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg> {t("location_galleria_price_microcopy")}
       </p>
     </>
   );

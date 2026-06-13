@@ -656,6 +656,7 @@ export default function PetBathingContent() {
   const { t, language } = useLanguage();
   const [showHoursModal, setShowHoursModal] = useState(false);
   const [showVaccinationsModal, setShowVaccinationsModal] = useState(false);
+  const [bathing_calc_hovered, setBathing_calc_hovered] = useState(false);
 
   return (
     <>
@@ -699,7 +700,10 @@ export default function PetBathingContent() {
           </p>
           <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
             <Link href="/appointment-request" className="btn-primary">{t("book_appointment")}</Link>
-            <a href="/calculator" target="_blank" rel="noopener noreferrer" style={{ backgroundColor: "#1fb6b0", color: "#ffffff", padding: "12px clamp(20px, 3vw, 30px)", borderRadius: "50px", fontFamily: '"Outfit", sans-serif', fontWeight: 600, fontSize: "18px", display: "inline-flex", alignItems: "center", textDecoration: "none", transition: "opacity 0.3s ease" }}>
+            <a href="/calculator" target="_blank" rel="noopener noreferrer"
+              onMouseOver={() => setBathing_calc_hovered(true)}
+              onMouseOut={() => setBathing_calc_hovered(false)}
+              style={{ backgroundColor: bathing_calc_hovered ? "#965B83" : "#ffffff", color: bathing_calc_hovered ? "#ffffff" : "#965B83", padding: "12px clamp(20px, 3vw, 30px)", borderRadius: "50px", fontFamily: '"Outfit", sans-serif', fontWeight: 600, fontSize: "18px", display: "inline-flex", alignItems: "center", textDecoration: "none", transition: "all 0.3s ease", border: "2px solid #965B83", cursor: "pointer" }}>
               {t("bathing_get_price_estimate")}
             </a>
           </div>

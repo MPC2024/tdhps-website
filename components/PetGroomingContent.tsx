@@ -538,6 +538,7 @@ export default function PetGroomingContent() {
   const { t, language } = useLanguage();
   const [showHoursModal, setShowHoursModal] = useState(false);
   const [showVaccinationsModal, setShowVaccinationsModal] = useState(false);
+  const [grooming_calc_hovered, setGrooming_calc_hovered] = useState(false);
 
   return (
     <>
@@ -572,7 +573,10 @@ export default function PetGroomingContent() {
           </p>
           <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
             <Link href="/appointment-request" className="btn-primary">{t("book_appointment")}</Link>
-            <a href="/calculator" target="_blank" rel="noopener noreferrer" style={{ backgroundColor: "#1fb6b0", borderColor: "#1fb6b0", border: "2px solid #1fb6b0", color: "#fff", padding: "12px clamp(20px, 3vw, 30px)", borderRadius: "50px", fontFamily: '"Outfit", sans-serif', fontWeight: 600, fontSize: "clamp(14px, 1.5vw, 18px)", display: "inline-flex", alignItems: "center", textDecoration: "none", transition: "all 0.3s" }}>
+            <a href="/calculator" target="_blank" rel="noopener noreferrer"
+              onMouseOver={() => setGrooming_calc_hovered(true)}
+              onMouseOut={() => setGrooming_calc_hovered(false)}
+              style={{ backgroundColor: grooming_calc_hovered ? "#965B83" : "#ffffff", borderColor: "#965B83", border: "2px solid #965B83", color: grooming_calc_hovered ? "#fff" : "#965B83", padding: "12px clamp(20px, 3vw, 30px)", borderRadius: "50px", fontFamily: '"Outfit", sans-serif', fontWeight: 600, fontSize: "clamp(14px, 1.5vw, 18px)", display: "inline-flex", alignItems: "center", textDecoration: "none", transition: "all 0.3s", cursor: "pointer" }}>
               {t("grooming_price_estimate")}
             </a>
           </div>

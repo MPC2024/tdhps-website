@@ -1609,40 +1609,10 @@ function ProgramsTabbed() {
                   <Image src={active.photo} alt={active.title} fill style={{ objectFit: "cover" }} sizes="320px" quality={90} />
                 </div>
 
-                {/* Info Panel */}
-                <div>
-                  <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "22px", color: "#1F2124", marginBottom: "12px" }}>
-                    {language === "es" ? active.titleEs : active.title}
-                  </h3>
-                  <p style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "32px", color: "#965B83", fontWeight: 700, marginBottom: "12px" }}>
-                    {active.price}
-                  </p>
-                  <div style={{ display: "inline-block", backgroundColor: "#f5ebf1", color: "#965B83", padding: "6px 12px", borderRadius: "20px", fontFamily: '"Outfit", sans-serif', fontSize: "12px", fontWeight: 500, marginBottom: "20px" }}>
-                    {language === "es" ? active.durationEs : active.duration}
-                  </div>
-                  <button
-                    onClick={() => handleApplyClick(activeTab)}
-                    style={{
-                      display: "block",
-                      width: "100%",
-                      backgroundColor: "#965B83",
-                      color: "#ffffff",
-                      padding: "12px 32px",
-                      borderRadius: "50px",
-                      fontFamily: '"Outfit", sans-serif',
-                      fontWeight: 600,
-                      fontSize: "14px",
-                      textDecoration: "none",
-                      border: "none",
-                      cursor: "pointer",
-                      transition: "opacity 0.3s ease",
-                    }}
-                    onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.85")}
-                    onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
-                  >
-                    {t("school_apply_now")}
-                  </button>
-                </div>
+                {/* Title Only */}
+                <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "22px", color: "#1F2124", marginBottom: "0" }}>
+                  {language === "es" ? active.titleEs : active.title}
+                </h3>
               </div>
 
               {/* Right Column — Curriculum Checklist */}
@@ -1668,6 +1638,38 @@ function ProgramsTabbed() {
                     </>
                   );
                 })()}
+              </div>
+            </div>
+
+            {/* Bottom CTA Section — Full Width */}
+            <div style={{ marginTop: "40px", paddingTop: "24px", borderTop: "1px solid #e0e0e0", display: "flex", flexDirection: "column", alignItems: "flex-start", gap: "16px" }}>
+              <p style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "32px", color: "#965B83", fontWeight: 700, margin: "0" }}>
+                {active.price}
+              </p>
+              <div style={{ display: "flex", alignItems: "center", gap: "16px", flexWrap: "wrap" }}>
+                <div style={{ display: "inline-block", backgroundColor: "#f5ebf1", color: "#965B83", padding: "6px 12px", borderRadius: "20px", fontFamily: '"Outfit", sans-serif', fontSize: "12px", fontWeight: 500 }}>
+                  {language === "es" ? active.durationEs : active.duration}
+                </div>
+                <button
+                  onClick={() => handleApplyClick(activeTab)}
+                  style={{
+                    backgroundColor: "#965B83",
+                    color: "#ffffff",
+                    padding: "12px 32px",
+                    borderRadius: "50px",
+                    fontFamily: '"Outfit", sans-serif',
+                    fontWeight: 600,
+                    fontSize: "14px",
+                    textDecoration: "none",
+                    border: "none",
+                    cursor: "pointer",
+                    transition: "opacity 0.3s ease",
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.85")}
+                  onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
+                >
+                  {t("school_apply_now")}
+                </button>
               </div>
             </div>
           </div>

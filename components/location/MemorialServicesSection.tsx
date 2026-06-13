@@ -85,9 +85,11 @@ export default function MemorialServicesSection() {
         <style dangerouslySetInnerHTML={{ __html: `
           .services-cards-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 40px;
             margin: 0 auto;
+            justify-content: center;
+            max-width: 100%;
           }
           @media (max-width: 1024px) {
             .services-cards-grid {

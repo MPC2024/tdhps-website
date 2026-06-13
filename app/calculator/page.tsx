@@ -363,7 +363,7 @@ export default function CalculatorPage() {
     : formattedBreeds.slice(0, 10);
 
   return (
-    <div style={{ minHeight: '100vh', padding: 'clamp(80px, 10vw, 140px) 20px 120px', position: 'relative', overflow: 'hidden', backgroundColor: '#ffffff' }}>
+    <div style={{ minHeight: '100vh', padding: 'clamp(160px, 12vw, 200px) 20px 120px', position: 'relative', overflow: 'hidden', backgroundColor: '#ffffff' }}>
       {/* Subtle paw-print pattern background */}
       <svg style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0, pointerEvents: 'none' }} preserveAspectRatio="none">
         <defs>
@@ -406,7 +406,7 @@ export default function CalculatorPage() {
       <div className="calc-layout">
         {/* Instructions Panel */}
         <div className="calc-instructions" style={{ position: 'relative', zIndex: 2 }}>
-          <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: 'clamp(24px, 3vw, 32px)', color: '#965B83', marginBottom: '16px', lineHeight: 1.2 }}>
+          <h2 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: 'clamp(24px, 3vw, 32px)', color: '#965B83', marginBottom: '16px', lineHeight: 1.2, scrollMarginTop: '180px' }}>
             Get a Price Estimate
           </h2>
           <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: '16px', color: '#54595F', lineHeight: 1.7, marginBottom: '28px' }}>

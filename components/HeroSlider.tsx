@@ -8,7 +8,6 @@ import { useLanguage } from "@/lib/LanguageContext";
 interface Slide {
   imgSrc: string;
   imgAlt: string;
-  subheading: string;
   heading: (t: any) => React.ReactNode;
   textKey: string;
 }
@@ -17,7 +16,6 @@ const slides: Slide[] = [
   {
     imgSrc: "https://www.thedoghouseps.com/wp-content/uploads/2025/05/The-dog-house-pet-salon-hero-1.webp",
     imgAlt: "The dog house pet salon hero",
-    subheading: "THE DOG HOUSE Pet Salon",
     heading: (t) => <>
       {t("we_take_care")} <span style={{ color: "#965B83" }}>{t("your_pets")}</span>
     </>,
@@ -26,7 +24,6 @@ const slides: Slide[] = [
   {
     imgSrc: "https://www.thedoghouseps.com/wp-content/uploads/2025/05/The-dog-house-pet-salon-hero-2.webp",
     imgAlt: "The dog house pet salon hero",
-    subheading: "THE DOG HOUSE Pet Salon",
     heading: (t) => <>
       {t("treat_your")} <span style={{ color: "#965B83" }}>{t("pet_spa")}</span> {t("day")}
     </>,
@@ -35,7 +32,6 @@ const slides: Slide[] = [
   {
     imgSrc: "https://www.thedoghouseps.com/wp-content/uploads/2025/05/The-dog-house-pet-salon-hero-3.webp",
     imgAlt: "The dog house pet salon hero",
-    subheading: "THE DOG HOUSE Pet Salon",
     heading: (t) => <>
       {t("experience")} <span style={{ color: "#965B83" }}>{t("joy_care")}</span>
     </>,
@@ -129,17 +125,6 @@ export default function HeroSlider() {
                 width: "clamp(280px, 50%, 700px)",
               }}
             >
-              <p
-                style={{
-                  fontSize: "clamp(14px, 3.5vw, 20px)",
-                  marginBottom: "10px",
-                  fontWeight: 500,
-                  fontFamily: '"Outfit", Sans-serif',
-                  color: "#6B4562",
-                }}
-              >
-                {slide.subheading}
-              </p>
               <h1
                 style={{
                   fontSize: "clamp(36px, 4.17vw, 60px)",

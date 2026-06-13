@@ -12,12 +12,6 @@ const services = [
     link: "/pet-grooming",
   },
   {
-    title: "loc_boarding_title",
-    desc: "loc_boarding_desc",
-    img: "https://www.thedoghouseps.com/wp-content/uploads/2025/03/pet-boarding.jpg",
-    link: "/houston-pet-boarding",
-  },
-  {
     title: "loc_daycare_title",
     desc: "loc_daycare_desc",
     img: "https://www.thedoghouseps.com/wp-content/uploads/2025/03/dogie-daycare.jpg",

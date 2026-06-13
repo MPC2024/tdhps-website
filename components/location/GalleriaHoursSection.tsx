@@ -28,7 +28,7 @@ export default function GalleriaHoursSection() {
             marginBottom: "24px",
           }}
         >
-          Our operating hours are Monday through Friday from 7:00 am to 7:00 pm, Saturday from 8:00 am to 6:00 pm, and Sunday from 4:00 pm to 5:00 pm.
+          Our operating hours are Monday through Friday from 7:00 am to 7:00 pm, Saturday from 8:00 am to 6:00 pm, and Sunday from 8:00 am to 9:00 am and 4:00 pm to 5:00 pm.
         </p>
         <div style={{ display: "flex", flexWrap: "wrap", gap: "20px", justifyContent: "center", marginBottom: "24px" }}>
           <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
@@ -43,7 +43,7 @@ export default function GalleriaHoursSection() {
           <span style={{ color: "#E8E8E8", fontSize: "20px" }}>|</span>
           <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#965B83" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            <span style={{ fontFamily: '"Outfit", sans-serif', fontSize: "17px", color: "#1F2124", fontWeight: 600 }}>Sunday, 4PM - 5PM</span>
+            <span style={{ fontFamily: '"Outfit", sans-serif', fontSize: "17px", color: "#1F2124", fontWeight: 600 }}>Sunday, 8AM-9AM, 4PM-5PM</span>
           </div>
         </div>
         <p

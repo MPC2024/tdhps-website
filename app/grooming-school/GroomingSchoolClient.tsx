@@ -1852,21 +1852,23 @@ export default function GroomingSchoolClient() {
           </div>
 
           {/* Right Column — Image with rounded corners */}
-          <div style={{ position: "relative" }}>
-            <Image
-              src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/image-17.jpg"
-              alt="Donna Williams - Master Pet Groomer"
-              width={600}
-              height={500}
-              style={{ width: "100%", height: "auto", borderRadius: "12px", display: "block" }}
-            />
-            {/* Gradient overlay */}
-            <div style={{
-              position: "absolute",
-              inset: 0,
-              background: "linear-gradient(180deg, rgba(150,91,131,0) 0%, rgba(150,91,131,0.3) 100%)",
-              borderRadius: "12px",
-            }} />
+          <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+            <div style={{ position: "relative", maxWidth: "400px", width: "100%" }}>
+              <Image
+                src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/image-17.jpg"
+                alt="Donna Williams - Master Pet Groomer"
+                width={600}
+                height={500}
+                style={{ width: "100%", height: "auto", borderRadius: "12px", display: "block" }}
+              />
+              {/* Gradient overlay */}
+              <div style={{
+                position: "absolute",
+                inset: 0,
+                background: "linear-gradient(180deg, rgba(150,91,131,0) 0%, rgba(150,91,131,0.3) 100%)",
+                borderRadius: "12px",
+              }} />
+            </div>
           </div>
         </div>
       </section>

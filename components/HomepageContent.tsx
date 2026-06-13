@@ -181,22 +181,22 @@ export default function HomepageContent() {
             alignItems: "center",
           }}
         >
-          {/* Left: real dog images from videos */}
+          {/* Left: real salon photos from Google Maps */}
           <div style={{ display: "flex", gap: "16px", justifyContent: "center", alignItems: "flex-start" }}>
             <Image
-              src="/images/tdhps-daycare-real.jpg"
-              alt="Happy dog jumping to catch a ball at The Dog House Pet Salon daycare"
-              width={700}
-              height={875}
-              style={{ width: "clamp(200px, 32vw, 465px)", height: "auto", borderRadius: "8px" }}
+              src="/images/tdhps-groomer-salon.jpg"
+              alt="Professional groomer working with a dog at The Dog House Pet Salon"
+              width={900}
+              height={675}
+              style={{ width: "clamp(200px, 32vw, 465px)", height: "auto", borderRadius: "8px", objectFit: "cover" }}
               sizes="(max-width: 480px) 150px, (max-width: 768px) 200px, (max-width: 1024px) 320px, 465px"
               quality={80}
             />
             <Image
-              src="/images/tdhps-boarding-real.jpg"
-              alt="Friendly dog enjoying care at The Dog House Pet Salon boarding facility"
-              width={700}
-              height={875}
+              src="/images/tdhps-happy-dog.jpg"
+              alt="Happy freshly-groomed dog at The Dog House Pet Salon"
+              width={900}
+              height={1199}
               style={{ width: "clamp(100px, 15vw, 220px)", height: "auto", borderRadius: "8px", marginTop: "85px" }}
               sizes="(max-width: 480px) 70px, (max-width: 768px) 100px, (max-width: 1024px) 150px, 220px"
               quality={80}

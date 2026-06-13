@@ -128,127 +128,6 @@
     "emoji": "❄️"
   },
   {
-    "id": "valentine-special",
-    "title": "Valentine's Day Special",
-    "date": "2026-02-14",
-    "type": "promotion",
-    "description": "Show your love! Buy a gift card and receive 25% bonus credit. Perfect gift for pet-loving friends!",
-    "emoji": "💕"
-  },
-  {
-    "id": "mothers-day-promotion",
-    "title": "Mother's Day Special",
-    "date": "2026-05-10",
-    "type": "promotion",
-    "description": "Give mom the gift of time! Gift certificates available with complimentary spa upgrade.",
-    "emoji": "💐"
-  },
-  {
-    "id": "fathers-day-promotion",
-    "title": "Father's Day Promotion",
-    "date": "2026-06-21",
-    "type": "promotion",
-    "description": "Dad and dog duo special! Get grooming service and doggie daycare combo at a special price.",
-    "emoji": "👔"
-  },
-  {
-    "id": "summer-sale",
-    "title": "Summer Sizzle Sale",
-    "date": "2026-06-15",
-    "type": "promotion",
-    "description": "Beat the heat with our summer special! 20% off all grooming services. Valid through August 31.",
-    "emoji": "🔥"
-  },
-  {
-    "id": "black-friday",
-    "title": "Black Friday / Cyber Monday",
-    "date": "2026-11-27",
-    "type": "promotion",
-    "description": "Biggest sale of the year! 30% off grooming packages, boarding, and gift cards. Four days only.",
-    "emoji": "🛍️"
-  },
-  {
-    "id": "holiday-gift-cards",
-    "title": "Holiday Gift Card Campaign",
-    "date": "2026-11-15",
-    "type": "promotion",
-    "description": "The perfect gift for pet lovers! Purchase $100+ in gift cards and receive $25 bonus credit.",
-    "emoji": "🎁"
-  },
-  {
-    "id": "new-year-resolution",
-    "title": "New Year New Pup Fitness",
-    "date": "2026-01-05",
-    "type": "promotion",
-    "description": "New Year, new routine! Sign up for winter doggie daycare package and save 15%.",
-    "emoji": "💪"
-  },
-  {
-    "id": "refer-a-friend",
-    "title": "Refer a Friend Program",
-    "date": "2026-03-01",
-    "type": "promotion",
-    "description": "Know a dog lover? Refer them and get $25 credit when they book their first service!",
-    "emoji": "👥"
-  },
-  {
-    "id": "anniversary-sale",
-    "title": "The Dog House Anniversary Sale",
-    "date": "2026-05-01",
-    "type": "promotion",
-    "description": "We're celebrating 26 years! Special pricing on all services during our anniversary month.",
-    "emoji": "🎉"
-  },
-  {
-    "id": "first-time-customer",
-    "title": "First-Time Customer Special",
-    "date": "2026-01-01",
-    "type": "promotion",
-    "description": "New to The Dog House? Get 20% off your first grooming service. Available year-round!",
-    "emoji": "⭐"
-  },
-  {
-    "id": "loyalty-rewards",
-    "title": "Loyalty Rewards Program",
-    "date": "2026-02-01",
-    "type": "promotion",
-    "description": "Every grooming earns points! Earn free services and exclusive perks. Ask about membership today.",
-    "emoji": "⭐"
-  },
-  {
-    "id": "senior-pet-discount",
-    "title": "Senior Pet Wellness Month",
-    "date": "2026-04-01",
-    "type": "promotion",
-    "description": "Seniors deserve special care! 15% discount on grooming and specialized bath treatments for pets 7+.",
-    "emoji": "👴"
-  },
-  {
-    "id": "easter-special",
-    "title": "Easter Bunny Grooming Special",
-    "date": "2026-04-05",
-    "date": "2026-04-12",
-    "type": "promotion",
-    "description": "Hop into spring! Grooming packages include complimentary bow tie or bandana.",
-    "emoji": "🐰"
-  },
-  {
-    "id": "thanksgiving-prep",
-    "title": "Thanksgiving Prep Grooming",
-    "date": "2026-11-01",
-    "type": "promotion",
-    "description": "Family photos coming up? Book your grooming early! Express services available.",
-    "emoji": "📸"
-  },
-  {
-    "id": "holiday-party-grooming",
-    "title": "Holiday Party Perfect Grooming",
-    "date": "2026-12-01",
-    "type": "promotion",
-    "description": "Get your pup party-ready! Holiday-themed services and premium styling available.",
-    "emoji": "🎊"
-  },
-  {
     "id": "spring-cleaning",
     "title": "Spring Cleaning Groom",
     "date": "2026-04-01",
@@ -265,44 +144,12 @@
     "emoji": "🏥"
   },
   {
-    "id": "puppy-intro",
-    "title": "Puppy Introduction Special",
-    "date": "2026-01-15",
-    "type": "promotion",
-    "description": "New puppy? Schedule their first grooming experience with 25% discount!",
-    "emoji": "🐶"
-  },
-  {
     "id": "summer-boarding",
     "title": "Summer Boarding Peak Season",
     "date": "2026-06-01",
     "type": "seasonal",
     "description": "Travel season is here! Reserve your dog's boarding spot early. Limited availability June-August.",
     "emoji": "✈️"
-  },
-  {
-    "id": "end-of-summer",
-    "title": "End of Summer Closeout",
-    "date": "2026-08-28",
-    "type": "promotion",
-    "description": "Summer sale finale! 25% off all remaining summer packages through Labor Day.",
-    "emoji": "🌅"
-  },
-  {
-    "id": "flash-sale-may",
-    "title": "May Flash Sale",
-    "date": "2026-05-15",
-    "type": "promotion",
-    "description": "Limited time! 48-hour flash sale: 30% off select premium grooming services.",
-    "emoji": "⚡"
-  },
-  {
-    "id": "flash-sale-july",
-    "title": "July 4th Week Special",
-    "date": "2026-07-01",
-    "type": "promotion",
-    "description": "Celebrate with us! Extended hours and 18% off all services this holiday week.",
-    "emoji": "🎆"
   },
   {
     "id": "dog-grooming-month",
@@ -337,35 +184,11 @@
     "emoji": "🎊"
   },
   {
-    "id": "hairball-awareness",
-    "title": "Pet Wellness Awareness",
-    "date": "2026-02-15",
-    "type": "seasonal",
-    "description": "Learn how regular grooming prevents common pet health issues. Free consultation with any booking.",
-    "emoji": "💊"
-  },
-  {
     "id": "summer-hydration",
     "title": "Summer Hydration & Cooling",
     "date": "2026-07-15",
     "type": "seasonal",
     "description": "Combat the Houston heat! Our premium cooling baths and hydrating treatments now available.",
     "emoji": "💧"
-  },
-  {
-    "id": "birthday-month-special",
-    "title": "Birthday Month Pet Special",
-    "date": "2026-03-01",
-    "type": "promotion",
-    "description": "It's your pet's birthday? Book grooming in their birthday month and get 18% off + free bandana!",
-    "emoji": "🎂"
-  },
-  {
-    "id": "group-booking-discount",
-    "title": "Group Booking Discount",
-    "date": "2026-02-01",
-    "type": "promotion",
-    "description": "Bringing multiple pets? Book 3+ pets in one month and receive 10% discount per service.",
-    "emoji": "👨‍👩‍👧‍👦"
   }
 ]

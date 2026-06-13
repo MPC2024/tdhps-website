@@ -1615,7 +1615,7 @@ function ProgramsTabbed() {
                 </h3>
               </div>
 
-              {/* Right Column — Curriculum Checklist */}
+              {/* Right Column — Curriculum Checklist + Price/CTA */}
               <div>
                 {(() => {
                   const bullets = language === "es" ? active.bulletsEs : active.bullets;
@@ -1632,44 +1632,44 @@ function ProgramsTabbed() {
                           </div>
                         ))}
                       </div>
-                      <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "12px", color: "#54595F", fontStyle: "italic", borderTop: "1px solid #e0e0e0", paddingTop: "16px", marginTop: "20px" }}>
+                      <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "12px", color: "#54595F", fontStyle: "italic", borderTop: "1px solid #e0e0e0", paddingTop: "16px", marginTop: "20px", marginBottom: "24px" }}>
                         {language === "es" ? active.footnoteEs : active.footnote}
                       </p>
+
+                      {/* Price + Duration + Apply Button */}
+                      <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+                        <p style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "32px", color: "#965B83", fontWeight: 700, margin: "0" }}>
+                          {active.price}
+                        </p>
+                        <div style={{ display: "flex", alignItems: "center", gap: "12px", flexWrap: "wrap" }}>
+                          <div style={{ display: "inline-block", backgroundColor: "#f5ebf1", color: "#965B83", padding: "6px 12px", borderRadius: "20px", fontFamily: '"Outfit", sans-serif', fontSize: "12px", fontWeight: 500 }}>
+                            {language === "es" ? active.durationEs : active.duration}
+                          </div>
+                          <button
+                            onClick={() => handleApplyClick(activeTab)}
+                            style={{
+                              backgroundColor: "#965B83",
+                              color: "#ffffff",
+                              padding: "12px 32px",
+                              borderRadius: "50px",
+                              fontFamily: '"Outfit", sans-serif',
+                              fontWeight: 600,
+                              fontSize: "14px",
+                              textDecoration: "none",
+                              border: "none",
+                              cursor: "pointer",
+                              transition: "opacity 0.3s ease",
+                            }}
+                            onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.85")}
+                            onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
+                          >
+                            {t("school_apply_now")}
+                          </button>
+                        </div>
+                      </div>
                     </>
                   );
                 })()}
-              </div>
-            </div>
-
-            {/* Bottom CTA Section — Full Width */}
-            <div style={{ marginTop: "40px", paddingTop: "24px", borderTop: "1px solid #e0e0e0", display: "flex", flexDirection: "column", alignItems: "flex-start", gap: "16px" }}>
-              <p style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "32px", color: "#965B83", fontWeight: 700, margin: "0" }}>
-                {active.price}
-              </p>
-              <div style={{ display: "flex", alignItems: "center", gap: "16px", flexWrap: "wrap" }}>
-                <div style={{ display: "inline-block", backgroundColor: "#f5ebf1", color: "#965B83", padding: "6px 12px", borderRadius: "20px", fontFamily: '"Outfit", sans-serif', fontSize: "12px", fontWeight: 500 }}>
-                  {language === "es" ? active.durationEs : active.duration}
-                </div>
-                <button
-                  onClick={() => handleApplyClick(activeTab)}
-                  style={{
-                    backgroundColor: "#965B83",
-                    color: "#ffffff",
-                    padding: "12px 32px",
-                    borderRadius: "50px",
-                    fontFamily: '"Outfit", sans-serif',
-                    fontWeight: 600,
-                    fontSize: "14px",
-                    textDecoration: "none",
-                    border: "none",
-                    cursor: "pointer",
-                    transition: "opacity 0.3s ease",
-                  }}
-                  onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.85")}
-                  onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
-                >
-                  {t("school_apply_now")}
-                </button>
               </div>
             </div>
           </div>

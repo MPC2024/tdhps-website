@@ -634,6 +634,16 @@ export default function Footer() {
               >
                 <i className="fa-brands fa-youtube" style={{ color: "#965B83", fontSize: "16px" }} />
               </a>
+              <a
+                href="https://www.tiktok.com/@thedoghouseps"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center transition-opacity hover:opacity-75"
+                style={{ width: "36px", height: "36px", borderRadius: "50%", backgroundColor: "#ffffff" }}
+                aria-label="TikTok"
+              >
+                <i className="fa-brands fa-tiktok" style={{ color: "#965B83", fontSize: "16px" }} />
+              </a>
             </div>
           </div>
         </div>

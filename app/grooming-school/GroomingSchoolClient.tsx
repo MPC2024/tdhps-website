@@ -1566,76 +1566,103 @@ function ProgramsTabbed() {
           </div>
 
           {/* Tab Content */}
-          <div className="programs-tab-content" style={{ backgroundColor: "#ffffff", padding: "30px", borderRadius: "12px", alignItems: "center", maxWidth: "960px", margin: "0 auto" }}>
-            <div className="programs-tab-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "20px", alignItems: "center" }}>
-              {/* Left Column */}
-              <div>
-                <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "22px", color: "#1F2124", marginBottom: "16px" }}>
-                  {language === "es" ? active.titleEs : active.title}
-                </h3>
-                <p style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "32px", color: "#965B83", fontWeight: 700, marginBottom: "12px" }}>
-                  {active.price}
-                </p>
-                <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "14px", color: "#54595F", marginBottom: "24px", lineHeight: 1.6 }}>
-                  {language === "es" ? active.durationEs : active.duration}
-                </p>
-                <button
-                  onClick={() => handleApplyClick(activeTab)}
-                  style={{
-                    display: "inline-block",
-                    backgroundColor: "#965B83",
-                    color: "#ffffff",
-                    padding: "12px 32px",
-                    borderRadius: "50px",
-                    fontFamily: '"Outfit", sans-serif',
-                    fontWeight: 600,
-                    fontSize: "14px",
-                    textDecoration: "none",
-                    border: "none",
-                    cursor: "pointer",
-                    transition: "opacity 0.3s ease",
-                  }}
-                  onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.85")}
-                  onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
-                >
-                  {t("school_apply_now")}
-                </button>
-              </div>
+          <div className="programs-tab-content" style={{ backgroundColor: "#ffffff", padding: "30px", borderRadius: "12px", maxWidth: "960px", margin: "0 auto" }}>
+            <style>{`
+              .programs-tab-grid {
+                display: grid;
+                grid-template-columns: 320px 1fr;
+                gap: 32px;
+                align-items: flex-start;
+              }
+              @media (max-width: 768px) {
+                .programs-tab-grid {
+                  grid-template-columns: 1fr;
+                  gap: 24px;
+                }
+              }
+              .curriculum-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+                gap: 10px 20px;
+              }
+              .curriculum-item {
+                display: flex;
+                gap: 10px;
+                align-items: flex-start;
+                font-family: "Outfit", sans-serif;
+                font-size: 14px;
+                color: #1F2124;
+                line-height: 1.4;
+              }
+              .curriculum-check {
+                color: #965B83;
+                font-size: 14px;
+                margin-top: 3px;
+                flex-shrink: 0;
+              }
+            `}</style>
+            <div className="programs-tab-grid">
+              {/* Left Column — Photo + Info Panel */}
+              <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+                {/* Photo */}
+                <div style={{ width: "100%", aspectRatio: "3/4", position: "relative", borderRadius: "16px", overflow: "hidden", boxShadow: "0 4px 16px rgba(0,0,0,0.1)" }}>
+                  <Image src={active.photo} alt={active.title} fill style={{ objectFit: "cover" }} sizes="320px" quality={90} />
+                </div>
 
-              {/* Middle Column — Photo */}
-              <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
-                <div style={{ width: "100%", maxWidth: "260px", aspectRatio: "3/4", position: "relative", borderRadius: "16px", overflow: "hidden", boxShadow: "0 4px 16px rgba(0,0,0,0.1)" }}>
-                  <Image src={active.photo} alt={active.title} fill style={{ objectFit: "cover" }} sizes="260px" quality={90} />
+                {/* Info Panel */}
+                <div>
+                  <h3 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "22px", color: "#1F2124", marginBottom: "12px" }}>
+                    {language === "es" ? active.titleEs : active.title}
+                  </h3>
+                  <p style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "32px", color: "#965B83", fontWeight: 700, marginBottom: "12px" }}>
+                    {active.price}
+                  </p>
+                  <div style={{ display: "inline-block", backgroundColor: "#f5ebf1", color: "#965B83", padding: "6px 12px", borderRadius: "20px", fontFamily: '"Outfit", sans-serif', fontSize: "12px", fontWeight: 500, marginBottom: "20px" }}>
+                    {language === "es" ? active.durationEs : active.duration}
+                  </div>
+                  <button
+                    onClick={() => handleApplyClick(activeTab)}
+                    style={{
+                      display: "block",
+                      width: "100%",
+                      backgroundColor: "#965B83",
+                      color: "#ffffff",
+                      padding: "12px 32px",
+                      borderRadius: "50px",
+                      fontFamily: '"Outfit", sans-serif',
+                      fontWeight: 600,
+                      fontSize: "14px",
+                      textDecoration: "none",
+                      border: "none",
+                      cursor: "pointer",
+                      transition: "opacity 0.3s ease",
+                    }}
+                    onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.85")}
+                    onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
+                  >
+                    {t("school_apply_now")}
+                  </button>
                 </div>
               </div>
 
-              {/* Right Column — Bullets */}
+              {/* Right Column — Curriculum Checklist */}
               <div>
                 {(() => {
                   const bullets = language === "es" ? active.bulletsEs : active.bullets;
                   return (
                     <>
-                      <ul style={{
-                        fontFamily: '"Outfit", sans-serif',
-                        fontSize: "14px",
-                        color: "#54595F",
-                        lineHeight: 1.6,
-                        listStyle: "disc",
-                        paddingLeft: "20px",
-                        marginBottom: "24px",
-                        columns: bullets.length > 10 ? 2 : 1,
-                        columnGap: "24px",
-                      }}>
+                      <h4 style={{ fontFamily: '"Bowlby One SC", sans-serif', fontSize: "18px", color: "#1F2124", marginBottom: "16px" }}>
+                        What You'll Learn
+                      </h4>
+                      <div className="curriculum-grid">
                         {bullets.map((bullet) => (
-                          <li key={bullet} style={{
-                            marginBottom: "4px",
-                            breakInside: "avoid",
-                          }}>
-                            {bullet}
-                          </li>
+                          <div key={bullet} className="curriculum-item">
+                            <i className="fa-solid fa-circle-check curriculum-check" />
+                            <span>{bullet}</span>
+                          </div>
                         ))}
-                      </ul>
-                      <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "12px", color: "#54595F", fontStyle: "italic", borderTop: "1px solid #e0e0e0", paddingTop: "45px" }}>
+                      </div>
+                      <p style={{ fontFamily: '"Outfit", sans-serif', fontSize: "12px", color: "#54595F", fontStyle: "italic", borderTop: "1px solid #e0e0e0", paddingTop: "16px", marginTop: "20px" }}>
                         {language === "es" ? active.footnoteEs : active.footnote}
                       </p>
                     </>

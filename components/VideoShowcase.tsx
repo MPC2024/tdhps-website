@@ -161,7 +161,7 @@ export default function VideoShowcase({
               </div>
             </div>
 
-            {/* CARD 2: Daycare Playtime (Coming Soon) */}
+            {/* CARD 2: Daycare Playtime */}
             <div
               style={{
                 borderRadius: '12px',
@@ -181,25 +181,52 @@ export default function VideoShowcase({
                   width: '100%',
                   paddingBottom: '56.25%',
                   backgroundColor: '#2a2a2a',
-                  cursor: 'default',
+                  borderRadius: '12px',
                   overflow: 'hidden',
+                  boxShadow: '0 8px 24px rgba(0, 0, 0, 0.12)',
+                  margin: '0',
                 }}
               >
-                <div style={{ position: 'absolute', inset: 0, backgroundColor: '#2a2a2a' }} />
                 <div
                   style={{
                     position: 'absolute',
-                    bottom: '10px',
-                    right: '10px',
-                    backgroundColor: 'rgba(0, 0, 0, 0.7)',
-                    color: '#ffffff',
-                    padding: '4px 10px',
-                    borderRadius: '4px',
-                    fontSize: '12px',
-                    fontFamily: '"Outfit", sans-serif',
+                    inset: 0,
+                    backgroundImage: 'url(/videos/donna-dog-daycare-poster.jpg)',
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    filter: 'blur(8px) brightness(0.5)',
+                    transform: 'scale(1.1)',
+                    zIndex: 1,
+                  }}
+                />
+
+                <div
+                  style={{
+                    position: 'absolute',
+                    inset: 0,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    zIndex: 2,
                   }}
                 >
-                  Coming Soon
+                  <video
+                    style={{
+                      height: '100%',
+                      objectFit: 'contain',
+                      objectPosition: 'center',
+                    }}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="metadata"
+                    poster="/videos/donna-dog-daycare-poster.jpg"
+                    controls
+                  >
+                    <source src="/videos/donna-dog-daycare.mp4" type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
                 </div>
               </div>
               <div style={{ padding: '16px', flex: 1, display: 'flex', flexDirection: 'column' }}>
@@ -234,7 +261,7 @@ export default function VideoShowcase({
               </div>
             </div>
 
-            {/* CARD 3: Boarding Facility Tour (Coming Soon) */}
+            {/* CARD 3: Boarding Facility Tour */}
             <div
               style={{
                 borderRadius: '12px',
@@ -254,25 +281,52 @@ export default function VideoShowcase({
                   width: '100%',
                   paddingBottom: '56.25%',
                   backgroundColor: '#2a2a2a',
-                  cursor: 'default',
+                  borderRadius: '12px',
                   overflow: 'hidden',
+                  boxShadow: '0 8px 24px rgba(0, 0, 0, 0.12)',
+                  margin: '0',
                 }}
               >
-                <div style={{ position: 'absolute', inset: 0, backgroundColor: '#2a2a2a' }} />
                 <div
                   style={{
                     position: 'absolute',
-                    bottom: '10px',
-                    right: '10px',
-                    backgroundColor: 'rgba(0, 0, 0, 0.7)',
-                    color: '#ffffff',
-                    padding: '4px 10px',
-                    borderRadius: '4px',
-                    fontSize: '12px',
-                    fontFamily: '"Outfit", sans-serif',
+                    inset: 0,
+                    backgroundImage: 'url(/videos/donna-pet-boarding-poster.jpg)',
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    filter: 'blur(8px) brightness(0.5)',
+                    transform: 'scale(1.1)',
+                    zIndex: 1,
+                  }}
+                />
+
+                <div
+                  style={{
+                    position: 'absolute',
+                    inset: 0,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    zIndex: 2,
                   }}
                 >
-                  Coming Soon
+                  <video
+                    style={{
+                      height: '100%',
+                      objectFit: 'contain',
+                      objectPosition: 'center',
+                    }}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="metadata"
+                    poster="/videos/donna-pet-boarding-poster.jpg"
+                    controls
+                  >
+                    <source src="/videos/donna-pet-boarding.mp4" type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
                 </div>
               </div>
               <div style={{ padding: '16px', flex: 1, display: 'flex', flexDirection: 'column' }}>

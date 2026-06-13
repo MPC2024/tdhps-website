@@ -30,11 +30,11 @@ export default function EventsPage() {
       <section
         style={{
           position: "relative",
-          minHeight: "clamp(300px, 50vh, 600px)",
+          minHeight: "clamp(180px, 28vh, 260px)",
           display: "flex",
           alignItems: "center",
-          padding: "clamp(80px, 12vh, 140px) 20px clamp(50px, 8vh, 100px)",
-          backgroundColor: "linear-gradient(135deg, #965B83 0%, #B8769D 100%)",
+          padding: "clamp(48px, 8vh, 80px) 20px clamp(48px, 8vh, 80px)",
+          background: "linear-gradient(135deg, #965B83 0%, #B8769D 100%)",
           overflow: "hidden",
         }}
       >

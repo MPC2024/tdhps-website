@@ -181,22 +181,22 @@ export default function HomepageContent() {
             alignItems: "center",
           }}
         >
-          {/* Left: dog images */}
+          {/* Left: real location + facility images */}
           <div style={{ display: "flex", gap: "16px", justifyContent: "center", alignItems: "flex-start" }}>
             <Image
-              src="https://www.thedoghouseps.com/wp-content/uploads/2025/05/white-dog-shaking-hand.webp"
-              alt="White dog shaking hand"
-              width={465}
-              height={566}
+              src="/images/pearland-location.jpg"
+              alt="The Dog House Pet Salon Pearland location storefront"
+              width={1134}
+              height={584}
               style={{ width: "clamp(200px, 32vw, 465px)", height: "auto", borderRadius: "8px" }}
               sizes="(max-width: 480px) 150px, (max-width: 768px) 200px, (max-width: 1024px) 320px, 465px"
               quality={80}
             />
             <Image
-              src="https://www.thedoghouseps.com/wp-content/uploads/2025/03/German-Shephard.jpg"
-              alt="German Shephard"
-              width={220}
-              height={558}
+              src="/images/tdhps-daycare-still.jpg"
+              alt="Happy dog playing at The Dog House Pet Salon daycare facility"
+              width={1920}
+              height={1080}
               style={{ width: "clamp(100px, 15vw, 220px)", height: "auto", borderRadius: "8px", marginTop: "85px" }}
               sizes="(max-width: 480px) 70px, (max-width: 768px) 100px, (max-width: 1024px) 150px, 220px"
               quality={80}

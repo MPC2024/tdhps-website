@@ -363,7 +363,7 @@ export default function CalculatorPage() {
     : formattedBreeds.slice(0, 10);
 
   return (
-    <div style={{ minHeight: '100vh', padding: 'clamp(160px, 12vw, 200px) 20px 120px', position: 'relative', overflow: 'hidden', backgroundColor: '#ffffff' }}>
+    <div style={{ minHeight: '100vh', padding: 'clamp(240px, 18vw, 320px) 20px 120px', position: 'relative', overflow: 'hidden', backgroundColor: '#ffffff' }}>
       {/* Subtle paw-print pattern background */}
       <svg style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0, pointerEvents: 'none' }} preserveAspectRatio="none">
         <defs>
